@@ -1,0 +1,98 @@
+<?php 
+
+function em_apply_menu() {
+  $items = array();
+
+  $items['em/apply'] = array(
+    'page callback' => 'em_apply_check',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['user/%/apply'] = array(
+    'page callback' => 'em_apply_form',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+/**
+ * Implementation of hook_block_info().
+ */
+function em_apply_block_info() {
+  $blocks['apply-block'] = array(
+    'info' => t('Custom: Apply Block'),
+  );
+	
+  return $blocks;
+}
+
+function em_apply_block_view($delta='') {
+    $block = array();
+    switch ($delta) {
+	  case 'apply-block':
+            $block['subject'] = '';
+           // $block['content'] = apply_block();
+           $block['content'] = "<a href='/em/apply'>APPLY HERE</a>";
+        break;     
+    }
+    return $block;
+}
+
+function em_apply_check(){
+	global $user;
+	
+	if($user->uid == '0'){
+		drupal_goto('user');
+	}else{
+		drupal_goto('user/'.$user->uid.'/apply');
+	}
+	return;
+	
+	
+}
+
+function em_apply_form($uid){
+	return drupal_get_form('em_application_form');
+}
+
+
+function em_application_form($form, &$form_state){
+	$form['#prefix'] = '<div id="contact-form-wrapper win" class="check-wrapper header">';
+	$form['#suffix'] = '</div>';
+  	
+  
+
+  $form['info'] = array(
+		'#type' => 'fieldset', 
+		'#collapsed' => FALSE,
+		);
+  
+  $form['info']['first'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('First Name:'),
+    '#required' => true,
+  );
+  $form['info']['last'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Last Name:'),
+    '#required' => true,
+  );
+
+    
+ $form['info']['email'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Email:'),
+    '#required' => true,
+  );
+ $form['info']['phone'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Phone #:'),
+    '#required' => true,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit', 
+    '#value' => 'Submit',
+  );
+  return $form;
+}

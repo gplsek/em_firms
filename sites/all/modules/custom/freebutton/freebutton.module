@@ -1,0 +1,99 @@
+<?php
+
+function freebutton_menu() {
+  $items = array();
+
+  $items['freebutton/check/%'] = array(
+    'page callback' => 'freebutton_check',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  // User operations menu items for ARB recurring fees.
+  // $items['user/%user/recurring/%/arb-update'] = array(
+  //    'title' => 'Update your payment details',
+  //    'description' => 'Update the payment details for a recurring fee.',
+  //    'page callback' => 'drupal_get_form',
+  //    'page arguments' => array('uc_authorizenet_arb_user_update_form', 1, 3),
+  //    'access callback' => 'uc_recurring_user_access',
+  //    'access arguments' => array(1, 3),
+  //    'type' => MENU_CALLBACK,
+  //    'file' => 'uc_authorizenet.pages.inc',
+  //  );
+
+  return $items;
+}
+
+
+function freebutton_check($nid){
+	$node = node_load($nid);
+	if($node->field_campaign_active['und'][0]['value'] == 1){
+	  //check winner here
+	    $winner_number = $node->field_campaign_winner['und'][0]['value'];
+	    $visits_number = $node->field_campaign_visits['und'][0]['value'];
+	    $visit = $visits_number + 1;
+	    if ($winner_number == $visit)	{
+		     _fb_update_node($nid,$visit,'winner');
+		     return "sweet you won something";
+	       }else{
+		     _fb_update_node($nid, $visit,'looser');
+		     $html = "user #".$visit;
+		     $html .= l('Sorry Brah, try again later','freebutton/check/'.$nid.'/');
+		     return $html;
+			}
+	}else{
+		return "its over sorry dude: ".$nid;
+	}
+}
+
+function _fb_update_node($nid, $visit ,$type){
+	
+	$node = node_load($nid);
+	
+	$node->field_campaign_visits['und'][0]['value'] = $visit;
+	if($type == 'winner'){
+		$node->field_campaign_active['und'][0]['value'] = 0;
+	}
+
+	node_save($node);
+	 return '';
+}
+
+
+function freebutton_block_info() {
+	$blocks['button-block'] = array(
+    'info' => t('Custom: Free Button Block'),
+  );
+  return $blocks;
+}
+
+
+function freebutton_block_view($delta='') {
+  $block = array();
+  $nid = arg(1);
+  switch ($delta) {
+    case 'button-block':
+      $block['subject'] = 'SOme subject';
+      $block['content'] = button_contents($nid);
+      break;
+
+  }
+
+  return $block;
+}
+
+
+
+function button_contents($nid){
+	$node = node_load($nid);
+	if ($node->field_campaign_active['und'][0]['value'] == 1){
+		
+	    return l('Win Here','freebutton/check/'.$nid.'/');
+		
+	}else{
+		return 'Campaign Over';
+	}
+	
+	
+}

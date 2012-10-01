@@ -1,0 +1,88 @@
+<?php
+function em_apply_schema() {
+ $schema['em_company'] = array(
+ 'description' => t('The base table for application - company.'),
+ 'fields' => array(
+ 	'id' => array(
+ 		'description' => t('The primary identifier'),
+ 		'type' => 'serial',
+ 		'unsigned' => TRUE,
+ 		'not null' => TRUE
+    	),
+	 'uid' => array(
+	 	'description' => t('Form Owner'),
+	 	'unsigned' => TRUE,
+	 	'not null' => TRUE
+	    	),
+ 	'first_name' => array(
+ 		'description' => t('Organization Name.'),
+ 		'type' => 'varchar',
+ 		'length' => '120',
+ 		'not null' => TRUE
+		),
+	 'last_name' => array(
+	 	'description' => t('Organization Phone.'),
+	 	'type' => 'varchar',
+	 	'length' => '120'
+	    ),
+	 'email' => array(
+	 	'description' => t('Organization Address.'),
+	 	'type' => 'varchar',
+	 	'length' => '120',
+	 	'not null' => TRUE
+		),
+	 'phone' => array(
+	 	'description' => t('Organization Address2.'),
+	 	'type' => 'varchar',
+	 	'length' => '120',
+		),
+	),
+ 'primary key' => array('id'),
+ );
+
+$schema['em_application'] = array(
+	'description' => t('Application process table.'),
+	'fields' => array(
+	 	'id' => array(
+	 		'description' => t('The primary identifier'),
+	 		'type' => 'serial',
+	 		'unsigned' => TRUE,
+	 		'not null' => TRUE
+	    	),
+		 'formid' => array(
+		 	'description' => t('Application Form ID'),
+		 	'unsigned' => TRUE,
+		 	'not null' => TRUE
+		    ),
+		 'admin_uid' => array(
+		 	'description' => t('Form Admin UID'),
+		 	'unsigned' => TRUE,
+		 	'not null' => TRUE
+		    ),
+		 'uid' => array(
+		 	'description' => t('User Form ID'),
+		 	'unsigned' => TRUE,
+		 	'not null' => TRUE
+		    ),
+		 'published' => array(
+		 	'description' => t('Form Published'),
+		 	'unsigned' => TRUE,
+		    'default' => 0,
+		 	'not null' => TRUE
+		    ),
+	),
+ 'primary key' => array('id'),
+ );
+
+return $schema;
+}
+
+function em_apply_install() {
+  // Create my tables.
+  drupal_install_schema('em_apply');
+}
+
+function em_apply_uninstall() {
+  // Drop my tables.
+  drupal_uninstall_schema('em_apply');
+}
