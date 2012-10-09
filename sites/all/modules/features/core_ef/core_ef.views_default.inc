@@ -312,7 +312,7 @@ function core_ef_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Seven - Features Block';
+  $handler->display->display_options['title'] = 'Ecosystem Constituants';
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_text'] = 'SY more';
   $handler->display->display_options['access']['type'] = 'perm';
@@ -881,7 +881,7 @@ function core_ef_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Our Clients';
+  $handler->display->display_options['title'] = 'Our Trustmark.  Your Trust.';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -896,7 +896,7 @@ function core_ef_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'Quisque quam justo, cursus sit amet pretium vel, viverra vel leo. Phasellus sed dui massa, vitae dapibus augue.  ';
+  $handler->display->display_options['header']['area']['content'] = 'Our mission is simple - to drive trust and transparency for investors and companies seeking early stage investment.  We do this by delivering a comprehensive, unbiased, and easy to understand report card about companies seeking investment.  Companies benefit by establishing transparency, investors gain unprecedented visibility, and partner markets are facilitated.   ';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Footer: Global: Text area */
@@ -930,64 +930,30 @@ function core_ef_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
-  /* Field: Content: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_image']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_image']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_image']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_image']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_image']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_image']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'seven-our-clients',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_image']['field_api_classes'] = 0;
-  /* Field: Content: Image */
-  $handler->display->display_options['fields']['field_image_1']['id'] = 'field_image_1';
-  $handler->display->display_options['fields']['field_image_1']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image_1']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image_1']['label'] = '';
-  $handler->display->display_options['fields']['field_image_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_image_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_image_1']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_image_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_image_1']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_image_1']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image_1']['settings'] = array(
-    'image_style' => 'seven-our-clients-grayscale',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_image_1']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -1010,7 +976,7 @@ function core_ef_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
-  $handler->display->display_options['block_description'] = 'Seven - Our Clients';
+  $handler->display->display_options['block_description'] = 'Our Trustmark';
   $export['seven_our_clients'] = $view;
 
   $view = new view;
@@ -2614,7 +2580,7 @@ function core_ef_views_default_views() {
   $handler->display->display_options['filters']['field_slide_type_value']['table'] = 'field_data_field_slide_type';
   $handler->display->display_options['filters']['field_slide_type_value']['field'] = 'field_slide_type_value';
   $handler->display->display_options['filters']['field_slide_type_value']['value'] = array(
-    'Transparent PNG' => 'Transparent PNG',
+    'Full Image' => 'Full Image',
   );
 
   /* Display: Block */

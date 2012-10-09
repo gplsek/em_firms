@@ -375,21 +375,20 @@ function core_ef_image_default_styles() {
   $styles['seven-slideshow-2'] = array(
     'name' => 'seven-slideshow-2',
     'effects' => array(
-      13 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
+      24 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
         'module' => 'image',
-        'name' => 'image_scale',
+        'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '',
-          'height' => '319',
-          'upscale' => 0,
+          'width' => '595',
+          'height' => '318',
         ),
-        'weight' => '-10',
+        'weight' => '2',
       ),
     ),
   );
