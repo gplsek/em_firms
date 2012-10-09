@@ -150,52 +150,7 @@ function bartik_field__taxonomy_term_reference($variables) {
   $output .= '</ul>';
 
   // Render the top-level DIV.
-  $output = '<div class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '">' . $output . '</div>';
+  $output = '<div class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '"' . $variables['attributes'] .'>' . $output . '</div>';
 
   return $output;
 }
-
-
-// function bartik_preprocess_uc_ajax_cart_block_content(&$vars) {
-// $content = $vars['items'];
-//   $items = array();
-//   $context = array(
-//     'revision' => 'themed',
-//     'type' => 'price',
-//   );
-// 
-//   $total = 0;
-//   $total_items = 0;
-//   foreach ($content as $item) {
-//     $display_item = module_invoke($item['item']->module, 'cart_display', $item['item']);
-//     if (!empty($display_item)) { 
-//           $attributes = $item->data['attributes'];
-//           $total += $display_item['#total'];
-//           $total_items += $display_item['qty']['#default_value'];
-//             $items[] = array(
-//               
-//               'remove_link' => l(t('Remove this item'),
-//                                   UC_AJAX_CART_REMOVE_CALLBACK,
-//                                   array(
-//                                   'attributes' => array(
-//                                                     'onclick' => "ajaxCartBlockUIRemove(this.href); return false;",
-//                                                     'class'    => 'remove-cart-link remove-cart-link-' . $display_item['nid']['#value'],
-//                                                   ),
-//                                   'query' => array(
-//                                     'nid' => $display_item['nid']['#value'],
-//                                     'destination' => $_GET['q'],
-//                                     'data' => base64_encode($display_item['data']['#value']),
-//                                     'action' => 'remove',
-//                                   ),
-//                                 )
-//                               ),
-//             );
-//     }
-//   }
-//   
-//   $vars['items'] = $items;
-//   $vars['item_count'] = $total_items;
-//   $vars['cart_links'] = theme('uc_ajax_cart_cart_links');
-//   
-// 
-// }

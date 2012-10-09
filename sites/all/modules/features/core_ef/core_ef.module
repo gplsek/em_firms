@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the core_ef feature.
+ */
+
+include_once 'core_ef.features.inc';

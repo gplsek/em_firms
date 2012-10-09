@@ -1,0 +1,88 @@
+/**
+ * @file
+ * Navigation Styling
+ */
+
+
+/*
+ * The active item in a Drupal menu
+ */
+li a.active {
+  color: #000;
+}
+
+/*
+ * Navigation bar
+ */
+#navigation {
+  /* overflow: hidden; /* Sometimes you want to prevent overlapping with main div. */
+}
+
+#navigation ul.links, /* Main menu and secondary menu links */
+#navigation .content ul /* Menu block links */ {
+  margin: 0;
+  padding: 0;
+  text-align: left; /* LTR */
+}
+
+#navigation ul.links li, /* A simple method to get navigation links to appear in one line. */
+#navigation .content li {
+  float: left; /* LTR */
+  padding: 0 10px 0 0; /* LTR */
+}
+
+.region-navigation {
+}
+
+/*
+ * Main menu and Secondary menu links
+ */
+#main-menu {
+}
+
+#secondary-menu {
+  float: right;
+}
+
+/*
+ * Menu blocks
+ */
+.block-menu {
+}
+
+/*
+ * "Menu block" blocks
+ *
+ * Drupal core has limited ways in which it can display its menus. To get around
+ * these limitations, see http://drupal.org/project/menu_block
+ */
+.block-menu-block {
+}
+
+#block-system-user-menu {
+    margin-top: 0;
+    margin-right: 0;
+    display: block;
+    float: right;
+}
+#block-system-user-menu.block {
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+#block-system-user-menu ul {
+    margin: 0;
+}
+#block-system-user-menu ul li {
+    list-style: none;
+    display:inline;
+    float:left;
+    font-size: 0.8em;
+}
+#block-system-user-menu ul li a,
+#block-system-user-menu ul li a.hover,
+#block-system-user-menu ul li a.active,
+#block-system-user-menu ul li a.visited {
+  text-decoration: none;
+}
+

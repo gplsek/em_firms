@@ -1,0 +1,8 @@
+name = Seven v1.15 (Released August 3, 2012)
+description = Seven Premium Theme v1.15 Installation Profile (Drupal 7.15).
+version = VERSION
+core = 7.x
+dependencies[] = block
+files[] = seven.profile
+
+
