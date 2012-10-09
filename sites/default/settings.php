@@ -205,10 +205,10 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'dev',
+      'database' => 'seedscope',
       'username' => 'root',
-      'password' => 'gonzo',
-      'host' => 'localhost',
+      'password' => '12Sunset',
+      'host' => '127.0.0.1',
       'port' => '',
       'driver' => 'mysql',
       'prefix' => '',
