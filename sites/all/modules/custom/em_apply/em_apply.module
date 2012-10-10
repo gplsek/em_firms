@@ -3,7 +3,7 @@
 function em_apply_menu() {
   $items = array();
 
-  $items['em/apply'] = array(
+  $items['client/get-started'] = array(
     'page callback' => 'em_apply_check',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
@@ -32,7 +32,7 @@ function em_apply_block_view($delta='') {
 	  case 'apply-block':
             $block['subject'] = '';
            // $block['content'] = apply_block();
-           $block['content'] = "<a href='/em/apply'>APPLY HERE</a>";
+           $block['content'] = "<a href='client/get-started'>GET STARTED</a>";
         break;     
     }
     return $block;
@@ -42,7 +42,7 @@ function em_apply_check(){
 	global $user;
 	
 	if($user->uid == '0'){
-		drupal_goto('user');
+		drupal_goto('user/login/',array('query'=>array('destination' => 'client/get-started')));
 	}else{
 		drupal_goto('user/'.$user->uid.'/apply');
 	}
