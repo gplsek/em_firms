@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * An example of simpletest tests to accompany the tutorial at
+ * http://drupal.org/node/890654.
+ */
+
+/**
+ * The SimpletestExampleTestCase is a functional test case, meaning that it
+ * actually exercises a particular sequence of actions through the web UI.
+ * The majority of core test cases are done this way, but the Simpletest suite
+ * also provides unit tests as demonstrated in the unit test case example later
+ * in this file.
+ *
+ * Functional test cases are far slower to execute than unit test cases because
+ * they require a complete Drupal install to be done for each test.
+ *
+ * @see DrupalWebTestCase
+ */
+class RegisterTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Registration',
+      'description' => 'As a member, I can login using my email address and password such that I can access member-only information and areas of the site, and I know it\'s done when I successfully login and see member-only content.',
+      'group' => 'EFI',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('user', 'core_ef');
+  }
+
+  public function testRegister() {
+    // Retrieve regsitration page as anon user
+    $this->drupalGet('user/register');
+    // Check that correct fields are showing and form labels are correct
+    // Username
+    $this->assertFieldById('edit-name', '', 'The Username field exists on the page.');
+    $this->assertRaw('<label for="edit-name">Username <span class="form-required" title="This field is required.">*</span></label>', 'Label "Username" is on the user register page and is required.');
+
+    // Email
+    $this->assertFieldById('edit-mail', '', 'The Email field exists on the page.');
+    $this->assertRaw('<label for="edit-mail">E-mail address <span class="form-required" title="This field is required.">*</span></label>', 'Label "E-mail address" is on the user register page and is required.');
+
+    // Email Confirmation
+    $this->assertFieldById('edit-conf-mail', '', 'The Email Confirmation field exists on the page.');
+    $this->assertRaw('<label for="edit-conf-mail">Confirm e-mail address <span class="form-required" title="This field is required.">*</span></label>', 'Label "Confirm e-mail address" is on the user register page and is required.');
+
+    // First Name
+    $this->assertFieldById('edit-field-name-first-und-0-value', '', 'The First Name field exists on the page.');
+    $this->assertRaw('<label for="edit-field-name-first-und-0-value">First Name <span class="form-required" title="This field is required.">*</span></label>', 'Label "First Name" is on the user register page and is required.');
+
+    // Last Name
+    $this->assertFieldById('edit-field-name-last-und-0-value', '', 'The Last Name field exists on the page.');
+    $this->assertRaw('<label for="edit-field-name-last-und-0-value">Last Name <span class="form-required" title="This field is required.">*</span></label>', 'Label "Last Name" is on the user register page and is required.');
+
+    // User Type
+    $this->assertFieldById('edit-field-client-type-und', '', 'The User Type field exists on the page.');
+    $this->assertRaw('<label for="edit-field-client-type-und">Type <span class="form-required" title="This field is required.">*</span></label>', 'Label "Type" is on the user register page and is required.');
+
+    // Captcha
+    $this->assertFieldById('edit-captcha-response', '', 'The Captcha field exists on the page.');
+
+    // Submit
+    $this->assertFieldById('edit-submit', '', 'The Submit button exists on the page.');
+
+  }
+}

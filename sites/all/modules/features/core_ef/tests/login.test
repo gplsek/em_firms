@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * An example of simpletest tests to accompany the tutorial at
+ * http://drupal.org/node/890654.
+ */
+
+/**
+ * The SimpletestExampleTestCase is a functional test case, meaning that it
+ * actually exercises a particular sequence of actions through the web UI.
+ * The majority of core test cases are done this way, but the Simpletest suite
+ * also provides unit tests as demonstrated in the unit test case example later
+ * in this file.
+ *
+ * Functional test cases are far slower to execute than unit test cases because
+ * they require a complete Drupal install to be done for each test.
+ *
+ * @see DrupalWebTestCase
+ */
+class LoginTestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Login',
+      'description' => 'As a member, I can login using my email address and password such that I can access member-only information and areas of the site, and I know its done when I successfully login and see member-only content.',
+      'group' => 'EFI',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('user');
+    // Create our user.
+    $this->privileged_user = $this->drupalCreateUser(array('access content'));
+  }
+
+  public function testLogin() {
+    // Login the user.
+    $this->drupalLogin($this->privileged_user);
+    // checks access to user's page
+    $test_page = 'user';
+
+    // Retrieve page as the logged in user
+    $this->drupalGet($test_page);
+    $this->assertText(t('History'), t('Check that the user page is accessed.'));
+
+    // Logout and retrieve the page as an anonymous user
+    $this->drupalLogout();
+    $this->drupalGet($test_page);
+    $this->assertText(t('Enter your Drupal username'), t('Check that user is prompted to login.'));
+  }
+}
