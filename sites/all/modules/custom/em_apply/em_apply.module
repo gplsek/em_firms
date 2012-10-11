@@ -112,18 +112,19 @@ function em_apply_node_update($node) {
 	
 }
 
+function em_apply_node_prepare($node) {
+  if ($node->type == 'test_company'){
+	 $node->field_name['und'][0]['value'] = 'test name';
+	}
+	
+}
 
-// function em_apply_node_load($nodes, $types) {
-//   if (!in_array('test_company', $types)) 
-//     return;
-//   if (!isset($_GET['my_entity_reference_field'])) 
-//     return;
-//   
-//   $items = explode(',', $_GET['my_entity_reference_field']);
-//   
-//   foreach ($nodes as $node) {
-//     foreach ($items as $item) {
-//       $node->my_entity_reference_field[LANGUAGE_NONE][] = array('target_id' => $item);
-//     }
-//   }
-// }
+function em_apply_form_test_company_node_form_alter(&$form, &$form_state, $form_id) {
+    global $user;
+    $owner = $form_state['node']->uid;
+    //also see if the user exists in the company table
+    if ($owner <> $user->uid){
+		$form['field_name']['#disabled'] = true;
+		return $form;
+	}
+}
