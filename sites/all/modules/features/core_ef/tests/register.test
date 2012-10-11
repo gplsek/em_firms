@@ -33,9 +33,12 @@ class RegisterTestCase extends DrupalWebTestCase {
   }
 
   public function testRegister() {
+    // @TODO add check for register link for anon users
+
     // Retrieve regsitration page as anon user
     $this->drupalGet('user/register');
-    // Check that correct fields are showing and form labels are correct
+
+    // Check that fields and form labels are correct
     // Username
     $this->assertFieldById('edit-name', '', 'The Username field exists on the page.');
     $this->assertRaw('<label for="edit-name">Username <span class="form-required" title="This field is required.">*</span></label>', 'Label "Username" is on the user register page and is required.');

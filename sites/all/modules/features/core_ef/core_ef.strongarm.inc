@@ -97,6 +97,13 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_data_company';
+  $strongarm->value = 0;
+  $export['comment_anonymous_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_seven_client';
   $strongarm->value = 0;
   $export['comment_anonymous_seven_client'] = $strongarm;
@@ -132,9 +139,23 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_data_company';
+  $strongarm->value = '0';
+  $export['comment_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_article';
   $strongarm->value = 1;
   $export['comment_default_mode_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_data_company';
+  $strongarm->value = 1;
+  $export['comment_default_mode_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -174,6 +195,13 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_data_company';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_seven_client';
   $strongarm->value = '50';
   $export['comment_default_per_page_seven_client'] = $strongarm;
@@ -205,6 +233,13 @@ function core_ef_strongarm() {
   $strongarm->name = 'comment_form_location_article';
   $strongarm->value = 1;
   $export['comment_form_location_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_data_company';
+  $strongarm->value = 1;
+  $export['comment_form_location_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -247,6 +282,13 @@ function core_ef_strongarm() {
   $strongarm->name = 'comment_preview_article';
   $strongarm->value = '1';
   $export['comment_preview_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_data_company';
+  $strongarm->value = '1';
+  $export['comment_preview_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -314,6 +356,13 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_data_company';
+  $strongarm->value = 1;
+  $export['comment_subject_field_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_seven_client';
   $strongarm->value = 1;
   $export['comment_subject_field_seven_client'] = $strongarm;
@@ -377,6 +426,26 @@ function core_ef_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__data_company';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'title' => array(
+          'weight' => '2',
+        ),
+        'path' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -675,11 +744,74 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_expanded';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_expanded'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_masks';
+  $strongarm->value = array(
+    0 => 501,
+    1 => 493,
+    2 => 250,
+    3 => 247,
+    4 => 246,
+    5 => 245,
+    6 => 127,
+    7 => 125,
+    8 => 124,
+    9 => 123,
+    10 => 122,
+    11 => 121,
+    12 => 117,
+    13 => 63,
+    14 => 62,
+    15 => 61,
+    16 => 60,
+    17 => 59,
+    18 => 58,
+    19 => 44,
+    20 => 31,
+    21 => 30,
+    22 => 29,
+    23 => 28,
+    24 => 24,
+    25 => 23,
+    26 => 21,
+    27 => 15,
+    28 => 14,
+    29 => 13,
+    30 => 12,
+    31 => 11,
+    32 => 8,
+    33 => 7,
+    34 => 6,
+    35 => 5,
+    36 => 3,
+    37 => 2,
+    38 => 1,
+  );
+  $export['menu_masks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_article';
   $strongarm->value = array(
     0 => 'main-menu',
   );
   $export['menu_options_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_data_company';
+  $strongarm->value = array();
+  $export['menu_options_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -717,6 +849,13 @@ function core_ef_strongarm() {
   $strongarm->name = 'menu_parent_article';
   $strongarm->value = 'main-menu:397';
   $export['menu_parent_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_data_company';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -775,6 +914,15 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_data_company';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_page';
   $strongarm->value = array(
     0 => 'status',
@@ -828,6 +976,13 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_data_company';
+  $strongarm->value = '0';
+  $export['node_preview_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_seven_client';
   $strongarm->value = '0';
   $export['node_preview_seven_client'] = $strongarm;
@@ -859,6 +1014,13 @@ function core_ef_strongarm() {
   $strongarm->name = 'node_submitted_article';
   $strongarm->value = 1;
   $export['node_submitted_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_data_company';
+  $strongarm->value = 0;
+  $export['node_submitted_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1221,13 +1383,6 @@ function core_ef_strongarm() {
   $strongarm->name = 'user_admin_role';
   $strongarm->value = '3';
   $export['user_admin_role'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'user_block_max_list_count';
-  $strongarm->value = '10';
-  $export['user_block_max_list_count'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

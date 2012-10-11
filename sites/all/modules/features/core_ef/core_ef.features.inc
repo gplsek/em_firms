@@ -13,6 +13,10 @@ function core_ef_ctools_plugin_api() {
     return array("version" => "3");
   }
   list($module, $api) = func_get_args();
+  if ($module == "field_group" && $api == "field_group") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -529,6 +533,14 @@ function core_ef_node_info() {
       'description' => t('<em>Books</em> have a built-in hierarchical navigation. Use for handbooks or tutorials.'),
       'has_title' => '1',
       'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'data_company' => array(
+      'name' => t('Data Company'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Company Name'),
       'help' => '',
     ),
     'page' => array(

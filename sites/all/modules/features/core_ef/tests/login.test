@@ -36,10 +36,16 @@ class LoginTestCase extends DrupalWebTestCase {
   }
 
   public function testLogin() {
+    // @TODO add check for login link for anon users
+
+
     // Login the user.
     $this->drupalLogin($this->privileged_user);
     // checks access to user's page
     $test_page = 'user';
+
+    // @TODO add check for my account link for anon users
+    // @TODO add check for logout link for anon users
 
     // Retrieve page as the logged in user
     $this->drupalGet($test_page);
