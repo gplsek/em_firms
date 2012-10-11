@@ -675,6 +675,61 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_expanded';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_expanded'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_masks';
+  $strongarm->value = array(
+    0 => 501,
+    1 => 493,
+    2 => 250,
+    3 => 247,
+    4 => 246,
+    5 => 245,
+    6 => 127,
+    7 => 125,
+    8 => 124,
+    9 => 123,
+    10 => 122,
+    11 => 121,
+    12 => 117,
+    13 => 63,
+    14 => 62,
+    15 => 61,
+    16 => 60,
+    17 => 59,
+    18 => 58,
+    19 => 44,
+    20 => 31,
+    21 => 30,
+    22 => 29,
+    23 => 28,
+    24 => 24,
+    25 => 23,
+    26 => 21,
+    27 => 15,
+    28 => 14,
+    29 => 13,
+    30 => 12,
+    31 => 11,
+    32 => 7,
+    33 => 6,
+    34 => 5,
+    35 => 3,
+    36 => 2,
+    37 => 1,
+  );
+  $export['menu_masks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_article';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -1221,13 +1276,6 @@ function core_ef_strongarm() {
   $strongarm->name = 'user_admin_role';
   $strongarm->value = '3';
   $export['user_admin_role'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'user_block_max_list_count';
-  $strongarm->value = '10';
-  $export['user_block_max_list_count'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
