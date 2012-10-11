@@ -113,17 +113,17 @@ function em_apply_node_update($node) {
 }
 
 
-function em_apply_node_load($nodes, $types) {
-  if (!in_array('test_company', $types)) 
-    return;
-  if (!isset($_GET['my_entity_reference_field'])) 
-    return;
-  
-  $items = explode(',', $_GET['my_entity_reference_field']);
-  
-  foreach ($nodes as $node) {
-    foreach ($items as $item) {
-      $node->my_entity_reference_field[LANGUAGE_NONE][] = array('target_id' => $item);
-    }
-  }
-}
+// function em_apply_node_load($nodes, $types) {
+//   if (!in_array('test_company', $types)) 
+//     return;
+//   if (!isset($_GET['my_entity_reference_field'])) 
+//     return;
+//   
+//   $items = explode(',', $_GET['my_entity_reference_field']);
+//   
+//   foreach ($nodes as $node) {
+//     foreach ($items as $item) {
+//       $node->my_entity_reference_field[LANGUAGE_NONE][] = array('target_id' => $item);
+//     }
+//   }
+// }
