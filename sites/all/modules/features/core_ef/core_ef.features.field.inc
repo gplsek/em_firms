@@ -416,7 +416,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -526,7 +526,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '14',
+        'weight' => '15',
       ),
     ),
   );
@@ -715,7 +715,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '13',
+        'weight' => '14',
       ),
     ),
   );
@@ -846,7 +846,70 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '12',
+        'weight' => '13',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_linkedin_profile'.
+  $fields['field_collection_item-field_constituents-field_linkedin_profile'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_linkedin_profile',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 15,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_linkedin_profile',
+      'label' => 'LinkedIn profile',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '11',
       ),
     ),
   );
@@ -4496,6 +4559,7 @@ function core_ef_field_default_fields() {
   t('Job Title');
   t('Label');
   t('Last Name');
+  t('LinkedIn profile');
   t('List Owners, Officers, etc.');
   t('Maiden Name');
   t('Major');
