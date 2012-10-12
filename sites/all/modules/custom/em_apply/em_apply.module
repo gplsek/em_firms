@@ -128,3 +128,12 @@ function em_apply_form_test_company_node_form_alter(&$form, &$form_state, $form_
 		return $form;
 	}
 }
+
+function em_apply_user($op, &$edit, &$account, $category = NULL) {
+  global $user;
+
+  if ($op == 'login') {
+    // Load the anonymous user
+    drupal_goto(referer_uri());
+  }
+}
