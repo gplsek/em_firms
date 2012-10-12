@@ -34,6 +34,7 @@ class RegisterTestCase extends DrupalWebTestCase {
 
   public function testRegister() {
     // @TODO add check for register link for anon users
+    $this->assertText(t('Register'), t('Check that the Register link exists.'));
 
     // Retrieve regsitration page as anon user
     $this->drupalGet('user/register');

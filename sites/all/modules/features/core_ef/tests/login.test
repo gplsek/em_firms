@@ -36,7 +36,8 @@ class LoginTestCase extends DrupalWebTestCase {
   }
 
   public function testLogin() {
-    // @TODO add check for login link for anon users
+    // check for login link for anon users
+    $this->assertText(t('Log in'), t('Check that the Log in link exists for anon users.'));
 
 
     // Login the user.
@@ -44,8 +45,10 @@ class LoginTestCase extends DrupalWebTestCase {
     // checks access to user's page
     $test_page = 'user';
 
-    // @TODO add check for my account link for anon users
-    // @TODO add check for logout link for anon users
+    // check for my account link for auth users
+    $this->assertText(t('My account'), t('Check that the My account link exists for auth users.'));
+    // check for logout link for auth users
+    $this->assertText(t('Log out'), t('Check that the Log out link exists for auth users.'));
 
     // Retrieve page as the logged in user
     $this->drupalGet($test_page);
