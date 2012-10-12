@@ -1191,7 +1191,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_403';
-  $strongarm->value = '';
+  $strongarm->value = 'toboggan/denied';
   $export['site_403'] = $strongarm;
 
   $strongarm = new stdClass();
