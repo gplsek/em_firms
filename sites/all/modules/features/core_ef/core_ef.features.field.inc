@@ -782,7 +782,7 @@ function core_ef_field_default_fields() {
       'locked' => '0',
       'module' => 'field_collection',
       'settings' => array(
-        'hide_blank_items' => TRUE,
+        'hide_blank_items' => 1,
         'path' => '',
       ),
       'translatable' => '0',
@@ -2586,7 +2586,7 @@ function core_ef_field_default_fields() {
       'locked' => '0',
       'module' => 'field_collection',
       'settings' => array(
-        'hide_blank_items' => TRUE,
+        'hide_blank_items' => 1,
         'path' => '',
       ),
       'translatable' => '0',
