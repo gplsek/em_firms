@@ -97,7 +97,9 @@ function core_ef_menu_default_menu_links() {
     'link_path' => 'user/logout',
     'router_path' => 'user/logout',
     'link_title' => 'Log out',
-    'options' => array(),
+    'options' => array(
+      'alter' => TRUE,
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
