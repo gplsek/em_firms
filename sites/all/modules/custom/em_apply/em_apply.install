@@ -11,6 +11,8 @@ function em_apply_schema() {
     	),
 	 'uid' => array(
 	 	'description' => t('Form Owner'),
+ 		'type' => 'int',
+ 		'length' => '11',
 	 	'unsigned' => TRUE,
 	 	'not null' => TRUE
 	    	),
@@ -51,23 +53,30 @@ $schema['em_application'] = array(
 	    	),
 		 'formid' => array(
 		 	'description' => t('Application Form ID'),
-		 	'unsigned' => TRUE,
+  		'type' => 'varchar',
+  		'length' => '120',
 		 	'not null' => TRUE
 		    ),
 		 'admin_uid' => array(
 		 	'description' => t('Form Admin UID'),
+	 		'type' => 'int',
+	 		'length' => '11',
 		 	'unsigned' => TRUE,
 		 	'not null' => TRUE
 		    ),
 		 'uid' => array(
 		 	'description' => t('User Form ID'),
+	 		'type' => 'int',
+	 		'length' => '11',
 		 	'unsigned' => TRUE,
 		 	'not null' => TRUE
 		    ),
 		 'published' => array(
 		 	'description' => t('Form Published'),
+	 		'type' => 'int',
+	 		'length' => '11',
 		 	'unsigned' => TRUE,
-		    'default' => 0,
+	    'default' => 0,
 		 	'not null' => TRUE
 		    ),
 	),
