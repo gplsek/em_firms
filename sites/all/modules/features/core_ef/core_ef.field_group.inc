@@ -24,15 +24,15 @@ function core_ef_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'body',
-      1 => 'field_phone',
-      2 => 'field_address',
-      3 => 'field_fein',
-      4 => 'field_website',
-      5 => 'field_company_type',
+      1 => 'field_address',
+      2 => 'field_company_type',
+      3 => 'field_dba',
+      4 => 'field_fein',
+      5 => 'field_phone',
       6 => 'field_state_of_incorp',
       7 => 'field_state_of_registration',
-      8 => 'field_year_of_legal_formation',
-      9 => 'field_dba',
+      8 => 'field_website',
+      9 => 'field_year_of_legal_formation',
       10 => 'title',
     ),
     'format_type' => 'fieldset',
@@ -43,7 +43,7 @@ function core_ef_field_group_info() {
         'classes' => '',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_company|node|data_company|form'] = $field_group;
@@ -61,8 +61,8 @@ function core_ef_field_group_info() {
     'label' => 'Constituents',
     'weight' => '12',
     'children' => array(
-      0 => 'field_officers',
-      1 => 'field_constituents',
+      0 => 'field_constituents',
+      1 => 'field_officers',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

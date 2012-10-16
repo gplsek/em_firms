@@ -199,64 +199,78 @@ function core_ef_field_default_fields() {
     ),
   );
 
-  // Exported field: 'field_collection_item-field_address-field_address_label'.
-  $fields['field_collection_item-field_address-field_address_label'] = array(
+  // Exported field: 'field_collection_item-field_address-field_address_dates'.
+  $fields['field_collection_item-field_address-field_address_dates'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_address_label',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
+      'field_name' => 'field_address_dates',
+      'foreign keys' => array(),
+      'indexes' => array(),
       'locked' => '0',
-      'module' => 'text',
+      'module' => 'date',
       'settings' => array(
-        'max_length' => '255',
+        'cache_count' => '4',
+        'cache_enabled' => 0,
+        'granularity' => array(
+          'day' => 0,
+          'hour' => 0,
+          'minute' => 0,
+          'month' => 'month',
+          'second' => 0,
+          'year' => 'year',
+        ),
+        'timezone_db' => '',
+        'todate' => 'optional',
+        'tz_handling' => 'none',
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'datetime',
     ),
     'field_instance' => array(
       'bundle' => 'field_address',
-      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 5,
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => 6,
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_label',
-      'label' => 'Label',
+      'field_name' => 'field_address_dates',
+      'label' => 'Dates of Residence',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'default_value' => 'strtotime',
+        'default_value2' => 'now',
+        'default_value_code' => '-10 years',
+        'default_value_code2' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'text',
+        'module' => 'date',
         'settings' => array(
-          'size' => '60',
+          'increment' => 15,
+          'input_format' => 'm/d/Y - H:i:s',
+          'input_format_custom' => '',
+          'label_position' => 'above',
+          'text_parts' => array(),
+          'year_range' => '-3:+3',
         ),
-        'type' => 'text_textfield',
+        'type' => 'date_text',
         'weight' => '0',
       ),
     ),
@@ -4541,6 +4555,7 @@ function core_ef_field_default_fields() {
   t('DBA');
   t('Date of Birth');
   t('Dates of Employment');
+  t('Dates of Residence');
   t('Degree Type');
   t('Degree Year');
   t('Description');
@@ -4557,7 +4572,6 @@ function core_ef_field_default_fields() {
   t('Image');
   t('Institution');
   t('Job Title');
-  t('Label');
   t('Last Name');
   t('LinkedIn profile');
   t('List Owners, Officers, etc.');
