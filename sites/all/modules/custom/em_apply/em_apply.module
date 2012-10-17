@@ -94,12 +94,18 @@ function em_apply_form_alter(&$form, &$form_state, $form_id) {
 function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
   //dpm($form);
   //dpm($form_state);
+  $form['field_constituents']['und']['add_more']['#value'] = "Add another Officer";
+  $form['field_constituents']['und'][0]['remove_button']['#value'] = "Remove this Officer";
+
+
   global $user;
-  dpm($user);
+  //dpm($user);
   $owner = $form_state['node']->uid;
   //also see if the user exists in the company table
   // only allow Admin users to view/edit some fields while disabled or hidden for Auth only users
   if ($owner <> $user->uid || (in_array('authenticated user', $user->roles) && !in_array('administrator', $user->roles))){
+
+
 
     //doesn't work
     //$form['field_company_address']['#collapsible'] = TRUE;

@@ -25,7 +25,6 @@ dependencies[] = em_apply
 dependencies[] = email
 dependencies[] = entity
 dependencies[] = features
-dependencies[] = features_tools
 dependencies[] = field_collection
 dependencies[] = field_group
 dependencies[] = field_ui
