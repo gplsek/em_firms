@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function em_apply_menu() {
   $items = array();
@@ -10,6 +10,7 @@ function em_apply_menu() {
   );
   $items['user/%/apply'] = array(
     'page callback' => 'em_apply_form',
+    'page arguments' => array(1),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -22,7 +23,7 @@ function em_apply_block_info() {
   $blocks['apply-block'] = array(
     'info' => t('Custom: Apply Block'),
   );
-	
+
   return $blocks;
 }
 
@@ -33,99 +34,89 @@ function em_apply_block_view($delta='') {
             $block['subject'] = '';
            // $block['content'] = apply_block();
            $block['content'] = "<a href='client/get-started'>GET STARTED</a>";
-        break;     
+        break;
     }
     return $block;
 }
 
 function em_apply_check(){
 	global $user;
-	
+
 	if($user->uid == '0'){
 		drupal_goto('user/login/',array('query'=>array('destination' => 'client/get-started')));
 	}else{
 		drupal_goto('user/'.$user->uid.'/apply');
 	}
 	return;
-	
-	
+
+
 }
 
 function em_apply_form($uid){
-	return drupal_get_form('em_application_form');
+  global $user;
+  $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'data_company', 'language' => LANGUAGE_NONE);
+  $form_state['build_info']['args'] = array($node);
+  form_load_include($form_state, 'inc', 'node', 'node.pages');
+	return drupal_get_form('data_company_node_form');
 }
 
 
-function em_application_form($form, &$form_state){
-	$form['#prefix'] = '<div id="contact-form-wrapper win" class="check-wrapper header">';
-	$form['#suffix'] = '</div>';
-  	
-  
 
-  $form['info'] = array(
-		'#type' => 'fieldset', 
-		'#collapsed' => FALSE,
-		);
-  
-  $form['info']['first'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('First Name:'),
-    '#required' => true,
-  );
-  $form['info']['last'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Last Name:'),
-    '#required' => true,
-  );
-
-    
- $form['info']['email'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Email:'),
-    '#required' => true,
-  );
- $form['info']['phone'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Phone #:'),
-    '#required' => true,
-  );
-
-  $form['submit'] = array(
-    '#type' => 'submit', 
-    '#value' => 'Submit',
-  );
-  return $form;
-}
 
 
 function em_apply_node_presave($node) {
-	if ($node->type == 'test_company'){
-		unset($node->field_name);
+	if ($node->type == 'data_company'){
+		unset($node->field_fein);
 	}
-	
+
 }
 
 function em_apply_node_update($node) {
-	if ($node->type == 'test_company'){
-		unset($node->field_name);
+	if ($node->type == 'data_company'){
+		unset($node->field_fein);
 	}
-	
+
 }
 
 function em_apply_node_prepare($node) {
-  if ($node->type == 'test_company'){
-	 $node->field_name['und'][0]['value'] = 'test name';
+  if ($node->type == 'data_company'){
+	 $node->field_fein['und'][0]['value'] = 'test fein';
 	}
-	
+
 }
 
-function em_apply_form_test_company_node_form_alter(&$form, &$form_state, $form_id) {
-    global $user;
-    $owner = $form_state['node']->uid;
-    //also see if the user exists in the company table
-    if ($owner <> $user->uid){
-		$form['field_name']['#disabled'] = true;
-		return $form;
+/*
+function em_apply_form_alter(&$form, &$form_state, $form_id) {
+  dpm($form_id);
+}
+*/
+
+function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
+  //dpm($form);
+  //dpm($form_state);
+  global $user;
+  dpm($user);
+  $owner = $form_state['node']->uid;
+  //also see if the user exists in the company table
+  // only allow Admin users to view/edit some fields while disabled or hidden for Auth only users
+  if ($owner <> $user->uid || (in_array('authenticated user', $user->roles) && !in_array('administrator', $user->roles))){
+
+    //doesn't work
+    //$form['field_company_address']['#collapsible'] = TRUE;
+    //$form['field_company_address']['#attributes']['class'][] = ' collapsed';
+
+    $form['group_company']['#disabled'] = TRUE;
+    $form['field_company_phone']['#disabled'] = TRUE;
+    $form['field_company_address']['#access'] = FALSE;
+
+    /*$form['field_company_address']['#attached']['library'][] = array('system', 'drupal.collapse');
+    $form['field_company_address']['#attributes']['class'][] = 'collapsible';
+    if (!empty($form['field_company_address']['#collapsed'])) {
+      $form['field_company_address']['#attributes']['class'][] = 'collapsed';
+    }*/
+
+
+	  return $form;
 	}
 }
 
