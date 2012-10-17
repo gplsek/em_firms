@@ -61,14 +61,14 @@ function core_ef_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Constituents',
+    'label' => 'Officers',
     'weight' => '4',
     'children' => array(
       0 => 'field_constituents',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Constituents',
+      'label' => 'Officers',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => '',
@@ -102,6 +102,7 @@ function core_ef_field_group_info() {
       7 => 'field_ssn',
       8 => 'field_linkedin_profile',
       9 => 'field_agree_final',
+      10 => 'field_civil',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
