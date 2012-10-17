@@ -92,7 +92,7 @@ function em_apply_form_alter(&$form, &$form_state, $form_id) {
 */
 
 function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
-  //dpm($form);
+  dpm($form);
   //dpm($form_state);
   $form['field_constituents']['und']['add_more']['#value'] = "Add another Officer";
   $form['field_constituents']['und'][0]['remove_button']['#value'] = "Remove this Officer";
