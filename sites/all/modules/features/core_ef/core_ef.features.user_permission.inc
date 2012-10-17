@@ -1090,15 +1090,6 @@ function core_ef_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: execute unlink files.
-  $permissions['execute unlink files'] = array(
-    'name' => 'execute unlink files',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'features_tools',
-  );
-
   // Exported permission: flush caches.
   $permissions['flush caches'] = array(
     'name' => 'flush caches',
