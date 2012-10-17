@@ -33,7 +33,10 @@ function core_ef_field_group_info() {
       7 => 'field_company_phone',
       8 => 'field_state_incorp',
       9 => 'field_state_registration',
-      10 => 'title',
+      10 => 'field_facebook',
+      11 => 'field_twitter',
+      12 => 'field_linkedin',
+      13 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -59,7 +62,7 @@ function core_ef_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Constituents',
-    'weight' => '12',
+    'weight' => '4',
     'children' => array(
       0 => 'field_constituents',
     ),
@@ -71,7 +74,7 @@ function core_ef_field_group_info() {
         'classes' => '',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_constituents|node|data_company|form'] = $field_group;

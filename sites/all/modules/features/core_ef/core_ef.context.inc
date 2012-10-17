@@ -326,6 +326,38 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'masquerade';
+  $context->description = '';
+  $context->tag = 'sitewide';
+  $context->conditions = array(
+    'sitewide' => array(
+      'values' => array(
+        1 => 1,
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'masquerade-masquerade' => array(
+          'module' => 'masquerade',
+          'delta' => 'masquerade',
+          'region' => 'footer',
+          'weight' => '9',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('sitewide');
+  $export['masquerade'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'product_portfolio_intro';
   $context->description = '';
   $context->tag = 'content';

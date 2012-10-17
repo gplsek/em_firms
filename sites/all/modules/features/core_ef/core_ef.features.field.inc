@@ -2998,7 +2998,7 @@ function core_ef_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -3067,7 +3067,7 @@ function core_ef_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '15',
+        'weight' => '5',
       ),
     ),
   );
@@ -3129,7 +3129,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '12',
+        'weight' => '15',
       ),
     ),
   );
@@ -3189,7 +3189,7 @@ function core_ef_field_default_fields() {
         'module' => 'phone',
         'settings' => array(),
         'type' => 'phone_textfield',
-        'weight' => '11',
+        'weight' => '14',
       ),
     ),
   );
@@ -3257,7 +3257,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '6',
+        'weight' => '3',
       ),
     ),
   );
@@ -3388,7 +3388,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '9',
       ),
     ),
   );
@@ -3462,6 +3462,89 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-data_company-field_facebook'.
+  $fields['node-data_company-field_facebook'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_facebook',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'http://www.facebook.com/yourname',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'link_default',
+          'weight' => 18,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_facebook',
+      'label' => 'FaceBook',
+      'required' => 0,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => '_blank',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 1,
+        'title' => 'none',
+        'title_maxlength' => '80',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '11',
+      ),
+    ),
+  );
+
   // Exported field: 'node-data_company-field_fein'.
   $fields['node-data_company-field_fein'] = array(
     'field_config' => array(
@@ -3526,7 +3609,90 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-data_company-field_linkedin'.
+  $fields['node-data_company-field_linkedin'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_linkedin',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'http://www.linkedin.com/in/yourname',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'link_default',
+          'weight' => 20,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_linkedin',
+      'label' => 'LinkedIn',
+      'required' => 0,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => '_blank',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 0,
+        'title' => 'none',
+        'title_maxlength' => '128',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '13',
       ),
     ),
   );
@@ -3586,7 +3752,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -3646,7 +3812,90 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '8',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-data_company-field_twitter'.
+  $fields['node-data_company-field_twitter'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_twitter',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'http://www.twitter.com/yourhandle',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'link_default',
+          'weight' => 19,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_twitter',
+      'label' => 'Twitter',
+      'required' => 0,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => '_blank',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 0,
+        'title' => 'none',
+        'title_maxlength' => '80',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '12',
       ),
     ),
   );
@@ -3655,7 +3904,7 @@ function core_ef_field_default_fields() {
   $fields['node-data_company-field_website'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_website',
@@ -3685,7 +3934,7 @@ function core_ef_field_default_fields() {
       'bundle' => 'data_company',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Add any relevant links for Company, Facebook, Twitter, etc.',
+      'description' => 'http://www.yourcompany.com',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -3703,7 +3952,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_website',
-      'label' => 'Website',
+      'label' => 'Company Website',
       'required' => 0,
       'settings' => array(
         'attributes' => array(
@@ -3716,8 +3965,8 @@ function core_ef_field_default_fields() {
         'display' => array(
           'url_cutoff' => '80',
         ),
-        'enable_tokens' => 1,
-        'title' => 'required',
+        'enable_tokens' => 0,
+        'title' => 'none',
         'title_maxlength' => '128',
         'title_value' => '',
         'url' => 0,
@@ -3729,7 +3978,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '5',
+        'weight' => '10',
       ),
     ),
   );
@@ -3812,7 +4061,7 @@ function core_ef_field_default_fields() {
           'year_range' => '-10:+0',
         ),
         'type' => 'date_select',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -4991,7 +5240,6 @@ function core_ef_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Add any relevant links for Company, Facebook, Twitter, etc.');
   t('Additional Images');
   t('Address');
   t('Address (cont.)');
@@ -5002,6 +5250,7 @@ function core_ef_field_default_fields() {
   t('Client Logo');
   t('Company Name');
   t('Company Type');
+  t('Company Website');
   t('Conviction Level');
   t('Conviction Type');
   t('Conviction Year');
@@ -5020,6 +5269,7 @@ function core_ef_field_default_fields() {
   t('Email');
   t('Employment History');
   t('FEIN');
+  t('FaceBook');
   t('First Name');
   t('HS, AA, BA, BS, MA, MS, PhD, Dr, etc.');
   t('I Agree to the Disclaimer');
@@ -5030,6 +5280,7 @@ function core_ef_field_default_fields() {
   t('Institution');
   t('Job Title');
   t('Last Name');
+  t('LinkedIn');
   t('LinkedIn profile');
   t('List Owners, Officers, etc.');
   t('Maiden Name');
@@ -5052,11 +5303,15 @@ function core_ef_field_default_fields() {
   t('This field will determine in wich Slideshows (1 to 7) will this item appear.');
   t('This is the URL where you want the Slide link go when visitors click on it. You can link <strong>an internal page</strong>, an <strong>external page</strong> or just a <strong>download</strong> if you want. It should allways start with <strong>http://</strong>');
   t('This is the image that will be shown on the SlideShow.');
+  t('Twitter');
   t('Type');
   t('URL to go');
-  t('Website');
   t('Year of Legal Formation');
   t('Zip Code');
+  t('http://www.facebook.com/yourname');
+  t('http://www.linkedin.com/in/yourname');
+  t('http://www.twitter.com/yourhandle');
+  t('http://www.yourcompany.com');
 
   return $fields;
 }
