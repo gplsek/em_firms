@@ -16,6 +16,7 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   dpm($form);
   //dpm($form_state);
 
+  $form['field_product_id']['#type'] = 'hidden';
   // Change button labels for DBA
   $form['field_dba']['und']['add_more']['#value'] = "Add a DBA";
   $form['field_dba']['und'][0]['remove_button']['#value'] = "Remove this DBA";

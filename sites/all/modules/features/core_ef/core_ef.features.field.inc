@@ -2201,7 +2201,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_criminal_description',
       'label' => 'Description',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -2262,7 +2262,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_criminal_level',
       'label' => 'Conviction Level',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -2373,7 +2373,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_criminal_type',
       'label' => 'Conviction Type',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -2627,7 +2627,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_education_degree_type',
       'label' => 'Degree Type',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -2767,7 +2767,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_education_institution',
       'label' => 'Institution',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -3346,7 +3346,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'body',
       'label' => 'Description',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'display_summary' => 0,
         'text_processing' => '0',
@@ -3537,7 +3537,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_company_phone',
       'label' => 'Phone',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'ca_phone_parentheses' => 1,
         'ca_phone_separator' => '-',
@@ -3672,7 +3672,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_constituents',
       'label' => 'List Owners, Officers, etc.',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -4059,6 +4059,88 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-data_company-field_product_id'.
+  $fields['node-data_company-field_product_id'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_product_id',
+      'foreign keys' => array(
+        'product_id' => array(
+          'columns' => array(
+            'product_id' => 'product_id',
+          ),
+          'table' => 'commerce_product',
+        ),
+      ),
+      'indexes' => array(
+        'product_id' => array(
+          0 => 'product_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'commerce_product_reference',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'commerce_product_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => array(
+        0 => array(
+          'product_id' => '1',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'commerce_cart',
+          'settings' => array(
+            'combine' => TRUE,
+            'default_quantity' => 1,
+            'line_item_type' => 'product',
+            'show_quantity' => FALSE,
+          ),
+          'type' => 'commerce_cart_add_to_cart_form',
+          'weight' => 21,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_product_id',
+      'label' => 'Product id',
+      'required' => 0,
+      'settings' => array(
+        'field_injection' => 0,
+        'referenceable_types' => array(
+          'commerce_node_checkout' => 'commerce_node_checkout',
+          'product' => 0,
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'commerce_product_reference',
+        'settings' => array(
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'commerce_product/autocomplete',
+          'size' => '60',
+        ),
+        'type' => 'commerce_product_reference_autocomplete',
+        'weight' => '16',
+      ),
+    ),
+  );
+
   // Exported field: 'node-data_company-field_state_incorp'.
   $fields['node-data_company-field_state_incorp'] = array(
     'field_config' => array(
@@ -4105,7 +4187,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_state_incorp',
       'label' => 'State of Incorp (for corp)',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -4164,8 +4246,8 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_state_registration',
-      'label' => 'State of Registration (for all)',
-      'required' => 0,
+      'label' => 'State of Registration',
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -5657,6 +5739,7 @@ function core_ef_field_default_fields() {
   t('Middle Name');
   t('Phone');
   t('Place here the link you want. Remember start with <strong>http://</strong>');
+  t('Product id');
   t('Profile administered by the individual');
   t('Residence History');
   t('Seven - Slide Image');
@@ -5665,7 +5748,7 @@ function core_ef_field_default_fields() {
   t('Social Security Number');
   t('State');
   t('State of Incorp (for corp)');
-  t('State of Registration (for all)');
+  t('State of Registration');
   t('Suffix');
   t('The position of the SlideShow Item at the SlideShow.');
   t('This field will determine in wich Slideshows (1 to 7) will this item appear.');

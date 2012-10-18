@@ -21,7 +21,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_data_company';
-  $strongarm->value = 'edit-submission';
+  $strongarm->value = 'edit-workflow';
   $export['additional_settings__active_tab_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -646,6 +646,19 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_field_collection_item__field_civil';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_field_collection_item__field_civil'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_field_collection_item__field_company_address';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -668,6 +681,19 @@ node/*/edit';
     ),
   );
   $export['field_bundle_settings_field_collection_item__field_constituents'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_field_collection_item__field_criminal';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_field_collection_item__field_criminal'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1031,6 +1057,165 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_blog';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_blog'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_data_company';
+  $strongarm->value = '2';
+  $export['mb_content_cancel_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_page';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_seven_client';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_seven_client'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_seven_home_item_block';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_seven_home_item_block'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_seven_product';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_seven_product'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_seven_slideshow_item';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_seven_slideshow_item'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_blog';
+  $strongarm->value = '0';
+  $export['mb_content_sac_blog'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_data_company';
+  $strongarm->value = '1';
+  $export['mb_content_sac_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_page';
+  $strongarm->value = '0';
+  $export['mb_content_sac_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_seven_client';
+  $strongarm->value = '0';
+  $export['mb_content_sac_seven_client'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_seven_home_item_block';
+  $strongarm->value = '0';
+  $export['mb_content_sac_seven_home_item_block'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_seven_product';
+  $strongarm->value = '0';
+  $export['mb_content_sac_seven_product'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_seven_slideshow_item';
+  $strongarm->value = '0';
+  $export['mb_content_sac_seven_slideshow_item'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_blog';
+  $strongarm->value = '0';
+  $export['mb_content_tabcn_blog'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_data_company';
+  $strongarm->value = 0;
+  $export['mb_content_tabcn_data_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_page';
+  $strongarm->value = '0';
+  $export['mb_content_tabcn_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_seven_client';
+  $strongarm->value = '0';
+  $export['mb_content_tabcn_seven_client'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_seven_home_item_block';
+  $strongarm->value = '0';
+  $export['mb_content_tabcn_seven_home_item_block'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_seven_product';
+  $strongarm->value = '0';
+  $export['mb_content_tabcn_seven_product'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_seven_slideshow_item';
+  $strongarm->value = '0';
+  $export['mb_content_tabcn_seven_slideshow_item'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_values';
+  $strongarm->value = array(
+    'cancel' => 'Cancel',
+    'sac' => 'Save and continue',
+    'sacn' => 'Save and create new',
+    'tabcn' => 'Create new',
+  );
+  $export['mb_values'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_expanded';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -1042,47 +1227,55 @@ node/*/edit';
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_masks';
   $strongarm->value = array(
-    0 => 501,
-    1 => 493,
-    2 => 250,
-    3 => 247,
-    4 => 246,
-    5 => 245,
-    6 => 127,
-    7 => 125,
-    8 => 124,
-    9 => 123,
-    10 => 122,
-    11 => 121,
-    12 => 117,
-    13 => 63,
-    14 => 62,
-    15 => 61,
-    16 => 60,
-    17 => 59,
-    18 => 58,
-    19 => 44,
-    20 => 31,
-    21 => 30,
-    22 => 29,
-    23 => 28,
-    24 => 27,
-    25 => 26,
-    26 => 24,
-    27 => 23,
-    28 => 21,
-    29 => 15,
-    30 => 14,
-    31 => 13,
-    32 => 12,
-    33 => 11,
-    34 => 8,
-    35 => 7,
-    36 => 6,
-    37 => 5,
-    38 => 3,
-    39 => 2,
-    40 => 1,
+    0 => 507,
+    1 => 506,
+    2 => 501,
+    3 => 493,
+    4 => 253,
+    5 => 252,
+    6 => 251,
+    7 => 250,
+    8 => 247,
+    9 => 246,
+    10 => 245,
+    11 => 127,
+    12 => 126,
+    13 => 125,
+    14 => 124,
+    15 => 123,
+    16 => 122,
+    17 => 121,
+    18 => 117,
+    19 => 63,
+    20 => 62,
+    21 => 61,
+    22 => 60,
+    23 => 59,
+    24 => 58,
+    25 => 44,
+    26 => 31,
+    27 => 30,
+    28 => 29,
+    29 => 28,
+    30 => 27,
+    31 => 26,
+    32 => 24,
+    33 => 23,
+    34 => 21,
+    35 => 15,
+    36 => 14,
+    37 => 13,
+    38 => 12,
+    39 => 11,
+    40 => 10,
+    41 => 8,
+    42 => 7,
+    43 => 6,
+    44 => 5,
+    45 => 4,
+    46 => 3,
+    47 => 2,
+    48 => 1,
   );
   $export['menu_masks'] = $strongarm;
 
@@ -1204,9 +1397,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_data_company';
-  $strongarm->value = array(
-    0 => 'status',
-  );
+  $strongarm->value = array();
   $export['node_options_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1446,6 +1637,74 @@ node/*/edit';
     'user' => TRUE,
   );
   $export['path_alias_whitelist'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rules_empty_sets';
+  $strongarm->value = array(
+    'commerce_cart_product_prepare' => 0,
+    'commerce_payment_order_paid_in_full' => 1,
+    'commerce_customer_profile_insert' => 2,
+    'commerce_customer_profile_update' => 3,
+    'commerce_customer_profile_presave' => 4,
+    'commerce_customer_profile_delete' => 5,
+    'commerce_customer_profile_view' => 6,
+    'commerce_line_item_insert' => 7,
+    'commerce_line_item_update' => 8,
+    'commerce_line_item_presave' => 9,
+    'commerce_line_item_delete' => 10,
+    'commerce_line_item_view' => 11,
+    'commerce_order_insert' => 12,
+    'commerce_order_update' => 13,
+    'commerce_order_presave' => 14,
+    'commerce_order_delete' => 15,
+    'commerce_order_view' => 16,
+    'commerce_payment_transaction_insert' => 17,
+    'commerce_payment_transaction_update' => 18,
+    'commerce_payment_transaction_presave' => 19,
+    'commerce_payment_transaction_delete' => 20,
+    'commerce_payment_transaction_view' => 21,
+    'commerce_product_insert' => 22,
+    'commerce_product_update' => 23,
+    'commerce_product_presave' => 24,
+    'commerce_product_delete' => 25,
+    'commerce_product_view' => 26,
+    'field_collection_item_insert' => 27,
+    'field_collection_item_update' => 28,
+    'field_collection_item_presave' => 29,
+    'field_collection_item_delete' => 30,
+    'field_collection_item_view' => 31,
+    'node_insert' => 32,
+    'node_update' => 33,
+    'node_presave' => 34,
+    'node_view' => 35,
+    'node_delete' => 36,
+    'init' => 37,
+    'cron' => 38,
+    'watchdog' => 39,
+    'user_insert' => 40,
+    'user_update' => 41,
+    'user_presave' => 42,
+    'user_view' => 43,
+    'user_delete' => 44,
+    'user_login' => 45,
+    'user_logout' => 46,
+    'comment_insert' => 47,
+    'comment_update' => 48,
+    'comment_presave' => 49,
+    'comment_view' => 50,
+    'comment_delete' => 51,
+    'taxonomy_term_insert' => 52,
+    'taxonomy_term_update' => 53,
+    'taxonomy_term_presave' => 54,
+    'taxonomy_term_delete' => 55,
+    'taxonomy_vocabulary_insert' => 56,
+    'taxonomy_vocabulary_update' => 57,
+    'taxonomy_vocabulary_presave' => 58,
+    'taxonomy_vocabulary_delete' => 59,
+  );
+  $export['rules_empty_sets'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
