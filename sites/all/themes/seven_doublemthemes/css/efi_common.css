@@ -1,0 +1,62 @@
+fieldset#node_data_company_form_group_company{
+  /*width: 500px;*/
+}
+.form-text {
+  width: 150px;
+}
+.field-name-field-address-address1 .form-text,
+.field-name-field-address-address2 .form-text {
+  width: 300px;
+}
+.form-type-textarea textarea {
+  /*width: 500px;*/
+  height: 80px;
+}
+
+.form-item {
+  margin: 0;
+}
+
+.field-type-link-field label,
+.field-type-link-field .link-field-subrow,
+.field-type-link-field .link-field-subrow .link-field-url,
+.field-type-link-field .link-field-subrow .link-field-url .form-item,
+.field-type-link-field .description {
+  display:inline-block;
+}
+.field-type-link-field label {
+  width: 140px;
+}
+
+#field-constituents-values .field-name-field-name-first,
+#field-constituents-values .field-name-field-name-middle,
+#field-constituents-values .field-name-field-name-last,
+#field-constituents-values .field-name-field-name-suffix,
+#field-constituents-values .field-name-field-name-maiden {
+  display: inline;
+  float:left;
+  width: 160px;
+}
+#field-constituents-values .field-type-email.field-name-field-email {
+  clear:both;
+}
+
+.field-name-field-address-state .form-select {
+  width: 75px;
+}
+.field-name-field-address-city,
+.field-name-field-address-state,
+.field-name-field-address-zip {
+  display: inline;
+  float:left;
+  margin-right: 10px;
+}
+.field-name-field-address-city .form-text {
+  width: 120px;
+}
+.field-name-field-address-country  {
+  clear:both;
+}
+.field-name-field-address-zip input {
+  width: 80px;
+}

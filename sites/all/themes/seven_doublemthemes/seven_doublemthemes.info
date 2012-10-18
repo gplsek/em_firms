@@ -1,6 +1,6 @@
 screenshot  = screenshot.png
 name        = Seven - Responsive Premium Theme v1.1 by DoubleMThemes.com
-description = Drupal theme for creating Business, Corporate, Agency and Freelance websites. It includes a lot of features you can easily setup to get your site 99% ready in just a few minutes. It was built for <a href="http://www.themesnap.com/"><strong>ThemeSnap</strong></a> by <a href="http://www.doublemthemes.com/"><strong>DoubleMThemes</strong></a>. <br /><br />For theme FAQs, info & "How to..." visit <a href="http://demos.doublemthemes.com/seven/documentation/"><strong>Seven Documentation</strong></a> or contact us via <a href="http://support.doublemthemes.com"><strong>our support forums</strong></a>. 
+description = Drupal theme for creating Business, Corporate, Agency and Freelance websites. It includes a lot of features you can easily setup to get your site 99% ready in just a few minutes. It was built for <a href="http://www.themesnap.com/"><strong>ThemeSnap</strong></a> by <a href="http://www.doublemthemes.com/"><strong>DoubleMThemes</strong></a>. <br /><br />For theme FAQs, info & "How to..." visit <a href="http://demos.doublemthemes.com/seven/documentation/"><strong>Seven Documentation</strong></a> or contact us via <a href="http://support.doublemthemes.com"><strong>our support forums</strong></a>.
 
 
 core        = 7.x
@@ -21,6 +21,7 @@ stylesheets[all][]        = css/forms.css
 stylesheets[all][]        = css/fields.css
 stylesheets[all][]        = nivo/nivo-slider.css
 stylesheets[all][]        = css/seven_common.css
+stylesheets[all][]        = css/efi_common.css
 stylesheets[all][]        = css/responsive-mobile-portrait-layout.css
 stylesheets[all][]        = css/seven_colors.css
 stylesheets[print][]      = css/print.css
