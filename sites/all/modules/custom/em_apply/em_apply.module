@@ -66,7 +66,26 @@ function em_apply_form($uid){
 
 function em_apply_node_presave($node) {
 	if ($node->type == 'data_company'){
-		unset($node->field_fein);
+		//$data = serialize($node);
+		//$node = unserialize($data);
+        //print_r($node);
+       // die();
+        // 		unset($node->body);
+        // 		unset($node->field_constituents);
+        // 		unset($node->field_company_type);
+        // 		unset($node->field_dba);
+        // 		unset($node->field_disclaimer);
+        // 		unset($node->field_fein);
+        // 		unset($node->field_website);
+        // 		unset($node->field_year_of_legal_formation);
+        // 		unset($node->field_agree_final);
+        // 		unset($node->field_company_address);
+        // 		unset($node->field_company_phone);
+        // 		unset($node->field_facebook);
+        // 		unset($node->field_linkedin);
+        // 		unset($node->field_state_incorp);
+        // 		unset($node->field_state_registration);
+        // 		unset($node->field_twitter);
 	}
 
 }
