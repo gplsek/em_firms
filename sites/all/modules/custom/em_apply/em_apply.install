@@ -1,48 +1,6 @@
 <?php
 function em_apply_schema() {
- $schema['em_company'] = array(
- 'description' => t('The base table for application - company.'),
- 'fields' => array(
- 	'id' => array(
- 		'description' => t('The primary identifier'),
- 		'type' => 'serial',
- 		'unsigned' => TRUE,
- 		'not null' => TRUE
-    	),
-	 'uid' => array(
-	 	'description' => t('Form Owner'),
- 		'type' => 'int',
- 		'length' => '11',
-	 	'unsigned' => TRUE,
-	 	'not null' => TRUE
-	    	),
- 	'first_name' => array(
- 		'description' => t('Organization Name.'),
- 		'type' => 'varchar',
- 		'length' => '120',
- 		'not null' => TRUE
-		),
-	 'last_name' => array(
-	 	'description' => t('Organization Phone.'),
-	 	'type' => 'varchar',
-	 	'length' => '120'
-	    ),
-	 'email' => array(
-	 	'description' => t('Organization Address.'),
-	 	'type' => 'varchar',
-	 	'length' => '120',
-	 	'not null' => TRUE
-		),
-	 'phone' => array(
-	 	'description' => t('Organization Address2.'),
-	 	'type' => 'varchar',
-	 	'length' => '120',
-		),
-	),
- 'primary key' => array('id'),
- );
-
-$schema['em_application'] = array(
+$schema['em_company'] = array(
 	'description' => t('Application process table.'),
 	'fields' => array(
 	 	'id' => array(
@@ -52,9 +10,9 @@ $schema['em_application'] = array(
 	 		'not null' => TRUE
 	    	),
 		 'formid' => array(
-		 	'description' => t('Application Form ID'),
-  		'type' => 'varchar',
-  		'length' => '120',
+		 	'description' => t('Application Form NID'),
+  		'type' => 'int',
+  		'length' => '22',
 		 	'not null' => TRUE
 		    ),
 		 'admin_uid' => array(
@@ -65,7 +23,7 @@ $schema['em_application'] = array(
 		 	'not null' => TRUE
 		    ),
 		 'uid' => array(
-		 	'description' => t('User Form ID'),
+		 	'description' => t('Officer User ID'),
 	 		'type' => 'int',
 	 		'length' => '11',
 		 	'unsigned' => TRUE,
@@ -76,7 +34,23 @@ $schema['em_application'] = array(
 	 		'type' => 'int',
 	 		'length' => '11',
 		 	'unsigned' => TRUE,
-	    'default' => 0,
+	    	'default' => 0,
+		 	'not null' => TRUE
+		    ),
+		 'created' => array(
+		 	'description' => t('Form Created At'),
+	 		'type' => 'int',
+	 		'length' => '11',
+		 	'unsigned' => TRUE,
+	    	'default' => 0,
+		 	'not null' => TRUE
+		    ),
+		 'updated' => array(
+		 	'description' => t('Form Updated At'),
+	 		'type' => 'int',
+	 		'length' => '11',
+		 	'unsigned' => TRUE,
+	    	'default' => 0,
 		 	'not null' => TRUE
 		    ),
 	),
