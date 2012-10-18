@@ -374,7 +374,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_address_state',
       'label' => 'State',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -1320,7 +1320,7 @@ function core_ef_field_default_fields() {
       'label' => 'Date of Birth',
       'required' => 0,
       'settings' => array(
-        'default_value' => 'now',
+        'default_value' => 'blank',
         'default_value2' => 'same',
         'default_value_code' => '',
         'default_value_code2' => '',
@@ -1499,7 +1499,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '1',
+        'weight' => '6',
       ),
     ),
   );
@@ -1707,7 +1707,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -1770,7 +1770,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -1833,7 +1833,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
@@ -1896,7 +1896,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -1959,7 +1959,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -3491,7 +3491,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '15',
+        'weight' => '6',
       ),
     ),
   );
@@ -3551,7 +3551,7 @@ function core_ef_field_default_fields() {
         'module' => 'phone',
         'settings' => array(),
         'type' => 'phone_textfield',
-        'weight' => '14',
+        'weight' => '5',
       ),
     ),
   );
@@ -3750,7 +3750,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
@@ -3902,7 +3902,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '11',
+        'weight' => '13',
       ),
     ),
   );
@@ -3971,7 +3971,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -4054,7 +4054,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '13',
+        'weight' => '15',
       ),
     ),
   );
@@ -4196,7 +4196,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '6',
+        'weight' => '8',
       ),
     ),
   );
@@ -4256,7 +4256,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
@@ -4339,7 +4339,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '12',
+        'weight' => '14',
       ),
     ),
   );
@@ -4422,7 +4422,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '10',
+        'weight' => '12',
       ),
     ),
   );
@@ -4505,7 +4505,7 @@ function core_ef_field_default_fields() {
           'year_range' => '-10:+0',
         ),
         'type' => 'date_select',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
@@ -4996,16 +4996,14 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'colorbox',
+          'module' => 'image',
           'settings' => array(
-            'colorbox_caption' => 'auto',
-            'colorbox_caption_custom' => '',
-            'colorbox_gallery' => 'post',
-            'colorbox_gallery_custom' => '',
             'colorbox_image_style' => 'seven-product-colorbox',
             'colorbox_node_style' => 'thumbnail',
+            'image_link' => '',
+            'image_style' => '',
           ),
-          'type' => 'colorbox',
+          'type' => 'image',
           'weight' => '2',
         ),
         'teaser' => array(
@@ -5080,16 +5078,14 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'colorbox',
+          'module' => 'image',
           'settings' => array(
-            'colorbox_caption' => 'auto',
-            'colorbox_caption_custom' => '',
-            'colorbox_gallery' => 'post',
-            'colorbox_gallery_custom' => '',
             'colorbox_image_style' => 'seven-product-colorbox',
             'colorbox_node_style' => 'seven-product-node',
+            'image_link' => '',
+            'image_style' => '',
           ),
-          'type' => 'colorbox',
+          'type' => 'image',
           'weight' => '0',
         ),
         'teaser' => array(

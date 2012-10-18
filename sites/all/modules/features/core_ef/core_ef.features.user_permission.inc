@@ -640,7 +640,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: create blog content.
   $permissions['create blog content'] = array(
     'name' => 'create blog content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -752,7 +754,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete any blog content.
   $permissions['delete any blog content'] = array(
     'name' => 'delete any blog content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -766,7 +770,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete any data_company content.
   $permissions['delete any data_company content'] = array(
     'name' => 'delete any data_company content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -835,7 +841,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete own blog content.
   $permissions['delete own blog content'] = array(
     'name' => 'delete own blog content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -849,7 +857,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete own data_company content.
   $permissions['delete own data_company content'] = array(
     'name' => 'delete own data_company content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -936,7 +946,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit any blog content.
   $permissions['edit any blog content'] = array(
     'name' => 'edit any blog content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -950,7 +962,10 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit any data_company content.
   $permissions['edit any data_company content'] = array(
     'name' => 'edit any data_company content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
@@ -1010,7 +1025,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit own blog content.
   $permissions['edit own blog content'] = array(
     'name' => 'edit own blog content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -1033,7 +1050,11 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit own data_company content.
   $permissions['edit own data_company content'] = array(
     'name' => 'edit own data_company content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'authenticated user',
+      2 => 'co_admin',
+    ),
     'module' => 'node',
   );
 
@@ -1295,6 +1316,7 @@ function core_ef_user_default_permissions() {
     'name' => 'view own unpublished content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'authenticated user',
     ),
     'module' => 'node',
   );

@@ -18,27 +18,30 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
 
   $form['field_product_id']['#type'] = 'hidden';
   // Change button labels for DBA
-  $form['field_dba']['und']['add_more']['#value'] = "Add a DBA";
-  $form['field_dba']['und'][0]['remove_button']['#value'] = "Remove this DBA";
+  _core_ef_set_button($form['field_dba']['und'],"Add a DBA", "Remove this DBA");
   // Change button labels for Officers
-  $form['field_constituents']['und']['add_more']['#value'] = "Add an Officer";
-  $form['field_constituents']['und'][0]['remove_button']['#value'] = "Remove this Officer";
+  _core_ef_set_button($form['field_constituents']['und'], "Add an Officer", "Remove this Officer");
   // Change button labels for Residence
-  $form['field_constituents']['und'][0]['field_address']['und']['add_more']['#value'] = "Add an Address";
-  $form['field_constituents']['und'][0]['field_address']['und'][0]['remove_button']['#value'] = "Remove this Address";
+  _core_ef_set_button($form['field_constituents']['und'][0]['field_address']['und'], "Add an Address", "Remove this Address");
   // Change button labels for Employment
-  $form['field_constituents']['und'][0]['field_employment']['und']['add_more']['#value'] = "Add an Employer";
-  $form['field_constituents']['und'][0]['field_employment']['und'][0]['remove_button']['#value'] = "Remove this Employer";
- // Change button labels for Education
-  $form['field_constituents']['und'][0]['field_education']['und']['add_more']['#value'] = "Add a Degree";
-  $form['field_constituents']['und'][0]['field_education']['und'][0]['remove_button']['#value'] = "Remove this Degree";
+  _core_ef_set_button($form['field_constituents']['und'][0]['field_employment']['und'], "Add an Employer", "Remove this Employer");
+  // Change button labels for Education
+  _core_ef_set_button($form['field_constituents']['und'][0]['field_education']['und'], "Add a Degree", "Remove this Degree");
   // Change button labels for Criminal
-  $form['field_constituents']['und'][0]['field_criminal']['und']['add_more']['#value'] = "Add an Conviction";
-  $form['field_constituents']['und'][0]['field_criminal']['und'][0]['remove_button']['#value'] = "Remove this Conviction";
+  _core_ef_set_button($form['field_constituents']['und'][0]['field_criminal']['und'], "Add an Conviction", "Remove this Conviction");
 
   return $form;
 }
 
+function _core_ef_set_button(&$field, $label_add, $label_remove) {
+  $field['add_more']['#value'] = $label_add;
+  foreach ($field as $key => &$button_field) {
+    if (is_numeric($key)) {
+      $button_field['remove_button']['#value'] = $label_remove;
+    }
+  }
+  return $field;
+}
 
 function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
   if ($element['#field_name'] == 'field_address_dates') {
@@ -91,9 +94,13 @@ function _core_ef_form_user(&$form) {
 function _core_ef_form_admin(&$form) {
   //drupal_set_message('co_admin');
   // reduce visible fields for personal info
-  $form['field_constituents']['und'][0]['field_name_middle']['#access'] = FALSE;
-  $form['field_constituents']['und'][0]['field_name_suffix']['#access'] = FALSE;
-  $form['field_constituents']['und'][0]['field_name_maiden']['#access'] = FALSE;
+  foreach ($form['field_constituents']['und'] as $key => $officer) {
+    if (is_numeric($key)) {
+      $form['field_constituents']['und'][$key]['field_name_middle']['#access'] = FALSE;
+      $form['field_constituents']['und'][$key]['field_name_suffix']['#access'] = FALSE;
+      $form['field_constituents']['und'][$key]['field_name_maiden']['#access'] = FALSE;
+    }
+  }
 
   // invite user stubb
   // @TODO actually send and invite
