@@ -39,6 +39,7 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   return $form;
 }
 
+
 function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
   if ($element['#field_name'] == 'field_address_dates') {
     // set label on checkbox for End Date to "Previous Address?"
@@ -72,19 +73,14 @@ function _core_ef_form_user(&$form) {
   $form['field_company_phone']['#disabled'] = TRUE;
   $form['field_company_address']['#disabled'] = TRUE;
   // disable other users personal information
-  //dpm($form);
   if (isset($form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#default_value'])) {
     global $user;
     foreach ($form['field_constituents']['und'] as $key => $value) {
       if (isset($value['field_email']['und'])) {
-        //dsm($key);
-        //dpm($value['field_email']);
+        if ($user->mail != $value['field_email']['und'][0]['email']['#default_value']) {
+          unset($form['field_constituents']['und'][$key]);
+        }
       }
-      /*if ($user->email != $value['field_email']['und'][0]['email']['#default_value']) {
-        $value['#access'] = FALSE;
-      } else {
-        dsm($form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#default_value']);
-      }*/
     }
   }
   // prevent this user from adding new users
