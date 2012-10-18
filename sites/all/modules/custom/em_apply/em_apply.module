@@ -65,27 +65,69 @@ function em_apply_form($uid){
 
 
 function em_apply_node_presave($node) {
+	global $user;
 	if ($node->type == 'data_company'){
-		//$data = serialize($node);
-		//$node = unserialize($data);
-        //print_r($node);
-       // die();
-        // 		unset($node->body);
-        // 		unset($node->field_constituents);
-        // 		unset($node->field_company_type);
-        // 		unset($node->field_dba);
-        // 		unset($node->field_disclaimer);
-        // 		unset($node->field_fein);
-        // 		unset($node->field_website);
-        // 		unset($node->field_year_of_legal_formation);
-        // 		unset($node->field_agree_final);
-        // 		unset($node->field_company_address);
-        // 		unset($node->field_company_phone);
-        // 		unset($node->field_facebook);
-        // 		unset($node->field_linkedin);
-        // 		unset($node->field_state_incorp);
-        // 		unset($node->field_state_registration);
-        // 		unset($node->field_twitter);
+		// check who is updating the form
+		if($user->uid == $node->uid){
+		//admin
+			$result = db_select('em_company','d')
+		   		->fields('d')
+				->condition('formid',$node->nid.'=')
+				->condition('admin_uid', $node->uid,'=')
+		    	->execute()
+				->fetchAssoc();
+			if($result){
+			//update
+			db_update('em_company')
+			    ->fields(array(
+			    	'updated' => REQUEST_TIME
+			     		))
+			    ->condition('id', $result['id'])
+			    ->execute();
+			}else{
+				//create new company
+				$id = db_insert('em_company')
+					->fields(array(
+			  			'formid' => $node->nid,
+			  			'admin_uid' => $node->uid,
+			  			'uid' => $user->uid,
+			  			'created' => REQUEST_TIME,
+			  			'updated' => REQUEST_TIME,
+						))
+					->execute();
+			}
+			
+		}else{
+		// officer
+				$result = db_select('em_company','d')
+			   		->fields('d')
+					->condition('formid',$node->nid.'=')
+					->condition('uid', $user->uid,'=')
+					->condition('admin_uid', $node->uid,'=')
+			    	->execute()
+					->fetchAssoc();
+				if($result){
+				//update
+				db_update('em_company')
+				    ->fields(array(
+				    	'updated' => REQUEST_TIME
+				     		))
+				    ->condition('id', $result['id'])
+				    ->execute();
+				}else{
+					//create new company officer record
+					$id = db_insert('em_company') 
+						->fields(array(
+				  			'formid' => $node->nid,
+				  			'admin_uid' => $node->uid,
+				  			'uid' => $user->uid,
+				  			'created' => REQUEST_TIME,
+				  			'updated' => REQUEST_TIME,
+							))
+						->execute();
+				}
+			
+		}
 	}
 
 }

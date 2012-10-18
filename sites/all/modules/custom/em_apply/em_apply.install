@@ -35,7 +35,7 @@ $schema['em_company'] = array(
 	 		'length' => '11',
 		 	'unsigned' => TRUE,
 	    	'default' => 0,
-		 	'not null' => TRUE
+		 	'not null' => FALSE
 		    ),
 		 'created' => array(
 		 	'description' => t('Form Created At'),
