@@ -56,6 +56,7 @@ function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
 
 function _core_ef_form_user(&$form) {
   //drupal_set_message('co_user');
+  //disable company fields
   $form['title']['#disabled'] = TRUE;
   $form['field_company_type']['#disabled'] = TRUE;
   $form['body']['#disabled'] = TRUE;
@@ -70,6 +71,15 @@ function _core_ef_form_user(&$form) {
   $form['field_linkedin']['#disabled'] = TRUE;
   $form['field_company_phone']['#disabled'] = TRUE;
   $form['field_company_address']['#disabled'] = TRUE;
+  // disable other users personal information
+  if (isset($form['field_constituents']['und'][0]['field_email']['und'][0]['#value'])) {
+    global $user;
+    foreach ($form['field_constituents']['und'] as $i -> $person) {
+      if ($user->email != $person['field_email']['und'][0]['#value']) {
+        $person['#access'] = FALSE;
+      }
+    }
+  }
   // prevent this user from adding new users
   unset($form['field_constituents']['und']['add_more']);
   return $form;
@@ -77,8 +87,77 @@ function _core_ef_form_user(&$form) {
 
 function _core_ef_form_admin(&$form) {
   //drupal_set_message('co_admin');
+  // reduce visible fields for personal info
   $form['field_constituents']['und'][0]['field_name_middle']['#access'] = FALSE;
   $form['field_constituents']['und'][0]['field_name_suffix']['#access'] = FALSE;
   $form['field_constituents']['und'][0]['field_name_maiden']['#access'] = FALSE;
+
+  // invite user stubb
+  // @TODO actually send and invite
+  $form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#attributes'] = array('onBlur' => 'if(this.value>\'\') $(\'#invite_field\').show();');
+  /*$form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#ajax'] = array(
+    'wrapper' => 'invite_field',
+    'callback' => '_core_ef_invite_show_field',
+  );*/
+  $form['field_constituents']['und'][0]['invite_confirm'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Invite this user'),
+    '#default_value' => 0,
+    '#weight' => $form['field_constituents']['und'][0]['field_email']['#weight'],
+    '#prefix' => '<div id="invite_field" style="display:none;">',
+    '#suffix' => '</div>',
+    '#ajax' => array(
+      'wrapper' => 'ajax_invite_feedback_div',
+      'callback' => '_core_ef_check_email_callback',
+    ),
+  );
+  $form['field_constituents']['und'][0]['ajax_invite_feedback'] = array(
+    '#prefix' => '<div id="ajax_invite_feedback_div">',
+    '#suffix' => '</div>',
+    '#weight' => $form['field_constituents']['und'][0]['field_email']['#weight'],
+  );
+
   return $form;
+}
+
+function _core_ef_check_email_callback($form, &$form_state) {
+  $invite = $form['field_constituents']['und'][0]['invite_confirm']['#value'];
+  $email = $form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#value'];
+  if($invite) {
+    $form['field_constituents']['und'][0]['ajax_invite_feedback']['#markup'] = '<p>' . _core_ef_send_email($email) . '</p>';
+  } else {
+    $form['field_constituents']['und'][0]['ajax_invite_feedback']['#markup'] = '<p>' . t('Not a valid email?') . '</p>';
+  }
+  return $form['field_constituents']['und'][0]['ajax_invite_feedback'];
+}
+
+function _core_ef_invite_show_field(&$form, &$form_state) {
+  $email = $form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#value'];
+  if($email) {
+    $form['field_constituents']['und'][0]['invite_confirm']['#prefix'] = '<div id="invite_field" style="display:block;">';
+  } else {
+    $form['field_constituents']['und'][0]['invite_confirm']['#prefix'] = '<div id="invite_field" style="display:none;">';
+  }
+  return $form['field_constituents']['und'][0]['invite_confirm'];
+}
+
+function _core_ef_send_email($email) {
+  //do something with email here
+  return _core_ef_ajax_css_wrapper('info', t('This is where an email should be sent to ' . $email));
+}
+
+/**
+ * Wrap specified message of specified type in CSS class to facilitate theming
+ */
+function _core_ef_ajax_css_wrapper($type, $message) {
+  switch ($type) {
+    case 'info':
+    case 'warn':
+    case 'error':
+      return '<p class="rest-' . $type . '">'. $message . '</p>';
+      break;
+
+    default:
+      return '<p>' . $message . '</p>';
+  }
 }
