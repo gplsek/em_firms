@@ -103,6 +103,7 @@ function core_ef_field_group_info() {
       8 => 'field_linkedin_profile',
       9 => 'field_agree_final',
       10 => 'field_civil',
+      11 => 'field_criminal_convictions',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

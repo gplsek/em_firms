@@ -5,3 +5,79 @@
  */
 
 include_once 'core_ef.features.inc';
+
+/*
+function core_ef_form_alter(&$form, &$form_state, $form_id) {
+  dpm($form_id);
+}
+*/
+
+function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
+  dpm($form);
+  //dpm($form_state);
+
+  // Change button labels for DBA
+  $form['field_dba']['und']['add_more']['#value'] = "Add a DBA";
+  $form['field_dba']['und'][0]['remove_button']['#value'] = "Remove this DBA";
+  // Change button labels for Officers
+  $form['field_constituents']['und']['add_more']['#value'] = "Add an Officer";
+  $form['field_constituents']['und'][0]['remove_button']['#value'] = "Remove this Officer";
+  // Change button labels for Residence
+  $form['field_constituents']['und'][0]['field_address']['und']['add_more']['#value'] = "Add an Address";
+  $form['field_constituents']['und'][0]['field_address']['und'][0]['remove_button']['#value'] = "Remove this Address";
+  // Change button labels for Employment
+  $form['field_constituents']['und'][0]['field_employment']['und']['add_more']['#value'] = "Add an Employer";
+  $form['field_constituents']['und'][0]['field_employment']['und'][0]['remove_button']['#value'] = "Remove this Employer";
+ // Change button labels for Education
+  $form['field_constituents']['und'][0]['field_education']['und']['add_more']['#value'] = "Add a Degree";
+  $form['field_constituents']['und'][0]['field_education']['und'][0]['remove_button']['#value'] = "Remove this Degree";
+  // Change button labels for Criminal
+  $form['field_constituents']['und'][0]['field_criminal']['und']['add_more']['#value'] = "Add an Conviction";
+  $form['field_constituents']['und'][0]['field_criminal']['und'][0]['remove_button']['#value'] = "Remove this Conviction";
+
+  return $form;
+}
+
+function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
+  if ($element['#field_name'] == 'field_address_dates') {
+    // set label on checkbox for End Date to "Previous Address?"
+    $element['value']['#title'] = t('From Date:');
+    $element['value2']['#title'] = t('To Date:');
+    $element['show_todate']['#title'] = t('Previous Address?');
+  }
+  if ($element['#field_name'] == 'field_employment_dates') {
+    // set label on checkbox for End Date to "Previous Employment?"
+    $element['value']['#title'] = t('From Date:');
+    $element['value2']['#title'] = t('To Date:');
+    $element['show_todate']['#title'] = t('Previous Employment?');
+  }
+}
+
+function _core_ef_form_user(&$form) {
+  //drupal_set_message('co_user');
+  $form['title']['#disabled'] = TRUE;
+  $form['field_company_type']['#disabled'] = TRUE;
+  $form['body']['#disabled'] = TRUE;
+  $form['field_fein']['#disabled'] = TRUE;
+  $form['field_state_incorp']['#disabled'] = TRUE;
+  $form['field_state_registration']['#disabled'] = TRUE;
+  $form['field_year_of_legal_formation']['#disabled'] = TRUE;
+  $form['field_dba']['#disabled'] = TRUE;
+  $form['field_website']['#disabled'] = TRUE;
+  $form['field_facebook']['#disabled'] = TRUE;
+  $form['field_twitter']['#disabled'] = TRUE;
+  $form['field_linkedin']['#disabled'] = TRUE;
+  $form['field_company_phone']['#disabled'] = TRUE;
+  $form['field_company_address']['#disabled'] = TRUE;
+  // prevent this user from adding new users
+  unset($form['field_constituents']['und']['add_more']);
+  return $form;
+}
+
+function _core_ef_form_admin(&$form) {
+  //drupal_set_message('co_admin');
+  $form['field_constituents']['und'][0]['field_name_middle']['#access'] = FALSE;
+  $form['field_constituents']['und'][0]['field_name_suffix']['#access'] = FALSE;
+  $form['field_constituents']['und'][0]['field_name_maiden']['#access'] = FALSE;
+  return $form;
+}

@@ -85,45 +85,24 @@ function em_apply_node_prepare($node) {
 
 }
 
-/*
-function em_apply_form_alter(&$form, &$form_state, $form_id) {
-  dpm($form_id);
-}
-*/
-
 function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
-  //dpm($form);
-  //dpm($form_state);
-  $form['field_constituents']['und']['add_more']['#value'] = "Add an Officer";
-  $form['field_constituents']['und'][0]['remove_button']['#value'] = "Remove this Officer";
-
 
   global $user;
   //dpm($user);
   $owner = $form_state['node']->uid;
   //also see if the user exists in the company table
-  // only allow Admin users to view/edit some fields while disabled or hidden for Auth only users
-  if ($owner <> $user->uid || (in_array('authenticated user', $user->roles) && !in_array('administrator', $user->roles))){
 
-
-
-    //doesn't work
-    //$form['field_company_address']['#collapsible'] = TRUE;
-    //$form['field_company_address']['#attributes']['class'][] = ' collapsed';
-
-    $form['group_company']['#disabled'] = TRUE;
-    $form['field_company_phone']['#disabled'] = TRUE;
-    $form['field_company_address']['#access'] = FALSE;
-
-    /*$form['field_company_address']['#attached']['library'][] = array('system', 'drupal.collapse');
-    $form['field_company_address']['#attributes']['class'][] = 'collapsible';
-    if (!empty($form['field_company_address']['#collapsed'])) {
-      $form['field_company_address']['#attributes']['class'][] = 'collapsed';
-    }*/
-
-
-	  return $form;
+  // only allow Admin users to view/edit some personal fields of Officers
+  if ($owner <> $user->uid || (in_array('co_admin', $user->roles) && !in_array('administrator', $user->roles))){
+    // hide these fields to a Co_Admin on first load
+    $form = _core_ef_form_admin($form);
 	}
+  // only allow Co_Users users to view/edit personal fields while disabling company fields
+  if (in_array('co_user', $user->roles) && !in_array('administrator', $user->roles)){
+    //disable company fields
+    $form = _core_ef_form_user($form);
+  }
+  return $form;
 }
 
 function em_apply_user($op, &$edit, &$account, $category = NULL) {
@@ -134,3 +113,4 @@ function em_apply_user($op, &$edit, &$account, $category = NULL) {
     drupal_goto(referer_uri());
   }
 }
+

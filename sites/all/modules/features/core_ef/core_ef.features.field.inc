@@ -309,10 +309,10 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_address_dates',
       'label' => 'Dates of Residence',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
-        'default_value' => 'strtotime',
-        'default_value2' => 'now',
+        'default_value' => 'blank',
+        'default_value2' => 'blank',
         'default_value_code' => '-10 years',
         'default_value_code2' => '',
         'user_register_form' => FALSE,
@@ -321,15 +321,15 @@ function core_ef_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
-          'increment' => 15,
+          'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
-          'label_position' => 'above',
+          'label_position' => 'within',
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
-        'type' => 'date_text',
-        'weight' => '0',
+        'type' => 'date_select',
+        'weight' => 0,
       ),
     ),
   );
@@ -455,8 +455,8 @@ function core_ef_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'No',
-          1 => 'Yes',
+          0 => '',
+          1 => '',
         ),
         'allowed_values_function' => '',
       ),
@@ -465,7 +465,11 @@ function core_ef_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'field_civil',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -479,7 +483,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_civil_bankruptcy',
-      'label' => 'Have you ever declared personal bankruptcy?',
+      'label' => 'I have declared personal bankruptcy.',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -487,8 +491,10 @@ function core_ef_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
         'weight' => '1',
       ),
     ),
@@ -512,8 +518,8 @@ function core_ef_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'No',
-          1 => 'Yes',
+          0 => '',
+          1 => '',
         ),
         'allowed_values_function' => '',
       ),
@@ -522,7 +528,11 @@ function core_ef_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'field_civil',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -536,7 +546,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_civil_liens',
-      'label' => 'Have you had any IRS liens?',
+      'label' => 'I have IRS lien(s).',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -544,8 +554,10 @@ function core_ef_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
         'weight' => '3',
       ),
     ),
@@ -569,8 +581,8 @@ function core_ef_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'No',
-          1 => 'Yes',
+          0 => '',
+          1 => '',
         ),
         'allowed_values_function' => '',
       ),
@@ -579,7 +591,11 @@ function core_ef_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'field_civil',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -593,7 +609,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_civil_litigation',
-      'label' => 'Are you involved in any current cvil litigation?',
+      'label' => 'I am involved in current civil litigation.',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -601,8 +617,10 @@ function core_ef_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
         'weight' => '2',
       ),
     ),
@@ -1002,7 +1020,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_agree_final',
-      'label' => 'I agree again.',
+      'label' => 'I agree that my personal information is true and correct.',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1014,7 +1032,7 @@ function core_ef_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '17',
+        'weight' => '18',
       ),
     ),
   );
@@ -1124,7 +1142,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '16',
+        'weight' => '17',
       ),
     ),
   );
@@ -1180,6 +1198,69 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
+        'weight' => '16',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_criminal_convictions'.
+  $fields['field_collection_item-field_constituents-field_criminal_convictions'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_criminal_convictions',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 18,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_criminal_convictions',
+      'label' => 'I have felony/misdemeanor criminal conviction(s).',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
         'weight' => '15',
       ),
     ),
@@ -2011,6 +2092,69 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_criminal-field_criminal_county'.
+  $fields['field_collection_item-field_criminal-field_criminal_county'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_criminal_county',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_criminal',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 6,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_criminal_county',
+      'label' => 'County',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '7',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_criminal-field_criminal_description'.
   $fields['field_collection_item-field_criminal-field_criminal_description'] = array(
     'field_config' => array(
@@ -2132,34 +2276,28 @@ function core_ef_field_default_fields() {
     ),
   );
 
-  // Exported field: 'field_collection_item-field_criminal-field_criminal_state_county'.
-  $fields['field_collection_item-field_criminal-field_criminal_state_county'] = array(
+  // Exported field: 'field_collection_item-field_criminal-field_criminal_state'.
+  $fields['field_collection_item-field_criminal-field_criminal_state'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_criminal_state_county',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
+      'field_name' => 'field_criminal_state',
+      'foreign keys' => array(),
       'indexes' => array(
-        'format' => array(
-          0 => 'format',
+        'value' => array(
+          0 => 'value',
         ),
       ),
       'locked' => '0',
-      'module' => 'text',
+      'module' => 'list',
       'settings' => array(
-        'max_length' => '255',
+        'allowed_values' => array(),
+        'allowed_values_function' => 'list_predefined_options_list_option_us_states',
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'list_text',
     ),
     'field_instance' => array(
       'bundle' => 'field_criminal',
@@ -2169,28 +2307,25 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 4,
+          'type' => 'list_default',
+          'weight' => 5,
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_criminal_state_county',
-      'label' => 'State/County',
+      'field_name' => 'field_criminal_state',
+      'label' => 'State',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '5',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '6',
       ),
     ),
   );
@@ -2653,7 +2788,7 @@ function core_ef_field_default_fields() {
   $fields['field_collection_item-field_education-field_education_major'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_education_major',
@@ -3004,8 +3139,8 @@ function core_ef_field_default_fields() {
       'label' => 'Dates of Employment',
       'required' => 1,
       'settings' => array(
-        'default_value' => 'now',
-        'default_value2' => 'same',
+        'default_value' => 'blank',
+        'default_value2' => 'blank',
         'default_value_code' => '',
         'default_value_code2' => '',
         'user_register_form' => FALSE,
@@ -3017,12 +3152,12 @@ function core_ef_field_default_fields() {
           'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
-          'label_position' => 'above',
+          'label_position' => 'within',
           'text_parts' => array(),
           'year_range' => '-8:+0',
         ),
         'type' => 'date_select',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -5471,7 +5606,6 @@ function core_ef_field_default_fields() {
   t('Address');
   t('Address (cont.)');
   t('Affiliation');
-  t('Are you involved in any current cvil litigation?');
   t('Body');
   t('City');
   t('Civil Background');
@@ -5485,6 +5619,7 @@ function core_ef_field_default_fields() {
   t('Conviction Year');
   t('Country');
   t('Country of Citizenship');
+  t('County');
   t('Criminal Convictions');
   t('DBA');
   t('Date of Birth');
@@ -5501,10 +5636,13 @@ function core_ef_field_default_fields() {
   t('FaceBook');
   t('First Name');
   t('HS, AA, BA, BS, MA, MS, PhD, Dr, etc.');
-  t('Have you ever declared personal bankruptcy?');
-  t('Have you had any IRS liens?');
   t('I Agree to the Disclaimer');
   t('I agree again.');
+  t('I agree that my personal information is true and correct.');
+  t('I am involved in current civil litigation.');
+  t('I have IRS lien(s).');
+  t('I have declared personal bankruptcy.');
+  t('I have felony/misdemeanor criminal conviction(s).');
   t('ID/#');
   t('Icon');
   t('Image');
@@ -5528,7 +5666,6 @@ function core_ef_field_default_fields() {
   t('State');
   t('State of Incorp (for corp)');
   t('State of Registration (for all)');
-  t('State/County');
   t('Suffix');
   t('The position of the SlideShow Item at the SlideShow.');
   t('This field will determine in wich Slideshows (1 to 7) will this item appear.');
