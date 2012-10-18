@@ -520,7 +520,7 @@ function core_ef_image_default_styles() {
 function core_ef_node_info() {
   $items = array(
     'data_company' => array(
-      'name' => t('Data Company'),
+      'name' => t('Company Application'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

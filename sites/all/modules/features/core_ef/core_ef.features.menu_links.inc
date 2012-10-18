@@ -60,6 +60,28 @@ function core_ef_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-45',
   );
+  // Exported menu link: user-menu:<front>
+  $menu_links['user-menu:<front>'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Log in',
+    'options' => array(
+      'menu_token_link_path' => 'user/login?destination=[current-page:url:path]',
+      'menu_token_data' => array(),
+      'menu_token_options' => array(
+        'clear' => 0,
+      ),
+      'alter' => TRUE,
+      'attributes' => array(),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '1',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
   // Exported menu link: user-menu:user
   $menu_links['user-menu:user'] = array(
     'menu_name' => 'user-menu',
@@ -76,28 +98,15 @@ function core_ef_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-10',
   );
-  // Exported menu link: user-menu:user/login
-  $menu_links['user-menu:user/login'] = array(
-    'menu_name' => 'user-menu',
-    'link_path' => 'user/login',
-    'router_path' => 'user/login',
-    'link_title' => 'Log in',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '-1',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'user',
-  );
   // Exported menu link: user-menu:user/logout
   $menu_links['user-menu:user/logout'] = array(
     'menu_name' => 'user-menu',
     'link_path' => 'user/logout',
     'router_path' => 'user/logout',
     'link_title' => 'Log out',
-    'options' => array(),
+    'options' => array(
+      'alter' => TRUE,
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',

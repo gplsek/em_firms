@@ -24,16 +24,19 @@ function core_ef_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'body',
-      1 => 'field_phone',
-      2 => 'field_address',
+      1 => 'field_company_type',
+      2 => 'field_dba',
       3 => 'field_fein',
       4 => 'field_website',
-      5 => 'field_company_type',
-      6 => 'field_state_of_incorp',
-      7 => 'field_state_of_registration',
-      8 => 'field_year_of_legal_formation',
-      9 => 'field_dba',
-      10 => 'title',
+      5 => 'field_year_of_legal_formation',
+      6 => 'field_company_address',
+      7 => 'field_company_phone',
+      8 => 'field_state_incorp',
+      9 => 'field_state_registration',
+      10 => 'field_facebook',
+      11 => 'field_twitter',
+      12 => 'field_linkedin',
+      13 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -43,7 +46,7 @@ function core_ef_field_group_info() {
         'classes' => '',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_company|node|data_company|form'] = $field_group;
@@ -58,21 +61,20 @@ function core_ef_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Constituents',
-    'weight' => '12',
+    'label' => 'Officers',
+    'weight' => '4',
     'children' => array(
-      0 => 'field_officers',
-      1 => 'field_constituents',
+      0 => 'field_constituents',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Constituents',
+      'label' => 'Officers',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => '',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_constituents|node|data_company|form'] = $field_group;
@@ -99,6 +101,9 @@ function core_ef_field_group_info() {
       6 => 'field_education',
       7 => 'field_ssn',
       8 => 'field_linkedin_profile',
+      9 => 'field_agree_final',
+      10 => 'field_civil',
+      11 => 'field_criminal_convictions',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
