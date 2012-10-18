@@ -72,12 +72,19 @@ function _core_ef_form_user(&$form) {
   $form['field_company_phone']['#disabled'] = TRUE;
   $form['field_company_address']['#disabled'] = TRUE;
   // disable other users personal information
-  if (isset($form['field_constituents']['und'][0]['field_email']['und'][0]['#value'])) {
+  //dpm($form);
+  if (isset($form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#default_value'])) {
     global $user;
-    foreach ($form['field_constituents']['und'] as $i -> $person) {
-      if ($user->email != $person['field_email']['und'][0]['#value']) {
-        $person['#access'] = FALSE;
+    foreach ($form['field_constituents']['und'] as $key => $value) {
+      if (isset($value['field_email']['und'])) {
+        //dsm($key);
+        //dpm($value['field_email']);
       }
+      /*if ($user->email != $value['field_email']['und'][0]['email']['#default_value']) {
+        $value['#access'] = FALSE;
+      } else {
+        dsm($form['field_constituents']['und'][0]['field_email']['und'][0]['email']['#default_value']);
+      }*/
     }
   }
   // prevent this user from adding new users
