@@ -99,18 +99,17 @@
     <?php endif; ?>
 
     <?php print render($page['header']); ?>
-	
+
   </div></header><!-- /.section, /#header -->
 
   <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $page['navigation']) { print ' with-navigation'; } ?>">
 
     <?php print $breadcrumb; ?>
-  
+
     <?php print render($page['sidebar_first']); ?>
-  
+
     <section id="content" class="column"><div class="section">
-      <?php print render($page['highlighted']); ?>
-      
+
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
@@ -125,6 +124,7 @@
       <?php if ($action_links): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
+      <?php print render($page['highlighted']); ?>
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
     </div></section><!-- /.section, /#content -->
