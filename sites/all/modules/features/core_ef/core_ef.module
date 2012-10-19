@@ -6,6 +6,12 @@
 
 include_once 'core_ef.features.inc';
 
+function core_ef_init() {
+  if (isset($_GET['pop']) && $_GET['pop'] == 1) {
+    drupal_set_message('**Testing the pop up messages. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute.');
+  }
+}
+
 /*
 function core_ef_form_alter(&$form, &$form_state, $form_id) {
   dpm($form_id);
