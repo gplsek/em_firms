@@ -1586,6 +1586,66 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_constituents-field_gender'.
+  $fields['field_collection_item-field_constituents-field_gender'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_gender',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Male' => 'Male',
+          'Female' => 'Female',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 19,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_gender',
+      'label' => 'Gender',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '19',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_constituents-field_linkedin_profile'.
   $fields['field_collection_item-field_constituents-field_linkedin_profile'] = array(
     'field_config' => array(
@@ -6039,6 +6099,7 @@ function core_ef_field_default_fields() {
   t('FEIN');
   t('FaceBook');
   t('First Name');
+  t('Gender');
   t('HS, AA, BA, BS, MA, MS, PhD, Dr, etc.');
   t('I Agree to the Disclaimer');
   t('I agree again.');

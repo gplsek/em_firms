@@ -117,6 +117,7 @@ features[field][] = field_collection_item-field_constituents-field_driver_licens
 features[field][] = field_collection_item-field_constituents-field_education
 features[field][] = field_collection_item-field_constituents-field_email
 features[field][] = field_collection_item-field_constituents-field_employment
+features[field][] = field_collection_item-field_constituents-field_gender
 features[field][] = field_collection_item-field_constituents-field_linkedin_profile
 features[field][] = field_collection_item-field_constituents-field_name_first
 features[field][] = field_collection_item-field_constituents-field_name_last
