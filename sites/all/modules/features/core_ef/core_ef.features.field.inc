@@ -3291,6 +3291,118 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_invite_officers-field_email'.
+  $fields['field_collection_item-field_invite_officers-field_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'email',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_invite_officers',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_email',
+      'label' => 'Email',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'email',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'email_textfield',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_invite_officers-field_invitee_name'.
+  $fields['field_collection_item-field_invite_officers-field_invitee_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_invitee_name',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_invite_officers',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_invitee_name',
+      'label' => 'Invitee Name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '0',
+      ),
+    ),
+  );
+
   // Exported field: 'node-data_company-body'.
   $fields['node-data_company-body'] = array(
     'field_config' => array(
@@ -3328,10 +3440,9 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 0,
+          'type' => 'hidden',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -3406,7 +3517,7 @@ function core_ef_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 15,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3470,7 +3581,7 @@ function core_ef_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => 13,
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3525,7 +3636,7 @@ function core_ef_field_default_fields() {
           'module' => 'phone',
           'settings' => array(),
           'type' => 'phone',
-          'weight' => 14,
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3598,7 +3709,7 @@ function core_ef_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 6,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3624,24 +3735,51 @@ function core_ef_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-data_company-field_constituents'.
-  $fields['node-data_company-field_constituents'] = array(
+  // Exported field: 'node-data_company-field_confirmed_officers'.
+  $fields['node-data_company-field_confirmed_officers'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_constituents',
-      'foreign keys' => array(),
-      'indexes' => array(),
+      'field_name' => 'field_confirmed_officers',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'uid' => array(
+          'columns' => array(
+            'uid' => 'uid',
+          ),
+          'table' => 'users',
+        ),
+      ),
+      'indexes' => array(
+        'uid' => array(
+          0 => 'uid',
+        ),
+      ),
       'locked' => '0',
-      'module' => 'field_collection',
+      'module' => 'user_reference',
       'settings' => array(
-        'hide_blank_items' => 1,
-        'path' => '',
+        'referenceable_roles' => array(
+          2 => '2',
+          3 => 0,
+          4 => '4',
+          5 => '5',
+        ),
+        'referenceable_status' => array(
+          0 => 0,
+          1 => '1',
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
+        ),
       ),
       'translatable' => '0',
-      'type' => 'field_collection',
+      'type' => 'user_reference',
     ),
     'field_instance' => array(
       'bundle' => 'data_company',
@@ -3651,16 +3789,10 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'field_collection',
-          'settings' => array(
-            'add' => 'Add',
-            'delete' => 'Delete',
-            'description' => TRUE,
-            'edit' => 'Edit',
-            'view_mode' => 'full',
-          ),
-          'type' => 'field_collection_view',
-          'weight' => 12,
+          'module' => 'user_reference',
+          'settings' => array(),
+          'type' => 'user_reference_default',
+          'weight' => 20,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3670,18 +3802,22 @@ function core_ef_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_constituents',
-      'label' => 'List Owners, Officers, etc.',
+      'field_name' => 'field_confirmed_officers',
+      'label' => 'Confirmed Officers',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'field_collection',
-        'settings' => array(),
-        'type' => 'field_collection_embed',
-        'weight' => '14',
+        'active' => 1,
+        'module' => 'user_reference',
+        'settings' => array(
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'user_reference/autocomplete',
+          'size' => '60',
+        ),
+        'type' => 'user_reference_autocomplete',
+        'weight' => '19',
       ),
     ),
   );
@@ -3726,7 +3862,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 10,
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3796,7 +3932,7 @@ function core_ef_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 1,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3865,7 +4001,7 @@ function core_ef_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 18,
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3947,7 +4083,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 4,
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3972,6 +4108,68 @@ function core_ef_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-data_company-field_invite_officers'.
+  $fields['node-data_company-field_invite_officers'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_invite_officers',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'field_collection',
+      'settings' => array(
+        'hide_blank_items' => 1,
+        'path' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'field_collection',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Add',
+            'delete' => 'Delete',
+            'description' => TRUE,
+            'edit' => 'Edit',
+            'view_mode' => 'full',
+          ),
+          'type' => 'field_collection_view',
+          'weight' => '16',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_invite_officers',
+      'label' => 'Invite Officers',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'field_collection',
+        'settings' => array(),
+        'type' => 'field_collection_embed',
+        'weight' => '17',
       ),
     ),
   );
@@ -4017,7 +4215,7 @@ function core_ef_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 20,
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4098,15 +4296,9 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'commerce_cart',
-          'settings' => array(
-            'combine' => TRUE,
-            'default_quantity' => 1,
-            'line_item_type' => 'product',
-            'show_quantity' => FALSE,
-          ),
-          'type' => 'commerce_cart_add_to_cart_form',
-          'weight' => 21,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4137,6 +4329,77 @@ function core_ef_field_default_fields() {
         ),
         'type' => 'commerce_product_reference_autocomplete',
         'weight' => '16',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-data_company-field_purchase_completed'.
+  $fields['node-data_company-field_purchase_completed'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_purchase_completed',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '19',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_purchase_completed',
+      'label' => 'Purchase Completed',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '18',
       ),
     ),
   );
@@ -4175,7 +4438,7 @@ function core_ef_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 16,
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4235,7 +4498,7 @@ function core_ef_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 17,
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4302,7 +4565,7 @@ function core_ef_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 19,
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4385,7 +4648,7 @@ function core_ef_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 5,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4473,7 +4736,7 @@ function core_ef_field_default_fields() {
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => 9,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4506,6 +4769,68 @@ function core_ef_field_default_fields() {
         ),
         'type' => 'date_select',
         'weight' => '10',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-data_person-field_constituents'.
+  $fields['node-data_person-field_constituents'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_constituents',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'field_collection',
+      'settings' => array(
+        'hide_blank_items' => 1,
+        'path' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'field_collection',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_person',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Add',
+            'delete' => 'Delete',
+            'description' => TRUE,
+            'edit' => 'Edit',
+            'view_mode' => 'full',
+          ),
+          'type' => 'field_collection_view',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_constituents',
+      'label' => 'List Owners, Officers, etc.',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'field_collection',
+        'settings' => array(),
+        'type' => 'field_collection_embed',
+        'weight' => '32',
       ),
     ),
   );
@@ -5692,6 +6017,7 @@ function core_ef_field_default_fields() {
   t('Company Name');
   t('Company Type');
   t('Company Website');
+  t('Confirmed Officers');
   t('Conviction Level');
   t('Conviction Type');
   t('Conviction Year');
@@ -5725,6 +6051,8 @@ function core_ef_field_default_fields() {
   t('Icon');
   t('Image');
   t('Institution');
+  t('Invite Officers');
+  t('Invitee Name');
   t('Job Title');
   t('Last Name');
   t('LinkedIn');
@@ -5737,6 +6065,7 @@ function core_ef_field_default_fields() {
   t('Place here the link you want. Remember start with <strong>http://</strong>');
   t('Product id');
   t('Profile administered by the individual');
+  t('Purchase Completed');
   t('Residence History');
   t('Seven - Slide Image');
   t('Slideshow Position');

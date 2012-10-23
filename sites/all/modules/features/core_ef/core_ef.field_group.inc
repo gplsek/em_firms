@@ -64,7 +64,7 @@ function core_ef_field_group_info() {
     'label' => 'Officers',
     'weight' => '4',
     'children' => array(
-      0 => 'field_constituents',
+      0 => 'field_invite_officers',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
