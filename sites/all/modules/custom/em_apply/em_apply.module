@@ -72,7 +72,7 @@ function em_apply_node_presave($node) {
 		//admin
 			$result = db_select('em_company','d')
 		   		->fields('d')
-				->condition('formid',$node->nid.'=')
+				->condition('formid',$node->nid,'=')
 				->condition('admin_uid', $node->uid,'=')
 		    	->execute()
 				->fetchAssoc();
