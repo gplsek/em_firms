@@ -67,6 +67,48 @@ function em_apply_form($uid){
 function em_apply_node_presave($node) {
 	global $user;
 	if ($node->type == 'data_company'){
+		foreach($node->field_invite_officers['und'] as $invitee){
+			
+			$users = field_collection_item_load($invitee['value'], $reset = FALSE);
+			$fname = $users->field_first_name['und'][0]['value'];
+			$lname = $users->field_last_name['und'][0]['value'];
+			$email = $users->field_email['und'][0]['email'];
+			$nuser = user_load_by_mail($email);
+			if($nuser){
+				//exists
+				//print "HE is here";
+				$nuid = $nuser->uid;
+			}else{
+				// create user
+				//print "create new";
+				
+
+				// $newUser[roles] = array(
+				// 				  DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+				// 				 // 3 => 'custom_role',
+				// 				);
+				
+                $account = new stdClass;
+				$account->is_new = TRUE;
+				$account->name = $fname.' '.$lname;
+				//$account->pass = user_hash_password('');
+				$account->mail = $email;
+				$account->init = $email;
+				$account->status = TRUE;
+				$account->roles = array(DRUPAL_AUTHENTICATED_RID => TRUE);
+				$account->timezone = variable_get('date_default_timezone', '');
+				$newUser = user_save($account);
+				//register_no_approval_required
+				//register_admin_created
+				_user_mail_notify('register_no_approval_required', $newUser);
+				//$newUser = user_load_by_mail($email);
+				$nuid = $newUser->uid;
+				unset($newUser);
+			}
+			//print "Create Node for this user: ".$nuid."<br>";
+		}
+		//die();
+		
 		// check who is updating the form
 		if($user->uid == $node->uid){
 		//admin
@@ -101,7 +143,7 @@ function em_apply_node_presave($node) {
 		// officer
 				$result = db_select('em_company','d')
 			   		->fields('d')
-					->condition('formid',$node->nid.'=')
+					->condition('formid',$node->nid,'=')
 					->condition('uid', $user->uid,'=')
 					->condition('admin_uid', $node->uid,'=')
 			    	->execute()
