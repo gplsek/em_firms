@@ -394,15 +394,6 @@ function core_ef_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: administer own profiles.
-  $permissions['administer own profiles'] = array(
-    'name' => 'administer own profiles',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'socialmedia',
-  );
-
   // Exported permission: administer page manager.
   $permissions['administer page manager'] = array(
     'name' => 'administer page manager',
