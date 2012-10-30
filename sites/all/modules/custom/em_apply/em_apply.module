@@ -57,7 +57,7 @@ function em_apply_form($uid){
   $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'data_company', 'language' => LANGUAGE_NONE);
   $form_state['build_info']['args'] = array($node);
   form_load_include($form_state, 'inc', 'node', 'node.pages');
-	return drupal_get_form('data_company_node_form');
+  return drupal_build_form('data_company_node_form', $form_state);
 }
 
 
@@ -69,7 +69,7 @@ function em_apply_node_insert($node) {
 	global $user;
 	if ($node->type == 'data_company'){
 		foreach($node->field_invite_officers['und'] as $invitee){
-			
+
 			$users = field_collection_item_load($invitee['value'], $reset = FALSE);
 			$fname = $users->field_first_name['und'][0]['value'];
 			$lname = $users->field_last_name['und'][0]['value'];
@@ -82,13 +82,13 @@ function em_apply_node_insert($node) {
 			}else{
 				// create user
 				//print "create new";
-				
+
 
 				// $newUser[roles] = array(
 				// 				  DRUPAL_AUTHENTICATED_RID => 'authenticated user',
 				// 				 // 3 => 'custom_role',
 				// 				);
-				
+
                 $account = new stdClass;
 				$account->is_new = TRUE;
 				$account->name = $fname.' '.$lname;
@@ -119,7 +119,7 @@ function em_apply_node_insert($node) {
 			$personnode = node_submit($personnode); // Prepare node for saving
             node_save($personnode);
             unset($personnode);
-			 
+
 		}
 		// check who is updating the form
 		if($user->uid == $node->uid){
@@ -150,7 +150,7 @@ function em_apply_node_insert($node) {
 						))
 					->execute();
 			}
-			
+
 		}else{
 		// officer
 				$result = db_select('em_company','d')
@@ -170,7 +170,7 @@ function em_apply_node_insert($node) {
 				    ->execute();
 				}else{
 					//create new company officer record
-					$id = db_insert('em_company') 
+					$id = db_insert('em_company')
 						->fields(array(
 				  			'formid' => $node->nid,
 				  			'admin_uid' => $node->uid,
@@ -180,7 +180,7 @@ function em_apply_node_insert($node) {
 							))
 						->execute();
 				}
-			
+
 		}
 	}
 
@@ -197,7 +197,6 @@ function em_apply_node_prepare($node) {
   if ($node->type == 'data_company'){
 	 $node->field_fein['und'][0]['value'] = 'test fein';
 	}
-
 }
 
 function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {

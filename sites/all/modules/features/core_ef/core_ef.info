@@ -159,7 +159,6 @@ features[field][] = node-data_company-field_agree_final
 features[field][] = node-data_company-field_company_address
 features[field][] = node-data_company-field_company_phone
 features[field][] = node-data_company-field_company_type
-features[field][] = node-data_company-field_confirmed_officers
 features[field][] = node-data_company-field_dba
 features[field][] = node-data_company-field_disclaimer
 features[field][] = node-data_company-field_facebook

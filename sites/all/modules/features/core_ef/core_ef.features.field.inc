@@ -4051,93 +4051,6 @@ function core_ef_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-data_company-field_confirmed_officers'.
-  $fields['node-data_company-field_confirmed_officers'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_confirmed_officers',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'uid' => array(
-          'columns' => array(
-            'uid' => 'uid',
-          ),
-          'table' => 'users',
-        ),
-      ),
-      'indexes' => array(
-        'uid' => array(
-          0 => 'uid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'user_reference',
-      'settings' => array(
-        'referenceable_roles' => array(
-          2 => '2',
-          3 => 0,
-          4 => '4',
-          5 => '5',
-        ),
-        'referenceable_status' => array(
-          0 => 0,
-          1 => '1',
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'user_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'data_company',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'user_reference',
-          'settings' => array(),
-          'type' => 'user_reference_default',
-          'weight' => 20,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_confirmed_officers',
-      'label' => 'Confirmed Officers',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'user_reference',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'user_reference/autocomplete',
-          'size' => '60',
-        ),
-        'type' => 'user_reference_autocomplete',
-        'weight' => '19',
-      ),
-    ),
-  );
-
   // Exported field: 'node-data_company-field_dba'.
   $fields['node-data_company-field_dba'] = array(
     'field_config' => array(
@@ -7286,7 +7199,6 @@ function core_ef_field_default_fields() {
   t('Company Name');
   t('Company Type');
   t('Company Website');
-  t('Confirmed Officers');
   t('Conviction Level');
   t('Conviction Type');
   t('Conviction Year');
