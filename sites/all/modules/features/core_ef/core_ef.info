@@ -53,6 +53,7 @@ dependencies[] = menu_token
 dependencies[] = module_filter
 dependencies[] = multiblock
 dependencies[] = node_reference
+dependencies[] = nodeblock
 dependencies[] = number
 dependencies[] = options
 dependencies[] = page_manager
