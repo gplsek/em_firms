@@ -1266,6 +1266,90 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_constituents-field_dob'.
+  $fields['field_collection_item-field_constituents-field_dob'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_dob',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'date',
+      'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'granularity' => array(
+          'day' => 'day',
+          'hour' => 0,
+          'minute' => 0,
+          'month' => 'month',
+          'second' => 0,
+          'year' => 'year',
+        ),
+        'timezone_db' => '',
+        'todate' => '',
+        'tz_handling' => 'none',
+      ),
+      'translatable' => '0',
+      'type' => 'datetime',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => 5,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_dob',
+      'label' => 'Date of Birth',
+      'required' => 0,
+      'settings' => array(
+        'default_value' => 'blank',
+        'default_value2' => 'same',
+        'default_value_code' => '',
+        'default_value_code2' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'date',
+        'settings' => array(
+          'increment' => '15',
+          'input_format' => 'm/d/Y - H:i:s',
+          'input_format_custom' => '',
+          'label_position' => 'above',
+          'text_parts' => array(),
+          'year_range' => '-100:-18',
+        ),
+        'type' => 'date_select',
+        'weight' => '7',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_constituents-field_driver_license'.
   $fields['field_collection_item-field_constituents-field_driver_license'] = array(
     'field_config' => array(
@@ -1374,6 +1458,55 @@ function core_ef_field_default_fields() {
         'settings' => array(),
         'type' => 'field_collection_embed',
         'weight' => '14',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_email'.
+  $fields['field_collection_item-field_constituents-field_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'email',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_email',
+      'label' => 'Email',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'email',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'email_textfield',
+        'weight' => '6',
       ),
     ),
   );
@@ -1587,6 +1720,356 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_constituents-field_name_first'.
+  $fields['field_collection_item-field_constituents-field_name_first'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_name_first',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_name_first',
+      'label' => 'First Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_name_last'.
+  $fields['field_collection_item-field_constituents-field_name_last'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_name_last',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 2,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_name_last',
+      'label' => 'Last Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_name_maiden'.
+  $fields['field_collection_item-field_constituents-field_name_maiden'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_name_maiden',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 4,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_name_maiden',
+      'label' => 'Maiden Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_name_middle'.
+  $fields['field_collection_item-field_constituents-field_name_middle'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_name_middle',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_name_middle',
+      'label' => 'Middle Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_name_suffix'.
+  $fields['field_collection_item-field_constituents-field_name_suffix'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_name_suffix',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 3,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_name_suffix',
+      'label' => 'Suffix',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_constituents-field_profile_selfadmin'.
   $fields['field_collection_item-field_constituents-field_profile_selfadmin'] = array(
     'field_config' => array(
@@ -1646,6 +2129,78 @@ function core_ef_field_default_fields() {
         ),
         'type' => 'options_onoff',
         'weight' => '0',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_constituents-field_ssn'.
+  $fields['field_collection_item-field_constituents-field_ssn'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ssn',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '11',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_constituents',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_ssn',
+      'label' => 'Social Security Number',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'masked_input',
+        'settings' => array(
+          'mask' => '999-99-9999',
+          'placeholder' => '_',
+          'size' => '12',
+        ),
+        'type' => 'masked_input',
+        'weight' => '8',
       ),
     ),
   );
@@ -3015,6 +3570,69 @@ function core_ef_field_default_fields() {
       'field_name' => 'field_first_name',
       'label' => 'First Name',
       'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '0',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_invite_officers-field_invitee_name'.
+  $fields['field_collection_item-field_invite_officers-field_invitee_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_invitee_name',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_invite_officers',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_invitee_name',
+      'label' => 'Invitee Name',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -6604,6 +7222,7 @@ function core_ef_field_default_fields() {
   t('County');
   t('Criminal Convictions');
   t('DBA');
+  t('Date of Birth');
   t('Dates of Employment');
   t('Dates of Residence');
   t('Degree Type');
@@ -6631,6 +7250,7 @@ function core_ef_field_default_fields() {
   t('Image');
   t('Institution');
   t('Invite Officers');
+  t('Invitee Name');
   t('Job Title');
   t('KBA');
   t('Last Name');
@@ -6653,6 +7273,7 @@ function core_ef_field_default_fields() {
   t('State');
   t('State of Incorp (for corp)');
   t('State of Registration');
+  t('Suffix');
   t('Sufix');
   t('The position of the SlideShow Item at the SlideShow.');
   t('This field will determine in wich Slideshows (1 to 7) will this item appear.');
