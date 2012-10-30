@@ -28,6 +28,7 @@ dependencies[] = email_registration
 dependencies[] = entity
 dependencies[] = features
 dependencies[] = field_collection
+dependencies[] = field_encrypt
 dependencies[] = field_group
 dependencies[] = field_permissions
 dependencies[] = field_ui
