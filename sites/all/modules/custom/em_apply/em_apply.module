@@ -64,7 +64,8 @@ function em_apply_form($uid){
 
 
 
-function em_apply_node_presave($node) {
+//function em_apply_node_presave($node) {
+function em_apply_node_insert($node) {
 	global $user;
 	if ($node->type == 'data_company'){
 		foreach($node->field_invite_officers['und'] as $invitee){
@@ -106,9 +107,20 @@ function em_apply_node_presave($node) {
 				unset($newUser);
 			}
 			//print "Create Node for this user: ".$nuid."<br>";
+			$personnode = new stdClass();
+			$personnode->type = 'data_person';
+			node_object_prepare($personnode); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+			$personnode->title = $node->title.': '.$fname.' '.$lname;
+			$personnode->field_name_first['und'][0]['value'] = $fname;
+			$personnode->field_name_last['und'][0]['value'] = $lname;
+			$personnode->field_email_address['und'][0]['value'] = $email;
+			$personnode->uid = $nuid;
+			$personnode->field_company['und'][0]['nid'] = $node->nid;
+			$personnode = node_submit($personnode); // Prepare node for saving
+            node_save($personnode);
+            unset($personnode);
+			 
 		}
-		//die();
-		
 		// check who is updating the form
 		if($user->uid == $node->uid){
 		//admin
