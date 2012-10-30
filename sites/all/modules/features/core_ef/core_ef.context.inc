@@ -199,9 +199,9 @@ function core_ef_context_default_contexts() {
           'region' => 'highlighted',
           'weight' => '1',
         ),
-        'views-seven_our_clients-block' => array(
-          'module' => 'views',
-          'delta' => 'seven_our_clients-block',
+        'nodeblock-35' => array(
+          'module' => 'nodeblock',
+          'delta' => '35',
           'region' => 'highlighted',
           'weight' => '2',
         ),
