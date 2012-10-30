@@ -27,6 +27,20 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'additional_settings__active_tab_data_person';
+  $strongarm->value = 'edit-node-buttons';
+  $export['additional_settings__active_tab_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'additional_settings__active_tab_nodeblocks';
+  $strongarm->value = 'edit-node-buttons';
+  $export['additional_settings__active_tab_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_seven_client';
   $strongarm->value = 'edit-menu';
   $export['additional_settings__active_tab_seven_client'] = $strongarm;
@@ -346,6 +360,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_nodeblocks';
+  $strongarm->value = 0;
+  $export['comment_anonymous_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_seven_client';
   $strongarm->value = 0;
   $export['comment_anonymous_seven_client'] = $strongarm;
@@ -416,6 +437,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_nodeblocks';
+  $strongarm->value = 1;
+  $export['comment_default_mode_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_seven_client';
   $strongarm->value = 0;
   $export['comment_default_mode_seven_client'] = $strongarm;
@@ -461,6 +489,13 @@ node/*/edit';
   $strongarm->name = 'comment_default_per_page_data_person';
   $strongarm->value = '50';
   $export['comment_default_per_page_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_nodeblocks';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -514,6 +549,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_nodeblocks';
+  $strongarm->value = 1;
+  $export['comment_form_location_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_seven_client';
   $strongarm->value = 1;
   $export['comment_form_location_seven_client'] = $strongarm;
@@ -542,6 +584,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_nodeblocks';
+  $strongarm->value = '0';
+  $export['comment_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_page';
   $strongarm->value = 0;
   $export['comment_page'] = $strongarm;
@@ -566,6 +615,13 @@ node/*/edit';
   $strongarm->name = 'comment_preview_data_person';
   $strongarm->value = '1';
   $export['comment_preview_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_nodeblocks';
+  $strongarm->value = '1';
+  $export['comment_preview_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -647,6 +703,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_nodeblocks';
+  $strongarm->value = 1;
+  $export['comment_subject_field_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_seven_client';
   $strongarm->value = 1;
   $export['comment_subject_field_seven_client'] = $strongarm;
@@ -678,6 +741,13 @@ node/*/edit';
   $strongarm->name = 'commerce_node_checkout_products_data_person';
   $strongarm->value = array();
   $export['commerce_node_checkout_products_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'commerce_node_checkout_products_nodeblocks';
+  $strongarm->value = array();
+  $export['commerce_node_checkout_products_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1211,6 +1281,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_cancel_nodeblocks';
+  $strongarm->value = '0';
+  $export['mb_content_cancel_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_cancel_page';
   $strongarm->value = '0';
   $export['mb_content_cancel_page'] = $strongarm;
@@ -1267,6 +1344,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_sac_nodeblocks';
+  $strongarm->value = '0';
+  $export['mb_content_sac_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_sac_page';
   $strongarm->value = '0';
   $export['mb_content_sac_page'] = $strongarm;
@@ -1319,6 +1403,13 @@ node/*/edit';
   $strongarm->name = 'mb_content_tabcn_data_person';
   $strongarm->value = 1;
   $export['mb_content_tabcn_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mb_content_tabcn_nodeblocks';
+  $strongarm->value = 0;
+  $export['mb_content_tabcn_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1461,6 +1552,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_nodeblocks';
+  $strongarm->value = array();
+  $export['menu_options_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_seven_client';
   $strongarm->value = array();
   $export['menu_options_seven_client'] = $strongarm;
@@ -1512,6 +1610,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_nodeblocks';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_seven_client';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_seven_client'] = $strongarm;
@@ -1536,6 +1641,34 @@ node/*/edit';
   $strongarm->name = 'menu_parent_seven_slideshow_item';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_seven_slideshow_item'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_comment_link_nodeblocks';
+  $strongarm->value = '0';
+  $export['nodeblock_comment_link_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_nodeblocks';
+  $strongarm->value = '1';
+  $export['nodeblock_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_node_link_nodeblocks';
+  $strongarm->value = '0';
+  $export['nodeblock_node_link_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_view_mode_nodeblocks';
+  $strongarm->value = 'full';
+  $export['nodeblock_view_mode_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1578,6 +1711,15 @@ node/*/edit';
     0 => 'status',
   );
   $export['node_options_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_nodeblocks';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1649,6 +1791,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_nodeblocks';
+  $strongarm->value = '0';
+  $export['node_preview_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_seven_client';
   $strongarm->value = '0';
   $export['node_preview_seven_client'] = $strongarm;
@@ -1694,6 +1843,13 @@ node/*/edit';
   $strongarm->name = 'node_submitted_data_person';
   $strongarm->value = 0;
   $export['node_submitted_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_nodeblocks';
+  $strongarm->value = 0;
+  $export['node_submitted_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1876,6 +2032,13 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'show_diff_inline_nodeblocks';
+  $strongarm->value = 0;
+  $export['show_diff_inline_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'show_preview_changes_data_company';
   $strongarm->value = 1;
   $export['show_preview_changes_data_company'] = $strongarm;
@@ -1886,6 +2049,13 @@ node/*/edit';
   $strongarm->name = 'show_preview_changes_data_person';
   $strongarm->value = 1;
   $export['show_preview_changes_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'show_preview_changes_nodeblocks';
+  $strongarm->value = 1;
+  $export['show_preview_changes_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
