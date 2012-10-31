@@ -162,17 +162,16 @@ function em_apply_kba_form_submit($form, &$form_state){
 }
 
 function em_apply_verification_form_submit($form, &$form_state){
-	// print_r($form_state['values']['birthdate']);
-	// 	die();
+	
 	$node = node_load($form_state['values']['data_person_nid']);
 	$node->field_name_last['und'][0]['value'] = $form_state['values']['last_name'];
 	$node->field_name_first['und'][0]['value'] = $form_state['values']['first_name'];
 	$node->field_ssn['und'][0]['value'] = $form_state['values']['ssn'];
-	$node->field_dob['und'][0]['month'] = $form_state['values']['birthdate']['month'];
-	$node->field_dob['und'][0]['day'] = $form_state['values']['birthdate']['day'];
-	$node->field_dob['und'][0]['year'] = $form_state['values']['birthdate']['year'];
+	$node->field_dob['und'][0]['value'] = $form_state['values']['birthdate']['year'].'-'.$form_state['values']['birthdate']['month'].'-'.$form_state['values']['birthdate']['day'];
+
+
 	node_save($node);
-	drupal_goto('kba');
+	drupal_goto('kba');  
 	
 }
 
