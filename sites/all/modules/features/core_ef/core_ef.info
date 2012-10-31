@@ -134,7 +134,6 @@ features[field][] = field_collection_item-field_employment-field_employment_titl
 features[field][] = field_collection_item-field_employment-field_employment_type
 features[field][] = field_collection_item-field_invite_officers-field_email
 features[field][] = field_collection_item-field_invite_officers-field_first_name
-features[field][] = field_collection_item-field_invite_officers-field_invitee_name
 features[field][] = field_collection_item-field_invite_officers-field_last_name
 features[field][] = node-data_company-body
 features[field][] = node-data_company-field_agree_final

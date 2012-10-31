@@ -2188,11 +2188,19 @@ function core_ef_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_email',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
       'module' => 'email',
-      'settings' => array(),
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+      ),
       'translatable' => '0',
       'type' => 'email',
     ),
@@ -2282,69 +2290,6 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_first_name',
       'label' => 'First Name',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '0',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_invite_officers-field_invitee_name'.
-  $fields['field_collection_item-field_invite_officers-field_invitee_name'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_invitee_name',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_invite_officers',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 1,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_invitee_name',
-      'label' => 'Invitee Name',
       'required' => 1,
       'settings' => array(
         'text_processing' => '0',
@@ -2357,7 +2302,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -2415,7 +2360,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_last_name',
       'label' => 'Last Name',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -3214,6 +3159,9 @@ function core_ef_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_product_id',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'product_id' => array(
           'columns' => array(
@@ -3229,7 +3177,12 @@ function core_ef_field_default_fields() {
       ),
       'locked' => '0',
       'module' => 'commerce_product_reference',
-      'settings' => array(),
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+      ),
       'translatable' => '0',
       'type' => 'commerce_product_reference',
     ),
@@ -3261,7 +3214,7 @@ function core_ef_field_default_fields() {
       'label' => 'Product id',
       'required' => 0,
       'settings' => array(
-        'field_injection' => 0,
+        'field_injection' => 1,
         'referenceable_types' => array(
           'commerce_node_checkout' => 'commerce_node_checkout',
           'product' => 0,
@@ -6601,7 +6554,6 @@ function core_ef_field_default_fields() {
   t('Image');
   t('Institution');
   t('Invite Officers');
-  t('Invitee Name');
   t('Job Title');
   t('KBA');
   t('Last Name');
