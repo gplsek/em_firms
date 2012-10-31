@@ -14,6 +14,11 @@ function em_apply_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['kba'] = array(
+    'page callback' => 'em_apply_kba',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 /**
@@ -25,6 +30,17 @@ function em_apply_block_info() {
   );
 
   return $blocks;
+}
+
+function em_apply_kba(){
+	global $user;
+	if($_SESSION['data_form']){
+	  print "KBA ME: ".$_SESSION['data_form'];
+	  return;
+    }else{
+	  print "No session";
+	  return;
+    }
 }
 
 function em_apply_block_view($delta='') {
@@ -79,6 +95,7 @@ function em_apply_node_insert($node) {
 				//exists
 				//print "HE is here";
 				$nuid = $nuser->uid;
+				//send email to notify of invite  drupal_mail()
 			}else{
 				// create user
 				//print "create new";
@@ -220,12 +237,49 @@ function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
   return $form;
 }
 
-function em_apply_user($op, &$edit, &$account, $category = NULL) {
-  global $user;
+// function em_apply_user($op, &$edit, &$account, $category = NULL) {
+//   global $user;
+// 
+//   if ($op == 'login') {
+//     // Load the anonymous user
+//     drupal_goto(referer_uri());
+//   }
+// }
 
-  if ($op == 'login') {
-    // Load the anonymous user
-    drupal_goto(referer_uri());
-  }
+/**
+ * Implements hook_user_login
+ */
+function em_apply_user_login(&$edit, $account) {
+  if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset' || variable_get('login_destination_immediate_redirect', FALSE)) {
+    //send them to person_data/kba form
+    $query = new EntityFieldQuery();
+    $entity = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'data_person')
+      ->entityCondition('uid', $account->uid)
+      ->execute();
+      if($entity){
+        // we have a data_person node
+	    $node = array_keys($entity['node']);
+	    $nid = $node['0'];
+	    
+	    $dataPerson = node_load($nid);
+	    
+	    if(empty($dataPerson->field_kba) || ($dataPerson->field_kba[$node->language][0]['value'] == 0)){
+		    //send to kba process
+		     $_SESSION['data_form'] = $nid;
+		     unset($dataPerson);
+		     $GLOBALS['destination'] = 'kba';
+		     drupal_goto('kba');   
+		}else{
+			//send to personal data form
+			unset($dataPerson);
+			drupal_goto('/node/'.$nid.'/edit');
+		}
+
+	   
+      }
+  }// else{
+  // 	drupal_goto(referer_uri());
+  //   }
 }
 
