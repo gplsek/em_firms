@@ -946,6 +946,12 @@ node/*/edit';
             'visible' => FALSE,
           ),
         ),
+        'product:status' => array(
+          'default' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );
@@ -1079,10 +1085,13 @@ node/*/edit';
     'extra_fields' => array(
       'form' => array(
         'account' => array(
-          'weight' => '-10',
+          'weight' => '3',
         ),
         'timezone' => array(
-          'weight' => '6',
+          'weight' => '5',
+        ),
+        'contact' => array(
+          'weight' => '4',
         ),
       ),
       'display' => array(),
