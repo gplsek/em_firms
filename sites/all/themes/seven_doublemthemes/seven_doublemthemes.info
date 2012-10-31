@@ -21,9 +21,10 @@ stylesheets[all][]        = css/forms.css
 stylesheets[all][]        = css/fields.css
 stylesheets[all][]        = nivo/nivo-slider.css
 stylesheets[all][]        = css/seven_common.css
-stylesheets[all][]        = css/efi_common.css
-stylesheets[all][]        = css/responsive-mobile-portrait-layout.css
+;stylesheets[all][]        = css/responsive-mobile-portrait-layout.css
 stylesheets[all][]        = css/seven_colors.css
+stylesheets[all][]        = css/efi_common.css
+
 stylesheets[print][]      = css/print.css
 
 stylesheets[(min-width: 479px)][] = css/responsive-mobile-landscape-layout.css
@@ -34,6 +35,8 @@ stylesheets[(min-width: 1120px)][] = css/responsive-wide-layout.css
 stylesheets-conditional[lt IE 9][all][]  = css/ie-responsive-mobile-landscape-layout.css
 stylesheets-conditional[lt IE 9][all][]  = css/ie-responsive-tablet-layout.css
 stylesheets-conditional[lt IE 9][all][]  = css/ie-responsive-screen-layout.css
+
+
 
 scripts[] = js/jquery-1.7.1.min.js
 scripts[] = js/scrollTo.js
