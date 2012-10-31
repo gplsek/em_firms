@@ -276,7 +276,65 @@ function addressfield_element_info() {
     '#attributes' => array(),
     '#tag' => 'div',
   );
+
+  $types['addressfield'] = array(
+    '#process' => array('addressfield_element_process'),
+    '#context' => array('mode' => 'form'),
+    '#handlers' => array('address' => 'address'),
+  );
+
   return $types;
+}
+
+/**
+ * Addressfield process function
+ */
+function addressfield_element_process($element, &$form_state, $form) {
+  //Inject context defaults
+  $element['#context'] += array(
+    'mode' => 'form',
+  );
+
+  //Set tree to true
+  //Keeps submitted values together incase other form ites have similar keys.
+  $element['#tree'] = TRUE;
+
+  $element_key = implode('|', $element['#array_parents']);
+
+  if(!empty($form_state['addressfield'][$element_key])) {
+    //Use the value from form_state if available
+    $address = $form_state['addressfield'][$element_key];
+  }
+  else {
+    $address = (array) $element['#default_value'];
+  }
+
+  // Necessary for country_get_list().
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  $countries = country_get_list();
+
+  if(isset($element['#context']['countries']) && is_array($element['#context']['countries']) && count($element['#context']['countries'])) {
+    $countries = array_intersect_key($countries, drupal_map_assoc($element['#context']['countries']));
+  }
+
+  $element['#context']['countries'] = $countries;
+
+  $address += addressfield_default_values($element['#context']['countries']);
+
+  $element['address'] = addressfield_generate($address, $element['#handlers'], $element['#context']);
+  $element['address']['element_key'] = array(
+    '#type' => 'value',
+    '#value' => $element_key,
+  );
+
+  //Restrict the country options to only those desired
+  $element['address']['country']['#options'] = $element['#context']['countries'];
+  
+  //Set the element to required based on the passed in required flag
+  $element['address']['#required'] = isset($element['#required']) ? $element['#required'] : FALSE;
+  
+ 
+  return $element;
 }
 
 /**
