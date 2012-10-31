@@ -69,8 +69,8 @@ function em_apply_node_insert($node) {
 	global $user;
 	if ($node->type == 'data_company'){
 		foreach($node->field_invite_officers['und'] as $invitee){
-
 			$users = field_collection_item_load($invitee['value'], $reset = FALSE);
+      dpm($users);
 			$fname = $users->field_first_name['und'][0]['value'];
 			$lname = $users->field_last_name['und'][0]['value'];
 			$email = $users->field_email['und'][0]['email'];
