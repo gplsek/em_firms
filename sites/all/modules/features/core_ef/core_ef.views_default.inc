@@ -2657,6 +2657,13 @@ function core_ef_views_default_views() {
     'seven_product' => 'seven_product',
     'seven_slideshow_item' => 'seven_slideshow_item',
   );
+  /* Filter criterion: Content: Post date */
+  $handler->display->display_options['filters']['created']['id'] = 'created';
+  $handler->display->display_options['filters']['created']['table'] = 'node';
+  $handler->display->display_options['filters']['created']['field'] = 'created';
+  $handler->display->display_options['filters']['created']['operator'] = '>';
+  $handler->display->display_options['filters']['created']['value']['value'] = '+1 year';
+  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

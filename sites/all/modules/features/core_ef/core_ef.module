@@ -18,32 +18,50 @@ function core_ef_form_alter(&$form, &$form_state, $form_id) {
 }
 */
 
-function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
+function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form);
   //dpm($form_state);
 
   $form['field_product_id']['#type'] = 'hidden';
-  // Change button labels for DBA
-  _core_ef_set_button($form['field_dba']['und'],"Add a DBA", "Remove this DBA");
-  // Change button labels for Officers
-  _core_ef_set_button($form['field_constituents']['und'], "Add an Officer", "Remove this Officer");
-  // Change button labels for Residence
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_address']['und'], "Add an Address", "Remove this Address");
+  $form['field_kba']['#access'] = FALSE;
+  $form['field_company']['#disabled'] = TRUE;
+  $form['additional_settings']['#access'] = FALSE;
+   // Change button labels for Residence
+  _core_ef_set_button($form['field_address']['und'], "Add an Address", "Remove this Address", TRUE);
   // Change button labels for Employment
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_employment']['und'], "Add an Employer", "Remove this Employer");
+  _core_ef_set_button($form['field_employment']['und'], "Add an Employer", "Remove this Employer", TRUE);
   // Change button labels for Education
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_education']['und'], "Add a Degree", "Remove this Degree");
+  _core_ef_set_button($form['field_education']['und'], "Add a Degree", "Remove this Degree", TRUE);
   // Change button labels for Criminal
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_criminal']['und'], "Add an Conviction", "Remove this Conviction");
+  _core_ef_set_button($form['field_criminal']['und'], "Add a Conviction", "Remove this Conviction", TRUE);
 
   return $form;
 }
 
-function _core_ef_set_button(&$field, $label_add, $label_remove) {
+function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
+  //dpm($form);
+  //dpm($form_state);
+
+  //$form['field_product_id']['#type'] = 'hidden';
+  $form['additional_settings']['#access'] = FALSE;
+  $form['field_purchase_completed']['#access'] = FALSE;
+  // Change button labels for DBA
+  _core_ef_set_button($form['field_dba']['und'],"Add a DBA", "Remove this DBA", TRUE);
+  // Change button labels for Officers
+  _core_ef_set_button($form['field_invite_officers']['und'], "Add an Officer", "Remove this Officer", TRUE);
+
+  return $form;
+}
+
+function _core_ef_set_button(&$field, $label_add, $label_remove, $remove_button = FALSE) {
   $field['add_more']['#value'] = $label_add;
   foreach ($field as $key => &$button_field) {
     if (is_numeric($key)) {
-      $button_field['remove_button']['#value'] = $label_remove;
+      if ($key == 0 && $remove_button == TRUE) {
+        unset($button_field['remove_button']);
+      } else {
+        $button_field['remove_button']['#value'] = $label_remove;
+      }
     }
   }
   return $field;
