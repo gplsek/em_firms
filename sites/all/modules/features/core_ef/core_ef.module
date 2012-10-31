@@ -12,11 +12,18 @@ function core_ef_init() {
   }
 }
 
-/*
+
 function core_ef_form_alter(&$form, &$form_state, $form_id) {
-  dpm($form_id);
+  //dpm("form_id: " . $form_id);
 }
-*/
+
+
+function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
+  dpm($form);
+  $form['contact']['#access'] = FALSE;
+  $form['timezone']['#access'] = FALSE;
+  $form['field_client_type']['#disabled'] = TRUE;
+}
 
 function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form);

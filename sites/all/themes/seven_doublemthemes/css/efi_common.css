@@ -87,3 +87,7 @@ fieldset#node_data_company_form_group_company{
 .page-toboggan-denied .messages.error {
   display:none;
 }
+
+.page-user #edit-timezone {
+  display: none;
+}

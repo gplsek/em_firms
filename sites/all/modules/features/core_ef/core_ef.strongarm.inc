@@ -1102,6 +1102,25 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'locale_custom_disabled_strings_en';
+  $strongarm->value = array();
+  $export['locale_custom_disabled_strings_en'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'locale_custom_strings_en';
+  $strongarm->value = array(
+    '' => array(
+      'Access Denied / User log in' => 'Log in to access this information.',
+      'Access denied. ' => '',
+    ),
+  );
+  $export['locale_custom_strings_en'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'locationmap_address';
   $strongarm->value = '5405 Morehouse Drive, san diego, CA 92121';
   $export['locationmap_address'] = $strongarm;
@@ -1273,6 +1292,13 @@ node/*/edit';
   $strongarm->name = 'logintoboggan_unified_login';
   $strongarm->value = 0;
   $export['logintoboggan_unified_login'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'maintenance_mode_message';
+  $strongarm->value = 'Dave Dev Drupal (184.169.174.62) is currently under maintenance. We should be back shortly. Thank you for your patience.';
+  $export['maintenance_mode_message'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1662,9 +1688,23 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_comment_link_data_person';
+  $strongarm->value = '0';
+  $export['nodeblock_comment_link_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'nodeblock_comment_link_nodeblocks';
   $strongarm->value = '0';
   $export['nodeblock_comment_link_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_data_person';
+  $strongarm->value = '0';
+  $export['nodeblock_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1676,9 +1716,23 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_node_link_data_person';
+  $strongarm->value = '0';
+  $export['nodeblock_node_link_data_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'nodeblock_node_link_nodeblocks';
   $strongarm->value = '0';
   $export['nodeblock_node_link_nodeblocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_view_mode_data_person';
+  $strongarm->value = 'full';
+  $export['nodeblock_view_mode_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1920,9 +1974,30 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_article_pattern';
-  $strongarm->value = 'blog/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
-  $export['pathauto_node_article_pattern'] = $strongarm;
+  $strongarm->name = 'pathauto_node_blog_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_blog_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_data_company_pattern';
+  $strongarm->value = 'company/[node:nid]';
+  $export['pathauto_node_data_company_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_data_person_pattern';
+  $strongarm->value = 'person/[node:nid]';
+  $export['pathauto_node_data_person_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_nodeblocks_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_nodeblocks_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2101,6 +2176,20 @@ node/*/edit';
   $strongarm->name = 'site_frontpage';
   $strongarm->value = 'home-variant-5';
   $export['site_frontpage'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_name';
+  $strongarm->value = 'EarlyIQ';
+  $export['site_name'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_slogan';
+  $strongarm->value = '';
+  $export['site_slogan'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
