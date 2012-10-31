@@ -27,7 +27,8 @@ stylesheets[all][]        = css/efi_common.css
 
 stylesheets[print][]      = css/print.css
 
-stylesheets[(min-width: 479px)][] = css/responsive-mobile-landscape-layout.css
+stylesheets[(max-width: 479px)][] = css/responsive-mobile-portrait-layout.css
+stylesheets[(min-width: 480px)][] = css/responsive-mobile-landscape-layout.css
 stylesheets[(min-width: 767px)][] = css/responsive-tablet-layout.css
 stylesheets[all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)][] = css/responsive-screen-layout.css
 stylesheets[(min-width: 1120px)][] = css/responsive-wide-layout.css
