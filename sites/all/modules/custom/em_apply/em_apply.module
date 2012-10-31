@@ -59,7 +59,7 @@ function em_apply_check(){
 	global $user;
 
 	if($user->uid == '0'){
-		drupal_goto('user/login/',array('query'=>array('destination' => 'client/get-started')));
+		drupal_goto('user/register',array('query'=>array('destination' => 'client/get-started')));
 	}else{
     // @TODO add lookup for open apps here
     // send user to the appropriate open application
