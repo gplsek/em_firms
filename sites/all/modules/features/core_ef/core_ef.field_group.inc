@@ -82,6 +82,41 @@ function core_ef_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_personal_info|node|data_person|form';
+  $field_group->group_name = 'group_personal_info';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'data_person';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Personal Information',
+    'weight' => '11',
+    'children' => array(
+      0 => 'field_driver_license',
+      1 => 'field_citizenship',
+      2 => 'field_linkedin_profile',
+      3 => 'field_address',
+      4 => 'field_employment',
+      5 => 'field_education',
+      6 => 'field_criminal_convictions',
+      7 => 'field_criminal',
+      8 => 'field_civil',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_personal_info|node|data_person|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_pii|field_collection_item|field_constituents|form';
   $field_group->group_name = 'group_pii';
   $field_group->entity_type = 'field_collection_item';

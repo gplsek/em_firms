@@ -528,7 +528,7 @@ function core_ef_node_info() {
       'help' => '',
     ),
     'data_person' => array(
-      'name' => t('Data Person'),
+      'name' => t('Personal Application'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

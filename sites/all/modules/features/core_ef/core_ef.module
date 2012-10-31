@@ -18,6 +18,26 @@ function core_ef_form_alter(&$form, &$form_state, $form_id) {
 }
 */
 
+function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
+  dpm($form);
+  //dpm($form_state);
+
+  $form['field_product_id']['#type'] = 'hidden';
+  $form['field_kba']['#access'] = FALSE;
+  $form['field_company']['#disabled'] = TRUE;
+  $form['additional_settings']['#access'] = FALSE;
+   // Change button labels for Residence
+  _core_ef_set_button($form['field_address']['und'], "Add an Address", "Remove this Address");
+  // Change button labels for Employment
+  _core_ef_set_button($form['field_employment']['und'], "Add an Employer", "Remove this Employer");
+  // Change button labels for Education
+  _core_ef_set_button($form['field_education']['und'], "Add a Degree", "Remove this Degree");
+  // Change button labels for Criminal
+  _core_ef_set_button($form['field_criminal']['und'], "Add a Conviction", "Remove this Conviction");
+
+  return $form;
+}
+
 function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   //dpm($form);
   //dpm($form_state);
@@ -26,15 +46,7 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   // Change button labels for DBA
   _core_ef_set_button($form['field_dba']['und'],"Add a DBA", "Remove this DBA");
   // Change button labels for Officers
-  _core_ef_set_button($form['field_constituents']['und'], "Add an Officer", "Remove this Officer");
-  // Change button labels for Residence
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_address']['und'], "Add an Address", "Remove this Address");
-  // Change button labels for Employment
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_employment']['und'], "Add an Employer", "Remove this Employer");
-  // Change button labels for Education
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_education']['und'], "Add a Degree", "Remove this Degree");
-  // Change button labels for Criminal
-  _core_ef_set_button($form['field_constituents']['und'][0]['field_criminal']['und'], "Add an Conviction", "Remove this Conviction");
+  _core_ef_set_button($form['field_invite_officers']['und'], "Add an Officer", "Remove this Officer");
 
   return $form;
 }
