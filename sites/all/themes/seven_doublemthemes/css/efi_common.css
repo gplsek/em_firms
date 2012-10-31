@@ -1,6 +1,7 @@
 fieldset#node_data_company_form_group_company{
   /*width: 500px;*/
 }
+.section-user input[type="text"],
 .form-text {
   width: 150px;
 }
