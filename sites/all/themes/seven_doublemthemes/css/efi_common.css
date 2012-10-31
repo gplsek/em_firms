@@ -82,3 +82,8 @@ fieldset#node_data_company_form_group_company{
 .start-links p {
   margin-bottom: 25px;
 }
+
+.page-toboggan-denied #user-login .description,
+.page-toboggan-denied .messages.error {
+  display:none;
+}

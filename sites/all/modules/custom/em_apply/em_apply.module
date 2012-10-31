@@ -136,8 +136,11 @@ function em_apply_check(){
 	global $user;
 
 	if($user->uid == '0'){
-		drupal_goto('user/login/',array('query'=>array('destination' => 'client/get-started')));
+		drupal_goto('user/register',array('query'=>array('destination' => 'client/get-started')));
 	}else{
+    // @TODO add lookup for open apps here
+    // send user to the appropriate open application
+    // if more than one application is open to user, then send to /user where they can decide from list
 		drupal_goto('user/'.$user->uid.'/apply');
 	}
 	return;
@@ -282,14 +285,16 @@ function em_apply_node_insert($node) {
 
 function em_apply_node_update($node) {
 	if ($node->type == 'data_company'){
-		unset($node->field_fein);
+    // this works as a test
+		//unset($node->field_fein);
 	}
 
 }
 
 function em_apply_node_prepare($node) {
   if ($node->type == 'data_company'){
-	 $node->field_fein['und'][0]['value'] = 'test fein';
+    // this works as a test
+	  //$node->field_fein['und'][0]['value'] = 'test fein';
 	}
 }
 
@@ -315,7 +320,7 @@ function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
 
 // function em_apply_user($op, &$edit, &$account, $category = NULL) {
 //   global $user;
-// 
+//
 //   if ($op == 'login') {
 //     // Load the anonymous user
 //     drupal_goto(referer_uri());
@@ -337,22 +342,23 @@ function em_apply_user_login(&$edit, $account) {
         // we have a data_person node
 	    $node = array_keys($entity['node']);
 	    $nid = $node['0'];
-	    
+
 	    $dataPerson = node_load($nid);
-	    
+
 	    if(empty($dataPerson->field_kba) || ($dataPerson->field_kba[$node->language][0]['value'] == 0)){
 		    //send to kba process
 		     $_SESSION['data_form'] = $nid;
 		     unset($dataPerson);
-		     $GLOBALS['destination'] = 'verification';
+             $GLOBALS['destination'] = 'verification';
 		     drupal_goto('verification');   
+
 		}else{
 			//send to personal data form
 			unset($dataPerson);
 			drupal_goto('/node/'.$nid.'/edit');
 		}
 
-	   
+
       }
   }// else{
   // 	drupal_goto(referer_uri());

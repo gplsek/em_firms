@@ -3197,9 +3197,16 @@ function core_ef_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
+          'label' => 'hidden',
+          'module' => 'commerce_cart',
+          'settings' => array(
+            'combine' => TRUE,
+            'default_quantity' => 1,
+            'line_item_type' => 'product',
+            'show_quantity' => FALSE,
+            'show_single_product_attributes' => FALSE,
+          ),
+          'type' => 'commerce_cart_add_to_cart_form',
           'weight' => '17',
         ),
         'teaser' => array(
@@ -3229,7 +3236,7 @@ function core_ef_field_default_fields() {
           'autocomplete_path' => 'commerce_product/autocomplete',
           'size' => '60',
         ),
-        'type' => 'commerce_product_reference_autocomplete',
+        'type' => 'commerce_product_reference_hidden',
         'weight' => '16',
       ),
     ),
@@ -6313,6 +6320,9 @@ function core_ef_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_client_type',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -6328,15 +6338,23 @@ function core_ef_field_default_fields() {
           3 => 'Investor',
         ),
         'allowed_values_function' => '',
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
       ),
       'translatable' => '0',
       'type' => 'list_text',
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => '1',
+        ),
+      ),
       'deleted' => '0',
-      'description' => '',
+      'description' => '<ul><li><em>Startup</em> will get you in to the Company Application. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -6348,7 +6366,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'user',
       'field_name' => 'field_client_type',
-      'label' => 'Type',
+      'label' => 'Account Type',
       'required' => 1,
       'settings' => array(
         'user_register_form' => 1,
@@ -6358,7 +6376,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '9',
+        'weight' => '2',
       ),
     ),
   );
@@ -6428,7 +6446,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '0',
       ),
     ),
   );
@@ -6498,13 +6516,15 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '1',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('<ul><li><em>Startup</em> will get you in to the Company Application. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>');
+  t('Account Type');
   t('Additional Images');
   t('Address');
   t('Address (cont.)');
@@ -6580,7 +6600,6 @@ function core_ef_field_default_fields() {
   t('This is the URL where you want the Slide link go when visitors click on it. You can link <strong>an internal page</strong>, an <strong>external page</strong> or just a <strong>download</strong> if you want. It should allways start with <strong>http://</strong>');
   t('This is the image that will be shown on the SlideShow.');
   t('Twitter');
-  t('Type');
   t('URL to go');
   t('Year of Legal Formation');
   t('Zip Code');
