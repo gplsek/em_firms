@@ -96,9 +96,10 @@ fieldset#node_data_company_form_group_company{
   display:none;
 }
 .maintenance-page #header #logo {
+  margin-top: 40px;
   text-align: center;
   float:none;
 }
-#main #content .section {
+.maintenance-page #main #content .section {
   text-align: center;
 }
