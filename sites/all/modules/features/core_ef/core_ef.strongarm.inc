@@ -1327,7 +1327,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'maintenance_mode_message';
-  $strongarm->value = 'Dave Dev Drupal (184.169.174.62) is currently under maintenance. We should be back shortly. Thank you for your patience.';
+  $strongarm->value = 'EarlyIQ is coming soon!';
   $export['maintenance_mode_message'] = $strongarm;
 
   $strongarm = new stdClass();
