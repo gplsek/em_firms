@@ -57,6 +57,13 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   // Change button labels for Officers
   _core_ef_set_button($form['field_invite_officers']['und'], "Add an Officer", "Remove this Officer", TRUE);
 
+  // check KBA completion settings
+  if ($form['nid']['#value']) {
+    dpm($form['nid']['#value']);
+    if (!_em_apply_kba_company_complete($form['nid']['#value'])) {
+      $form['field_agree_final']['#disabled'] = TRUE;
+    }
+  }
   return $form;
 }
 
