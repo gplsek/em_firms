@@ -112,57 +112,76 @@ function em_apply_verification_form($form, &$form_state){
 		    '#description' => "Please enter your address.",
 		  );
 
-	
+
 	$form['submit'] = array(
 		'#type' => 'submit',
 		'#value' => t('Verify')
 	);
-	
-	
+
+
 	return $form;
-	
-	
+
+
 }
 
 function em_apply_kba_form($form, &$form_state){
 	global $user;
 	$data_nid = $_SESSION['data_form'];
 
-    
-	
+
+
 	$form['#prefix'] = '<div id="kba-form-wrapper"><h2>User Verification</h2>';
 	$form['#suffix'] = '</div>';
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
 		'#default_value' => $data_nid,
-		
+
 	);
 	$form['kba'] = array(
 		'#title' => t('KBA'),
 		'#type' => 'checkbox',
     );
-	
+
 	$form['submit'] = array(
 		'#type' => 'submit',
 		'#value' => t('KBA')
 	);
-	
-	
+
+
 	return $form;
-	
-	
+
+
 }
 
 function em_apply_kba_form_submit($form, &$form_state){
-	
+
 	$node = node_load($form_state['values']['data_person_nid']);
 	$node->field_kba['und'][0]['value'] = 1;
 	node_save($node);
 	drupal_goto('node/'.$form_state['values']['data_person_nid'].'/edit');
 }
 
+// check status of all kba for a company's node reference fields for each person
+function _em_apply_kba_company_complete($nid) {
+  $kba_complete = TRUE;
+  $node = node_load($nid);
+  dpm($node->field_kba);
+  foreach($node->field_invite_officers['und'] as $invitee){
+    $users = field_collection_item_load($invitee['value'], $reset = FALSE);
+    $kba = $users->field_kba['und'][0]['value'];
+    if (!$kba) {
+      // any value set to 0 sets the whole company as incomplete for KBA
+      $kba_complete = FALSE;
+      drupal_set_message("kba FALSE");
+    } else {
+      drupal_set_message("kba TRUE");
+    }
+  }
+  return $kba_complete;
+}
+
 function em_apply_verification_form_submit($form, &$form_state){
-	
+
 	$node = node_load($form_state['values']['data_person_nid']);
 	$node->field_name_last['und'][0]['value'] = $form_state['values']['last_name'];
 	$node->field_name_first['und'][0]['value'] = $form_state['values']['first_name'];
