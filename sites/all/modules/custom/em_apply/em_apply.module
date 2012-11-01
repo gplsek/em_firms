@@ -52,7 +52,7 @@ function em_apply_verification(){
 	global $user;
 	if($_SESSION['data_form']){
 	 return drupal_get_form('em_apply_verification_form');
-	  
+
     }else{
 	  print "No session";
 	  return;
@@ -65,45 +65,45 @@ function em_apply_verification_form($form, &$form_state){
 	$node = node_load($data_nid);
 	// require_once DRUPAL_ROOT . '/includes/locale.inc';
 	//     $country_options = country_get_list();
-    
-	
+
+
 	$form['#prefix'] = '<div id="verification-form-wrapper"><h2>User Verification</h2>';
 	$form['#suffix'] = '</div>';
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
 		'#default_value' => $data_nid,
-		
+
 	);
 	$form['first_name'] = array(
 		'#title' => t('First Name'),
 		'#type' => 'textfield',
 		'#default_value' => $node->field_name_first['und'][0]['value'],
-		
+
 	);
 	$form['last_name'] = array(
 		'#title' => t('Last Name'),
 		'#type' => 'textfield',
 		'#default_value' => $node->field_name_last['und'][0]['value'],
-		
+
 	);
-	
+
 	$form['birthdate'] = array(
 	  '#title' => t('Birthdate'),
 	  '#type' => 'date',
 	  '#description' => t('Select your birthdate'),
 	  '#default_value' => array(
-	  	    'month' => format_date(time(), 'custom', 'n'), 
-	  	    'day' => format_date(time(), 'custom', 'j'), 
+	  	    'month' => format_date(time(), 'custom', 'n'),
+	  	    'day' => format_date(time(), 'custom', 'j'),
 	  	    'year' => format_date(time(), 'custom', 'Y'),
 	  	  ),
 	);
-	
+
 	$form['ssn'] = array(
 		'#title' => t('Social Security Number'),
 		'#type' => 'textfield',
-		
+
 	);
-	
+
 	$form['address'] = array(
 		    '#type' => 'addressfield',
 		    '#title' => t('Address'),
@@ -190,8 +190,8 @@ function em_apply_verification_form_submit($form, &$form_state){
 
 
 	node_save($node);
-	drupal_goto('kba');  
-	
+	drupal_goto('kba');
+
 }
 
 
@@ -373,34 +373,6 @@ function em_apply_node_prepare($node) {
 	}
 }
 
-function em_apply_form_data_company_node_form_alter(&$form, &$form_state) {
-
-  global $user;
-  //dpm($user);
-  $owner = $form_state['node']->uid;
-  //also see if the user exists in the company table
-
-  // only allow Admin users to view/edit some personal fields of Officers
-  if ($owner <> $user->uid || (in_array('co_admin', $user->roles) && !in_array('administrator', $user->roles))){
-    // hide these fields to a Co_Admin on first load
-    $form = _core_ef_form_admin($form);
-	}
-  // only allow Co_Users users to view/edit personal fields while disabling company fields
-  if (in_array('co_user', $user->roles) && !in_array('administrator', $user->roles)){
-    //disable company fields
-    $form = _core_ef_form_user($form);
-  }
-  return $form;
-}
-
-// function em_apply_user($op, &$edit, &$account, $category = NULL) {
-//   global $user;
-//
-//   if ($op == 'login') {
-//     // Load the anonymous user
-//     drupal_goto(referer_uri());
-//   }
-// }
 
 /**
  * Implements hook_user_login
@@ -425,7 +397,7 @@ function em_apply_user_login(&$edit, $account) {
 		     $_SESSION['data_form'] = $nid;
 		     unset($dataPerson);
              $GLOBALS['destination'] = 'verification';
-		     drupal_goto('verification');   
+		     drupal_goto('verification');
 
 		}else{
 			//send to personal data form
