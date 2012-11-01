@@ -12,4 +12,5 @@ function commerce_ef_commerce_checkout_complete($order) {
   // email invites
   // send user to own verification form and then KBA
   //dpm($order);
+  drupal_goto('verifictaion');
 }
