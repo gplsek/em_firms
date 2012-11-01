@@ -197,6 +197,7 @@ features[field_group][] = group_company|node|data_company|form
 features[field_group][] = group_constituents|node|data_company|form
 features[field_group][] = group_personal_info|node|data_person|form
 features[field_group][] = group_pii|field_collection_item|field_constituents|form
+features[image][] = logo
 features[image][] = seven-blog
 features[image][] = seven-features
 features[image][] = seven-our-clients
