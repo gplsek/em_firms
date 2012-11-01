@@ -1,7 +1,8 @@
 name = commerce_ef
 core = 7.x
 package = Features
-version = 7.x-1.0-beta1
+php = 5.2.4
+version = 7.x-1.0-beta2
 project = commerce_ef
 dependencies[] = commerce
 dependencies[] = commerce_cart
@@ -43,5 +44,7 @@ features[field][] = commerce_order-commerce_order-commerce_line_items
 features[field][] = commerce_order-commerce_order-commerce_order_total
 features[field][] = commerce_product-commerce_node_checkout-commerce_price
 features[field][] = commerce_product-product-commerce_price
+features[rules_config][] = rules_add_to_cart_and_go_straight_to_checkout
 features[variable][] = commerce_customer_profile_billing_field
 features[variable][] = commerce_node_checkout_products_data_company
+features[variable][] = rules_empty_sets
