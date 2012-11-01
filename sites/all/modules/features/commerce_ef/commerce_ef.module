@@ -9,4 +9,6 @@ include_once 'commerce_ef.features.inc';
 
 funtion comerce_ef_commerce_checkout_complete($order) {
   drupal_set_message("do stuff here after checkout is complete");
+  // email invites
+  // send user to own verification form and then KBA
 }
