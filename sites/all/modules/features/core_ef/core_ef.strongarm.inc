@@ -83,6 +83,36 @@ function core_ef_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'autologout';
+  $strongarm->value = array(
+    'enabled' => 1,
+    'timeout' => '1200',
+    'use_watchdog' => 0,
+    'authenticated user' => '0',
+    'administrator' => '1',
+    'co_user' => '0',
+    'co_admin' => '0',
+    'logout_message' => 'You have been logged out after inactivity. Please log in again to access your account.',
+    'redirect_url' => '',
+    'refresh_delta' => '0',
+  );
+  $export['autologout'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'autologout_one_session';
+  $strongarm->value = array(
+    'authenticated user' => '0',
+    'administrator' => '0',
+    'co_user' => '0',
+    'co_admin' => '0',
+  );
+  $export['autologout_one_session'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_node_data_person';
   $strongarm->value = '1';
   $export['auto_entitylabel_node_data_person'] = $strongarm;
