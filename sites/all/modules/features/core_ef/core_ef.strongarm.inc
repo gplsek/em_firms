@@ -21,7 +21,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_data_company';
-  $strongarm->value = 'edit-workflow';
+  $strongarm->value = 'edit-commerce-node-checkout';
   $export['additional_settings__active_tab_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -121,7 +121,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_pattern_node_data_person';
-  $strongarm->value = 'node:[node:nid]';
+  $strongarm->value = 'personal application';
   $export['auto_entitylabel_pattern_node_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -2104,6 +2104,7 @@ node/*/edit';
   $strongarm->api_version = 1;
   $strongarm->name = 'path_alias_whitelist';
   $strongarm->value = array(
+    'blog' => TRUE,
     'node' => TRUE,
     'user' => TRUE,
   );

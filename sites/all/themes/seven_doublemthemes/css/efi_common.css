@@ -103,3 +103,7 @@ fieldset#node_data_company_form_group_company{
 .maintenance-page #main #content .section {
   text-align: center;
 }
+
+#views-form-commerce-cart-form-default .commerce-line-item-actions #edit-submit {
+  display:none;
+}
