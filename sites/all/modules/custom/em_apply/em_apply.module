@@ -162,22 +162,24 @@ function em_apply_kba_form_submit($form, &$form_state){
 }
 
 // check status of all kba for a company's node reference fields for each person
-function _em_apply_kba_company_complete($nid) {
-  $kba_complete = TRUE;
+function _em_apply_verify_complete($nid) {
+  /*$verify_complete = TRUE;
   $node = node_load($nid);
-  dpm($node->field_kba);
+  dpm($node->field_verify);
   foreach($node->field_invite_officers['und'] as $invitee){
     $users = field_collection_item_load($invitee['value'], $reset = FALSE);
-    $kba = $users->field_kba['und'][0]['value'];
-    if (!$kba) {
+    $verify = $users->field_verify['und'][0]['value'];
+    if (!$verify) {
       // any value set to 0 sets the whole company as incomplete for KBA
-      $kba_complete = FALSE;
-      drupal_set_message("kba FALSE");
+      $verify_complete = FALSE;
+      drupal_set_message("verify FALSE");
     } else {
-      drupal_set_message("kba TRUE");
+      drupal_set_message("verify TRUE");
     }
   }
-  return $kba_complete;
+  return $verify_complete;*/
+  drupal_set_message("Checking verification of all officers. Fake as false.");
+  return FALSE;
 }
 
 function em_apply_verification_form_submit($form, &$form_state){
@@ -211,7 +213,8 @@ function em_apply_check(){
 	global $user;
 
 	if($user->uid == '0'){
-		drupal_goto('user/register',array('query'=>array('destination' => 'client/get-started')));
+    $_SESSION['destination'] = 'client/get-started';
+		drupal_goto('user/register');
 	}else{
     // @TODO add lookup for open apps here
     // send user to the appropriate open application
@@ -239,60 +242,9 @@ function em_apply_form($uid){
 function em_apply_node_insert($node) {
 	global $user;
 	if ($node->type == 'data_company'){
-		foreach($node->field_invite_officers['und'] as $invitee){
-			$users = field_collection_item_load($invitee['value'], $reset = FALSE);
-      dpm($users);
-			$fname = $users->field_first_name['und'][0]['value'];
-			$lname = $users->field_last_name['und'][0]['value'];
-			$email = $users->field_email['und'][0]['email'];
-			$nuser = user_load_by_mail($email);
-			if($nuser){
-				//exists
-				//print "HE is here";
-				$nuid = $nuser->uid;
-				//send email to notify of invite  drupal_mail()
-			}else{
-				// create user
-				//print "create new";
-
-
-				// $newUser[roles] = array(
-				// 				  DRUPAL_AUTHENTICATED_RID => 'authenticated user',
-				// 				 // 3 => 'custom_role',
-				// 				);
-
-                $account = new stdClass;
-				$account->is_new = TRUE;
-				$account->name = $fname.' '.$lname;
-				//$account->pass = user_hash_password('');
-				$account->mail = $email;
-				$account->init = $email;
-				$account->status = TRUE;
-				$account->roles = array(DRUPAL_AUTHENTICATED_RID => TRUE);
-				$account->timezone = variable_get('date_default_timezone', '');
-				$newUser = user_save($account);
-				//register_no_approval_required
-				//register_admin_created
-				_user_mail_notify('register_no_approval_required', $newUser);
-				//$newUser = user_load_by_mail($email);
-				$nuid = $newUser->uid;
-				unset($newUser);
-			}
-			//print "Create Node for this user: ".$nuid."<br>";
-			$personnode = new stdClass();
-			$personnode->type = 'data_person';
-			node_object_prepare($personnode); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
-			$personnode->title = $node->title.': '.$fname.' '.$lname;
-			$personnode->field_name_first['und'][0]['value'] = $fname;
-			$personnode->field_name_last['und'][0]['value'] = $lname;
-			$personnode->field_email_address['und'][0]['value'] = $email;
-			$personnode->uid = $nuid;
-			$personnode->field_company['und'][0]['nid'] = $node->nid;
-			$personnode = node_submit($personnode); // Prepare node for saving
-            node_save($personnode);
-            unset($personnode);
-
-		}
+    // @TODO this will need to move to firing on purchase complete
+    // I think in function commerce_ef_commerce_checkout_complete($order)
+    _em_apply_invite($node);
 		// check who is updating the form
 		if($user->uid == $node->uid){
 		//admin
@@ -358,6 +310,66 @@ function em_apply_node_insert($node) {
 
 }
 
+
+function _em_apply_invite($node) {
+  foreach($node->field_invite_officers['und'] as $invitee){
+    $users = field_collection_item_load($invitee['value'], $reset = FALSE);
+    dpm($users);
+    $fname = $users->field_first_name['und'][0]['value'];
+    $lname = $users->field_last_name['und'][0]['value'];
+    $email = $users->field_email['und'][0]['email'];
+    $nuser = user_load_by_mail($email);
+    if($nuser){
+      //exists
+      //print "HE is here";
+      $nuid = $nuser->uid;
+      //send email to notify of invite  drupal_mail()
+    }else{
+      // create user
+      //print "create new";
+
+
+      // $newUser[roles] = array(
+      //          DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+      //         // 3 => 'custom_role',
+      //        );
+
+              $account = new stdClass;
+      $account->is_new = TRUE;
+      $account->name = $fname.' '.$lname;
+      //$account->pass = user_hash_password('');
+      $account->mail = $email;
+      $account->init = $email;
+      $account->status = TRUE;
+      $account->roles = array(DRUPAL_AUTHENTICATED_RID => TRUE);
+      $account->timezone = variable_get('date_default_timezone', '');
+      $newUser = user_save($account);
+      //register_no_approval_required
+      //register_admin_created
+      _user_mail_notify('register_no_approval_required', $newUser);
+      //$newUser = user_load_by_mail($email);
+      $nuid = $newUser->uid;
+      unset($newUser);
+    }
+    //print "Create Node for this user: ".$nuid."<br>";
+    $personnode = new stdClass();
+    $personnode->type = 'data_person';
+    node_object_prepare($personnode); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+    $personnode->title = $node->title.': '.$fname.' '.$lname;
+    $personnode->field_name_first['und'][0]['value'] = $fname;
+    $personnode->field_name_last['und'][0]['value'] = $lname;
+    $personnode->field_email_address['und'][0]['value'] = $email;
+    $personnode->uid = $nuid;
+    $personnode->field_company['und'][0]['nid'] = $node->nid;
+    $personnode = node_submit($personnode); // Prepare node for saving
+
+    node_save($personnode);
+    unset($personnode);
+
+  }
+}
+
+
 function em_apply_node_update($node) {
 	if ($node->type == 'data_company'){
     // this works as a test
@@ -385,8 +397,8 @@ function em_apply_user_login(&$edit, $account) {
       ->entityCondition('bundle', 'data_person')
       ->entityCondition('uid', $account->uid)
       ->execute();
-      if($entity){
-        // we have a data_person node
+    if($entity){
+      // we have a data_person node
 	    $node = array_keys($entity['node']);
 	    $nid = $node['0'];
 
@@ -394,21 +406,23 @@ function em_apply_user_login(&$edit, $account) {
 
 	    if(empty($dataPerson->field_kba) || ($dataPerson->field_kba[$node->language][0]['value'] == 0)){
 		    //send to kba process
-		     $_SESSION['data_form'] = $nid;
-		     unset($dataPerson);
-             $GLOBALS['destination'] = 'verification';
-		     drupal_goto('verification');
+		    $_SESSION['data_form'] = $nid;
+		    unset($dataPerson);
+        $GLOBALS['destination'] = 'verification';
+		    drupal_goto('verification');
+  		} else {
+  			//send to personal data form
+  			unset($dataPerson);
+  			drupal_goto('/node/'.$nid.'/edit');
+  		}
 
-		}else{
-			//send to personal data form
-			unset($dataPerson);
-			drupal_goto('/node/'.$nid.'/edit');
-		}
 
-
-      }
+    }
   }// else{
   // 	drupal_goto(referer_uri());
   //   }
 }
 
+function em_apply_user_insert(&$edit, $account, $category) {
+  $GLOBALS['destination'] = '';
+}
