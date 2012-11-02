@@ -8,9 +8,23 @@ include_once 'commerce_ef.features.inc';
 
 
 function commerce_ef_commerce_checkout_complete($order) {
-  drupal_set_message("do stuff here after checkout is complete");
-  // email invites
-  // send user to own verification form and then KBA
   //dpm($order);
-  drupal_goto('verifictaion');
+  //$line_item = commerce_line_item_load($order['commerce_line_items']['und'][0]['line_item_id']);
+  //dpm($line_item);
+  // invite officers and create users, as needed
+  //_em_apply_invite($node);
+  // send this Company's admin user to own verification form
+  drupal_goto('verification');
+}
+
+
+function commerce_ef_form_commerce_checkout_form_checkout_alter(&$form, &$form_state) {
+  dpm($form);
+  /*global $user;
+  $account = user_load($user->uid);
+  $form['field_invite_officers']['und'][0]['field_first_name']['und'][0]['value']['#default_value'] = $account->field_name_first['und'][0]['value'];
+  $form['field_invite_officers']['und'][0]['field_last_name']['und'][0]['value']['#default_value'] = $account->field_name_last['und'][0]['value'];
+  $form['field_invite_officers']['und'][0]['field_email']['und'][0]['email']['#default_value'] = $account->mail;
+  */
+  //$form['customer_profile_billing']['commerce_customer_address']['und'][0]['name_block']['first_name']['value']['#default_value'] = "BALRG";
 }
