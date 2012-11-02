@@ -21,7 +21,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_data_company';
-  $strongarm->value = 'edit-workflow';
+  $strongarm->value = 'edit-commerce-node-checkout';
   $export['additional_settings__active_tab_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
