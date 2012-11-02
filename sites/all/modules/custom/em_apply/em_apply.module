@@ -219,7 +219,7 @@ function em_apply_check(){
 
 	if($user->uid == '0'){
     $_SESSION['destination'] = 'client/get-started';
-		drupal_goto('user/register');
+		drupal_goto('user/login');
 	}else{
     // @TODO add lookup for open apps here
     // send user to the appropriate open application
@@ -319,7 +319,7 @@ function em_apply_node_insert($node) {
 function _em_apply_invite($node) {
   foreach($node->field_invite_officers['und'] as $invitee){
     $users = field_collection_item_load($invitee['value'], $reset = FALSE);
-    dpm($users);
+    //dpm($users);
     $fname = $users->field_first_name['und'][0]['value'];
     $lname = $users->field_last_name['und'][0]['value'];
     $email = $users->field_email['und'][0]['email'];
