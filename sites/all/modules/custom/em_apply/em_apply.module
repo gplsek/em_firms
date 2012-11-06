@@ -413,7 +413,7 @@ function em_apply_user_login(&$edit, $account) {
 		    //send to kba process
 		    $_SESSION['data_form'] = $nid;
 		    unset($dataPerson);
-        $GLOBALS['destination'] = 'verification';
+            $GLOBALS['destination'] = 'verification';
 		    drupal_goto('verification');
   		} else {
   			//send to personal data form
