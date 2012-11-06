@@ -14,7 +14,7 @@ function core_ef_init() {
 
 
 function core_ef_form_alter(&$form, &$form_state, $form_id) {
-  dpm("form_id: " . $form_id);
+  //dpm("form_id: " . $form_id);
   //dpm($form);
 }
 
