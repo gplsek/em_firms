@@ -136,9 +136,9 @@ function core_ef_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'twitter_block-default' => array(
-          'module' => 'twitter_block',
-          'delta' => 'default',
+        'menu-menu-footer' => array(
+          'module' => 'menu',
+          'delta' => 'menu-footer',
           'region' => 'bottom',
           'weight' => '-10',
         ),
@@ -146,25 +146,13 @@ function core_ef_context_default_contexts() {
           'module' => 'widgets',
           'delta' => 's_socialmedia_profile-default',
           'region' => 'bottom',
-          'weight' => '-9',
-        ),
-        'multiblock-1' => array(
-          'module' => 'multiblock',
-          'delta' => '1',
-          'region' => 'bottom',
           'weight' => '-8',
-        ),
-        'views-seven_recent_articles-block_1' => array(
-          'module' => 'views',
-          'delta' => 'seven_recent_articles-block_1',
-          'region' => 'bottom',
-          'weight' => '-7',
         ),
         'block-7' => array(
           'module' => 'block',
           'delta' => '7',
           'region' => 'bottom',
-          'weight' => '-6',
+          'weight' => '-5',
         ),
       ),
     ),

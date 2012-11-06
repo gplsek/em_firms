@@ -20,14 +20,14 @@ function core_ef_form_alter(&$form, &$form_state, $form_id) {
 
 
 function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
-  //dpm($form);
   $form['contact']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
   $form['field_client_type']['#disabled'] = TRUE;
-  /*if ($_SESSION['destination'] == 'client/get-started') {
-    $form_state['redirect'] = 'client/get-started';
-    unset($_SESSION['destination']);
-  }*/
+  // setup redirect to Company Appliation if cookie exists for client/get-started
+  if (isset($_COOKIE['destination']) && $_COOKIE['destination'] == 'client/get-started') {
+    setcookie("destination", "", time() - 3600, "/");
+    $_GET['destination'] = 'client/get-started';
+  }
 }
 
 function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
