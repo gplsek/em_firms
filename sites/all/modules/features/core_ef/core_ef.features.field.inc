@@ -10,253 +10,6 @@
 function core_ef_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'field_collection_item-field_address-field_address_address1'.
-  $fields['field_collection_item-field_address-field_address_address1'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_address_address1',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_address',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_address1',
-      'label' => 'Address',
-      'required' => 1,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_address-field_address_address2'.
-  $fields['field_collection_item-field_address-field_address_address2'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_address_address2',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_address',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 1,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_address2',
-      'label' => 'Address (cont.)',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '2',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_address-field_address_city'.
-  $fields['field_collection_item-field_address-field_address_city'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_address_city',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_address',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 2,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_city',
-      'label' => 'City',
-      'required' => 1,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '3',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_address-field_address_country'.
-  $fields['field_collection_item-field_address-field_address_country'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_address_country',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(),
-        'allowed_values_function' => 'list_predefined_options_list_option_countries',
-      ),
-      'translatable' => '0',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_address',
-      'default_value' => array(
-        0 => array(
-          'value' => 'US',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 7,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_country',
-      'label' => 'Country',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '6',
-      ),
-    ),
-  );
-
   // Exported field: 'field_collection_item-field_address-field_address_dates'.
   $fields['field_collection_item-field_address-field_address_dates'] = array(
     'field_config' => array(
@@ -329,19 +82,101 @@ function core_ef_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_select',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_address-field_address_state'.
-  $fields['field_collection_item-field_address-field_address_state'] = array(
+  // Exported field: 'field_collection_item-field_address-field_address_full'.
+  $fields['field_collection_item-field_address-field_address_full'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_address_state',
+      'field_name' => 'field_address_full',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'addressfield',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_address',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'field_collection_item|field_address|field_address_full|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'administrative_area' => '',
+          'postal_code' => '',
+          'country' => 'US',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_address_full',
+      'label' => 'Address',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(),
+          'format_handlers' => array(
+            'address' => 'address',
+            'address-hide-country' => 0,
+            'organisation' => 0,
+            'name-full' => 0,
+            'name-oneline' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_civil-field_bankruptcy'.
+  $fields['field_collection_item-field_civil-field_bankruptcy'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_bankruptcy',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -351,14 +186,21 @@ function core_ef_field_default_fields() {
       'locked' => '0',
       'module' => 'list',
       'settings' => array(
-        'allowed_values' => array(),
-        'allowed_values_function' => 'list_predefined_options_list_option_us_states',
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Yes',
+        ),
+        'allowed_values_function' => '',
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
       ),
       'translatable' => '0',
       'type' => 'list_text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_address',
+      'bundle' => 'field_civil',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -372,9 +214,9 @@ function core_ef_field_default_fields() {
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_state',
-      'label' => 'State',
-      'required' => 0,
+      'field_name' => 'field_bankruptcy',
+      'label' => 'I have declared personal bankruptcy.',
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -382,69 +224,87 @@ function core_ef_field_default_fields() {
         'active' => 1,
         'module' => 'options',
         'settings' => array(),
-        'type' => 'options_select',
+        'type' => 'options_buttons',
         'weight' => '4',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_address-field_address_zip'.
-  $fields['field_collection_item-field_address-field_address_zip'] = array(
+  // Exported field: 'field_collection_item-field_civil-field_liens'.
+  $fields['field_collection_item-field_civil-field_liens'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_address_zip',
+      'field_name' => 'field_liens',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
-      'indexes' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
       'locked' => '0',
-      'module' => 'postal_code',
+      'module' => 'list',
       'settings' => array(
-        'max_length' => 16,
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Yes',
+        ),
+        'allowed_values_function' => '',
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
       ),
       'translatable' => '0',
-      'type' => 'postal_code',
+      'type' => 'list_text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_address',
+      'bundle' => 'field_civil',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'postal_code',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'postal_code_simple_text',
-          'weight' => 4,
+          'type' => 'list_default',
+          'weight' => 5,
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_address_zip',
-      'label' => 'Zip Code',
+      'field_name' => 'field_liens',
+      'label' => 'I have IRS lien(s).',
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'postal_code',
+        'active' => 1,
+        'module' => 'options',
         'settings' => array(),
-        'type' => 'postal_code_us_postal_code_form',
-        'weight' => '5',
+        'type' => 'options_buttons',
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_civil-field_civil_bankruptcy'.
-  $fields['field_collection_item-field_civil-field_civil_bankruptcy'] = array(
+  // Exported field: 'field_collection_item-field_civil-field_litigation'.
+  $fields['field_collection_item-field_civil-field_litigation'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_civil_bankruptcy',
+      'field_name' => 'field_litigation',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -455,21 +315,21 @@ function core_ef_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => '',
-          1 => '',
+          0 => 'No',
+          1 => 'Yes',
         ),
         'allowed_values_function' => '',
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
       ),
       'translatable' => '0',
-      'type' => 'list_boolean',
+      'type' => 'list_text',
     ),
     'field_instance' => array(
       'bundle' => 'field_civil',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -478,150 +338,22 @@ function core_ef_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 0,
+          'weight' => 4,
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_civil_bankruptcy',
-      'label' => 'I have declared personal bankruptcy.',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_civil-field_civil_liens'.
-  $fields['field_collection_item-field_civil-field_civil_liens'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_civil_liens',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_civil',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 2,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_civil_liens',
-      'label' => 'I have IRS lien(s).',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '3',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_civil-field_civil_litigation'.
-  $fields['field_collection_item-field_civil-field_civil_litigation'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_civil_litigation',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_civil',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 1,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_civil_litigation',
+      'field_name' => 'field_litigation',
       'label' => 'I am involved in current civil litigation.',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '2',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '5',
       ),
     ),
   );
