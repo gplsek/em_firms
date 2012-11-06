@@ -82,7 +82,7 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
 
   // check KBA completion settings
   if ($form['nid']['#value']) {
-    dpm($form['nid']['#value']);
+    //dpm($form['nid']['#value']);
     if (!_em_apply_verify_complete($form['nid']['#value'])) {
       $form['field_agree_final']['#disabled'] = TRUE;
     }

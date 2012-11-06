@@ -251,12 +251,62 @@ function em_apply_node_insert($node) {
     // @TODO this will need to move to firing on purchase complete
     // I think in function commerce_ef_commerce_checkout_complete($order)
     _em_apply_invite($node);
+    // check who is updating the form
+	_em_apply_company_map($node);
+	}
+
+}
+
+
+function em_apply_node_update($node) {
+	if ($node->type == 'data_company'){
+    // @TODO this will need to move to firing on purchase complete
+    // I think in function commerce_ef_commerce_checkout_complete($order)
+    _em_apply_invite($node);
 		// check who is updating the form
-		if($user->uid == $node->uid){
-		//admin
+    _em_apply_company_map($node);
+		
+	}
+
+}
+
+function _em_apply_company_map($node){
+	global $user;
+	if($user->uid == $node->uid){
+	//admin
+		$result = db_select('em_company','d')
+	   		->fields('d')
+			->condition('formid',$node->nid,'=')
+			->condition('admin_uid', $node->uid,'=')
+	    	->execute()
+			->fetchAssoc();
+		if($result){
+		//update
+		db_update('em_company')
+		    ->fields(array(
+		    	'updated' => REQUEST_TIME
+		     		))
+		    ->condition('id', $result['id'])
+		    ->execute();
+		}else{
+			//create new company
+			$id = db_insert('em_company')
+				->fields(array(
+		  			'formid' => $node->nid,
+		  			'admin_uid' => $node->uid,
+		  			'uid' => $user->uid,
+		  			'created' => REQUEST_TIME,
+		  			'updated' => REQUEST_TIME,
+					))
+				->execute();
+		}
+
+	}else{
+	// officer
 			$result = db_select('em_company','d')
 		   		->fields('d')
 				->condition('formid',$node->nid,'=')
+				->condition('uid', $user->uid,'=')
 				->condition('admin_uid', $node->uid,'=')
 		    	->execute()
 				->fetchAssoc();
@@ -269,7 +319,7 @@ function em_apply_node_insert($node) {
 			    ->condition('id', $result['id'])
 			    ->execute();
 			}else{
-				//create new company
+				//create new company officer record
 				$id = db_insert('em_company')
 					->fields(array(
 			  			'formid' => $node->nid,
@@ -281,43 +331,13 @@ function em_apply_node_insert($node) {
 					->execute();
 			}
 
-		}else{
-		// officer
-				$result = db_select('em_company','d')
-			   		->fields('d')
-					->condition('formid',$node->nid,'=')
-					->condition('uid', $user->uid,'=')
-					->condition('admin_uid', $node->uid,'=')
-			    	->execute()
-					->fetchAssoc();
-				if($result){
-				//update
-				db_update('em_company')
-				    ->fields(array(
-				    	'updated' => REQUEST_TIME
-				     		))
-				    ->condition('id', $result['id'])
-				    ->execute();
-				}else{
-					//create new company officer record
-					$id = db_insert('em_company')
-						->fields(array(
-				  			'formid' => $node->nid,
-				  			'admin_uid' => $node->uid,
-				  			'uid' => $user->uid,
-				  			'created' => REQUEST_TIME,
-				  			'updated' => REQUEST_TIME,
-							))
-						->execute();
-				}
-
-		}
 	}
-
 }
 
 
 function _em_apply_invite($node) {
+  $company_nid = $node->nid;
+  $company_name = $node->title;
   foreach($node->field_invite_officers['und'] as $invitee){
     $users = field_collection_item_load($invitee['value'], $reset = FALSE);
     //dpm($users);
@@ -357,11 +377,31 @@ function _em_apply_invite($node) {
       $nuid = $newUser->uid;
       unset($newUser);
     }
+    //check if the data_person node exists, find node by uid and then see if it belongs to this company $company_nid
+    $result = db_select('node','d')
+   		->fields('d')
+		->condition('type','data_person','=')
+		->condition('uid', $nuid,'=')
+		->execute();
+    while($record = $result->fetchAssoc()) {
+	    if($record['nid']){
+		  $pnode = node_load($record['nid']);
+		  if($company_nid == $pnode->field_company['und'][0]['nid']){
+			$personnode = $pnode;
+		  }
+	    }
+	}
+	
+    if(!$personnode){
+	    $personnode = new stdClass();
+	    $personnode->type = 'data_person';
+    }
     //print "Create Node for this user: ".$nuid."<br>";
-    $personnode = new stdClass();
-    $personnode->type = 'data_person';
+    
+
+    $personnode->title = $company_name.': '.$fname.' '.$lname;
     node_object_prepare($personnode); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
-    $personnode->title = $node->title.': '.$fname.' '.$lname;
+    
     $personnode->field_name_first['und'][0]['value'] = $fname;
     $personnode->field_name_last['und'][0]['value'] = $lname;
     $personnode->field_email_address['und'][0]['value'] = $email;
@@ -376,13 +416,13 @@ function _em_apply_invite($node) {
 }
 
 
-function em_apply_node_update($node) {
-	if ($node->type == 'data_company'){
-    // this works as a test
-		//unset($node->field_fein);
-	}
-
-}
+// function em_apply_node_update($node) {
+// 	if ($node->type == 'data_company'){
+//     // this works as a test
+// 		//unset($node->field_fein);
+// 	}
+// 
+// }
 
 function em_apply_node_prepare($node) {
   if ($node->type == 'data_company'){
@@ -399,14 +439,19 @@ function em_apply_user_login(&$edit, $account) {
   if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset' || variable_get('login_destination_immediate_redirect', FALSE)) {
     //send them to person_data/kba form
     $query = new EntityFieldQuery();
-    $entity = $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'data_person')
-      ->entityCondition('uid', $account->uid)
-      ->execute();
-    if($entity){
+    // $entity = $query->entityCondition('entity_type', 'node')
+    //      ->entityCondition('bundle', 'data_person')
+    //      ->entityCondition('uid', $account->uid, '=')
+    //      ->execute();
+      	$result = db_select('node','d')
+	   		->fields('d')
+			->condition('type','data_person','=')
+			->condition('uid', $account->uid,'=')
+			->execute()
+			->fetchAssoc();
+    if($result['nid']){
       // we have a data_person node
-	    $node = array_keys($entity['node']);
-	    $nid = $node['0'];
+	    $nid = $result['nid'];
 
 	    $dataPerson = node_load($nid);
 
