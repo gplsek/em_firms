@@ -265,7 +265,7 @@ function em_apply_node_update($node) {
     _em_apply_invite($node);
 		// check who is updating the form
     _em_apply_company_map($node);
-		
+
 	}
 
 }
@@ -391,21 +391,22 @@ function _em_apply_invite($node) {
 		  }
 	    }
 	}
-	
+
     if(!$personnode){
 	    $personnode = new stdClass();
 	    $personnode->type = 'data_person';
     }
     //print "Create Node for this user: ".$nuid."<br>";
-    
+
 
     $personnode->title = $company_name.': '.$fname.' '.$lname;
     node_object_prepare($personnode); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
-    
+
     $personnode->field_name_first['und'][0]['value'] = $fname;
     $personnode->field_name_last['und'][0]['value'] = $lname;
     $personnode->field_email_address['und'][0]['value'] = $email;
     $personnode->uid = $nuid;
+    $personnode->language = 'und';
     $personnode->field_company['und'][0]['nid'] = $node->nid;
     $personnode = node_submit($personnode); // Prepare node for saving
 
@@ -421,7 +422,7 @@ function _em_apply_invite($node) {
 //     // this works as a test
 // 		//unset($node->field_fein);
 // 	}
-// 
+//
 // }
 
 function em_apply_node_prepare($node) {
@@ -437,42 +438,45 @@ function em_apply_node_prepare($node) {
  */
 function em_apply_user_login(&$edit, $account) {
   if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset' || variable_get('login_destination_immediate_redirect', FALSE)) {
-    //send them to person_data/kba form
-    $query = new EntityFieldQuery();
-    // $entity = $query->entityCondition('entity_type', 'node')
-    //      ->entityCondition('bundle', 'data_person')
-    //      ->entityCondition('uid', $account->uid, '=')
-    //      ->execute();
-      	$result = db_select('node','d')
-	   		->fields('d')
-			->condition('type','data_person','=')
-			->condition('uid', $account->uid,'=')
-			->execute()
-			->fetchAssoc();
-    if($result['nid']){
-      // we have a data_person node
-	    $nid = $result['nid'];
-
-	    $dataPerson = node_load($nid);
-
-	    if(empty($dataPerson->field_kba) || ($dataPerson->field_kba[$node->language][0]['value'] == 0)){
-		    //send to kba process
-		    $_SESSION['data_form'] = $nid;
-		    unset($dataPerson);
-            $GLOBALS['destination'] = 'verification';
-		    drupal_goto('verification');
-  		} else {
-  			//send to personal data form
-  			unset($dataPerson);
-  			drupal_goto('/node/'.$nid.'/edit');
-  		}
-
-
-    }
+    _em_apply_redirect_id($account);
   }// else{
   // 	drupal_goto(referer_uri());
   //   }
 }
+
+function _em_apply_redirect_id($account) {
+  if (isset($_COOKIE['destination']) && $_COOKIE['destination'] == 'client/get-started') {
+    //if cookie exists then expire it and set new destination
+    setcookie("destination", "", time() - 3600, "/");
+    $GLOBALS['destination'] = 'client/get-started';
+    drupal_goto('client/get-started');
+  }
+  //send them to person_data/kba form
+  $query = new EntityFieldQuery();
+  $entity = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'data_person')
+    ->entityCondition('uid', $account->uid)
+    ->execute();
+  if($entity){
+    // we have a data_person node
+    $node = array_keys($entity['node']);
+    $nid = $node['0'];
+
+    $dataPerson = node_load($nid);
+   if(empty($dataPerson->field_kba) || ($dataPerson->field_kba['und'][0]['value'] == 0)){
+      //send to kba process
+      $_SESSION['data_form'] = $nid;
+      unset($dataPerson);
+      $GLOBALS['destination'] = 'verification';
+      drupal_goto('verification');
+    } else {
+      //send to personal data form
+      unset($dataPerson);
+      drupal_goto('/node/'.$nid.'/edit');
+    }
+  }
+}
+
 
 function em_apply_user_insert(&$edit, $account, $category) {
   $GLOBALS['destination'] = '';

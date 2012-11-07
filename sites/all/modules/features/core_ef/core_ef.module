@@ -20,15 +20,22 @@ function core_ef_form_alter(&$form, &$form_state, $form_id) {
 
 
 function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
-  $form['contact']['#access'] = FALSE;
+   $form['contact']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
   $form['field_client_type']['#disabled'] = TRUE;
+  global $user;
   // setup redirect to Company Appliation if cookie exists for client/get-started
-  if (isset($_COOKIE['destination']) && $_COOKIE['destination'] == 'client/get-started') {
-    setcookie("destination", "", time() - 3600, "/");
-    $_GET['destination'] = 'client/get-started';
+  // and must be after password reset is completed
+  global $user;
+  if (!isset($_SESSION['pass_reset_' . $user->uid]) && $_COOKIE['destination'] == 'client/get-started') {
+    /*setcookie("destination", "", time() - 3600, "/");
+    unset($_SESSION['destination']);
+    drupal_goto('client/get-started');*/
+    $account = user_load($user->uid);
+    _em_apply_redirect_id($account);
   }
 }
+
 
 function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form);
