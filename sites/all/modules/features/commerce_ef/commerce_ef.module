@@ -14,12 +14,15 @@ function commerce_ef_commerce_checkout_complete($order) {
   // invite officers and create users, as needed
   //_em_apply_invite($node);
   // send this Company's admin user to own verification form
-  drupal_goto('verification');
+  //drupal_goto('verification');
+  //$account = user_load($order['uid']);
+  //dpm($account);
+  //_em_apply_redirect_id($account);
 }
 
 
 function commerce_ef_form_commerce_checkout_form_checkout_alter(&$form, &$form_state) {
-  dpm($form);
+  //dpm($form);
   /*global $user;
   $account = user_load($user->uid);
   $form['field_invite_officers']['und'][0]['field_first_name']['und'][0]['value']['#default_value'] = $account->field_name_first['und'][0]['value'];
