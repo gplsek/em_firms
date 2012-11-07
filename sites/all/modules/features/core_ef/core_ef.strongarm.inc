@@ -1320,7 +1320,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'logintoboggan_minimum_password_length';
-  $strongarm->value = '8';
+  $strongarm->value = '6';
   $export['logintoboggan_minimum_password_length'] = $strongarm;
 
   $strongarm = new stdClass();
