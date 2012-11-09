@@ -36,7 +36,8 @@ function core_ef_field_group_info() {
       10 => 'field_state_incorp',
       11 => 'field_state_registration',
       12 => 'field_twitter',
-      13 => 'title',
+      13 => 'field_industry',
+      14 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

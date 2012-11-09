@@ -104,7 +104,7 @@ function core_ef_field_default_fields() {
       'module' => 'addressfield',
       'settings' => array(
         'field_encrypt' => array(
-          'encrypt' => 0,
+          'ekncrypt' => 0,
           'phrase' => '',
         ),
       ),
@@ -2060,7 +2060,7 @@ function core_ef_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -2198,7 +2198,7 @@ function core_ef_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -2258,7 +2258,7 @@ function core_ef_field_default_fields() {
         'module' => 'phone',
         'settings' => array(),
         'type' => 'phone_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -2395,7 +2395,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -2547,7 +2547,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '13',
+        'weight' => '14',
       ),
     ),
   );
@@ -2616,7 +2616,106 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-data_company-field_industry'.
+  $fields['node-data_company-field_industry'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_industry',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Accounting' => 'Accounting',
+          'Advertising' => 'Advertising',
+          'Agriculture' => 'Agriculture',
+          'Aerospace / Defense' => 'Aerospace / Defense',
+          'Business Services' => 'Business Services',
+          'Construction' => 'Construction',
+          'Consulting' => 'Consulting',
+          'Food and Beverage' => 'Food and Beverage',
+          'Consumer Products' => 'Consumer Products',
+          'Education' => 'Education',
+          'Entertainment/Media/Publishing' => 'Entertainment/Media/Publishing',
+          'Finance (services/processing/banking/agencies/management)' => 'Finance (services/processing/banking/agencies/management)',
+          'Healthcare' => 'Healthcare',
+          'Human Resources (payroll/recruiting/hr/staffing)' => 'Human Resources (payroll/recruiting/hr/staffing)',
+          'Manufacturing' => 'Manufacturing',
+          'Industrial Products (chemicals/equipment/materials/power)' => 'Industrial Products (chemicals/equipment/materials/power)',
+          'Insurance' => 'Insurance',
+          'Internet (ISP/hosting/security)' => 'Internet (ISP/hosting/security)',
+          'Legal' => 'Legal',
+          'Office Supplies' => 'Office Supplies',
+          'Operations (management/services)' => 'Operations (management/services)',
+          'Real Estate' => 'Real Estate',
+          'Retail and Apparel' => 'Retail and Apparel',
+          'Restaurant' => 'Restaurant',
+          'Sales and Marketing' => 'Sales and Marketing',
+          'Security Systems and Services' => 'Security Systems and Services',
+          'Shipping (supplies/services)' => 'Shipping (supplies/services)',
+          'Software' => 'Software',
+          'Sports and Fitness' => 'Sports and Fitness',
+          'Technology (engineering/biotech/pharma/science/electronics/energy)' => 'Technology (engineering/biotech/pharma/science/electronics/energy)',
+          'Telecommunications' => 'Telecommunications',
+          'Transportation' => 'Transportation',
+          'Travel/Hospitality/Tourism' => 'Travel/Hospitality/Tourism',
+          'Utility' => 'Utility',
+          'Venture Capital / Private Equity / Fund' => 'Venture Capital / Private Equity / Fund',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_company',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 20,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_industry',
+      'label' => 'Industry',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '4',
       ),
     ),
   );
@@ -2761,7 +2860,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -2983,7 +3082,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -3043,7 +3142,7 @@ function core_ef_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -3126,7 +3225,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '14',
+        'weight' => '15',
       ),
     ),
   );
@@ -3209,7 +3308,7 @@ function core_ef_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '12',
+        'weight' => '13',
       ),
     ),
   );
@@ -3292,7 +3391,7 @@ function core_ef_field_default_fields() {
           'year_range' => '-10:+0',
         ),
         'type' => 'date_select',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -6114,6 +6213,7 @@ function core_ef_field_default_fields() {
   t('I have felony/misdemeanor criminal conviction(s).');
   t('Icon');
   t('Image');
+  t('Industry');
   t('Institution');
   t('Invite Officers');
   t('Job Title');
