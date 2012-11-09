@@ -1,0 +1,215 @@
+/***********************************
+*   BelieveOutLoud Base Stylesheet
+*   Developer: tragic{media}
+*   Created: September 2012
+***********************************/
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// mixins
+@mixin clr(){
+  clear:both;
+  display:block;}
+@mixin font($weight: normal, $style: normal, $size: 12px, $lineheight: 14px, $family: arial) {
+  font-family:$family;
+  font-size:  $size;
+  font-style: $style;
+  font-weight:$weight;
+  line-height:$lineheight;} // @include font(normal, normal, 12px, 14px, $font-featured);
+@mixin hide-text () {
+  display:block;
+  overflow:hidden;
+  white-space:nowrap;
+  text-indent:105%;} // 105 for firefox
+@mixin opacity($opacity) {
+  opacity:$opacity;
+  $opacity:$opacity * 100;
+  filter alpha{opacity:$opacity};} // @include opacity(0);
+@mixin size($x: 0, $y: 0) {
+  width: $x;
+  height:$y;}
+@mixin sprite($l: 0, $t: 0, $repeat: no-repeat) {
+  background: url(pathSprite) $l $t $repeat;} // @include sprite(0, 0, no-repeat);;
+@mixin wrap() {
+  height:auto;
+  overflow:hidden;}
+@mixin animation($speed) {
+  -moz-transition:   $speed+ms;
+  -webkit-transition:$speed+ms;
+  transition:        $speed+ms;} // @include animation(500ms)
+@mixin border-radius ($r: 5px) {
+  -o-border-radius:     $r;
+  -khtml-border-radius: $r;
+  -moz-border-radius:   $r;
+  -webkit-border-radius:$r;
+  border-radius:        $r;} // @include border-radius(40px);
+@mixin box-shadow ($x: 0px, $y: 0px, $blur: 2px, $spread: 2px, $color: #CCC) {
+  -khtml-box-shadow:  $x $y $blur $spread $color;
+  -moz-box-shadow:    $x $y $blur $spread $color;
+  -o-box-shadow:      $x $y $blur $spread $color;
+  -webkit-box-shadow: $x $y $blur $spread $color;
+  box-shadow:         $x $y $blur $spread $color;} // @include box-shadow(0,0,0,0,#ccc);
+@mixin mega-border ($topsize: 1px, $top: #333, $rightsize: 1px, $right: #333, $bottomsize: 1px, $bottom: #333, $leftsize: 1px, $left: #333) {
+  border-top:      $topsize solid $top;
+  border-right:  $rightsize solid $right;
+  border-bottom:$bottomsize solid $bottom;
+  border-left:    $leftsize solid $left;} // @include mega-border(1px, #333, 1px, #333, 1px, #333,1px, #333);
+@mixin mega-border-radius ($tl: 5px, $tr: 5px, $br: 5px, $bl: 5px) {
+     -o-border-top-left-radius:$tl;-khtml-border-top-left-radius:$tl;-moz-border-top-left-radius:$tl;-webkit-border-top-left-radius:$tl;border-top-left-radius:$tl;
+    -o-border-top-right-radius:$tr;-khtml-border-top-right-radius:$tr;-moz-border-top-right-radius:$tr;-webkit-border-top-right-radius:$tr;border-top-right-radius:$tr;
+ -o-border-bottom-right-radius:$br;-khtml-border-bottom-right-radius:$br;-moz-border-bottom-right-radius:$br;-webkit-border-bottom-right-radius:$br;border-bottom-right-radius:$br;
+  -o-border-bottom-left-radius:$bl;-khtml-border-bottom-left-radius:$bl;-moz-border-bottom-left-radius:$bl;-webkit-border-bottom-left-radius:$bl;border-bottom-left-radius:$bl;} // @include mega-border-radius(5px, 5px, 5px, 5px);
+@mixin text-shadow ($x: 0px, $y: 1px, $blur: 1px, $color: #000) { 
+  -khtml-text-shadow: $x $y $blur $color;
+  -moz-text-shadow:   $x $y $blur $color;
+  -o-text-shadow:     $x $y $blur $color;
+  -webkit-text-shadow:$x $y $blur $color;
+  text-shadow:        $x $y $blur $color;} // @include text-shadow(0,0,0,#000);
+  @mixin transition($property: all, $method: ease-in, $speed: 1000, $delay: 0) {
+  -moz-transition:    $property $method $speed+ms $delay+ms;
+  -webkit-transition: $property $method $speed+ms $delay+ms;
+  transition:         $property $method $speed+ms $delay+ms;} // @include transition(all, , ease-in, 800ms, 0);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// vars
+  $pathImg: '../images/';
+  $pathSprite: $pathImg + 'tm_sprite.png';
+  $color-black:#000000;
+  $color-white:#ffffff;
+  $color-blue:#235A9F;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// wysiwyg
+.block_quote {
+  display:block;
+  padding:20px 30px !important;
+  text-align:center;}
+.float_left {float:left;}
+.float_right {float:right;}
+.clear_both {clear:both;display:block;}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// theme Stylesheet
+.front body {
+  background-image:url($pathImg + 'bg-test.png') !important;
+  background-repeat:repeat-x;
+  header{
+    border:0;
+    padding:30px 0 12px;
+  }
+}
+/* watermark */
+#content-wrap {
+  background:url($pathImg + 'watermark.png') 20px bottom no-repeat;
+  padding-bottom:35px;
+  min-height:650px;
+}
+.region-footer .block {margin:0;}
+.messages.error{display:none;}//tmp
+/* slideshow structure */
+#block-views-earlyiq-slideshow-block-block {
+  @include size(100%, 395px);
+  display:block;
+  #slider-read-more {
+    background:url($pathImg + 'icon_slider_read-more.png') 0 -3px no-repeat;
+    clear:left;
+    float:left;
+    padding-left:20px;
+    // this is going to be a link to content
+    span {
+      color:#828F97;
+      font-size:17px;
+      line-height:19px;
+    }
+  }
+  .view-content {padding-bottom:25px;}
+  .slideshow-items {
+    @include size(960px, 380px);
+    ul, ul li, ul .item-list {list-style:none;margin:0;padding:0;}
+    .views-row {
+      @include size(960px, 377px);
+      background:#fff;
+      display:block;
+      position:relative;
+      .views-field {
+        background:$color-white;
+        clear:left;
+        display:block;
+        float:left;
+        overflow:hidden;
+        padding-left:30px;
+        width:320px;
+        &.views-field-title {
+            color:$color-blue;
+            font-size:28px;
+            line-height:32px;
+            padding-top:50px;
+            padding-bottom:5px;
+            text-decoration:none;
+        }
+        &.views-field-body p {
+          color:#889297;
+          font-size:20px;
+          line-height:22px;
+        }
+        &.views-field-field-slide-image {
+          background:none;
+          clear:none;
+          float:none;
+          position:absolute;
+          top:0;
+          right:0;
+          width:550px;
+        }
+      }
+    }
+  }
+}
+.page-dots {
+  bottom:0;
+  text-align:center;
+  width:100%;
+  a {
+    @include animation(600);
+    @include hide-text();
+    @include border-radius(50%);
+    background:#cbcccd;
+    display:inline-block;
+    float:none !important; // /* js or */
+    margin-right:5px;
+    width:13px;
+    height:13px;
+    &.active {
+      @include animation(600);
+      background:#38659e;
+    }
+    &.last {margin-right:0;}
+  }
+}

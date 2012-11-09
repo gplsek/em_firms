@@ -69,6 +69,7 @@
  */
 ?>
 
+<div id="content-wrap">
 <div id="page-wrapper"><div id="page">
 
   <header><div class="section clearfix">
@@ -144,6 +145,7 @@
   <?php print render($page['footer']); ?>
 
 </div></div><!-- /#page, /#page-wrapper -->
+</div>
 <div class="closure">
   <?php print render($page['bottom']); ?>
 </div>
