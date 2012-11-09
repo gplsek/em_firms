@@ -411,6 +411,10 @@ function _em_apply_invite($node) {
     $personnode = node_submit($personnode); // Prepare node for saving
 
     node_save($personnode);
+    global $user;
+    if ($user->uid == $nuid) {
+      $_SESSION['data_form'] = $personnode->nid;
+    }
     unset($personnode);
 
   }
