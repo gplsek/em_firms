@@ -6,6 +6,23 @@
 
 include_once 'core_ef.features.inc';
 
+
+function core_ef_menu() {
+  $items = array();
+
+  $items['home'] = array(
+    'page callback' => core_ef_home(),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function core_ef_home(){
+	return;
+}
+
 function core_ef_init() {
   if (isset($_GET['pop']) && $_GET['pop'] == 1) {
     drupal_set_message('**Testing the pop up messages. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute. Ipsum lorem. E plurbis unum. E tu Brute.');
