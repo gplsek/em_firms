@@ -180,7 +180,7 @@ h3 {
 body.front {
   background-image:url($pathImg + 'bg-test.png') !important;
   background-repeat:repeat-x;
-  background-position-y:2px;
+  background-position-y:-4px;
   header{
     border:0;
     padding:30px 0 14px;
@@ -188,7 +188,11 @@ body.front {
 }
 
 body.front.logged-in {
-  background-position-y:51px;
+  background-position-y:25px;
+}
+
+#block-system-user-menu.block {
+  margin-bottom:20px !important;
 }
 
 .closure {
@@ -196,7 +200,7 @@ body.front.logged-in {
 }
 
 #block-nodeblock-35 h2 {
-  background:url($pathImg + $pathSprite) 370px 2px no-repeat; 
+  background:url($pathImg + $pathSprite) 400px 2px no-repeat; 
   clear:right;
   color:$color-blue;
   float:left;
@@ -264,6 +268,9 @@ body.front.logged-in {
 .front header {
   border-bottom:0 !important; // rem!i.
 }
+.front #content {
+  margin:0 !important;
+}
 
 /* font styles */
 #block-system-main-menu ul li a {
@@ -283,6 +290,9 @@ a.views-more-link {
   font-size:15px;
   font-weight:normal;
   line-height:22px;
+}
+a.views-more-link:hover {
+  color:$color-blue;
 }
 
 #block-views-seven-features-block-block {
