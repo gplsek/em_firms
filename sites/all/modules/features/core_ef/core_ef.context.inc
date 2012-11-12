@@ -181,17 +181,23 @@ function core_ef_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'views-earlyiq_slideshow_block-block' => array(
+          'module' => 'views',
+          'delta' => 'earlyiq_slideshow_block-block',
+          'region' => 'highlighted',
+          'weight' => '-10',
+        ),
         'views-seven_features_block-block' => array(
           'module' => 'views',
           'delta' => 'seven_features_block-block',
           'region' => 'highlighted',
-          'weight' => '1',
+          'weight' => '-9',
         ),
         'nodeblock-35' => array(
           'module' => 'nodeblock',
           'delta' => '35',
           'region' => 'highlighted',
-          'weight' => '2',
+          'weight' => '-8',
         ),
       ),
     ),

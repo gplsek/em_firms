@@ -191,7 +191,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'captcha_wrong_response_counter';
-  $strongarm->value = 3;
+  $strongarm->value = 2;
   $export['captcha_wrong_response_counter'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1320,7 +1320,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'logintoboggan_minimum_password_length';
-  $strongarm->value = '6';
+  $strongarm->value = '8';
   $export['logintoboggan_minimum_password_length'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -2271,7 +2271,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_frontpage';
-  $strongarm->value = 'home-variant-5';
+  $strongarm->value = 'home-variant-3';
   $export['site_frontpage'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -2434,7 +2434,7 @@ node/*/edit';
     'toggle_main_menu' => 0,
     'toggle_secondary_menu' => 0,
     'default_logo' => 0,
-    'logo_path' => 'public://logo-earlyiq.png',
+    'logo_path' => 'public://logo_0.png',
     'default_favicon' => 0,
     'favicon_path' => 'public://favicon_0.ico',
     'favicon_upload' => '',

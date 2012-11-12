@@ -35,7 +35,7 @@
   width: $x;
   height:$y;}
 @mixin sprite($l: 0, $t: 0, $repeat: no-repeat) {
-  background: url(pathSprite) $l $t $repeat;} // @include sprite(0, 0, no-repeat);;
+  background: url($pathSprite) $l $t $repeat;} // @include sprite(0, 0, no-repeat);;
 @mixin wrap() {
   height:auto;
   overflow:hidden;}
@@ -75,6 +75,31 @@
   -moz-transition:    $property $method $speed+ms $delay+ms;
   -webkit-transition: $property $method $speed+ms $delay+ms;
   transition:         $property $method $speed+ms $delay+ms;} // @include transition(all, , ease-in, 800ms, 0);
+@mixin gradient($color) {
+  @if $color==blue_btn {
+    background: rgb(34,91,160); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzIyNWJhMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDczYmIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, rgba(34,91,160,1) 0%, rgba(0,115,187,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(34,91,160,1)), color-stop(100%,rgba(0,115,187,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(34,91,160,1) 0%,rgba(0,115,187,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(34,91,160,1) 0%,rgba(0,115,187,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(34,91,160,1) 0%,rgba(0,115,187,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(34,91,160,1) 0%,rgba(0,115,187,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#225ba0', endColorstr='#0073bb',GradientType=0 ); /* IE6-8 */
+}} //  @include gradient(base-color); (ex: gradient(grey);
+@mixin eiq_action_btn($w: 200px, $h: 44px) {
+    $radius: $h/2;
+    @include size($w, $h);
+    @include border-radius($radius);
+    @include gradient('blue_btn');
+    border:0 !important;
+    color:$color-white;
+    display:block;
+    font-size:25px;
+    line-height:$h;
+    text-align:center;
+    text-decoration:none;} //  @include eiq_action_btn(217px, 44px);
 //
 //
 //
@@ -86,10 +111,15 @@
 //
 // vars
   $pathImg: '../images/';
-  $pathSprite: $pathImg + 'tm_sprite.png';
+  $pathSprite: $pathImg + 'eiq_sprite.png';
   $color-black:#000000;
   $color-white:#ffffff;
+  $color-header-green:#62a934;
   $color-blue:#235A9F;
+  $color-text-grey:#889297;
+  $color-link-grey:#6a7276;
+  $color-light-grey:#e5e7e9;
+  $font-primary: 'helvetica' helvetica, arial, sans-serif;
 //
 //
 //
@@ -117,47 +147,194 @@
 //
 //
 // theme Stylesheet
-.front body {
+
+body {
+  -webkit-font-smoothing:antialiased;
+}
+
+h2, li, a,  p{
+  font-family:$font-primary;
+}
+
+body.front {
   background-image:url($pathImg + 'bg-test.png') !important;
   background-repeat:repeat-x;
+  background-position-y:2px;
   header{
     border:0;
     padding:30px 0 12px;
   }
 }
+
+.closure {
+  background:$color-text-grey;
+}
+
+#block-nodeblock-35 h2 {
+  background:url($pathImg + $pathSprite) 370px 2px no-repeat; 
+  clear:right;
+  color:$color-blue;
+  float:left;
+  font-size:30px;
+  line-height:32px;
+  margin-bottom:15px;
+  overflow:hidden;
+  padding:10px 95px 0 0;
+}
+
+.start-links {
+  padding-left:50px !important; // rm!i.
+  p a {
+    @include eiq_action_btn(217px, 44px);
+    &:first {
+      margin-bottom:30px;
+    }
+    &:hover {
+      // tbd
+    }
+  }
+}
+
+.region-highlighted .block-nodeblock {
+  border-top:6px solid $color-light-grey;
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// footer overrides
+#block-menu-menu-footer {
+  
+  ul, ul li {
+    list-style:none !important;
+    margin:0;
+    padding:0;
+
+    a {
+      text-decoration:none !important;
+    }
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// Style overrirdes
+// post launch these will become part of the primary 
+// stylesheet, adjustmests will be necessary
+// certain hooks used intentionally to override settings
+// in zombie stylesheets. These will be removed and updated
+// as well.
+
+.front header {
+  border-bottom:0 !important; // rem!i.
+}
+
+/* font styles */
+#block-system-main-menu ul li a {
+  border:0 !important;
+  color:$color-link-grey;
+  font-size:15px !important; // rem!i;
+}
+
+
+#block-views-seven-features-block-block .views-row .views-field-body,
+#slider-read-more span,
+.trust-text p,
+a.views-more-link {
+  color:$color-text-grey;
+  font-size:15px;
+  line-height:22px;
+}
+
+#block-views-seven-features-block-block {
+  .views-row { 
+    .views-field-body {
+      font-size:17px;
+      line-height:26px;
+    }
+    .views-field-title {
+      display:block;
+      height:90px;
+      a {
+        display:block;
+        padding:10px 0 0;
+      }
+    }
+    &.views-row-2 .views-field-title a {
+      padding-left:40px;
+    }
+    &.views-row-3 .views-field-title a {
+      display:block;
+      padding:20px 0 0 70px; // very specific, may need to adjust
+    }
+  } 
+}
+
+.view-id-seven_features_block .views-field-title a,
+.view-id-seven_features_block .views-field-title a.visited {
+  color:$color-header-green !important; // long hook is override
+}
+
 /* watermark */
 #content-wrap {
   background:url($pathImg + 'watermark.png') 20px bottom no-repeat;
   padding-bottom:35px;
   min-height:650px;
 }
+
 .region-footer .block {margin:0;}
 .messages.error{display:none;}//tmp
-/* slideshow structure */
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// slideshow
 #block-views-earlyiq-slideshow-block-block {
   @include size(100%, 395px);
   display:block;
+
   #slider-read-more {
     background:url($pathImg + 'icon_slider_read-more.png') 0 -3px no-repeat;
     clear:left;
     float:left;
     padding-left:20px;
     // this is going to be a link to content
+
     span {
-      color:#828F97;
       font-size:17px;
       line-height:19px;
     }
   }
+
   .view-content {padding-bottom:25px;}
+
   .slideshow-items {
-    @include size(960px, 380px);
+    @include size(960px, 394px);
     ul, ul li, ul .item-list {list-style:none;margin:0;padding:0;}
+
     .views-row {
-      @include size(960px, 377px);
+      @include size(960px, 390px);
       background:#fff;
       display:block;
       position:relative;
+
       .views-field {
         background:$color-white;
         clear:left;
@@ -166,6 +343,7 @@
         overflow:hidden;
         padding-left:30px;
         width:320px;
+
         &.views-field-title {
             color:$color-blue;
             font-size:28px;
@@ -174,11 +352,13 @@
             padding-bottom:5px;
             text-decoration:none;
         }
+
         &.views-field-body p {
           color:#889297;
           font-size:20px;
           line-height:22px;
         }
+
         &.views-field-field-slide-image {
           background:none;
           clear:none;
@@ -192,10 +372,12 @@
     }
   }
 }
+
 .page-dots {
   bottom:0;
   text-align:center;
   width:100%;
+
   a {
     @include animation(600);
     @include hide-text();
@@ -206,10 +388,192 @@
     margin-right:5px;
     width:13px;
     height:13px;
+
     &.active {
       @include animation(600);
       background:#38659e;
     }
+
     &.last {margin-right:0;}
   }
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// form styles 
+/* all forms first */
+
+
+form {
+
+  fieldset {
+      
+    legend {
+
+    }
+   
+    .fieldset-wrapper {
+      
+    }
+  }
+  
+  .form-item, .form-wrapper {
+
+  }
+
+  select {
+
+  }
+
+  input[type='text'], input[type=''], textarea {
+
+  }
+
+  input[type='text'], input[type=''] {
+
+  }
+  textarea {
+
+  }
+
+  input[type='submit'] {
+
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// form-specific styles
+
+// company and personal application forms
+.page-node-add-data-person, .page-node-add-data-company {
+  h1 {text-align:center;}
+  form {
+    margin:0 auto;
+    width:500px;
+    
+    fieldset {
+      @include border-radius(10px);
+      //border-color:$color-light-grey;
+      border:0;
+      fieldset {
+        border:0;
+        margin:0;
+        padding:0;
+      }
+    }
+    
+    input, select, textarea {
+      margin:0; 
+    }
+    
+    input[type='text'] {
+      @include border-radius(2px);
+      border-color:$color-light-grey;
+      margin:0;
+      padding-top:5px;
+      padding-bottom:5px;
+      width:429px;
+      &:focus {
+        border-color:$color-text-grey;
+      }
+    }
+    
+    input[type='submit'] {
+      @include eiq_action_btn(auto, 44px);
+      font-size:15px;
+      padding:0 15px;
+      /*
+      &#edit-sac {width:200px;}
+      &#edit-submit {width:90px;}
+      &#edit-cancel {width:115px;}
+      &#edit-field-invite-officers-und-add-more--2 {width:180px;}
+*/  }
+    #edit-sac,
+    #edit-submit,
+    #edit-cancel {
+        float:left;
+        margin-right:15px;
+    }
+    
+    // ajax headers
+    th, thead th {
+      @include border-radius(5px);
+      background:$color-blue;
+      border:0;
+      color:$color-white;
+    }
+    tr.odd, tr.even {
+      background:none;
+      border:0;
+      padding:0;
+    }
+  }
+
+  /*fields*/
+
+  .field-type-field-collection {
+    padding:15px 0;
+  }
+  // agreement fields
+  .field-name-field-disclaimer,
+  .field-name-field-agree-final {
+    @include wrap();
+    @include border-radius(5px);
+    background:$color-header-green;
+    color:$color-white;
+    padding:10px 0;
+
+    .form-item {
+      padding-left:15px;
+    }
+  }
+
+  // company name
+  .field-name-field-company-type {
+    float:left;
+    width:210px;
+  }
+
+  .field-name-field-industry {
+    float:left;
+    width:276px;
+    
+    select {
+      width:276px;
+    }
+  }
+
+  // address inputs
+  .field-name-field-address-address1 .form-text,
+  .field-name-field-address-address2 .form-text {
+    width:409px;
+  }
+
+  // city input
+  .field-name-field-address-city .form-text {
+    width:230px;
+  }
+}
+
+.page-node-add-data-company form {
+
+}
+
+.page-node-add-data-person form {
+
+}
+
