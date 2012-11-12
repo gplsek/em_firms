@@ -5124,7 +5124,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -5194,13 +5194,9 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => 1,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5232,6 +5228,81 @@ function core_ef_field_default_fields() {
         ),
         'type' => 'image_image',
         'weight' => '32',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-earlyiq_slides-field_slide_url'.
+  $fields['node-earlyiq_slides-field_slide_url'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_slide_url',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
+        'max_length' => '456',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'earlyiq_slides',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'This is the URL where you want the Slide link go when visitors click on it. Example: http://www.earlyiq.com',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_slide_url',
+      'label' => 'URL',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '33',
       ),
     ),
   );
@@ -6580,9 +6651,11 @@ function core_ef_field_default_fields() {
   t('Sufix');
   t('The position of the SlideShow Item at the SlideShow.');
   t('This field will determine in wich Slideshows (1 to 7) will this item appear.');
+  t('This is the URL where you want the Slide link go when visitors click on it. Example: http://www.earlyiq.com');
   t('This is the URL where you want the Slide link go when visitors click on it. You can link <strong>an internal page</strong>, an <strong>external page</strong> or just a <strong>download</strong> if you want. It should allways start with <strong>http://</strong>');
   t('This is the image that will be shown on the SlideShow.');
   t('Twitter');
+  t('URL');
   t('URL to go');
   t('Year of Legal Formation');
   t('Zip Code');

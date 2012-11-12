@@ -162,7 +162,7 @@ body.front {
   background-position-y:2px;
   header{
     border:0;
-    padding:30px 0 12px;
+    padding:30px 0 14px;
   }
 }
 
@@ -183,7 +183,7 @@ body.front {
 }
 
 .start-links {
-  padding-left:50px !important; // rm!i.
+  padding-left:65px;
   p a {
     @include eiq_action_btn(217px, 44px);
     &:first {
@@ -323,7 +323,7 @@ a.views-more-link {
     }
   }
 
-  .view-content {padding-bottom:25px;}
+  .view-content {padding-bottom:35px;}
 
   .slideshow-items {
     @include size(960px, 394px);
@@ -432,20 +432,32 @@ form {
 
   }
 
-  input[type='text'], input[type=''], textarea {
-
+  input[type='text'], textarea {
+    @include border-radius(2px);
+    border-color:#bbb;
+    margin:0;
+    &:focus {
+      border-color:$color-text-grey;
+    }
   }
 
-  input[type='text'], input[type=''] {
-
+  input[type='text'] {
+    padding-top:5px;
+    padding-bottom:5px;
   }
   textarea {
 
   }
 
   input[type='submit'] {
-
+    @include eiq_action_btn(auto, 44px);
+    font-size:15px;
+    padding:0 15px !important; //or
+    &:hover {
+      cursor:pointer;
+    }
   }
+  .grippie {display:none;}
 }
 //
 //
@@ -482,20 +494,10 @@ form {
     
     input[type='text'] {
       @include border-radius(2px);
-      border-color:$color-light-grey;
-      margin:0;
-      padding-top:5px;
-      padding-bottom:5px;
       width:429px;
-      &:focus {
-        border-color:$color-text-grey;
-      }
     }
     
     input[type='submit'] {
-      @include eiq_action_btn(auto, 44px);
-      font-size:15px;
-      padding:0 15px;
       /*
       &#edit-sac {width:200px;}
       &#edit-submit {width:90px;}

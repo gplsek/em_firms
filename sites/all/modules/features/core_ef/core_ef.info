@@ -176,6 +176,7 @@ features[field][] = node-data_person-field_name_suffix
 features[field][] = node-data_person-field_ssn
 features[field][] = node-earlyiq_slides-body
 features[field][] = node-earlyiq_slides-field_slide_image
+features[field][] = node-earlyiq_slides-field_slide_url
 features[field][] = node-nodeblocks-body
 features[field][] = node-page-body
 features[field][] = node-seven_client-field_image
