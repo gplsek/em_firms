@@ -35,6 +35,50 @@ function core_ef_views_api() {
 function core_ef_image_default_styles() {
   $styles = array();
 
+  // Exported image style: earlyiq_features.
+  $styles['earlyiq_features'] = array(
+    'name' => 'earlyiq_features',
+    'effects' => array(
+      27 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '62',
+          'height' => '62',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: earlyiq_slideimg_2-3.
+  $styles['earlyiq_slideimg_2-3'] = array(
+    'name' => 'earlyiq_slideimg_2-3',
+    'effects' => array(
+      26 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '598',
+          'height' => '394',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: logo.
   $styles['logo'] = array(
     'name' => 'logo',
@@ -552,6 +596,14 @@ function core_ef_node_info() {
     ),
     'data_person' => array(
       'name' => t('Personal Application'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'earlyiq_slides' => array(
+      'name' => t('earlyiq-slides'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
