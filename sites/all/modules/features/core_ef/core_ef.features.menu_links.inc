@@ -50,7 +50,7 @@ function core_ef_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'node/42',
     'router_path' => 'node/%',
-    'link_title' => 'Our technology',
+    'link_title' => 'Our Platform',
     'options' => array(
       'attributes' => array(),
     ),
@@ -89,7 +89,7 @@ function core_ef_menu_default_menu_links() {
       'attributes' => array(),
     ),
     'module' => 'menu',
-    'hidden' => '0',
+    'hidden' => '1',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
@@ -184,7 +184,7 @@ function core_ef_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'node/50',
     'router_path' => 'node/%',
-    'link_title' => 'Venture Capital',
+    'link_title' => 'Professional Investment',
     'options' => array(
       'attributes' => array(),
     ),
@@ -201,7 +201,7 @@ function core_ef_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'node/51',
     'router_path' => 'node/%',
-    'link_title' => 'Angel Investing',
+    'link_title' => 'Angel Groups',
     'options' => array(
       'attributes' => array(),
     ),
@@ -223,7 +223,7 @@ function core_ef_menu_default_menu_links() {
       'attributes' => array(),
     ),
     'module' => 'menu',
-    'hidden' => '0',
+    'hidden' => '1',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
@@ -240,7 +240,7 @@ function core_ef_menu_default_menu_links() {
       'attributes' => array(),
     ),
     'module' => 'menu',
-    'hidden' => '0',
+    'hidden' => '1',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
@@ -307,7 +307,7 @@ function core_ef_menu_default_menu_links() {
       'attributes' => array(),
     ),
     'module' => 'menu',
-    'hidden' => '0',
+    'hidden' => '1',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
@@ -387,7 +387,7 @@ function core_ef_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('About');
   t('Advisory Team');
-  t('Angel Investing');
+  t('Angel Groups');
   t('Contact');
   t('Create new account');
   t('Crowdfunding');
@@ -399,14 +399,14 @@ function core_ef_menu_default_menu_links() {
   t('Log out');
   t('Markets');
   t('News Room');
-  t('Our technology');
+  t('Our Platform');
   t('Private Placement');
   t('Private Reports (professional)');
   t('Products');
+  t('Professional Investment');
   t('Public Reports (individual)');
   t('Sample Report');
   t('User account');
-  t('Venture Capital');
 
 
   return $menu_links;
