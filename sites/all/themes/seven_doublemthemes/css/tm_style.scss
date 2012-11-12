@@ -317,9 +317,12 @@ a.views-more-link {
     padding-left:20px;
     // this is going to be a link to content
 
-    span {
+    a {
+      color:$color-text-grey;
       font-size:17px;
       line-height:19px;
+      text-decoration:none;
+      &:hover {color:$color-blue;}
     }
   }
 
@@ -411,7 +414,7 @@ a.views-more-link {
 /* all forms first */
 
 
-form {
+#main-wrapper form {
 
   fieldset {
       
@@ -459,6 +462,7 @@ form {
   }
   .grippie {display:none;}
 }
+
 //
 //
 //

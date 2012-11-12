@@ -33,6 +33,13 @@ function core_ef_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['wrapper_class'] = 'item-list slideshow-items';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: URL */
+  $handler->display->display_options['fields']['field_slide_url']['id'] = 'field_slide_url';
+  $handler->display->display_options['fields']['field_slide_url']['table'] = 'field_data_field_slide_url';
+  $handler->display->display_options['fields']['field_slide_url']['field'] = 'field_slide_url';
+  $handler->display->display_options['fields']['field_slide_url']['label'] = '';
+  $handler->display->display_options['fields']['field_slide_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_slide_url']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -48,7 +55,7 @@ function core_ef_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['body']['alter']['text'] = '[body]<div id="slider-read-more"><span>Read More...</span></div>';
+  $handler->display->display_options['fields']['body']['alter']['text'] = '[body]<div id="slider-read-more"><a href="[field_slide_url]">Read More...</a></div>';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'text_trimmed';
   $handler->display->display_options['fields']['body']['settings'] = array(
@@ -59,6 +66,8 @@ function core_ef_views_default_views() {
   $handler->display->display_options['fields']['field_slide_image']['table'] = 'field_data_field_slide_image';
   $handler->display->display_options['fields']['field_slide_image']['field'] = 'field_slide_image';
   $handler->display->display_options['fields']['field_slide_image']['label'] = '';
+  $handler->display->display_options['fields']['field_slide_image']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_slide_image']['alter']['text'] = '<a href="[field_slide_url]">[field_slide_image]</a>';
   $handler->display->display_options['fields']['field_slide_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_slide_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_slide_image']['settings'] = array(
