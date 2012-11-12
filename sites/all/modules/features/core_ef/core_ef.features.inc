@@ -93,7 +93,7 @@ function core_ef_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '130',
+          'width' => '290',
           'height' => '',
           'upscale' => 0,
         ),

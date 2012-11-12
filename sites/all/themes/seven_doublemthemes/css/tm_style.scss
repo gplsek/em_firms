@@ -149,11 +149,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#225ba0', end
 // theme Stylesheet
 
 body {
-  -webkit-font-smoothing:antialiased;
+  -webkit-font-smoothing:antialiased; //mac
 }
 
 h2, li, a,  p{
   font-family:$font-primary;
+}
+
+h1, h2, h3 {
+    font-weight:bold;
+}
+
+h1, h2 {
+  color:$color-blue;
+}
+
+h1 {
+  font-size:39px;
+}
+
+h2 {
+  font-size:24px;
+}
+
+h3 {
+  color:$color-text-grey;
+  font-size:16px;
 }
 
 body.front {
@@ -164,6 +185,10 @@ body.front {
     border:0;
     padding:30px 0 14px;
   }
+}
+
+body.front.logged-in {
+  background-position-y:51px;
 }
 
 .closure {
@@ -249,31 +274,40 @@ body.front {
 
 
 #block-views-seven-features-block-block .views-row .views-field-body,
+#block-views-seven-features-block-block .views-row .views-field-body h2,
+#block-views-seven-features-block-block .views-row .views-field-body h3,
 #slider-read-more span,
 .trust-text p,
 a.views-more-link {
   color:$color-text-grey;
   font-size:15px;
+  font-weight:normal;
   line-height:22px;
 }
 
 #block-views-seven-features-block-block {
+
   .views-row { 
+  
     .views-field-body {
       font-size:17px;
       line-height:26px;
     }
+  
     .views-field-title {
       display:block;
       height:90px;
+  
       a {
         display:block;
         padding:10px 0 0;
       }
     }
+  
     &.views-row-2 .views-field-title a {
       padding-left:40px;
     }
+  
     &.views-row-3 .views-field-title a {
       display:block;
       padding:20px 0 0 70px; // very specific, may need to adjust
@@ -444,7 +478,7 @@ a.views-more-link {
     }
   }
 
-  input[type='text'] {
+  input[type='text'], input[type='password'], input[type='email'] {
     padding-top:5px;
     padding-bottom:5px;
   }
@@ -454,12 +488,20 @@ a.views-more-link {
 
   input[type='submit'] {
     @include eiq_action_btn(auto, 44px);
+    float:left;
     font-size:15px;
+    margin:0 15px !important;
     padding:0 15px !important; //or
+    
     &:hover {
       cursor:pointer;
     }
+    
+    &:focus, &:hover {
+      background:$color-header-green;
+    }
   }
+  
   .grippie {display:none;}
 }
 
@@ -474,9 +516,43 @@ a.views-more-link {
 //
 // form-specific styles
 
+// login, register, etc.
+//.page-user-register-beta, 
+.page-user-register, .page-user-login {
+  
+  form {
+    padding:15px 0;
+    width:630px;
+  
+    .form-item {
+      display:block;
+      padding:10px 0;
+    }
+  
+    label {
+      float:left;
+      width:195px;
+    }
+  
+    .form-item input {
+      width:429px;
+    }
+  
+    fieldset.captcha.form-wrapper {
+      @include border-radius(2px);
+      width:394px;
+    }
+  
+    input#edit-captcha-response {width:390px;}
+  }
+}
+
+
 // company and personal application forms
 .page-node-add-data-person, .page-node-add-data-company {
+  
   h1 {text-align:center;}
+  
   form {
     margin:0 auto;
     width:500px;
@@ -485,6 +561,7 @@ a.views-more-link {
       @include border-radius(10px);
       //border-color:$color-light-grey;
       border:0;
+  
       fieldset {
         border:0;
         margin:0;
@@ -522,6 +599,7 @@ a.views-more-link {
       border:0;
       color:$color-white;
     }
+    
     tr.odd, tr.even {
       background:none;
       border:0;

@@ -11,9 +11,10 @@ if($('#block-views-earlyiq-slideshow-block-block').length) {
         itemClass:'.views-row',
         pageDots:true,
         interval:true,
+        intervalSpeed: 8500,
         slideNumber:1,
         numberShown:1,
-        speed:600,
+        speed:500,
         initFunc:function(){},
       	slideInitFunc:function(){},
   		slideEndFunc:function(){}
