@@ -99,7 +99,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#225ba0', end
     font-size:25px;
     line-height:$h;
     text-align:center;
-    text-decoration:none;} //  @include eiq_action_btn(217px, 44px);
+    text-decoration:none;
+    &:focus, &:hover {
+      background:$color-header-green;
+    }} //  @include eiq_action_btn(217px, 44px);
 //
 //
 //
@@ -281,6 +284,7 @@ body.front.logged-in {
 
 
 #block-views-seven-features-block-block .views-row .views-field-body,
+#block-views-seven-features-block-block .views-row .views-field-body p,
 #block-views-seven-features-block-block .views-row .views-field-body h2,
 #block-views-seven-features-block-block .views-row .views-field-body h3,
 #slider-read-more span,
@@ -300,8 +304,10 @@ a.views-more-link:hover {
   .views-row { 
   
     .views-field-body {
-      font-size:17px;
-      line-height:26px;
+      p, h2, h3 {
+        font-size:17px;
+        line-height:26px;
+      }
     }
   
     .views-field-title {
@@ -505,10 +511,6 @@ a.views-more-link:hover {
     
     &:hover {
       cursor:pointer;
-    }
-    
-    &:focus, &:hover {
-      background:$color-header-green;
     }
   }
   
