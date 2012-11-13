@@ -183,8 +183,30 @@ h2 {
 
 h3 {
   color:$color-text-grey;
+}
+
+h3, h4 {
   font-size:16px;
   line-height:18px;
+}
+
+.page-node {
+  
+  h1 {
+    display:none;
+  }
+  
+    .region-content {
+  
+    h3 {
+      font-weight:normal;
+    }
+  
+    h4 {
+      color:$color-blue;
+      font-weight:bold;  
+    }
+  }
 }
 
 body.front {
@@ -367,8 +389,10 @@ a.views-more-link:hover {
 //
 // slideshow
 #block-views-earlyiq-slideshow-block-block {
-  @include size(100%, 395px);
+  @include size(100%, 470px);
+  border-bottom:3px solid #ccc;
   display:block;
+  margin-bottom:40px;
 
   #slider-read-more {
     background:url($pathImg + 'icon_slider_read-more.png') 0 -3px no-repeat;
@@ -733,6 +757,10 @@ a.views-more-link:hover {
 }
 // menu block-system-main-menu
 #block-menu-menu-what-we-do {
+  h2 {
+    font-size:20px;
+    line-height:24px;
+  }
   ul li {
     list-style:none !important;
   }

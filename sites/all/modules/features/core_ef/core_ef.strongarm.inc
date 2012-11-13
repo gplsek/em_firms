@@ -1757,6 +1757,131 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_about_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_about_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_exclude_paths';
+  $strongarm->value = 'admin
+admin/*';
+  $export['menu_minipanels_exclude_paths'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_features_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_features_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_hover';
+  $strongarm->value = array(
+    'position' => array(
+      'target' => 'false',
+      'target_custom' => '',
+      'type' => 'absolute',
+      'corner' => array(
+        'target' => 'bottomLeft',
+        'tooltip' => 'topLeft',
+      ),
+    ),
+    'show' => array(
+      'delay' => '140',
+      'when' => array(
+        'event' => 'mouseover',
+      ),
+      'effect' => array(
+        'type' => 'slide',
+        'length' => '100',
+      ),
+    ),
+    'hide' => array(
+      'delay' => '0',
+      'effect' => array(
+        'type' => 'slide',
+        'length' => '100',
+      ),
+    ),
+    'style' => array(
+      'name' => 'light',
+      'width' => array(
+        'min' => '0',
+        'max' => '250',
+      ),
+      'border' => array(
+        'width' => '3',
+        'color' => '#d3d3d3',
+        'radius' => '0',
+      ),
+      'tip' => 'none',
+    ),
+  );
+  $export['menu_minipanels_hover'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_main-menu_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_main-menu_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_markets_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_markets_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_menu-about_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_menu-about_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_menu-how-it-works_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_menu-how-it-works_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_menu-markets_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_menu-markets_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_menu-products_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_menu-products_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_menu-what-we-do_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_menu-what-we-do_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_minipanels_products_enabled';
+  $strongarm->value = TRUE;
+  $export['menu_minipanels_products_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_article';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -2823,37 +2948,6 @@ node/*/edit';
   $strongarm->name = 'theme_default';
   $strongarm->value = 'seven_doublemthemes';
   $export['theme_default'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'theme_seven_doublemthemes_settings';
-  $strongarm->value = array(
-    'toggle_logo' => 1,
-    'toggle_name' => 0,
-    'toggle_slogan' => 0,
-    'toggle_node_user_picture' => 1,
-    'toggle_comment_user_picture' => 1,
-    'toggle_favicon' => 1,
-    'toggle_main_menu' => 0,
-    'toggle_secondary_menu' => 0,
-    'default_logo' => 0,
-    'logo_path' => 'public://logo_0.png',
-    'default_favicon' => 0,
-    'favicon_path' => 'public://favicon_0.ico',
-    'favicon_upload' => '',
-    'zen_breadcrumb' => 'yes',
-    'zen_breadcrumb_separator' => ' › ',
-    'zen_breadcrumb_home' => 1,
-    'zen_breadcrumb_trailing' => 0,
-    'zen_breadcrumb_title' => 1,
-    'zen_rebuild_registry' => 0,
-    'zen_layout' => 'zen-columns-fixed',
-    'zen_jump_link_target' => 'main-menu',
-    'zen_wireframes' => 0,
-    'favicon_mimetype' => 'image/vnd.microsoft.icon',
-  );
-  $export['theme_seven_doublemthemes_settings'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
