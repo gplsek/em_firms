@@ -628,15 +628,6 @@ function core_ef_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create blog content.
-  $permissions['create blog content'] = array(
-    'name' => 'create blog content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create book content.
   $permissions['create book content'] = array(
     'name' => 'create book content',
@@ -742,15 +733,6 @@ function core_ef_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any blog content.
-  $permissions['delete any blog content'] = array(
-    'name' => 'delete any blog content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any book content.
   $permissions['delete any book content'] = array(
     'name' => 'delete any book content',
@@ -823,15 +805,6 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete own article content.
   $permissions['delete own article content'] = array(
     'name' => 'delete own article content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own blog content.
-  $permissions['delete own blog content'] = array(
-    'name' => 'delete own blog content',
     'roles' => array(
       0 => 'administrator',
     ),
@@ -934,15 +907,6 @@ function core_ef_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any blog content.
-  $permissions['edit any blog content'] = array(
-    'name' => 'edit any blog content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: edit any book content.
   $permissions['edit any book content'] = array(
     'name' => 'edit any book content',
@@ -1006,15 +970,6 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit own article content.
   $permissions['edit own article content'] = array(
     'name' => 'edit own article content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit own blog content.
-  $permissions['edit own blog content'] = array(
-    'name' => 'edit own blog content',
     'roles' => array(
       0 => 'administrator',
     ),
