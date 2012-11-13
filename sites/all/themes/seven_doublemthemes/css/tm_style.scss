@@ -728,17 +728,21 @@ a.views-more-link:hover {
 .menu-minipanels .menu-block-wrapper ul.menu li a,
 .menu-minipanels .menu-block-wrapper ul.menu li.last a,
 .menu-minipanels .menu-block-wrapper ul.menu li.leaf a,
-#block-menu-menu-what-we-do ul li a,
-#block-menu-menu-what-we-do ul li.last a,
-#block-menu-menu-what-we-do ul li.leaf a {
+.block-menu ul li a,
+.block-menu ul li.last a,
+.block-menu ul li.leaf a {
   color:$color-text-grey;
     text-decoration:none;
     &:hover, &.active {color:$color-blue;}
 }
 
+.qtip-contentWrapper, .qtip-content {
+  background:none !important;
+}
+
 .menu-minipanels .menu-block-wrapper ul.menu {
   @include wrap();
-  background: none repeat scroll 0 0 white;
+  background: white !important;
   border-color: #60A940 #CCC #CCC;
   border-style: solid;
   border-width: medium 1px 1px;
@@ -756,12 +760,33 @@ a.views-more-link:hover {
   }
 }
 // menu block-system-main-menu
-#block-menu-menu-what-we-do {
+.sidebar .block-menu {
   h2 {
     font-size:20px;
     line-height:24px;
   }
   ul li {
     list-style:none !important;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// contact page
+.page-contact {
+  #block-nodeblock-35 h2 {
+    padding:0;
+  }
+  .trust-text {
+    width:100%;
+  }
+  .start-links {
+    padding-left:0;
   }
 }
