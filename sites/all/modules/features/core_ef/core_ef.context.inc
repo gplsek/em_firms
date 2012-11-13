@@ -167,6 +167,38 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'how_it_works';
+  $context->description = '';
+  $context->tag = 'Page Specific';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'how-it-works*' => 'how-it-works*',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'menu-menu-how-it-works' => array(
+          'module' => 'menu',
+          'delta' => 'menu-how-it-works',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Page Specific');
+  $export['how_it_works'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'hp_content';
   $context->description = '';
   $context->tag = 'homepage';
@@ -418,6 +450,38 @@ function core_ef_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('sidebar1');
   $export['teasers_main_constituents'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'what_we_do';
+  $context->description = '';
+  $context->tag = 'Page Specific';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'what-we-do*' => 'what-we-do*',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'menu-menu-what-we-do' => array(
+          'module' => 'menu',
+          'delta' => 'menu-what-we-do',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Page Specific');
+  $export['what_we_do'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
