@@ -191,7 +191,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'captcha_wrong_response_counter';
-  $strongarm->value = 2;
+  $strongarm->value = 4;
   $export['captcha_wrong_response_counter'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1251,10 +1251,10 @@ node/*/edit';
           'weight' => '3',
         ),
         'timezone' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'contact' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
       ),
       'display' => array(),
@@ -1411,7 +1411,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'logintoboggan_minimum_password_length';
-  $strongarm->value = '8';
+  $strongarm->value = '6';
   $export['logintoboggan_minimum_password_length'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1708,24 +1708,25 @@ node/*/edit';
     27 => 30,
     28 => 29,
     29 => 28,
-    30 => 26,
-    31 => 24,
-    32 => 23,
-    33 => 21,
-    34 => 15,
-    35 => 14,
-    36 => 13,
-    37 => 12,
-    38 => 11,
-    39 => 10,
-    40 => 8,
-    41 => 7,
-    42 => 6,
-    43 => 5,
-    44 => 4,
-    45 => 3,
-    46 => 2,
-    47 => 1,
+    30 => 27,
+    31 => 26,
+    32 => 24,
+    33 => 23,
+    34 => 21,
+    35 => 15,
+    36 => 14,
+    37 => 13,
+    38 => 12,
+    39 => 11,
+    40 => 10,
+    41 => 8,
+    42 => 7,
+    43 => 6,
+    44 => 5,
+    45 => 4,
+    46 => 3,
+    47 => 2,
+    48 => 1,
   );
   $export['menu_masks'] = $strongarm;
 
@@ -2861,7 +2862,7 @@ Your account on [site:name] has been canceled.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_register';
-  $strongarm->value = '1';
+  $strongarm->value = '2';
   $export['user_register'] = $strongarm;
 
   $strongarm = new stdClass();

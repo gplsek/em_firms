@@ -82,7 +82,7 @@ function core_ef_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_select',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -5124,7 +5124,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -5642,7 +5642,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -6388,6 +6388,7 @@ function core_ef_field_default_fields() {
           1 => 'Startup',
           2 => 'Partner/Portal',
           3 => 'Investor',
+          4 => 'Other',
         ),
         'allowed_values_function' => '',
         'field_encrypt' => array(
@@ -6400,13 +6401,9 @@ function core_ef_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => array(
-        0 => array(
-          'value' => '1',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => '<ul><li><em>Startup</em> will get you in to the Company Application. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>',
+      'description' => '<ul><li><em>Startup</em> will get you information about our services for startups. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -6418,8 +6415,8 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'user',
       'field_name' => 'field_client_type',
-      'label' => 'Account Type',
-      'required' => 1,
+      'label' => 'Type',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => 1,
       ),
@@ -6573,10 +6570,73 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'user-user-field_notes'.
+  $fields['user-user-field_notes'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_notes',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'user',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 3,
+        ),
+      ),
+      'entity_type' => 'user',
+      'field_name' => 'field_notes',
+      'label' => 'Notes',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => 1,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '3',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
-  t('<ul><li><em>Startup</em> will get you in to the Company Application. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>');
-  t('Account Type');
+  t('<ul><li><em>Startup</em> will get you information about our services for startups. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>');
   t('Additional Images');
   t('Address');
   t('Address (cont.)');
@@ -6635,6 +6695,7 @@ function core_ef_field_default_fields() {
   t('Maiden Name');
   t('Major');
   t('Middle Name');
+  t('Notes');
   t('Phone');
   t('Place here the link you want. Remember start with <strong>http://</strong>');
   t('Product id');
@@ -6655,6 +6716,7 @@ function core_ef_field_default_fields() {
   t('This is the URL where you want the Slide link go when visitors click on it. You can link <strong>an internal page</strong>, an <strong>external page</strong> or just a <strong>download</strong> if you want. It should allways start with <strong>http://</strong>');
   t('This is the image that will be shown on the SlideShow.');
   t('Twitter');
+  t('Type');
   t('URL');
   t('URL to go');
   t('Year of Legal Formation');

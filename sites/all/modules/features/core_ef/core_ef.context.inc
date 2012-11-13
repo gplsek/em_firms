@@ -45,6 +45,38 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'beta';
+  $context->description = '';
+  $context->tag = 'landing pages';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'beta' => 'beta',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'nodeblock-35' => array(
+          'module' => 'nodeblock',
+          'delta' => '35',
+          'region' => 'content',
+          'weight' => '-36',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('landing pages');
+  $export['beta'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'contact_info';
   $context->description = '';
   $context->tag = 'content';
