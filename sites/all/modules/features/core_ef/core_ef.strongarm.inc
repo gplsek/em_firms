@@ -1165,7 +1165,29 @@ node/*/edit';
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__seven_home_item_block';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
@@ -1703,30 +1725,32 @@ node/*/edit';
     22 => 60,
     23 => 59,
     24 => 58,
-    25 => 44,
-    26 => 31,
-    27 => 30,
-    28 => 29,
-    29 => 28,
-    30 => 27,
-    31 => 26,
-    32 => 24,
-    33 => 23,
-    34 => 21,
-    35 => 15,
-    36 => 14,
-    37 => 13,
-    38 => 12,
-    39 => 11,
-    40 => 10,
-    41 => 8,
-    42 => 7,
-    43 => 6,
-    44 => 5,
-    45 => 4,
-    46 => 3,
-    47 => 2,
-    48 => 1,
+    25 => 45,
+    26 => 44,
+    27 => 31,
+    28 => 30,
+    29 => 29,
+    30 => 28,
+    31 => 27,
+    32 => 26,
+    33 => 24,
+    34 => 23,
+    35 => 22,
+    36 => 21,
+    37 => 15,
+    38 => 14,
+    39 => 13,
+    40 => 12,
+    41 => 11,
+    42 => 10,
+    43 => 8,
+    44 => 7,
+    45 => 6,
+    46 => 5,
+    47 => 4,
+    48 => 3,
+    49 => 2,
+    50 => 1,
   );
   $export['menu_masks'] = $strongarm;
 

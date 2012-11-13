@@ -82,7 +82,7 @@ function core_ef_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_select',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -5124,7 +5124,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -5642,7 +5642,7 @@ function core_ef_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -5712,13 +5712,9 @@ function core_ef_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => 1,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
