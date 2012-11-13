@@ -52,6 +52,7 @@ dependencies[] = mb
 dependencies[] = mb_content
 dependencies[] = menu
 dependencies[] = menu_attributes
+dependencies[] = menu_minipanels
 dependencies[] = menu_token
 dependencies[] = module_filter
 dependencies[] = multiblock

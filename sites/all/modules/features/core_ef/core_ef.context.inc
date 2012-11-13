@@ -58,6 +58,18 @@ function core_ef_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'menu-menu-about' => array(
+          'module' => 'menu',
+          'delta' => 'menu-about',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+        'nodeblock-35' => array(
+          'module' => 'nodeblock',
+          'delta' => '35',
+          'region' => 'sidebar_first',
+          'weight' => '-9',
+        ),
         'locationmap-image' => array(
           'module' => 'locationmap',
           'delta' => 'image',
@@ -89,10 +101,8 @@ function core_ef_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'page-right-sidebar' => 'page-right-sidebar',
         'theme-features' => 'theme-features',
         '7-different-home-pages' => '7-different-home-pages',
-        'products-portfolios' => 'products-portfolios',
       ),
     ),
   );
@@ -519,12 +529,8 @@ function core_ef_context_default_contexts() {
     'path' => array(
       'values' => array(
         'typography-features' => 'typography-features',
-        'page-left-sidebar' => 'page-left-sidebar',
         'blog/*' => 'blog/*',
         'blog' => 'blog',
-        'products/*' => 'products/*',
-        'locationmap' => 'locationmap',
-        'contact' => 'contact',
       ),
     ),
   );
