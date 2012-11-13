@@ -58,11 +58,11 @@ function core_ef_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'nodeblock-35' => array(
+        'nodeblock-74' => array(
           'module' => 'nodeblock',
-          'delta' => '35',
+          'delta' => '74',
           'region' => 'content',
-          'weight' => '-36',
+          'weight' => '-10',
         ),
       ),
     ),
