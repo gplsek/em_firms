@@ -30,11 +30,41 @@ function core_ef_init() {
 }
 
 
+function core_ef_mail_alter(&$message) {
+  //dpm($message['id']);
+  //switch($message['id']) {
+  //  case "user_register_no_approval_required":
+  if ($_SESSION['beta']) {
+    $message['send'] = FALSE;
+    //drupal_get_messages('status');
+    //drupal_set_message("Thanks for signing up for our Beta program. We will send you information as soon as it is available.");
+    //if ($message['id'] != "user_register_pending_approval_admin" || $message['id'] != "user_register_pending_approval") {
+      //drupal_set_message('Thank you for applying for an account. Your account is currently pending approval by the site administrator.<br />Once it has been approved, you will receive an e-mail containing further instructions.');
+    //   drupal_set_message('ARG!');
+      unset($_SESSION['beta']);
+    //}
+  }
+  //    break;
+  //}
+}
+
 function core_ef_form_alter(&$form, &$form_state, $form_id) {
   //dpm("form_id: " . $form_id);
   //dpm($form);
 }
 
+function core_ef_form_user_register_form_alter(&$form, &$form_state) {
+  $form['autoassignrole_user']['#attributes']['style'][] = 'visibility:hidden;height:0';
+  $form['autoassignrole_user']['#weight'] = 20;
+  if (arg(2) =='beta') {
+    $_SESSION['beta'] = true;
+    $form['autoassignrole_user']['user_roles']['#default_value'] = 6;
+  } else {
+    $form['field_notes']['#access'] = FALSE;
+    $form['autoassignrole_user']['user_roles']['#default_value'] = 7;
+  }
+  //dpm($form);
+}
 
 function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
   $form['contact']['#access'] = FALSE;
