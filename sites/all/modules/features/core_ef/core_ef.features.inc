@@ -87,7 +87,7 @@ function core_ef_image_default_styles() {
   $styles['logo'] = array(
     'name' => 'logo',
     'effects' => array(
-      25 => array(
+      26 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -97,7 +97,7 @@ function core_ef_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '290',
+          'width' => '237',
           'height' => '',
           'upscale' => 0,
         ),
