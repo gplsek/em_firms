@@ -107,3 +107,10 @@ fieldset#node_data_company_form_group_company{
 #views-form-commerce-cart-form-default .commerce-line-item-actions #edit-submit {
   display:none;
 }
+
+.view-seven-home-page-empty-view {
+  display:none;
+}
+h1#page-title {
+  display:none;
+}
