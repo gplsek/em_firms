@@ -691,4 +691,49 @@ a.views-more-link:hover {
 .page-node-add-data-person form {
 
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// menu dropdown styles
+.menu-minipanels .menu-block-wrapper ul.menu li a,
+.menu-minipanels .menu-block-wrapper ul.menu li.last a,
+.menu-minipanels .menu-block-wrapper ul.menu li.leaf a,
+#block-menu-menu-what-we-do ul li a,
+#block-menu-menu-what-we-do ul li.last a,
+#block-menu-menu-what-we-do ul li.leaf a {
+  color:$color-text-grey;
+    text-decoration:none;
+    &:hover, &.active {color:$color-blue;}
+}
 
+.menu-minipanels .menu-block-wrapper ul.menu {
+  @include wrap();
+  background: none repeat scroll 0 0 white;
+  border-color: #60A940 #CCC #CCC;
+  border-style: solid;
+  border-width: medium 1px 1px;
+  margin-left: 0;
+  padding: 10px 10px 10px 10px;
+  margin-top: -3px;
+  box-shadow: 1px 3px 6px #333;
+  li, li.leaf, li.last {
+    clear:both;
+    display:block;
+    float:left;
+    list-style:none !important;
+    margin:0 0 0 5px;
+    padding:3px 0 6px;
+  }
+}
+// menu block-system-main-menu
+#block-menu-menu-what-we-do {
+  ul li {
+    list-style:none !important;
+  }
+}

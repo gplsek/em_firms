@@ -13,6 +13,38 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'about';
+  $context->description = '';
+  $context->tag = 'Page Specific';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'about*' => 'about*',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'menu-menu-about' => array(
+          'module' => 'menu',
+          'delta' => 'menu-about',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Page Specific');
+  $export['about'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'contact_info';
   $context->description = '';
   $context->tag = 'content';
@@ -352,6 +384,38 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'markets';
+  $context->description = '';
+  $context->tag = 'Page Specific';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'markets*' => 'markets*',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'menu-menu-markets' => array(
+          'module' => 'menu',
+          'delta' => 'menu-markets',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Page Specific');
+  $export['markets'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'masquerade';
   $context->description = '';
   $context->tag = 'sitewide';
@@ -412,6 +476,38 @@ function core_ef_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('content');
   $export['product_portfolio_intro'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'products';
+  $context->description = '';
+  $context->tag = 'Page Specific';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'products*' => 'products*',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'menu-menu-products' => array(
+          'module' => 'menu',
+          'delta' => 'menu-products',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Page Specific');
+  $export['products'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
