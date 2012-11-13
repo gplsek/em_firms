@@ -62,7 +62,7 @@ function core_ef_context_default_contexts() {
           'module' => 'nodeblock',
           'delta' => '74',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-30',
         ),
       ),
     ),
