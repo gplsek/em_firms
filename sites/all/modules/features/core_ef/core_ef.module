@@ -56,6 +56,7 @@ function core_ef_form_alter(&$form, &$form_state, $form_id) {
 function core_ef_form_user_register_form_alter(&$form, &$form_state) {
   $form['autoassignrole_user']['#attributes']['style'][] = 'visibility:hidden;height:0';
   $form['autoassignrole_user']['#weight'] = 20;
+  $form['field_client_type']['#access'] = FALSE;
   if (arg(2) =='beta') {
     $_SESSION['beta'] = true;
     $form['autoassignrole_user']['user_roles']['#default_value'] = 6;
