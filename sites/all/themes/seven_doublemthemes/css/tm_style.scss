@@ -224,6 +224,9 @@ h3, h4 {
   }
 }
 
+sup, sub {
+  font-size:9px !important;
+}
 body.front {
  // background-image:url($pathImg + 'bg-test.png') !important;
   background-repeat:repeat-x;
