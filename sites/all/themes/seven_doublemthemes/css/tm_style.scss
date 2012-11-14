@@ -635,10 +635,11 @@ a.views-more-link:hover {
   }
 }
 
-
 // company and personal application forms
 .page-node-add-data-person, .page-node-add-data-company, .section-beta {
-
+#content {
+    background:url($pathImg + 'form-backdrop.png') center top no-repeat;
+  }
   .region-content {
     .field-name-body {
       float:left;
