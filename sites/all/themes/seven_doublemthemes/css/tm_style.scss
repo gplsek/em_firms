@@ -181,7 +181,7 @@ h1, h2 {
 }
 
 h2, h3, h4 {
-  margin:0 0 5px !important;
+  margin:0 !important;
 }
 
 h1 {
@@ -350,7 +350,7 @@ a.views-more-link:hover {
 }
 
 #block-views-seven-features-block-block {
-
+  margin-top:0 !important;
   .views-row { 
   
     .views-field-body {
@@ -410,7 +410,7 @@ a.views-more-link:hover {
   @include size(100%, 470px);
   border-bottom:3px solid #ccc;
   display:block;
-  margin-bottom:40px;
+  margin-bottom:15px;
 
   #slider-read-more {
     background:url($pathImg + 'icon_slider_read-more.png') 0 -3px no-repeat;
@@ -528,6 +528,12 @@ a.views-more-link:hover {
   margin-right:20px;
   overflow:hidden;
   padding:0;
+  img {
+    margin:0;
+    padding:0;
+    width:52px !important;
+    height:52px !important;
+  }
 }
 //
 //
