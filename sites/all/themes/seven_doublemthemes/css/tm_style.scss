@@ -212,6 +212,8 @@ h3, h4 {
     .region-content {
   
     h3 {
+      font-size:14px;
+      line-height:20px;
       font-weight:normal;
     }
   
@@ -316,9 +318,9 @@ header {
   margin:0 !important;
 }
 
+#
 /* font styles */
 #block-system-main-menu ul li a {
-  border-bottom:0;
   color:$color-link-grey;
   font-size:15px !important; // rem!i;
   &:hover, &.active-trail {
@@ -326,7 +328,7 @@ header {
   }
 //  a:hover {color:$color-blue !important;}
 }
-
+#block-system-main-menu ul li:hover a {border:0 !important;}
 
 #block-views-seven-features-block-block .views-row .views-field-body,
 #block-views-seven-features-block-block .views-row .views-field-body p,
@@ -505,6 +507,24 @@ a.views-more-link:hover {
 
     &.last {margin-right:0;}
   }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// icon styling
+.section-what-we-do .region-content .field-name-field-image {
+  @include size(52px, 52px);
+  float:left;
+  margin-right:20px;
+  overflow:hidden;
+  padding:0;
 }
 //
 //
@@ -738,30 +758,37 @@ a.views-more-link:hover {
 //
 //
 // menu dropdown styles
+
+
+
+
+
+
 .menu-minipanels .menu-block-wrapper ul.menu li a,
 .menu-minipanels .menu-block-wrapper ul.menu li.last a,
 .menu-minipanels .menu-block-wrapper ul.menu li.leaf a,
-.block-menu ul li a,
-.block-menu ul li.last a,
-.block-menu ul li.leaf a {
+.sidebar .block-menu ul li a,
+.sidebar .block-menu ul li.last a,
+.sidebar .block-menu ul li.leaf a {
   color:$color-text-grey;
     text-decoration:none;
     &:hover, &.active {color:$color-blue;}
+    &:hover {border:none !important;}
 }
+
 
 .qtip-contentWrapper, .qtip-content {
   background:none !important;
+  padding:0 !important;
 }
 
 .menu-minipanels .menu-block-wrapper ul.menu {
   @include wrap();
   background: white !important;
-  border-color: #60A940 #CCC #CCC;
-  border-style: solid;
-  border-width: medium 1px 1px;
-  margin-left: 0;
+  border:1px solid #ccc;
+  border-top:3px solid #60a940;
   padding: 10px 10px 10px 10px;
-  margin-top: -3px;
+  margin: 0;
   box-shadow: 1px 3px 6px #333;
   li, li.leaf, li.last {
     clear:both;
@@ -814,3 +841,5 @@ a.views-more-link:hover {
     padding-left:0;
   }
 }
+
+.region-bottom ul.menu li.leaf a {color:$color-white;}

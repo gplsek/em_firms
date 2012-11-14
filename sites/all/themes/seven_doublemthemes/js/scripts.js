@@ -13,7 +13,7 @@ var $ = jQuery.noConflict();
             itemClass:'.views-row',
             pageDots:true,
             interval:true,
-            intervalSpeed: 8500,
+            intervalSpeed: 9000,
             slideNumber:1,
             numberShown:1,
             speed:500,
@@ -32,9 +32,6 @@ var $ = jQuery.noConflict();
 
 function predef(menu) {
     $(menu).click(function(e){
-        // except for 'about'
-        if(!($(this).hasClass('menu-minipanel-1231'))) {
-            e.preventDefault();
-        }
+        e.preventDefault();
     });
 }
