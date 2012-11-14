@@ -195,7 +195,7 @@ h2 {
 }
 
 h3 {
-  color:$color-text-grey;
+  color:$color-link-grey;
 }
 
 h3, h4 {
@@ -235,7 +235,7 @@ body.front.logged-in {
 }
 
 #block-system-user-menu.block {
-  margin-bottom:5px !important;
+  margin-bottom:0 !important;
 }
 
 .closure {
@@ -329,7 +329,7 @@ header {
 //  a:hover {color:$color-blue !important;}
 }
 #block-system-main-menu ul li:hover a {border:0 !important;}
-
+#block-system-main-menu ul li a {padding-top:0 !important;}
 #block-views-seven-features-block-block .views-row .views-field-body,
 #block-views-seven-features-block-block .views-row .views-field-body p,
 #block-views-seven-features-block-block .views-row .views-field-body h2,
@@ -561,7 +561,7 @@ a.views-more-link:hover {
 
   }
 
-  input[type='text'], textarea {
+  input[type='text'], textarea, input[type='password'] {
     @include border-radius(2px);
     border-color:#bbb;
     margin:0;
@@ -575,7 +575,7 @@ a.views-more-link:hover {
     padding-bottom:5px;
   }
   textarea {
-
+    width:432px;
   }
 
   input[type='submit'] {
@@ -637,12 +637,24 @@ a.views-more-link:hover {
 
 
 // company and personal application forms
-.page-node-add-data-person, .page-node-add-data-company {
+.page-node-add-data-person, .page-node-add-data-company, .section-beta {
+
+  .region-content {
+    .field-name-body {
+      float:left;
+      margin-right:20px;
+      width:300px;
+    }
+    form {
+      float:right;
+      width:435px;
+    }
+  }
   
   h1 {text-align:center;}
   
   form {
-    margin:0 auto;
+    margin:0;
     width:500px;
     
     fieldset {
@@ -661,8 +673,9 @@ a.views-more-link:hover {
       margin:0; 
     }
     
-    input[type='text'] {
+    input[type='text'], input[type='email'] {
       @include border-radius(2px);
+      border:1px solid #bbb;
       width:429px;
     }
     
@@ -748,6 +761,10 @@ a.views-more-link:hover {
 .page-node-add-data-person form {
 
 }
+
+//  contact pages
+
+
 //
 //
 //
@@ -758,7 +775,6 @@ a.views-more-link:hover {
 //
 //
 // menu dropdown styles
-
 
 
 
@@ -827,12 +843,16 @@ a.views-more-link:hover {
 //
 //
 //
-// contact page
-.page-contact {
+// sidebar
+.sidebar {
+  #block-nodeblock-35 {
+    padding-top:15px;
+  }
   #block-nodeblock-35 h2 {
-    font-size:24px;
-    line-height:26px;
-    padding:0 35px 0 0;
+    background-position:172px 8px;
+    font-size:23px;
+    line-height:24px;
+    padding:0 40px 0 0;
   }
   .trust-text {
     width:100%;
