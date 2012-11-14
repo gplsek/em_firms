@@ -324,7 +324,7 @@ header {
   color:$color-link-grey;
   font-size:15px !important; // rem!i;
   &:hover, &.active-trail {
-    color:$color-blue !important;
+    color:$color-link-grey !important;
   }
 //  a:hover {color:$color-blue !important;}
 }
@@ -537,6 +537,18 @@ a.views-more-link:hover {
 //
 //
 // form styles 
+// sample report page only 
+
+.section-products #main {
+    background:url($pathImg + 'sample-report-background_light.png') center 20px no-repeat;  
+}
+.page-node-43 {
+  #main-wrapper {
+    background:url($pathImg + 'sample-report-background.png') right bottom no-repeat;
+    padding-bottom:60px;
+  }
+}
+
 /* all forms first */
 
 
@@ -638,7 +650,7 @@ a.views-more-link:hover {
 // company and personal application forms
 .page-node-add-data-person, .page-node-add-data-company, .section-beta {
 #content {
-    background:url($pathImg + 'form-backdrop.png') center top no-repeat;
+    background:url($pathImg + 'form-backdrop.png') left 250px no-repeat;
   }
   .region-content {
     .field-name-body {
@@ -796,7 +808,7 @@ a.views-more-link:hover {
 
 .qtip-contentWrapper, .qtip-content {
   background:none !important;
-  padding:0 !important;
+  padding:0 5px 10px 0 !important;
 }
 
 .menu-minipanels .menu-block-wrapper ul.menu {
@@ -853,7 +865,7 @@ a.views-more-link:hover {
     background-position:172px 8px;
     font-size:23px;
     line-height:24px;
-    padding:0 40px 0 0;
+    padding:0 70px 0 0;
   }
   .trust-text {
     width:100%;
