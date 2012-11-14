@@ -408,7 +408,7 @@ function locationmap_block_view($delta) {
  * @see http://drupal.org/node/1354
  */
 function locationmap_static_image_url($w = 200, $h = 150) {
-  $image_url = 'http://maps.googleapis.com/maps/api/staticmap?zoom=' . variable_get('locationmap_zoom', 5);
+  $image_url = 'https://maps.googleapis.com/maps/api/staticmap?zoom=' . variable_get('locationmap_zoom', 5);
   $image_url .= "&amp;size={$w}x{$h}";
   $image_url .= '&amp;markers=' . variable_get('locationmap_lat', 0) . ',' . variable_get('locationmap_lng', 0);
   $image_url .= "&amp;sensor=false";
