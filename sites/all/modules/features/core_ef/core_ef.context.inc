@@ -585,39 +585,5 @@ function core_ef_context_default_contexts() {
   t('Page Specific');
   $export['what_we_do'] = $context;
 
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'widget-addthis-share';
-  $context->description = '';
-  $context->tag = 'share';
-  $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        'typography-features' => 'typography-features',
-        'blog/*' => 'blog/*',
-        'products/*' => 'products/*',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'widgets-s_addthis-share' => array(
-          'module' => 'widgets',
-          'delta' => 's_addthis-share',
-          'region' => 'content',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('share');
-  $export['widget-addthis-share'] = $context;
-
   return $export;
 }
