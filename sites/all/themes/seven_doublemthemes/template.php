@@ -86,7 +86,7 @@ function STARTERKIT_preprocess_html(&$variables, $hook) {
  *   The name of the template being rendered ("page" in this case.)
  */
 function seven_doublemthemes_preprocess_page(&$variables, $hook) {
-  $variables['logo'] = str_replace('default/files/', 'default/files/styles/logo/public/', $variables['logo']);
+  //$variables['logo'] = str_replace('default/files/', 'default/files/styles/logo/public/', $variables['logo']);
 }
 
 
