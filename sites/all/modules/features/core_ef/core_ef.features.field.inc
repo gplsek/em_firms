@@ -5241,7 +5241,7 @@ function core_ef_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_slide_url',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -5263,7 +5263,7 @@ function core_ef_field_default_fields() {
           'encrypt' => 0,
           'phrase' => '',
         ),
-        'max_length' => '456',
+        'max_length' => '255',
       ),
       'translatable' => '0',
       'type' => 'text',
