@@ -5263,7 +5263,7 @@ function core_ef_field_default_fields() {
           'encrypt' => 0,
           'phrase' => '',
         ),
-        'max_length' => '255',
+        'max_length' => '456',
       ),
       'translatable' => '0',
       'type' => 'text',
