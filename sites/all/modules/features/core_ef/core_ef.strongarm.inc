@@ -901,6 +901,27 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'context_block_rebuild_needed';
+  $strongarm->value = TRUE;
+  $export['context_block_rebuild_needed'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'context_status';
+  $strongarm->value = array(
+    'hp_content' => FALSE,
+    'hp_slideshow5' => FALSE,
+    'hp_slideshow7' => FALSE,
+    'footer' => FALSE,
+    'main_menu' => FALSE,
+    'masquerade' => FALSE,
+  );
+  $export['context_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_field_collection_item__field_address';
   $strongarm->value = array(
     'view_modes' => array(),
