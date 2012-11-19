@@ -212,10 +212,26 @@ function em_apply_verification_form_submit($form, &$form_state){
 
 	$node->field_name_last['und'][0]['value'] = $form_state['values']['last_name'];
 	$node->field_name_first['und'][0]['value'] = $form_state['values']['first_name'];
+	$node->field_name_maiden['und'][0]['value'] = $form_state['values']['maiden_name'];
+	$node->field_name_middle['und'][0]['value'] = $form_state['values']['middle_name'];
+	$node->field_name_suffix['und'][0]['value'] = $form_state['values']['suffix'];
+	$node->field_gender['und'][0]['value'] = $form_state['values']['gender'];
 	$node->field_ssn['und'][0]['value'] = $form_state['values']['ssn'];
 	$node->field_dob['und'][0]['value'] = $form_state['values']['birthdate']['year'].'-'.$form_state['values']['birthdate']['month'].'-'.$form_state['values']['birthdate']['day'];
 	$node->field_address_history['und'][0] = $form_state['values']['address'];
-
+	
+    //send to RSA
+    $data = array(
+	'First_Name' => $form_state['values']['first_name'],
+	'Last_Name' => $form_state['values']['last_name'],
+	'SSN' => $form_state['values']['ssn'],
+	'Month' => $form_state['values']['birthdate']['month'],
+	'Year' => $form_state['values']['birthdate']['year'],
+	'Day' => $form_state['values']['birthdate']['day'],
+	'Address' => $form_state['values']['address']
+	  );
+	
+    _rsa_verification_submit($data);
 
 	node_save($node);
 
@@ -225,6 +241,11 @@ function em_apply_verification_form_submit($form, &$form_state){
 
 }
 
+
+function _rsa_verification_submit($data){
+	
+	return;
+}
 
 function em_apply_block_view($delta='') {
     $block = array();
