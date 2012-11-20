@@ -336,6 +336,7 @@ header {
 }
 #block-system-main-menu ul li:hover a {border:0 !important;}
 #block-system-main-menu ul li a {padding-top:0 !important;}
+#block-system-main-menu ul li a {padding-bottom:12px !important;}
 #block-views-seven-features-block-block .views-row .views-field-body,
 #block-views-seven-features-block-block .views-row .views-field-body p,
 #block-views-seven-features-block-block .views-row .views-field-body h2,
@@ -553,7 +554,8 @@ a.views-more-link:hover {
 // sample report page only 
 
 .section-products #main {
-    background:url($pathImg + 'sample-report-background_light.png') center 20px no-repeat;  
+    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat; 
+    padding-bottom:90px; // helps clear bg image
 }
 .page-node-43 {
   #main-wrapper {
