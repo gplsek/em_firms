@@ -1034,9 +1034,7 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit own data_person content.
   $permissions['edit own data_person content'] = array(
     'name' => 'edit own data_person content',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 

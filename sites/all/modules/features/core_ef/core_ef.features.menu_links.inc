@@ -29,7 +29,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'show' => array(
-          'delay' => '90',
+          'delay' => '140',
           'when' => array(
             'event' => 'mouseover',
           ),
@@ -39,7 +39,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'hide' => array(
-          'delay' => '100',
+          'delay' => '0',
           'effect' => array(
             'type' => 'slide',
             'length' => '100',
@@ -88,7 +88,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'show' => array(
-          'delay' => '90',
+          'delay' => '140',
           'when' => array(
             'event' => 'mouseover',
           ),
@@ -98,7 +98,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'hide' => array(
-          'delay' => '100',
+          'delay' => '0',
           'effect' => array(
             'type' => 'slide',
             'length' => '100',
@@ -147,7 +147,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'show' => array(
-          'delay' => '90',
+          'delay' => '140',
           'when' => array(
             'event' => 'mouseover',
           ),
@@ -157,7 +157,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'hide' => array(
-          'delay' => '100',
+          'delay' => '0',
           'effect' => array(
             'type' => 'slide',
             'length' => '100',
@@ -206,7 +206,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'show' => array(
-          'delay' => '90',
+          'delay' => '140',
           'when' => array(
             'event' => 'mouseover',
           ),
@@ -216,7 +216,7 @@ function core_ef_menu_default_menu_links() {
           ),
         ),
         'hide' => array(
-          'delay' => '100',
+          'delay' => '0',
           'effect' => array(
             'type' => 'slide',
             'length' => '100',

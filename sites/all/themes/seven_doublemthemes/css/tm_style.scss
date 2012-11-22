@@ -1,7 +1,7 @@
 /***********************************
-*   BelieveOutLoud Base Stylesheet
+*   earlyIQ theme modifications
 *   Developer: tragic{media}
-*   Created: September 2012
+*   Created: November 2012
 ***********************************/
 //
 //
@@ -790,9 +790,6 @@ a.views-more-link:hover {
 
 }
 
-//  contact pages
-
-
 //
 //
 //
@@ -803,11 +800,6 @@ a.views-more-link:hover {
 //
 //
 // menu dropdown styles
-
-
-
-
-
 .menu-minipanels .menu-block-wrapper ul.menu li a,
 .menu-minipanels .menu-block-wrapper ul.menu li.last a,
 .menu-minipanels .menu-block-wrapper ul.menu li.leaf a,
@@ -827,6 +819,7 @@ a.views-more-link:hover {
 }
 
 .menu-minipanels .menu-block-wrapper ul.menu {
+  
   @include wrap();
   background: white !important;
   border:1px solid #ccc;
@@ -834,6 +827,7 @@ a.views-more-link:hover {
   padding: 10px 10px 10px 10px;
   margin: 0;
   box-shadow: 1px 3px 6px #333;
+  
   li, li.leaf, li.last {
     clear:both;
     display:block;
@@ -845,16 +839,20 @@ a.views-more-link:hover {
 }
 // menu block-system-main-menu
 .sidebar .block-menu {
+  
   h2 {
     font-size:20px;
     line-height:24px;
   }
+  
   ul {
     margin:0;
     padding-left:5px;
   }
+  
   ul li {
     list-style:none !important;
+  
     a {
       font-size:14px;
       font-weight:bold !important;
@@ -873,9 +871,11 @@ a.views-more-link:hover {
 //
 // sidebar
 .sidebar {
+  
   #block-nodeblock-35 {
     padding-top:15px;
   }
+  
   #block-nodeblock-35 h2 {
     background-position:172px 8px;
     font-size:23px;
@@ -883,12 +883,28 @@ a.views-more-link:hover {
     padding:0 70px 0 0;
     width:185px;
   }
+  
   .trust-text {
     width:100%;
   }
+  
   .start-links {
     padding-left:0;
   }
 }
 
-.region-bottom ul.menu li.leaf a {color:$color-white;}
+.region-bottom ul.menu li.leaf a {
+  color:$color-white;
+}
+
+// trustwave block
+#block-nodeblock-76 {
+  float:right;
+  width:115px;
+  h2 {
+    display:none;
+  }
+  img {
+    border:0 !important;
+  }
+}
