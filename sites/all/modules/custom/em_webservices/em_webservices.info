@@ -1,0 +1,4 @@
+name = "EM Web Services"
+description = "Web services to obtain third-party data"
+core = "7.x"
+package = "EM"

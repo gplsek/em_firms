@@ -1,0 +1,1526 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<WL5G3N0:definitions name="CarbonServiceDefinitions" targetNamespace="http://integration.carbon.verid.com" xmlns="" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="java:com.verid.carbon.integration.datatypes" xmlns:WL5G3N2="http://integration.carbon.verid.com" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" jaxb:version="2.0" targetNamespace="java:com.verid.carbon.integration.datatypes" xmlns="java:com.verid.carbon.integration.datatypes" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="java:com.verid.carbon.integration.datatypes" xmlns:WL5G3N2="http://integration.carbon.verid.com" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:ns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="java:com.verid.carbon.integration.datatypes" xmlns:s2="http://integration.carbon.verid.com" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:stns="java:com.verid.carbon.integration.datatypes" xmlns:tns="http://integration.carbon.verid.com" xmlns:types="java:com.verid.carbon.integration.datatypes" xmlns:wsd="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="account-name-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="transaction-direction-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="buy"/>
+          <xs:enumeration value="sell"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="product-category-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="accounting"/>
+          <xs:enumeration value="alcohol"/>
+          <xs:enumeration value="amusement-and-recreation-services"/>
+          <xs:enumeration value="apparel"/>
+          <xs:enumeration value="audio"/>
+          <xs:enumeration value="auto-rental-and-Leasing"/>
+          <xs:enumeration value="automotive-service"/>
+          <xs:enumeration value="baby"/>
+          <xs:enumeration value="background-check"/>
+          <xs:enumeration value="bond"/>
+          <xs:enumeration value="book"/>
+          <xs:enumeration value="cable-or-pay-television-services"/>
+          <xs:enumeration value="caller-id-spoofing"/>
+          <xs:enumeration value="camera"/>
+          <xs:enumeration value="certificate-of-deposit"/>
+          <xs:enumeration value="computer"/>
+          <xs:enumeration value="concert"/>
+          <xs:enumeration value="construction-material"/>
+          <xs:enumeration value="cosmetic"/>
+          <xs:enumeration value="credit-check"/>
+          <xs:enumeration value="electronics"/>
+          <xs:enumeration value="equipment-rental"/>
+          <xs:enumeration value="footwear"/>
+          <xs:enumeration value="furniture-or-home-furnishings"/>
+          <xs:enumeration value="future"/>
+          <xs:enumeration value="game-or-toy"/>
+          <xs:enumeration value="gas"/>
+          <xs:enumeration value="grocery"/>
+          <xs:enumeration value="hotel"/>
+          <xs:enumeration value="insurance"/>
+          <xs:enumeration value="investment-advice"/>
+          <xs:enumeration value="jewelry"/>
+          <xs:enumeration value="kitchen-and-housewares"/>
+          <xs:enumeration value="lawn-and-garden-equipment"/>
+          <xs:enumeration value="membership-organizations"/>
+          <xs:enumeration value="money-transfer-in"/>
+          <xs:enumeration value="money-transfer-out"/>
+          <xs:enumeration value="motor-vehicle"/>
+          <xs:enumeration value="music"/>
+          <xs:enumeration value="musical-instrument"/>
+          <xs:enumeration value="office-product"/>
+          <xs:enumeration value="option"/>
+          <xs:enumeration value="pet-supplies"/>
+          <xs:enumeration value="real-estate"/>
+          <xs:enumeration value="restaurant"/>
+          <xs:enumeration value="software"/>
+          <xs:enumeration value="sporting-and-athletic-product"/>
+          <xs:enumeration value="sporting-event"/>
+          <xs:enumeration value="sports-and-recreation-club"/>
+          <xs:enumeration value="stock"/>
+          <xs:enumeration value="subscriptions-on-line-content"/>
+          <xs:enumeration value="subscriptions-other"/>
+          <xs:enumeration value="subscriptions-periodical"/>
+          <xs:enumeration value="tobacco"/>
+          <xs:enumeration value="tools-and-hardware"/>
+          <xs:enumeration value="trucking-or-courier-service"/>
+          <xs:enumeration value="video-purchase"/>
+          <xs:enumeration value="video-rental"/>
+          <xs:enumeration value="wager"/>
+          <xs:enumeration value="other"/>
+          <xs:enumeration value="deposit"/>
+          <xs:enumeration value="withdrawal"/>
+          <xs:enumeration value="bill-payment"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="product-type">
+        <xs:sequence>
+          <xs:element name="product-category" type="stns:product-category-type"/>
+          <xs:element minOccurs="0" name="model" type="xs:string"/>
+          <xs:element minOccurs="0" name="vendor" type="xs:string"/>
+          <xs:element minOccurs="0" name="code" type="xs:string"/>
+          <xs:element minOccurs="0" name="symbol" type="xs:string"/>
+          <xs:element minOccurs="0" name="transaction-direction" type="stns:transaction-direction-type"/>
+          <xs:element minOccurs="0" name="product-quantity" type="xs:integer"/>
+          <xs:element minOccurs="0" name="per-item-amount" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="transaction-date" type="stns:transaction-date-type"/>
+          <xs:element minOccurs="0" name="data" type="stns:complex-detail-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="person-type">
+        <xs:annotation>
+          <xs:documentation>This construct captures information about the person being authenticated</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name-prefix" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's name's prefix if any (e.g., Mr., Mrs., Dr., ...)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="name-first" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's given name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="name-middle" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's middle name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="name-last" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's surname</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="name-suffix" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's name's suffix (e.g., Jr, III, ...)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="customer-id" type="stns:customer-id-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="email" type="stns:email-type"/>
+          <xs:element minOccurs="0" name="ssn" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's social security number (if provided)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ssn-type" type="stns:ssn-type">
+            <xs:annotation>
+              <xs:documentation>Type of the social security number provided (none, last4 or full)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="drivers-license-number" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Person's drivers license number (if provided)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="drivers-license-state" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>State where drivers license issued (if provided, must be a valid 2 letter USPS state code)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="birthdate" type="stns:birthdate-type">
+            <xs:annotation>
+              <xs:documentation>Person's birthdate</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="address" type="stns:address-type">
+            <xs:annotation>
+              <xs:documentation>Addresses associated with the person</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="uk-address" type="stns:uk-address-type">
+            <xs:annotation>
+              <xs:documentation>UK Addresses associated with the person</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="phone-number" type="stns:phone-number-type">
+            <xs:annotation>
+              <xs:documentation>Phone numbers associated with the person</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="business" type="stns:business-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="employer" type="stns:business-type"/>
+          <xs:element minOccurs="0" name="occupation" type="xs:string"/>
+          <xs:element minOccurs="0" name="risk-assessment" type="stns:risk-assessment-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="address-type">
+        <xs:annotation>
+          <xs:documentation>Multi-purpose address container</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="address-street1" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Part 1 of the street name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="address-street2" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Part 2 of the street name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="suite" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Suite or apartment number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="address-city" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>City of the address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="address-state" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>State of the address (must be a valid 2 letter USPS state code)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="address-zip" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Zip of the address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="address-zip-plus4" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Zip4 of the address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="address-country" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Not required: Country of the address (assumed to be US)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="address-context" type="stns:address-context-type">
+            <xs:annotation>
+              <xs:documentation>The relationship between the address and the owning construct</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="address-years-at" type="xs:decimal">
+            <xs:annotation>
+              <xs:documentation>Years of residence at this address (1.3, 0.2, etc.)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="occupation-start-date" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="uk-address-type">
+        <xs:annotation>
+          <xs:documentation>Multi-purpose address container</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <!--
+					<xs:element name="flat-number" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Flat number</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					-->
+          <xs:element name="house-name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>House name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="house-number" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>House number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="street1" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Street1 name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="street2" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Street2 name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="district" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>District name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="town" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Town of the address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="county" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>County of the address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="postcode" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Postcode of the address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="context" type="stns:address-context-type">
+            <xs:annotation>
+              <xs:documentation>The relationship between the address and the owning construct</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="years-at" type="xs:decimal">
+            <xs:annotation>
+              <xs:documentation>Years of residence at this address (1.3, 0.2, etc.)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="phone-number-type">
+        <xs:annotation>
+          <xs:documentation>Representation of a phone number</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="phone-number" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The phone number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="phone-number-context" type="stns:phone-number-context-type">
+            <xs:annotation>
+              <xs:documentation>The relationship between the phone number and the owning construct</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="business-type">
+        <xs:annotation>
+          <xs:documentation>Representation of a business</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="company-name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the business</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="fein" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The business's FEIN</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="address" type="stns:address-type">
+            <xs:annotation>
+              <xs:documentation>Array of addresses associated with the business (typically only one is given)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="phone-number" type="stns:phone-number-type">
+            <xs:annotation>
+              <xs:documentation>Array of phone numbers associated with the business (typically only one is given)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="title" type="xs:string"/>
+          <xs:element minOccurs="0" name="start-date" type="xs:date"/>
+          <xs:element minOccurs="0" name="end-date" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ordered-by-type">
+        <xs:annotation>
+          <xs:documentation>Who is placing the "order".</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+          <xs:element name="same-as" type="stns:same-as-type"/>
+          <xs:element name="person" type="stns:person-type"/>
+        </xs:choice>
+      </xs:complexType>
+      <xs:complexType name="bill-to-type">
+        <xs:annotation>
+          <xs:documentation>Optional: To whom is the "Order" being billed. Populate either the contact or the same-as field but not both.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+          <xs:element name="same-as" type="stns:same-as-type"/>
+          <xs:element name="person-type" type="stns:person-type"/>
+        </xs:choice>
+      </xs:complexType>
+      <xs:complexType name="ship-to-type">
+        <xs:annotation>
+          <xs:documentation>Optional: To whom is the "Order" being shipped. Populate either the contact or the same-as field but not both.</xs:documentation>
+        </xs:annotation>
+        <xs:choice minOccurs="0">
+          <xs:element name="same-as" type="stns:same-as-type"/>
+          <xs:element name="person-type" type="stns:person-type"/>
+        </xs:choice>
+      </xs:complexType>
+      <xs:simpleType name="same-as-type">
+        <xs:annotation>
+          <xs:documentation>Available values for the same-as field.  Note that the bill-to value is only valid when used in the context of the ship-to-type.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ordered-by">
+            <xs:annotation>
+              <xs:documentation>Use the ordered-by contact.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="bill-to">
+            <xs:annotation>
+              <xs:documentation>Use the bill-to contact.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="payment-method">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="store-credit"/>
+          <xs:enumeration value="gift-card"/>
+          <xs:enumeration value="money-transfer"/>
+          <xs:enumeration value="cash"/>
+          <xs:enumeration value="check"/>
+          <xs:enumeration value="credit-card"/>
+          <xs:enumeration value="debit-card"/>
+          <xs:enumeration value="phone"/>
+          <xs:enumeration value="bill-general"/>
+          <xs:enumeration value="bill-paper"/>
+          <xs:enumeration value="margin"/>
+          <xs:enumeration value="other"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="purchase-type">
+        <xs:annotation>
+          <xs:documentation>Details of the purchase transaction type.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="order">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="item" type="stns:product-type"/>
+                <xs:element name="total-amount" type="xs:decimal"/>
+                <xs:element minOccurs="0" name="total-tax" type="xs:decimal"/>
+                <xs:element minOccurs="0" name="total-shipping" type="xs:decimal"/>
+                <xs:element minOccurs="0" name="merchant" type="xs:string"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="payment-method" type="stns:payment-method"/>
+          <xs:element minOccurs="0" name="shipping" type="stns:shipping-type"/>
+          <xs:element name="account" type="stns:account-type"/>
+          <xs:element name="venue" type="stns:venue-type"/>
+          <xs:element name="transaction-date" type="stns:transaction-date-type"/>
+          <xs:element minOccurs="0" name="risk-assessment" type="stns:risk-assessment-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="mode-type">
+        <xs:annotation>
+          <xs:documentation>Mode of the transaction. Typically set to "live"</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="simulated"/>
+          <xs:enumeration value="testing"/>
+          <xs:enumeration value="pilot"/>
+          <xs:enumeration value="live"/>
+          <xs:enumeration value="verid"/>
+          <xs:enumeration value="verid_cs"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="shipping-method">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ground"/>
+          <xs:enumeration value="priority-overnight"/>
+          <xs:enumeration value="next-day-air"/>
+          <xs:enumeration value="in-store-pickup"/>
+          <xs:enumeration value="second-day-air"/>
+          <xs:enumeration value="priority-ground"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="shipping-type">
+        <xs:sequence>
+          <xs:element name="bill-to" type="stns:bill-to-type"/>
+          <xs:element name="ship-to" type="stns:ship-to-type"/>
+          <xs:element minOccurs="0" name="shipping-method" type="stns:shipping-method"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="settings-type">
+        <xs:annotation>
+          <xs:documentation>Any overrides to the controls specified in the transaction's ruleset that are to be used for this particular transaction</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="account-name" type="stns:account-name-type">
+            <xs:annotation>
+              <xs:documentation>The account name to which this transaction will be associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="mode" type="stns:mode-type">
+            <xs:annotation>
+              <xs:documentation>The mode that the transaction will run under</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ruleset" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Ruleset that will be used to govern the operation of the transaction.  See your account representative for possible values</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="simulator-mode" type="stns:simulator-mode-type">
+            <xs:annotation>
+              <xs:documentation>If the mode of the transaction is "simulated" then this field governs the response given by the Verid system</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="attachment-type" type="stns:attachment-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="special-feature" type="stns:special-feature-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="internationalization" type="stns:internationalization-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="reference-id">
+            <xs:simpleType>
+              <xs:restriction base="stns:reference-id-type"/>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="disposition-settings-type">
+        <xs:complexContent>
+          <xs:extension base="stns:settings-type">
+            <xs:sequence>
+              <xs:element name="transaction-id" type="stns:transaction-id-type"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="continue-settings-type">
+        <xs:complexContent>
+          <xs:extension base="stns:settings-type">
+            <xs:sequence>
+              <xs:element name="transaction-id" type="stns:transaction-id-type"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="resume-settings-type">
+        <xs:complexContent>
+          <xs:extension base="stns:settings-type">
+            <xs:sequence>
+              <xs:element name="transaction-id" type="stns:transaction-id-type"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="identity-verification-settings-type">
+        <xs:complexContent>
+          <xs:extension base="stns:settings-type">
+            <xs:sequence>
+              <xs:element name="task" type="stns:task-type"/>
+              <xs:element minOccurs="0" name="sequence-id" type="xs:integer"/>
+              <xs:element minOccurs="0" name="agent" type="xs:string"/>
+              <xs:element minOccurs="0" name="patriot-act-compliance" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="parent-transaction-id" type="stns:transaction-id-type"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="verification-type">
+        <xs:annotation>
+          <xs:documentation>The verification transaction element.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="venue" type="stns:venue-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="venue-type">
+        <xs:annotation>
+          <xs:documentation>Environment of the transaction</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+          <xs:element name="online" type="stns:online-type">
+            <xs:annotation>
+              <xs:documentation>The Verid system is being called as part of an integrated on-line solution.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="callcenter" type="stns:callcenter-type">
+            <xs:annotation>
+              <xs:documentation>The Verid system is being called as part of an integrated call-center solution.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="batch" type="stns:batch-type">
+            <xs:annotation>
+              <xs:documentation>The Verid system is being called as part of a batch submission</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="netview" type="stns:netview-type">
+            <xs:annotation>
+              <xs:documentation>The Verid system is being called by Verid's GUI</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="point-of-sale">
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension base="stns:point-of-sale-type">
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="credential-method" type="stns:credential-method-type"/>
+                    <xs:element minOccurs="0" name="merchant-zip-code" type="xs:string"/>
+                  </xs:sequence>
+                </xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="customer-service" type="stns:customer-service-type"/>
+          <xs:element name="ivr" type="stns:ivr-type"/>
+        </xs:choice>
+      </xs:complexType>
+      <xs:complexType name="callcenter-type">
+        <xs:annotation>
+          <xs:documentation>Data collected when the venue is the callcenter</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="caller-phone-number" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The phone number that the caller used to call into the callcenter</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="credential-method" type="stns:credential-method-type"/>
+          <xs:element minOccurs="0" name="caller-id" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The text that displayed on caller id for the call into the callcenter</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="online-type">
+        <xs:annotation>
+          <xs:documentation>Data collected when the venue is the online</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="credential" type="stns:credential-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="batch-type">
+        <xs:annotation>
+          <xs:documentation>Data collected when the venue is of type batch</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="batch-id" type="stns:batch-id-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="netview-type">
+        <xs:annotation>
+          <xs:documentation>Data collected when the venue is of type netview</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="netview-form" type="stns:netview-form-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="birthdate-type">
+        <xs:annotation>
+          <xs:documentation>Format of the birthdate object</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="year" type="stns:year-type"/>
+          <xs:element name="month" type="stns:month-type"/>
+          <xs:element name="day" type="stns:day-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="address-context-type">
+        <xs:annotation>
+          <xs:documentation>Available types of address associations. Typically, the "primary" type is utilized.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="primary"/>
+          <xs:enumeration value="secondary"/>
+          <xs:enumeration value="previous"/>
+          <xs:enumeration value="vacation"/>
+          <xs:enumeration value="business"/>
+          <xs:enumeration value="other"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="phone-number-context-type">
+        <xs:annotation>
+          <xs:documentation>Available types of phone number associations. Typically, the "home" or "business" types are utilized.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="home"/>
+          <xs:enumeration value="business"/>
+          <xs:enumeration value="mobile"/>
+          <xs:enumeration value="fax"/>
+          <xs:enumeration value="pager"/>
+          <xs:enumeration value="other"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ssn-type">
+        <xs:annotation>
+          <xs:documentation>In the person record, the type of the ssn being provided. ssn4 is used if only the last 4 digits are provided</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ssn4"/>
+          <xs:enumeration value="ssn9"/>
+          <xs:enumeration value="ssn-first5"/>
+          <xs:enumeration value="nossn"/>
+          <xs:enumeration value="other"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="year-type">
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="1800"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="month-type">
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="1"/>
+          <xs:maxInclusive value="12"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="day-type">
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="1"/>
+          <xs:maxInclusive value="31"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="answer-type">
+        <xs:annotation>
+          <xs:documentation>This is the response to a given question. It includes the id of the question as well as the choices selected by the end-user</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="question-id" type="xs:long"/>
+          <xs:element minOccurs="0" name="choices" type="stns:choices-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="answer-selection-type">
+        <xs:annotation>
+          <xs:documentation>Is the answer type of a question single answer or multiple answer</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="single"/>
+          <xs:enumeration value="multiple"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="choice-type">
+        <xs:annotation>
+          <xs:documentation>Coming from the Verid server this is one of the choices for a given question. It includes the id of the choice and the text to present to the end-user</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="choice-id" type="xs:long"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="text" type="stns:text-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="choices-type">
+        <xs:annotation>
+          <xs:documentation>An array of choices</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="choice-id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="answers-type">
+        <xs:annotation>
+          <xs:documentation>Being sent to the Verid server as part of a transaction-continue, this contains the answers provided by the end-user in response to a set of questions</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="question-set-id" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>Id of the question set echoed back to the Verid system.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="answer" type="stns:answer-type">
+            <xs:annotation>
+              <xs:documentation>Answers to each of the questions provided by the end-user</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="simulator-mode-type">
+        <xs:annotation>
+          <xs:documentation>Available simulation mode types.  Note that "random" will randomly select from the available types</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="random"/>
+          <xs:enumeration value="invalid_simulator_mode"/>
+          <xs:enumeration value="communications_error"/>
+          <xs:enumeration value="internal_application_error"/>
+          <xs:enumeration value="invalid_parameterlist"/>
+          <xs:enumeration value="invalid_information"/>
+          <xs:enumeration value="invalid_login"/>
+          <xs:enumeration value="invalid_transaction_continue"/>
+          <xs:enumeration value="invalid_transaction_initiate"/>
+          <xs:enumeration value="invalid_mode"/>
+          <xs:enumeration value="no_test_tokens"/>
+          <xs:enumeration value="unknown_database_response"/>
+          <xs:enumeration value="xml_data_integrity"/>
+          <xs:enumeration value="blocked"/>
+          <xs:enumeration value="denial_cumulative_transaction_activity_amount"/>
+          <xs:enumeration value="denial_cumulative_transaction_activity_frequency"/>
+          <xs:enumeration value="denial_individual_reported_dead"/>
+          <xs:enumeration value="failed_iauth_questions"/>
+          <xs:enumeration value="individual_not_found"/>
+          <xs:enumeration value="insufficient_info_for_questions"/>
+          <xs:enumeration value="ipcountry_denial"/>
+          <xs:enumeration value="multiple_individuals_found"/>
+          <xs:enumeration value="passed"/>
+          <xs:enumeration value="questions"/>
+          <xs:enumeration value="denial"/>
+          <xs:enumeration value="failed_icheck"/>
+          <xs:enumeration value="transaction_expired"/>
+          <xs:enumeration value="business_not_found"/>
+          <xs:enumeration value="multiple_businesses_found"/>
+          <xs:enumeration value="denial_age_verification_mismatch"/>
+          <xs:enumeration value="denial_age_verification_not_provided"/>
+          <xs:enumeration value="denial_age_verification_threshold"/>
+          <xs:enumeration value="denial_age_verification_undetermined"/>
+          <xs:enumeration value="denial_address_warning"/>
+          <xs:enumeration value="call_center_assist"/>
+          <xs:enumeration value="age.under.threshold"/>
+          <xs:enumeration value="age.notavailable"/>
+          <xs:enumeration value="age.match.quality"/>
+          <xs:enumeration value="address.warnings"/>
+          <xs:enumeration value="denial_address_violation_pobox"/>
+          <xs:enumeration value="denial_address_violation_general"/>
+          <xs:enumeration value="denial_aml_check_not_pass"/>
+          <xs:enumeration value="denial_currentaddress_notcurrent"/>
+          <xs:enumeration value="denial_currentaddress_notfound"/>
+          <xs:enumeration value="denial_currentaddress_notmostrecent"/>
+          <xs:enumeration value="denial_driverslicense_not_provided_failure"/>
+          <xs:enumeration value="denial_driverslicense_undiscovered_failure"/>
+          <xs:enumeration value="denial_group_iauth_failure_frequency"/>
+          <xs:enumeration value="denial_group_transaction_frequency"/>
+          <xs:enumeration value="denial_iauth_failed_too_recently"/>
+          <xs:enumeration value="denial_identity_event"/>
+          <xs:enumeration value="denial_ip_flagging"/>
+          <xs:enumeration value="denial_phonenumber_not_match"/>
+          <xs:enumeration value="denial_phonenumber_not_provided"/>
+          <xs:enumeration value="denial_risk"/>
+          <xs:enumeration value="denial_ssn_dob_mismatch"/>
+          <xs:enumeration value="denial_ssn_match_violation"/>
+          <xs:enumeration value="denial_ssn_not_provided"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="task-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="icheck"/>
+          <xs:enumeration value="iauth"/>
+          <xs:enumeration value="iauto"/>
+          <xs:enumeration value="iage"/>
+          <xs:enumeration value="imonitor"/>
+          <xs:enumeration value="ikba"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="transaction-result-type">
+        <xs:annotation>
+          <xs:documentation>transaction-response will return one of the 4 possible result types:</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="passed"/>
+          <xs:enumeration value="failed"/>
+          <xs:enumeration value="error"/>
+          <xs:enumeration value="questions"/>
+          <xs:enumeration value="accepted"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="simple-detail-type">
+        <xs:annotation>
+          <xs:documentation>Textual descriptive information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="text" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Text for the simple detail</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="complex-detail-type">
+        <xs:annotation>
+          <xs:documentation>Textual information is passed back in a bullet-type hierarchy of points. A complex-detail can contain a list of 0 or more of either complex and simple details (note that a complex-detail cannot contain both simple and complex detail arrays)</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="heading" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Heading text for the complex detail</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="simple-detail" type="stns:simple-detail-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="complex-detail" type="stns:complex-detail-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="information-type">
+        <xs:annotation>
+          <xs:documentation>Informational fact that can contain either an array of complex-details or an array of simple-details </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="information-code" type="stns:information-code-type"/>
+          <xs:element name="detail-code" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Actionable string representing the explicit information element</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="detail-description" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="complex-detail" type="stns:complex-detail-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="simple-detail" type="stns:simple-detail-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="question-type">
+        <xs:annotation>
+          <xs:documentation>Question structure passed back from the Verid server when the response is of type "questions" </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="question-id" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>ID of the question.  This value will be echoed back as part of the transaction-continue</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="answer-type" type="stns:answer-selection-type">
+            <xs:annotation>
+              <xs:documentation>Indicates if this is a single selection or multiple selection answer type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="text" type="stns:text-type">
+            <xs:annotation>
+              <xs:documentation>Text for the question that is to be presented to the end-user</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="choice" type="stns:choice-type">
+            <xs:annotation>
+              <xs:documentation>Available choices for this question</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="help-text" type="stns:text-type">
+            <xs:annotation>
+              <xs:documentation>Help text that is associated with the question</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="questions-type">
+        <xs:annotation>
+          <xs:documentation>The question set that is to be presented to the end-user</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="question-set-id" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>ID of the question-set being returned.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="question" type="stns:question-type">
+            <xs:annotation>
+              <xs:documentation>The questions</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="domain-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="organizational-unit-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="username-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="credential-method-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ssn"/>
+          <xs:enumeration value="security-question"/>
+          <xs:enumeration value="pin"/>
+          <xs:enumeration value="basic"/>
+          <xs:enumeration value="certificate"/>
+          <xs:enumeration value="token"/>
+          <xs:enumeration value="federated"/>
+          <xs:enumeration value="drivers-license"/>
+          <xs:enumeration value="passport"/>
+          <xs:enumeration value="photo-id-card"/>
+          <xs:enumeration value="account-id"/>
+          <xs:enumeration value="voice-id"/>
+          <xs:enumeration value="birth-date"/>
+          <xs:enumeration value="none"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="credential-type">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="credential-method" type="stns:credential-method-type"/>
+          <xs:element minOccurs="0" name="username" type="stns:username-type"/>
+          <xs:element minOccurs="0" name="domain" type="stns:domain-type"/>
+          <xs:element minOccurs="0" name="organizational-unit" type="stns:organizational-unit-type"/>
+          <xs:element minOccurs="0" name="http-header" type="stns:http-header-type"/>
+          <xs:element minOccurs="0" name="ip-address" type="stns:ip-address-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="machine-id" type="stns:machine-id-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transport-layer-type"/>
+      <xs:complexType name="point-of-sale-type"/>
+      <xs:complexType name="header-fields-type"/>
+      <xs:simpleType name="header-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="header-field-value-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="header-field-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:complexType name="http-header-type">
+        <xs:choice>
+          <xs:element name="header" type="stns:header-type"/>
+          <xs:element maxOccurs="unbounded" name="header-fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="header-field" type="stns:header-field-type"/>
+                <xs:element name="header-value" type="stns:header-field-value-type"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:simpleType name="ip-address-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="batch-id-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="netview-form-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="browser-version-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="browser-vendor-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:complexType name="browser-type"/>
+      <xs:simpleType name="machine-id-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="language-venue-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="callcenter"/>
+          <xs:enumeration value="point-of-sale"/>
+          <xs:enumeration value="online"/>
+          <xs:enumeration value="ivr"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="language-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="spanish"/>
+          <xs:enumeration value="informal-spanish"/>
+          <xs:enumeration value="english"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="account-category-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="banking"/>
+          <xs:enumeration value="brokerage"/>
+          <xs:enumeration value="retirement-savings"/>
+          <xs:enumeration value="retail"/>
+          <xs:enumeration value="utility-service"/>
+          <xs:enumeration value="loan-application"/>
+          <xs:enumeration value="credit-application"/>
+          <xs:enumeration value="phone-service"/>
+          <xs:enumeration value="cellular-phone-service"/>
+          <xs:enumeration value="cable-tv-service"/>
+          <xs:enumeration value="satellite-tv-service"/>
+          <xs:enumeration value="internet-service"/>
+          <xs:enumeration value="money-transfer"/>
+          <xs:enumeration value="online-account"/>
+          <xs:enumeration value="email-account"/>
+          <xs:enumeration value="mortgage-application"/>
+          <xs:enumeration value="public-records"/>
+          <xs:enumeration value="credit-card"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="customer-id-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="email-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:complexType name="account-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account-number" type="stns:account-number-type"/>
+          <xs:element minOccurs="0" name="account-transaction-id" type="stns:account-transaction-id-type"/>
+          <xs:element minOccurs="0" name="account-name" type="stns:account-name-type"/>
+          <xs:element maxOccurs="unbounded" name="customer-id" type="stns:customer-id-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="account-transaction-id-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="reference-id-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:complexType name="account-activity-type">
+        <xs:sequence>
+          <xs:element name="account" type="stns:account-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="account-transaction" type="stns:product-type"/>
+          <xs:element minOccurs="0" name="total-amount" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="beginning-balance" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="ending-balance" type="xs:decimal"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="account-maintenance-category-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="address-change"/>
+          <xs:enumeration value="phone-number-change"/>
+          <xs:enumeration value="close-account"/>
+          <xs:enumeration value="beneficiary-change"/>
+          <xs:enumeration value="additional-account"/>
+          <xs:enumeration value="name-change"/>
+          <xs:enumeration value="password-reset"/>
+          <xs:enumeration value="password-change"/>
+          <xs:enumeration value="add-user"/>
+          <xs:enumeration value="remove-user"/>
+          <xs:enumeration value="change-billing-information"/>
+          <xs:enumeration value="add-payee"/>
+          <xs:enumeration value="change-payee"/>
+          <xs:enumeration value="link-account"/>
+          <xs:enumeration value="pin-change"/>
+          <xs:enumeration value="email-change"/>
+          <xs:enumeration value="view-event"/>
+          <xs:enumeration value="add-joint-account-holder"/>
+          <xs:enumeration value="reorder-checks"/>
+          <xs:enumeration value="order-card"/>
+          <xs:enumeration value="stop-payment"/>
+          <xs:enumeration value="add-alerts"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="account-verification-type">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="account-maintenance" type="stns:account-maintenance-type"/>
+            <xs:element name="account-activity" type="stns:account-activity-type"/>
+            <xs:element name="account-origination" type="stns:account-origination-type"/>
+          </xs:choice>
+          <xs:element name="venue" type="stns:venue-type"/>
+          <xs:element name="activity-date" type="stns:transaction-date-type"/>
+          <xs:element minOccurs="0" name="risk-assessment" type="stns:risk-assessment-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="security-question-answer-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="security-question-statement-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="security-question-category-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="mothers-maiden-name"/>
+          <xs:enumeration value="pet"/>
+          <xs:enumeration value="birth-city"/>
+          <xs:enumeration value="high-school"/>
+          <xs:enumeration value="middle-school"/>
+          <xs:enumeration value="grade-school"/>
+          <xs:enumeration value="ice-cream"/>
+          <xs:enumeration value="user-defined"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="security-question-type">
+        <xs:sequence>
+          <xs:element name="security-question-question-category" type="stns:security-question-category-type"/>
+          <xs:element name="security-question-quesiton-statement" type="stns:security-question-statement-type"/>
+          <xs:element name="security-question-answer" type="stns:security-question-answer-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="account-number-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="transaction-id-type">
+        <xs:restriction base="xs:long"/>
+      </xs:simpleType>
+      <xs:complexType name="transaction-status-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="transaction-id" type="stns:transaction-id-type">
+            <xs:annotation>
+              <xs:documentation>Verid's number that identifies the transaction</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="transaction-request-id" type="stns:transaction-id-type">
+            <xs:annotation>
+              <xs:documentation>Verid's request identifier that identifies the part of the conversational transaction</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="accounts-transaction-id" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Echo of the provided account's transaction number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="reference-id">
+            <xs:simpleType>
+              <xs:restriction base="stns:reference-id-type"/>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="transaction-result" type="stns:transaction-result-type"/>
+          <xs:element minOccurs="0" name="risk-assessment" type="stns:risk-assessment-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="special-feature" type="stns:special-feature-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transaction-type">
+        <xs:choice>
+          <xs:element name="purchase" type="stns:purchase-type"/>
+          <xs:element name="account-verification" type="stns:account-verification-type"/>
+        </xs:choice>
+      </xs:complexType>
+      <xs:complexType name="account-maintenance-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account-category" type="stns:account-category-type"/>
+          <xs:element minOccurs="0" name="account-maintenance-category" type="stns:account-maintenance-category-type"/>
+          <xs:element minOccurs="0" name="maintenance-detail" type="xs:string"/>
+          <xs:element name="account" type="stns:account-type"/>
+          <xs:element minOccurs="0" name="data" type="stns:complex-detail-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="account-origination-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account-category" type="stns:account-category-type"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="security-question" type="stns:security-question-type"/>
+          <xs:element minOccurs="0" name="voice-enrollment" type="xs:boolean"/>
+          <xs:element name="account" type="stns:account-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="customer-service-type">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="credential-method" type="stns:credential-method-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="special-feature-value-type">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:simpleType name="special-feature-code-type">
+        <xs:restriction base="xs:string">
+          <xs:minLength value="3"/>
+          <xs:maxLength value="10"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="information-code-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="question-details"/>
+          <xs:enumeration value="passed-details"/>
+          <xs:enumeration value="failed-details"/>
+          <xs:enumeration value="error-details"/>
+          <xs:enumeration value="special-feature-details"/>
+          <xs:enumeration value="information-details"/>
+          <xs:enumeration value="threat-details"/>
+          <xs:enumeration value="voice-id-details"/>
+          <xs:enumeration value="disposition-details"/>
+          <xs:enumeration value="presentation-details"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="attachment-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="xml"/>
+          <xs:enumeration value="grammar"/>
+          <xs:enumeration value="wav"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="voice-enrollment">
+        <xs:restriction base="xs:boolean"/>
+      </xs:simpleType>
+      <xs:simpleType name="threat-assessment">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="high"/>
+          <xs:enumeration value="medium"/>
+          <xs:enumeration value="low"/>
+          <xs:enumeration value="indeterminate"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="risk-score">
+        <xs:restriction base="xs:double"/>
+      </xs:simpleType>
+      <xs:simpleType name="risk-category">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="transaction"/>
+          <xs:enumeration value="identity"/>
+          <xs:enumeration value="verification"/>
+          <xs:enumeration value="biometric"/>
+          <xs:enumeration value="total"/>
+          <xs:enumeration value="credit"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="risk-component-type">
+        <xs:sequence>
+          <xs:element name="risk-category" type="stns:risk-category"/>
+          <xs:element name="risk-score" type="stns:risk-score"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="risk-assessment-type">
+        <xs:sequence>
+          <xs:element name="risk-score" type="stns:risk-score"/>
+          <xs:element name="threat-assessment" type="stns:threat-assessment"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="risk-component" type="stns:risk-component-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="disposition-date-type">
+        <xs:restriction base="xs:date"/>
+      </xs:simpleType>
+      <xs:simpleType name="fraud-category-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="general.fraud"/>
+          <xs:enumeration value="friendly.fraud"/>
+          <xs:enumeration value="false.claim.fraud"/>
+          <xs:enumeration value="identity.theft.fraud"/>
+          <xs:enumeration value="indeterminate"/>
+          <xs:enumeration value="none"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="disposition-status-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="open"/>
+          <xs:enumeration value="closed"/>
+          <xs:enumeration value="unknown"/>
+          <xs:enumeration value="not.applicable"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="disposition-result-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="success"/>
+          <xs:enumeration value="error"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="assertion-type"/>
+      <xs:simpleType name="transaction-date-type">
+        <xs:restriction base="xs:dateTime"/>
+      </xs:simpleType>
+      <xs:complexType name="ivr-type">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="credential-method" type="stns:credential-method-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="special-feature-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="special-feature-code" type="stns:special-feature-code-type"/>
+          <xs:element minOccurs="0" name="special-feature-value" type="stns:special-feature-value-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="internationalization-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="language" type="stns:language-type"/>
+          <xs:element minOccurs="0" name="language-venue" type="stns:language-venue-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="text-type">
+        <xs:sequence>
+          <xs:element name="language" type="stns:language-type"/>
+          <xs:element name="statement" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="identity-assertion-type">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="data" type="stns:complex-detail-type"/>
+          <xs:element name="transaction" type="stns:transaction-type"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="assertion">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="settings" type="stns:settings-type"/>
+            <xs:element name="person" type="stns:person-type"/>
+            <xs:element name="account" type="stns:account-type"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="identity-assertion" type="stns:identity-assertion-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="assertion-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="assertion-status" type="stns:transaction-status-type"/>
+            <xs:element name="information" type="stns:information-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transaction-authentication-check">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="settings">
+              <xs:complexType>
+                <xs:complexContent>
+                  <xs:extension base="stns:settings-type"/>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="credential" type="stns:credential-type"/>
+            <xs:element name="account" type="stns:account-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transaction-resume">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="settings" type="stns:resume-settings-type"/>
+            <xs:element name="account" type="stns:account-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transaction-identity-verification">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>This is the top level structure used to start a new transaction</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="settings" type="stns:identity-verification-settings-type">
+              <xs:annotation>
+                <xs:documentation>Per transaction overrides on controls</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="person" type="stns:person-type"/>
+            <xs:element minOccurs="0" name="transaction" type="stns:transaction-type"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="identity-assertion" type="stns:identity-assertion-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transaction-continue">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Message sent to the Verid system in response to a set of questions.</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="settings" type="stns:continue-settings-type"/>
+            <xs:choice>
+              <xs:element minOccurs="0" name="answers" type="stns:answers-type">
+                <xs:annotation>
+                  <xs:documentation>Answers to the questions that were presented to the end-user</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transaction-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="transaction-status" type="stns:transaction-status-type"/>
+            <xs:element minOccurs="0" name="questions" type="stns:questions-type">
+              <xs:annotation>
+                <xs:documentation>If the response is of type questions, then this field will contain the questions to be presented to the end-user</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="information" type="stns:information-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="disposition">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="settings" type="stns:disposition-settings-type"/>
+            <xs:element name="account" type="stns:account-type"/>
+            <xs:element name="fraud-category" type="stns:fraud-category-type"/>
+            <xs:element name="disposition-status" type="stns:disposition-status-type"/>
+            <xs:element minOccurs="0" name="disposition-date" type="stns:disposition-date-type"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="IdentityVerification">
+    <WL5G3N0:part element="WL5G3N1:transaction-identity-verification" name="IdentityVerificationMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="transactionResponse">
+    <WL5G3N0:part element="WL5G3N1:transaction-response" name="TransactionResponseMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="resume">
+    <WL5G3N0:part element="WL5G3N1:transaction-resume" name="TransactionResumeMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="continuation">
+    <WL5G3N0:part element="WL5G3N1:transaction-continue" name="TransactionContinueMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="authentication">
+    <WL5G3N0:part element="WL5G3N1:transaction-authentication-check" name="TransactionAuthenticationMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="disposition">
+    <WL5G3N0:part element="WL5G3N1:disposition" name="DispositionMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="assertion">
+    <WL5G3N0:part element="WL5G3N1:assertion" name="AssertionMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="assertionResponse">
+    <WL5G3N0:part element="WL5G3N1:assertion-response" name="AssertionResponseMsg"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="Carbon">
+    <WL5G3N0:operation name="identityVerification">
+      <WL5G3N0:input message="WL5G3N2:IdentityVerification"/>
+      <WL5G3N0:output message="WL5G3N2:transactionResponse"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="continuation">
+      <WL5G3N0:input message="WL5G3N2:continuation"/>
+      <WL5G3N0:output message="WL5G3N2:transactionResponse"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="resume">
+      <WL5G3N0:input message="WL5G3N2:resume"/>
+      <WL5G3N0:output message="WL5G3N2:transactionResponse"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="authenticationCheck">
+      <WL5G3N0:input message="WL5G3N2:authentication"/>
+      <WL5G3N0:output message="WL5G3N2:transactionResponse"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="disposition">
+      <WL5G3N0:input message="WL5G3N2:disposition"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="assertion">
+      <WL5G3N0:input message="WL5G3N2:assertion"/>
+      <WL5G3N0:output message="WL5G3N2:assertionResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="CarbonSoapBinding" type="WL5G3N2:Carbon">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="identityVerification">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body parts="IdentityVerificationMsg" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body parts="TransactionResponseMsg" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="continuation">
+      <WL5G3N3:operation style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body parts="TransactionContinueMsg" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body parts="TransactionResponseMsg" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="resume">
+      <WL5G3N3:operation style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body parts="TransactionResumeMsg" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body parts="TransactionResponseMsg" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="authenticationCheck">
+      <WL5G3N3:operation style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body parts="TransactionAuthenticationMsg" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body parts="TransactionResponseMsg" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="assertion">
+      <WL5G3N3:operation style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body parts="AssertionMsg" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body parts="AssertionResponseMsg" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="disposition">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body parts="DispositionMsg" use="literal"/>
+      </WL5G3N0:input>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="CarbonWebService">
+    <WL5G3N0:port binding="WL5G3N2:CarbonSoapBinding" name="CarbonSoapPort">
+      <WL5G3N3:address location="https://netview.verid.com:443/carbon/ws"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

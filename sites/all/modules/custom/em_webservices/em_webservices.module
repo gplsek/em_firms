@@ -1,0 +1,28 @@
+<?php
+
+function em_webservices_menu() {
+  $items = array();
+
+/*
+  $items['webservices/test'] = array(
+    'page callback' => 'em_webservices_test',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK
+  );
+*/
+  
+  $items['webservices/test/kba'] = array(
+    'page callback' => 'em_webservices_kba',
+    'access callback' => TRUE,
+    'description' => 'KBA Testing form',
+    'file' => 'kba/kba.inc',
+    'type' => MENU_CALLBACK
+  );
+    
+  return $items;
+}
+
+function em_webservices_kba(){
+	global $user;
+	return drupal_get_form("kba_wizard");
+}
