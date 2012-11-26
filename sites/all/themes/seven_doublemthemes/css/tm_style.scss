@@ -100,12 +100,24 @@
     background: linear-gradient(to bottom, rgba(0,115,187,1) 0%,rgba(34,91,160,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0073bb', endColorstr='#225ba0',GradientType=0 ); /* IE6-8 */
   }
+  @if $color== 'formHeader' {
+    background: rgb(108,166,194); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZjYTZjMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjElIiBzdG9wLWNvbG9yPSIjM2I4N2FiIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzM4NjU4NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    background: -moz-linear-gradient(top, rgba(108,166,194,1) 0%, rgba(59,135,171,1) 1%, rgba(56,101,133,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(108,166,194,1)), color-stop(1%,rgba(59,135,171,1)), color-stop(100%,rgba(56,101,133,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(108,166,194,1) 0%,rgba(59,135,171,1) 1%,rgba(56,101,133,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(108,166,194,1) 0%,rgba(59,135,171,1) 1%,rgba(56,101,133,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(108,166,194,1) 0%,rgba(59,135,171,1) 1%,rgba(56,101,133,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(108,166,194,1) 0%,rgba(59,135,171,1) 1%,rgba(56,101,133,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6ca6c2', endColorstr='#386585',GradientType=0 ); /* IE6-8 */
+  }
 } //  @include gradient(base-color); (ex: gradient(grey);
 @mixin eiq_action_btn($w: 200px, $h: 44px) {
     $radius: $h/2;
     @include size($w, $h);
     @include border-radius($radius);
-    @include gradient('blue_btn');
+      
     border:0 !important;
     color:$color-white;
     display:block;
@@ -564,29 +576,10 @@ a.views-more-link:hover {
   }
 }
 
-/* all forms first */
+/* all forms */
 
 
 #main-wrapper form {
-
-  fieldset {
-      
-    legend {
-
-    }
-   
-    .fieldset-wrapper {
-      
-    }
-  }
-  
-  .form-item, .form-wrapper {
-
-  }
-
-  select {
-
-  }
 
   input[type='text'], textarea, input[type='password'] {
     @include border-radius(2px);
@@ -605,7 +598,12 @@ a.views-more-link:hover {
     width:432px;
   }
 
-  input[type='submit'] {
+  .grippie {display:none;}
+}
+
+/* 
+this needs more specificity
+input[type='submit'] {
     @include eiq_action_btn(auto, 44px);
     float:left;
     font-size:15px;
@@ -616,9 +614,7 @@ a.views-more-link:hover {
       cursor:pointer;
     }
   }
-  
-  .grippie {display:none;}
-}
+  */
 
 //
 //
@@ -661,61 +657,138 @@ a.views-more-link:hover {
     input#edit-captcha-response {width:390px;}
   }
 }
-
-// company and personal application forms
+//
+//
+//
+//
+//
+/* company and personal application forms
 .page-user-apply, .page-node-add-data-person, .page-node-add-data-company {
   #content form {
-    float:left;
+    
   }
 }
 .section-beta #content form {
-  float:right;
+
+}*/
+
+fieldset legend,
+html.js fieldset.collapsible .fieldset-legend {
+  @include wrap();
+  display:block;
+  width:100%;
 }
-.page-user-apply, .page-node-add-data-person, .page-node-add-data-company, .section-beta {
-#content {
+
+html.js fieldset.collapsed {
+  height:auto !important; // or
+}
+
+// white arrows
+html.js fieldset.collapsible .fieldset-legend {
+  background-image:url($pathImg + 'menu-expanded-wht.png');
+}
+
+html.js fieldset.collapsed .fieldset-legend {
+  background-image:url($pathImg + 'menu-collapsed-wht.png');  
+}
+
+.field-type-link-field label,
+.field-type-link-field .link-field-subrow,
+.field-type-link-field .link-field-subrow .link-field-url,
+.field-type-link-field .link-field-subrow .link-field-url .form-item,
+.field-type-link-field .description {
+  display:block;
+}
+
+.field-type-link-field .description {
+  font-style:italic;
+}
+
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta {
+
+  #block-system-main {
+    background:url($pathImg + 'bg_pattern_forms.png') 0 0 repeat;
+    border:1px solid #d4d4d4;
+    padding:20px 0;
+  }
+  
+  #content {
     background:url($pathImg + 'form-backdrop.png') left 250px no-repeat;
   }
-  .region-content {
-    .field-name-body {
-      float:left;
-      margin-bottom:15px;
-      width:440px;
-    }
-    form {
-      width:470px;
-    }
+
+  .field-group-fieldset.group-company .fieldset-wrapper .form-wrapper,
+  .form-item {
+    margin-bottom:15px;
   }
   
-  h1 {text-align:center;}
+  h1 {
+    text-align:center;
+  }
   
   form {
-    margin:0;
-    width:500px;
+    margin:0 auto;
+    max-width:850px; // prototype
+    width:80%; // prototype
     
+    input,
+    select,
+    textarea {
+      margin:0; 
+    }
+
     fieldset {
-      @include border-radius(10px);
-      //border-color:$color-light-grey;
-      background:#e5e5e5;
-      border:1px solid #d2d2d2;
-//      border:0;
+      @include wrap();
+      border:0;
       margin:0 auto;
-      padding:5px 9px;
-      width:450px;  
+      padding:0;
+    
       fieldset {
+        background:none;
         border:0;
         margin:0;
         padding:0;
       }
+
+      .fieldset-wrapper {
+        background:$color-white;
+      }
     }
-    
-    input, select, textarea {
-      margin:0; 
+
+    /*labels*/
+    label {
+      float:left;
+      line-height:24px;
+      min-width:190px;
+      padding-left:2%;
+      text-align:left;
+      width:23%;
     }
-    
-    input[type='text'], input[type='email'] {
+
+    legend {
+      @include border-radius(5px);
+      @include gradient('formHeader');
+      color:$color-white;
+      margin-top:15px;
+      margin-bottom:20px;
+      
+      a, a:link, a:visited {
+        color:$color-white;
+        text-decoration:none;
+
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+
+    input[type='text'],
+    input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
-      width:429px;
+      width:68%;
     }
     
     input[type='submit'] {
@@ -725,6 +798,7 @@ a.views-more-link:hover {
       &#edit-cancel {width:115px;}
       &#edit-field-invite-officers-und-add-more--2 {width:180px;}
 */  }
+    
     #edit-sac,
     #edit-submit,
     #edit-cancel {
@@ -734,10 +808,8 @@ a.views-more-link:hover {
     
     // ajax headers
     th, thead th {
-      @include border-radius(5px);
-      background:$color-blue;
+      background:none;
       border:0;
-      color:$color-white;
     }
     
     tr.odd, tr.even {
@@ -756,57 +828,56 @@ a.views-more-link:hover {
   .field-name-field-disclaimer,
   .field-name-field-agree-final {
     @include wrap();
-    @include border-radius(5px);
-    background:$color-header-green;
-    color:$color-white;
     padding:10px 0;
 
     .form-item {
       padding-left:15px;
     }
   }
-
-  // company name
-  .field-name-field-company-type {
-    float:left;
-    width:210px;
+  /* prototype overrides */
+  .field-name-field-address-city,
+  .field-name-field-address-state,
+  .field-name-field-address-zip {
+    float:none;
+    display:block;
   }
 
-  .field-name-field-industry {
-    float:left;
-    width:223px;
-    
-    select {
-      width:223px;
+  .field-name-field-address-state .form-select {
+    width:auto;
+  }
+
+  // city input
+  .field-name-field-address-city {
+    @include wrap();
+  }
+
+  .field-name-field-address-zip {
+    display:block;
+    float:none; /* overrides, prototype */
+    label {
+      line-height:13px;
+    }
+    input[type='text'] {
+      margin-top:5px;
+      //width:90px;
     }
   }
 
+  // company name
+  .field-name-field-company-type {
+
+  }
+
+  .field-name-field-industry {
+
+  }
+
   .field-type-phone {
-    clear:left;
   }
 
   // address inputs
   .field-name-field-address-address1 .form-text,
   .field-name-field-address-address2 .form-text {
-    width:409px;
-  }
-
-  // city input
-  .field-name-field-address-city .form-text {
-    width:200px;
-  }
-
-  .field-name-field-address-zip {
-    width:130px;
-    label {
-      float:left;
-      line-height:13px;
-      width:50px;
-    }
-    input[type='text'] {
-      margin-top:5px;
-      width:90px;
-    }
   }
 }
 
