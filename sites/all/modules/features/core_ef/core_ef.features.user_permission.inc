@@ -647,7 +647,11 @@ function core_ef_user_default_permissions() {
   // Exported permission: create data_person content.
   $permissions['create data_person content'] = array(
     'name' => 'create data_person content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'co_admin',
+      2 => 'co_user',
+    ),
     'module' => 'node',
   );
 
@@ -759,7 +763,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete any data_person content.
   $permissions['delete any data_person content'] = array(
     'name' => 'delete any data_person content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -844,7 +850,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: delete own data_person content.
   $permissions['delete own data_person content'] = array(
     'name' => 'delete own data_person content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -947,7 +955,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit any data_person content.
   $permissions['edit any data_person content'] = array(
     'name' => 'edit any data_person content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -1034,7 +1044,9 @@ function core_ef_user_default_permissions() {
   // Exported permission: edit own data_person content.
   $permissions['edit own data_person content'] = array(
     'name' => 'edit own data_person content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
