@@ -663,19 +663,26 @@ a.views-more-link:hover {
 }
 
 // company and personal application forms
-.page-node-add-data-person, .page-node-add-data-company, .section-beta {
+.page-user-apply, .page-node-add-data-person, .page-node-add-data-company {
+  #content form {
+    float:left;
+  }
+}
+.section-beta #content form {
+  float:right;
+}
+.page-user-apply, .page-node-add-data-person, .page-node-add-data-company, .section-beta {
 #content {
     background:url($pathImg + 'form-backdrop.png') left 250px no-repeat;
   }
   .region-content {
     .field-name-body {
       float:left;
-      margin-right:20px;
-      width:300px;
+      margin-bottom:15px;
+      width:440px;
     }
     form {
-      float:right;
-      width:435px;
+      width:470px;
     }
   }
   
@@ -688,8 +695,12 @@ a.views-more-link:hover {
     fieldset {
       @include border-radius(10px);
       //border-color:$color-light-grey;
-      border:0;
-  
+      background:#e5e5e5;
+      border:1px solid #d2d2d2;
+//      border:0;
+      margin:0 auto;
+      padding:5px 9px;
+      width:450px;  
       fieldset {
         border:0;
         margin:0;
@@ -763,11 +774,15 @@ a.views-more-link:hover {
 
   .field-name-field-industry {
     float:left;
-    width:276px;
+    width:223px;
     
     select {
-      width:276px;
+      width:223px;
     }
+  }
+
+  .field-type-phone {
+    clear:left;
   }
 
   // address inputs
@@ -778,7 +793,20 @@ a.views-more-link:hover {
 
   // city input
   .field-name-field-address-city .form-text {
-    width:230px;
+    width:200px;
+  }
+
+  .field-name-field-address-zip {
+    width:130px;
+    label {
+      float:left;
+      line-height:13px;
+      width:50px;
+    }
+    input[type='text'] {
+      margin-top:5px;
+      width:90px;
+    }
   }
 }
 
@@ -905,6 +933,8 @@ a.views-more-link:hover {
     display:none;
   }
   img {
+    @include size(auto !important, auto !important); // resp o.r.
     border:0 !important;
+    padding:0;
   }
 }
