@@ -230,7 +230,8 @@ function em_apply_verification_form_submit($form, &$form_state){
 	'Day' => $form_state['values']['birthdate']['day'],
 	'Address' => $form_state['values']['address']
 	  );
-	
+	print_r($data);
+	die();
     _rsa_verification_submit($data);
 
 	node_save($node);
