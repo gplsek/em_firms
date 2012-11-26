@@ -138,8 +138,6 @@ function core_ef_context_default_contexts() {
         'theme-features' => 'theme-features',
         '7-different-home-pages' => '7-different-home-pages',
         'products-portfolios' => 'products-portfolios',
-        'user' => 'user',
-        'users/*' => 'users/*',
       ),
     ),
   );
