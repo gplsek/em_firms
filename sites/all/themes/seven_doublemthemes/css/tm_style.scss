@@ -1,7 +1,7 @@
 /***********************************
-*   BelieveOutLoud Base Stylesheet
+*   earlyIQ theme modifications
 *   Developer: tragic{media}
-*   Created: September 2012
+*   Created: November 2012
 ***********************************/
 //
 //
@@ -324,7 +324,7 @@ header {
   margin:0 !important;
 }
 
-#
+
 /* font styles */
 #block-system-main-menu ul li a {
   color:$color-link-grey;
@@ -663,19 +663,26 @@ a.views-more-link:hover {
 }
 
 // company and personal application forms
-.page-node-add-data-person, .page-node-add-data-company, .section-beta {
+.page-user-apply, .page-node-add-data-person, .page-node-add-data-company {
+  #content form {
+    float:left;
+  }
+}
+.section-beta #content form {
+  float:right;
+}
+.page-user-apply, .page-node-add-data-person, .page-node-add-data-company, .section-beta {
 #content {
     background:url($pathImg + 'form-backdrop.png') left 250px no-repeat;
   }
   .region-content {
     .field-name-body {
       float:left;
-      margin-right:20px;
-      width:300px;
+      margin-bottom:15px;
+      width:440px;
     }
     form {
-      float:right;
-      width:435px;
+      width:470px;
     }
   }
   
@@ -688,8 +695,12 @@ a.views-more-link:hover {
     fieldset {
       @include border-radius(10px);
       //border-color:$color-light-grey;
-      border:0;
-  
+      background:#e5e5e5;
+      border:1px solid #d2d2d2;
+//      border:0;
+      margin:0 auto;
+      padding:5px 9px;
+      width:450px;  
       fieldset {
         border:0;
         margin:0;
@@ -763,11 +774,15 @@ a.views-more-link:hover {
 
   .field-name-field-industry {
     float:left;
-    width:276px;
+    width:223px;
     
     select {
-      width:276px;
+      width:223px;
     }
+  }
+
+  .field-type-phone {
+    clear:left;
   }
 
   // address inputs
@@ -778,7 +793,20 @@ a.views-more-link:hover {
 
   // city input
   .field-name-field-address-city .form-text {
-    width:230px;
+    width:200px;
+  }
+
+  .field-name-field-address-zip {
+    width:130px;
+    label {
+      float:left;
+      line-height:13px;
+      width:50px;
+    }
+    input[type='text'] {
+      margin-top:5px;
+      width:90px;
+    }
   }
 }
 
@@ -790,9 +818,6 @@ a.views-more-link:hover {
 
 }
 
-//  contact pages
-
-
 //
 //
 //
@@ -803,11 +828,6 @@ a.views-more-link:hover {
 //
 //
 // menu dropdown styles
-
-
-
-
-
 .menu-minipanels .menu-block-wrapper ul.menu li a,
 .menu-minipanels .menu-block-wrapper ul.menu li.last a,
 .menu-minipanels .menu-block-wrapper ul.menu li.leaf a,
@@ -827,6 +847,7 @@ a.views-more-link:hover {
 }
 
 .menu-minipanels .menu-block-wrapper ul.menu {
+  
   @include wrap();
   background: white !important;
   border:1px solid #ccc;
@@ -834,6 +855,7 @@ a.views-more-link:hover {
   padding: 10px 10px 10px 10px;
   margin: 0;
   box-shadow: 1px 3px 6px #333;
+  
   li, li.leaf, li.last {
     clear:both;
     display:block;
@@ -845,16 +867,20 @@ a.views-more-link:hover {
 }
 // menu block-system-main-menu
 .sidebar .block-menu {
+  
   h2 {
     font-size:20px;
     line-height:24px;
   }
+  
   ul {
     margin:0;
     padding-left:5px;
   }
+  
   ul li {
     list-style:none !important;
+  
     a {
       font-size:14px;
       font-weight:bold !important;
@@ -873,9 +899,11 @@ a.views-more-link:hover {
 //
 // sidebar
 .sidebar {
+  
   #block-nodeblock-35 {
     padding-top:15px;
   }
+  
   #block-nodeblock-35 h2 {
     background-position:172px 8px;
     font-size:23px;
@@ -883,12 +911,30 @@ a.views-more-link:hover {
     padding:0 70px 0 0;
     width:185px;
   }
+  
   .trust-text {
     width:100%;
   }
+  
   .start-links {
     padding-left:0;
   }
 }
 
-.region-bottom ul.menu li.leaf a {color:$color-white;}
+.region-bottom ul.menu li.leaf a {
+  color:$color-white;
+}
+
+// trustwave block
+#block-nodeblock-76 {
+  float:right;
+  width:115px;
+  h2 {
+    display:none;
+  }
+  img {
+    @include size(auto !important, auto !important); // resp o.r.
+    border:0 !important;
+    padding:0;
+  }
+}
