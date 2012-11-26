@@ -24,6 +24,11 @@ function em_apply_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['test/verification'] = array(
+    'page callback' => 'em_apply_test_verification',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 /**
@@ -58,6 +63,11 @@ function em_apply_verification(){
 	  return;
     }
 }
+function em_apply_test_verification(){
+  // set session data with nid for the data_person form to use for testing
+  $_SESSION['data_form'] = 91;
+  return drupal_get_form('em_apply_verification_form');
+}
 
 function em_apply_verification_form($form, &$form_state){
 	global $user;
@@ -66,7 +76,7 @@ function em_apply_verification_form($form, &$form_state){
 	// require_once DRUPAL_ROOT . '/includes/locale.inc';
 	//     $country_options = country_get_list();
 
-
+  //dpm($node);
 	$form['#prefix'] = '<div id="verification-form-wrapper"><h2>User Verification</h2>';
 	$form['#suffix'] = '</div>';
 	$form['data_person_nid'] = array(
@@ -219,7 +229,7 @@ function em_apply_verification_form_submit($form, &$form_state){
 	$node->field_ssn['und'][0]['value'] = $form_state['values']['ssn'];
 	$node->field_dob['und'][0]['value'] = $form_state['values']['birthdate']['year'].'-'.$form_state['values']['birthdate']['month'].'-'.$form_state['values']['birthdate']['day'];
 	$node->field_address_history['und'][0] = $form_state['values']['address'];
-	
+
     //send to RSA
     $data = array(
 	'First_Name' => $form_state['values']['first_name'],
@@ -230,7 +240,7 @@ function em_apply_verification_form_submit($form, &$form_state){
 	'Day' => $form_state['values']['birthdate']['day'],
 	'Address' => $form_state['values']['address']
 	  );
-	
+
     _rsa_verification_submit($data);
 
 	node_save($node);
@@ -243,7 +253,7 @@ function em_apply_verification_form_submit($form, &$form_state){
 
 
 function _rsa_verification_submit($data){
-	
+
 	return;
 }
 
