@@ -2,47 +2,6 @@
 
 require_once "classes/KBAWebService.php";
 
-/**
- * @file
- * Extensible wizard form example.
- */
-
-/**
- * Extensible wizard form example.
- *
- * This is an example of a multistep form using a wizard style. It will include
- * the 'Previous' and 'Next' buttons when required, and a 'Finish' button at the
- * last stage of the form submission.
- *
- * This example is an extensible skeleton that can include (even
- * programatically) more steps. The demonstration form includes three steps,
- * each step having its own validation functions.
- *
- * How to extend this example:
- * - Steps are defined in the _kba_steps() function. Include or alter
- *   the steps as you require.
- * - For each step, implement the corresponding 'form' function (see
- *   'kba_personal_info' for the first step in this example.)
- *   Each step is a regular form, and the wizard collects all the values of the
- *   included forms.
- * - Optionally, you may include custom validation functions using the regular
- *   validation hook (formname_validate). The wizard uses these validation
- *   functions for each step.
- * - The most important customization step is to change the submit handler and
- *   do whatever you want with the collected information. In this case, the
- *   example just shows the collected values in the various steps.
- * @ingroup kb
- */
-
-/**
- * Returns the list of steps and their associated forms. This has been separated
- * to clarify and easy the understanding of this example. You should edit this
- * function to include the steps your wizard/multistep form requires.
- *
- * @return $array
- *
- * @ingroup kb
- */
 function _kba_steps() {
   return array(
       1 => array(
@@ -57,25 +16,6 @@ function _kba_steps() {
     );
 }
 
-/**
- * The primary formbuilder function for the wizard form. This is the form that
- * you should call with drupal_get_form() from your code, and it will include
- * the rest of the step forms defined. You are not required to change this
- * function, as this will handle all the step actions for you.
- *
- * This form has two defined submit handlers to process the different steps:
- *  - Previous: handles the way to get back one step in the wizard.
- *  - Next:     handles each step form submission,
- *
- * The third handler, the finish button handler, is the default form _submit
- * handler used to process the information.
- *
- * You are not required to change the next or previous handlers, but you must
- * change the kba_wizard_sbumit handler to perform the operations you
- * need on the collected information.
- *
- * @ingroup kb
- */
 function kba_wizard($form, &$form_state) {
 
   // Initialize a description of the steps for the wizard.
@@ -188,7 +128,7 @@ function kba_wizard_next_submit($form, &$form_state) {
  *
  */
 function kba_personal_info($form, &$form_state) {
-    global $user;
+  global $user;
 
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
@@ -259,47 +199,105 @@ function kba_personal_info($form, &$form_state) {
  * 
  */
 function kba_questions($form, &$form_state) {
+  global $user;
   $form = array();
   
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
     
     $personalInformation = $form_state["step_information"][1];
     
-    $questions = _ws_verification($personalInformation["stored_values"]);
-    print_r($questions);
     
+    //echo json_pretty($response, array("format"=>"html"));
+    
+    try {
+      $response = json_decode(_ws_verification($personalInformation["stored_values"]), true);  
+      
+      $transationID = $response["transaction-status"]["transaction-id"];
+      
+      $form['transaction_id'] = array(
+    		'#type' => 'hidden',
+    		'#default_value' => $transationID,
+    
+    	);
+      
+      $questions = $response["questions"]["question"];
+      
+      if(!empty($questions)) {
+      
+        $questionSetID = $response["questions"]["question-set-id"];
+        
+        $form['question_set_id'] = array(
+      		'#type' => 'hidden',
+      		'#default_value' => $questionSetID,      
+      	);
+        
+        foreach($questions as $question) {
+          
+          $questionTitle = $question["text"]["statement"];
+          $questionID = $question["question-id"];
+          $helpText = $question["help-text"]["statement"];
+          
+          $questionOptions = $question["choice"];
+          
+          // Form API question options
+          $questionFormOptions = array();
+          foreach($questionOptions as $questionOption) {
+             $questionFormOptions[$questionOption["choice-id"]] = $questionOption["text"]["statement"];
+          }
+          
+          $form["Question_".$questionID] = array(
+            '#type'=>'radios',
+            '#required' => TRUE,
+            '#options'=>$questionFormOptions,
+            '#title'=>t($questionTitle),
+            '#description'=>t($helpText)
+          );
+        }
+        
+      } else {
+        echo "COULD NOT FIND QUESTIONS";
+      }
+      
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
   }
   
   return $form;
 }
 
 /**
- * Custom validation form for the 'location info' page of the wizard.
- *
- * This is the validation function for the second step of the wizard.
- * The city cannot be empty or be "San Francisco".
- *
- * @ingroup kb
+ * Custom validation form
  */
 function kba_questions_validate($form, &$form_state) {
+  /*
   if ($form_state['values']['city'] == 'San Francisco') {
     form_set_error('city', t('You were warned not to enter "San Francisco"'));
   }
+  */
 }
 
 /**
- * Returns form elements for the 'other info' page of the wizard. This is the
- * thid and last step of the example wizard.
  *
- * @ingroup kb
  */
 function kba_follow_up_question($form, &$form_state) {
-  $form = array();
-  $form['aunts_name'] = array(
-    '#type' => 'textfield',
-    '#title' => t("Your first cousin's aunt's Social Security number"),
-    '#default_value' => !empty($form_state['values']['aunts_name']) ? $form_state['values']['aunts_name'] : '',
-  );
+
+  //print_r($form_state["step_information"]);
+  
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
+    $answers = $form_state["step_information"][2];
+    $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
+
+    
+    
+    $form = array();
+    $form['aunts_name'] = array(
+      '#type' => 'textfield',
+      '#title' => t("Your first cousin's aunt's Social Security number"),
+      '#default_value' => !empty($form_state['values']['aunts_name']) ? $form_state['values']['aunts_name'] : '',
+    );
+    
+  }
   return $form;
 }
 
@@ -369,8 +367,10 @@ function _ws_verification($data) {
   $requestData = array(
       "settings" => array(
           "account-name" => "Customers:EmergingFirms:CompanyApp",
-          "mode" => "simulated", // simulated testing
-          "simulator-mode"=>"questions",
+          "mode" => "testing",
+          //"mode" => "simulated", // simulated testing
+          //"simulator-mode"=>"questions",
+          
           "ruleset" => "customers.emergingfirms.compapp.4quest",
           "task" => "iauth"
       ),
@@ -419,7 +419,152 @@ function _ws_verification($data) {
       )
   );
   
-  $results = $webService->identityVerification($requestData);
+  $data = $webService->identityVerification($requestData);
+  $results = null;
   
+  if(!empty($data) && !empty($data["response"])) {
+    $results = json_encode($data["response"]);
+  }
+    
   return $results;
 }
+
+function _ws_question_answers($data) {
+  
+  $options = array("login" => "EmergingFirmsINTEG", "password" => '$u85ApDR!c2', 'trace' => 1);
+  $webService = new KBAWebService($options, dirname(__FILE__)."/rsa_kba.wsdl");
+  
+  $transactionID = $data["transaction_id"];
+  $questionSetID = $data["question_set_id"];
+  $answers = array();
+  
+  foreach($data as $key => $value) {
+  
+    $key = strtolower($key); // lowercase fieldname
+    
+    // get the integer from the fieldname
+    $questionID = intval(substr($key, 9));
+    
+    if(!empty($questionID) && is_integer($questionID)) {
+      $answers[] = array(
+        "question-id" => $questionID,
+        "choices" => array(
+          "choice-id" => $value
+        )
+      );
+    }
+    
+  }
+  			
+  $requestData = array(
+      "settings" => array(
+          "account-name" => "Customers:EmergingFirms:CompanyApp",
+          "mode" => "live",
+          "ruleset" => "customers.emergingfirms.compapp.4quest",
+          "transaction-id" => $transactionID
+      ),
+      "answers" => array(
+          "question-set-id" => $questionSetID,
+          "answer"  => $answers
+      )
+  );
+  
+  $data = $webService->continuation($requestData);
+  echo json_pretty(json_encode($data), array("format"=>"html"));
+  
+  /*
+  $results = null;
+  
+  if(!empty($data) && !empty($data["response"])) {
+    $results = json_encode($data["response"]);
+  }
+  */
+    
+  return $results;
+
+
+}
+
+
+
+
+
+
+
+
+/**
+ * Pretty-print JSON string
+ *
+ * Use 'format' option to select output format - currently html and txt supported, txt is default
+ * Use 'indent' option to override the indentation string set in the format - by default for the 'txt' format it's a tab
+ *
+ * @param string $json Original JSON string
+ * @param array $options Encoding options
+ * @return string
+ */
+function json_pretty($json, $options = array())
+{
+    $tokens = preg_split('|([\{\}\]\[,])|', $json, -1, PREG_SPLIT_DELIM_CAPTURE);
+    $result = '';
+    $indent = 0;
+
+    $format = 'txt';
+
+    //$ind = "\t";
+    $ind = "    ";
+
+    if (isset($options['format'])) {
+        $format = $options['format'];
+    }
+
+    switch ($format) {
+        case 'html':
+            $lineBreak = '<br />';
+            $ind = '&nbsp;&nbsp;&nbsp;&nbsp;';
+            break;
+        default:
+        case 'txt':
+            $lineBreak = "\n";
+            //$ind = "\t";
+            $ind = "    ";
+            break;
+    }
+
+    // override the defined indent setting with the supplied option
+    if (isset($options['indent'])) {
+        $ind = $options['indent'];
+    }
+
+    $inLiteral = false;
+    foreach ($tokens as $token) {
+        if ($token == '') {
+            continue;
+        }
+
+        $prefix = str_repeat($ind, $indent);
+        if (!$inLiteral && ($token == '{' || $token == '[')) {
+            $indent++;
+            if (($result != '') && ($result[(strlen($result) - 1)] == $lineBreak)) {
+                $result .= $prefix;
+            }
+            $result .= $token . $lineBreak;
+        } elseif (!$inLiteral && ($token == '}' || $token == ']')) {
+            $indent--;
+            $prefix = str_repeat($ind, $indent);
+            $result .= $lineBreak . $prefix . $token;
+        } elseif (!$inLiteral && $token == ',') {
+            $result .= $token . $lineBreak;
+        } else {
+            $result .= ( $inLiteral ? '' : $prefix ) . $token;
+
+            // Count # of unescaped double-quotes in token, subtract # of
+            // escaped double-quotes and if the result is odd then we are 
+            // inside a string literal
+            if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
+                $inLiteral = !$inLiteral;
+            }
+        }
+    }
+    return $result;
+}
+

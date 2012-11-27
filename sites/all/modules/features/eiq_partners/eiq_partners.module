@@ -1,0 +1,76 @@
+<?php
+/**
+ * @file
+ * Code for the eiq partners feature.
+ */
+
+include_once 'eiq_partners.features.inc';
+
+function eiq_partners_menu() {
+  $items = array();
+
+  $items['kiva-zip/get-started'] = array(
+    'page callback' => 'eiq_partners_check',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+
+function eiq_partners_check() {
+  global $user;
+
+  if($user->uid == '0'){
+    $_SESSION['destination'] = arg(0);
+    setcookie("destination", arg(0) . '/get-started', time()+3600, "/");
+    drupal_goto('user/login');
+  }else{
+    return eiq_partners_startapp_form();
+    //return drupal_get_form('data_company_node_form');
+  }
+  return;
+
+
+}
+
+
+function eiq_partners_startapp_form() {
+  global $user;
+  $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'data_company', 'language' => LANGUAGE_NONE);
+  $form_state['build_info']['args'] = array($node);
+  form_load_include($form_state, 'inc', 'node', 'node.pages');
+  return drupal_build_form('data_company_node_form', $form_state);
+}
+
+
+function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
+  dpm($form['#fieldgroups']['group_constituents']);
+  //dpm($form_state);
+  //$form['field_product_id']['#type'] = 'hidden';
+  //$form['additional_settings']['#access'] = FALSE;
+  switch (arg(0)) {
+    case "kiva-zip":
+      $form['field_invite_officers']['#type'] = 'hidden';
+      //field_group_hide_field_groups($form, array('group_constituents'));
+      //$form['#fieldgroups']['group_constituents']['#states']['invisible'] = array(
+      //  ':input[name="field_trigger[' . LANGUAGE_NONE. ']"]' => array( 'value' => 'hide' ),
+      //);
+      //unset($form['#fieldgroups']['group_constituents']);
+      //unset($form['field_invite_officers']['und']['add_more']);
+      //unset($form['field_invite_officers']);
+      break;
+  }
+
+  return $form;
+}
+/**
+ * Implements field_group_build_pre_render_alter.
+ */
+/*function eiq_partners_field_group_build_pre_render_alter(&$element) {
+  $element['group_constituents']['#states'] = array(
+    'visible' => array(
+      '#edit-field-wi-provide-credits-und' => array('checked' => TRUE),
+    )
+  );
+}*/
