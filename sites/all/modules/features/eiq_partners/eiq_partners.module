@@ -45,7 +45,7 @@ function eiq_partners_startapp_form() {
 
 
 function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
-  dpm($form['#fieldgroups']['group_constituents']);
+  //dpm($form['#fieldgroups']['group_constituents']);
   //dpm($form_state);
   //$form['field_product_id']['#type'] = 'hidden';
   //$form['additional_settings']['#access'] = FALSE;
@@ -73,4 +73,10 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
       '#edit-field-wi-provide-credits-und' => array('checked' => TRUE),
     )
   );
+}*/
+
+/*function eiq_partners_node_create ($node) {
+  if ($node->type == 'YOUR_NODE_TYPE') {
+     drupal_goto('YOUR_DESTINATION');
+  }
 }*/
