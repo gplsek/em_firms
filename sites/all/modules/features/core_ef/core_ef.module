@@ -187,7 +187,9 @@ function core_ef_block_view($delta='') {
     switch ($delta) {
 	   case 'footer-trust-block':
             $block['subject'] = '';
-            $block['content'] = '<div id ="trustwave_block"><  script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal" >< / script></div>';
+            //$block['content'] = '<div id ="trustwave_block"><script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal" >< / script></div>';
+            $block['content'] = '<div id ="trustwave_block">'.drupal_add_js('https://sealserver.trustwave.com/seal.js?style=normal', 'external').'< / script></div>';
+
         break;
    	    }
 	    return $block;
