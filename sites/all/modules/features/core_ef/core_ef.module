@@ -178,7 +178,7 @@ function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
 function core_ef_block_info() {
   $blocks['footer-trust-block'] = array(
     'info' => t('Custom: Footer Trust Block'),
-  );	
+  );
   return $blocks;
 }
 
@@ -187,9 +187,7 @@ function core_ef_block_view($delta='') {
     switch ($delta) {
 	   case 'footer-trust-block':
             $block['subject'] = '';
-            $block['content'] = '<div id ="trustwave_block"><script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal" >< / script></div>';
-            
-
+            $block['content'] = '<div id ="trustwave_block"><script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal"></script></div>';
         break;
    	    }
 	    return $block;
