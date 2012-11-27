@@ -154,7 +154,8 @@ html.js input.form-autocomplete {
   
     label {
       float:left;
-      width:195px;
+      min-width:190px;
+      width:23%;
     }
   
     .form-item input {
@@ -187,6 +188,7 @@ html.js input.form-autocomplete {
   }
   label {
     min-width:190px;
+    width:23%;
   }
 }
 
@@ -202,6 +204,10 @@ html.js input.form-autocomplete {
   form {
     float:right;
     width:435px;
+  }
+
+  label {
+    width:25%;
   }
 }
 
@@ -332,7 +338,6 @@ html.js input.form-autocomplete {
       line-height:24px;
       padding-left:2%;
       text-align:left;
-      width:25%;
     }
 
     // legends
