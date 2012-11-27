@@ -114,7 +114,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_node_data_person';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['auto_entitylabel_node_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1032,7 +1032,7 @@ node/*/edit';
         'custom_settings' => TRUE,
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -1068,10 +1068,18 @@ node/*/edit';
             'weight' => '18',
             'visible' => FALSE,
           ),
+          'full' => array(
+            'weight' => '20',
+            'visible' => FALSE,
+          ),
         ),
         'product:title' => array(
           'default' => array(
             'weight' => '20',
+            'visible' => FALSE,
+          ),
+          'full' => array(
+            'weight' => '22',
             'visible' => FALSE,
           ),
         ),
@@ -1080,10 +1088,18 @@ node/*/edit';
             'weight' => '0',
             'visible' => FALSE,
           ),
+          'full' => array(
+            'weight' => '17',
+            'visible' => FALSE,
+          ),
         ),
         'product:status' => array(
           'default' => array(
             'weight' => '5',
+            'visible' => FALSE,
+          ),
+          'full' => array(
+            'weight' => '19',
             'visible' => FALSE,
           ),
         ),
