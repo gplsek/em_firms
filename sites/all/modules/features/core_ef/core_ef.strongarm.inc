@@ -1608,14 +1608,14 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_sac_data_company';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['mb_content_sac_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_sac_data_person';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['mb_content_sac_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1671,28 +1671,28 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_tabcn_data_company';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['mb_content_tabcn_data_company'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_tabcn_data_person';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['mb_content_tabcn_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_tabcn_nodeblocks';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['mb_content_tabcn_nodeblocks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_tabcn_page';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['mb_content_tabcn_page'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1780,25 +1780,26 @@ node/*/edit';
     28 => 30,
     29 => 29,
     30 => 28,
-    31 => 26,
-    32 => 24,
-    33 => 23,
-    34 => 22,
-    35 => 21,
-    36 => 15,
-    37 => 14,
-    38 => 13,
-    39 => 12,
-    40 => 11,
-    41 => 10,
-    42 => 8,
-    43 => 7,
-    44 => 6,
-    45 => 5,
-    46 => 4,
-    47 => 3,
-    48 => 2,
-    49 => 1,
+    31 => 27,
+    32 => 26,
+    33 => 24,
+    34 => 23,
+    35 => 22,
+    36 => 21,
+    37 => 15,
+    38 => 14,
+    39 => 13,
+    40 => 12,
+    41 => 11,
+    42 => 10,
+    43 => 8,
+    44 => 7,
+    45 => 6,
+    46 => 5,
+    47 => 4,
+    48 => 3,
+    49 => 2,
+    50 => 1,
   );
   $export['menu_masks'] = $strongarm;
 
