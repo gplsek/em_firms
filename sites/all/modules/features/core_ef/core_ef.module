@@ -101,13 +101,13 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   $form['field_gender']['#disabled'] = TRUE;
   $form['field_email_address']['#disabled'] = TRUE;
    // Change button labels for Residence
-  _core_ef_set_button($form['field_address']['und'], "Add an Address", "Remove this Address", TRUE);
+  _core_ef_set_button($form['field_address']['und'], "Add another Address", "Remove this Address", TRUE);
   // Change button labels for Employment
-  _core_ef_set_button($form['field_employment']['und'], "Add an Employer", "Remove this Employer", TRUE);
+  _core_ef_set_button($form['field_employment']['und'], "Add another Employer", "Remove this Employer", TRUE);
   // Change button labels for Education
-  _core_ef_set_button($form['field_education']['und'], "Add a Degree", "Remove this Degree", TRUE);
+  _core_ef_set_button($form['field_education']['und'], "Add another Degree", "Remove this Degree", TRUE);
   // Change button labels for Criminal
-  _core_ef_set_button($form['field_criminal']['und'], "Add a Conviction", "Remove this Conviction", TRUE);
+  _core_ef_set_button($form['field_criminal']['und'], "Add another Conviction", "Remove this Conviction", TRUE);
 
   return $form;
 }
@@ -131,7 +131,7 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   // Change button labels for DBA
   _core_ef_set_button($form['field_dba']['und'],"Add a DBA", "Remove this DBA", TRUE);
   // Change button labels for Officers
-  _core_ef_set_button($form['field_invite_officers']['und'], "Add an Officer", "Remove this Officer", TRUE);
+  _core_ef_set_button($form['field_invite_officers']['und'], "Add another Officer", "Remove this Officer", TRUE);
 
   // check KBA completion settings
   if ($form['nid']['#value']) {
@@ -170,5 +170,26 @@ function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
     $element['value2']['#title'] = t('To Date:');
     $element['show_todate']['#title'] = t('Previous Employment?');
   }
+}
+
+/**
+ * Implementation of hook_block_info().
+ */
+function core_ef_block_info() {
+  $blocks['footer-trust-block'] = array(
+    'info' => t('Custom: Footer Trust Block'),
+  );	
+  return $blocks;
+}
+
+function core_ef_block_view($delta='') {
+    $block = array();
+    switch ($delta) {
+	   case 'footer-trust-block':
+            $block['subject'] = '';
+            $block['content'] = '<div id ="trustwave_block"><  script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal" >< / script></div>';
+        break;
+   	    }
+	    return $block;
 }
 
