@@ -6,11 +6,9 @@
 <FilesMatch "\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$|^(\..*|Entries.*|Repository|Root|Tag|Template)$">
   Order allow,deny
 </FilesMatch>
-<<<<<<< HEAD
-php_value log_errors on
-=======
 
->>>>>>> edc32869d0628a428b071909ee442647da22ded6
+php_value log_errors on
+
 # Don't show directory listings for URLs which map to a directory.
 Options -Indexes
 
