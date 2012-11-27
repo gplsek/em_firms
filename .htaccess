@@ -99,13 +99,12 @@ DirectoryIndex index.php index.html index.htm
   # uncomment the following line:
   # RewriteBase /
 
-<<<<<<< HEAD
+
   # Redirect robots.txt request to robots.txt.php to
   # output different content based on hostname
   RewriteRule ^robots.txt$ /robots.txt.php [L,QSA]
 
-=======
->>>>>>> edc32869d0628a428b071909ee442647da22ded6
+
   # Pass all requests not referring directly to files in the filesystem to
   # index.php. Clean URLs are handled in drupal_environment_initialize().
   RewriteCond %{REQUEST_FILENAME} !-f
@@ -116,11 +115,10 @@ DirectoryIndex index.php index.html index.htm
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
   <IfModule mod_headers.c>
-<<<<<<< HEAD
+
     # Cross-Origin Resource Sharing (CORS)
     Header set Access-Control-Allow-Origin "*"
-=======
->>>>>>> edc32869d0628a428b071909ee442647da22ded6
+
     # Serve gzip compressed CSS files if they exist and the client accepts gzip.
     RewriteCond %{HTTP:Accept-encoding} gzip
     RewriteCond %{REQUEST_FILENAME}\.gz -s
