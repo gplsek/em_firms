@@ -1,0 +1,528 @@
+/* all forms */
+
+
+#main-wrapper form {
+  // inputs
+  input[type='text'], textarea, input[type='password'] {
+    @include border-radius(4px);
+    border-color:#bbb;
+    margin:0;
+    padding-left:5px;
+    &:focus {
+      border-color:$color-text-grey;
+    }
+  }
+
+  // input padding, sans textarea
+  input[type='text'], input[type='password'], input[type='email'] {
+    padding-top:5px;
+    padding-bottom:5px;
+  }
+  /*
+  textarea {
+    width:432px;
+  }*/
+  .grippie {display:none;}
+}
+
+fieldset legend,
+html.js fieldset.collapsible .fieldset-legend {
+  @include wrap();
+  display:block;
+  width:100%;
+}
+
+html.js fieldset.collapsed {
+  height:auto !important; // or
+}
+
+// white arrows
+html.js fieldset.collapsible .fieldset-legend {
+  background-image:url($pathImg + 'menu-expanded-wht.png');
+}
+
+html.js fieldset.collapsed .fieldset-legend {
+  background-image:url($pathImg + 'menu-collapsed-wht.png');  
+}
+
+// ajax icon override
+html.js input.form-autocomplete {
+  background-position:100% 5px;
+}
+
+.field-type-link-field label,
+.field-type-link-field .link-field-subrow,
+.field-type-link-field .link-field-subrow .link-field-url,
+.field-type-link-field .link-field-subrow .link-field-url .form-item,
+.field-type-link-field .description {
+  display:block;
+}
+
+.field-type-link-field .description {
+  font-style:italic;
+  padding-left:15px;
+}
+
+.form-type-textarea {
+  @include wrap();
+
+  .form-textarea-wrapper {
+    float:left;
+    width:69%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* layouts */
+
+// login, register, etc.
+.page-user-register, .page-user-login {
+  
+  form {
+    padding:15px 0;
+    width:630px;
+  
+    .form-item {
+      display:block;
+      padding:10px 0;
+    }
+  
+    label {
+      float:left;
+      width:195px;
+    }
+  
+    .form-item input {
+      width:429px;
+    }
+  
+    input#edit-captcha-response {width:390px;}
+  }
+}
+
+// no sidebars
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company {
+  
+  #block-system-main {
+    @include wrap();
+    background:url($pathImg + 'bg_pattern_forms.png') 0 0 repeat;
+    border:1px solid #d4d4d4;
+    padding:20px 0;
+  }
+  
+  form {
+    background:$color-white;
+    border:1px solid #e2e2e2;
+    margin:0 auto;
+    max-width:850px; // prototype
+    padding:20px 15px;
+    width:80%; // prototype
+  }
+  label {
+    min-width:190px;
+  }
+}
+
+// sidebar page
+.section-beta {
+  
+  .region-content .field-name-body {
+    float:left;
+    margin-right:20px;
+    width:300px;
+  }
+  
+  form {
+    float:right;
+    width:435px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// all forms sans user-forms
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register {
+
+  h1 {
+    text-align:center;
+  }
+  
+  form {    
+    @include wrap();
+
+    input,
+    select,
+    textarea {
+      margin:0; 
+    }
+
+    // ajax headers
+    th, thead th {
+      background:none;
+      border:0;
+    }
+    
+    // tables
+    tr.odd, tr.even {
+      background:none;
+      border:0;
+      padding:0;
+    }
+
+    // fieldsets
+    fieldset {
+      @include wrap();
+      @include border-radius(4px);
+      border:1px solid #dcdcdc;
+      margin:0 auto;
+      padding:0;
+    
+      // inner fieldsets
+      fieldset {
+        background:none;
+        border:0;
+        margin:0;
+        padding:0;
+      }
+
+      // fieldset wrappers
+      .fieldset-wrapper {
+        background:$color-white;
+        padding-top:20px;
+      }
+    }
+
+    // labels
+    label {
+      float:left;
+      line-height:24px;
+      padding-left:2%;
+      text-align:left;
+      width:25%;
+    }
+
+    // legends
+    legend {
+      @include border-radius(5px);
+      @include gradient('formHeader');
+      color:$color-white;
+      padding-left:15px;
+
+      a, a:link, a:visited {
+        color:$color-white;
+        text-decoration:none;
+
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+
+    // generic checkbox styles
+    .form-type-checkbox {
+      clear:both;
+      display:block;
+    }
+
+    // text & email inputs
+    input[type='text'],
+    input[type='email'] {
+      @include border-radius(2px);
+      border:1px solid #bbb;
+      width:68%;
+    }
+    
+    // submit buttons
+    input[type='submit'] {
+    @include eiq_action_btn(auto, 44px);
+    float:left;
+    font-size:15px;
+    margin:0 15px !important;
+    padding:0 15px !important; //or
+      &:hover {
+        cursor:pointer;
+      }
+    }
+
+    // inline buttons
+    #edit-sac,
+    #edit-submit,
+    #edit-cancel {
+        float:left;
+        margin-right:15px;
+    }
+  }
+
+  /*fields*/
+  
+  .form-item {
+    clear:left;
+  }
+  
+  .form-item, 
+  .field-group-fieldset.group-company .fieldset-wrapper .form-wrapper {
+    padding-bottom:15px;
+    margin:0;
+  }
+
+  .form-type-checkbox .form-item label.option {
+    font-weight:bold;
+    line-height:20px;
+  }
+
+  .field-type-field-collection {
+    padding:15px 0;
+  }
+
+  // agreement fields
+  .field-name-field-disclaimer,
+  .field-name-field-agree-final {
+    @include wrap();
+    padding:10px 0;
+  }
+  
+  /* prototype overrides */
+  .field-name-field-address-city,
+  .field-name-field-address-state,
+  .field-name-field-address-zip {
+    float:none;
+    display:block;
+  }
+
+  .field-name-field-address-state .form-select {
+    width:auto;
+  }
+
+  // city input
+  .field-name-field-address-city {
+    @include wrap();
+  }
+
+  .field-name-field-address-zip {
+    display:block;
+    float:none; /* overrides, prototype */
+  
+    label {
+      line-height:13px;
+    }
+  
+    input[type='text'] {
+      margin-top:5px;
+      //width:90px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* page specific styles */
+
+// person/company forms
+.page-node-add-data-person,
+.page-node-add-data-company {
+  .form-item-field-address-und-0-field-address-full-und-0-postal-code {
+    clear:both;
+  }
+}
