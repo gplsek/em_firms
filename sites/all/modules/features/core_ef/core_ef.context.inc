@@ -188,9 +188,9 @@ function core_ef_context_default_contexts() {
           'region' => 'bottom',
           'weight' => '-9',
         ),
-        'nodeblock-76' => array(
-          'module' => 'nodeblock',
-          'delta' => '76',
+        'core_ef-footer-trust-block' => array(
+          'module' => 'core_ef',
+          'delta' => 'footer-trust-block',
           'region' => 'bottom',
           'weight' => '-8',
         ),
