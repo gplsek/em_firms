@@ -526,6 +526,42 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'sidebar_detail_pages';
+  $context->description = '';
+  $context->tag = 'Sidebar 1';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'what-we-do*' => 'what-we-do*',
+        'how-it-works*' => 'how-it-works*',
+        'products*' => 'products*',
+        'about*' => 'about*',
+        'contact*' => 'contact*',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'nodeblock-35' => array(
+          'module' => 'nodeblock',
+          'delta' => '35',
+          'region' => 'sidebar_first',
+          'weight' => '-7',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Sidebar 1');
+  $export['sidebar_detail_pages'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'teasers_main_constituents';
   $context->description = '';
   $context->tag = 'sidebar1';
@@ -581,6 +617,7 @@ function core_ef_context_default_contexts() {
         ),
       ),
     ),
+    'menu' => 'node/36',
   );
   $context->condition_mode = 0;
 
