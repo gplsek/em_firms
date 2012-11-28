@@ -185,7 +185,7 @@ function commerce_ef_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -198,6 +198,9 @@ function commerce_ef_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'commerce_node_checkout_node',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'nid' => array(
           'columns' => array(
@@ -215,16 +218,21 @@ function commerce_ef_field_default_fields() {
       'module' => 'node_reference',
       'settings' => array(
         'referenceable_types' => array(
-          'article' => 'Article',
-          'blog' => 'Blog entry',
-          'book' => 'Book page',
-          'data_company' => 'Company Application',
-          'page' => 'Basic page',
-          'poll' => 'Poll',
-          'seven_client' => 'Seven - Client',
-          'seven_home_item_block' => 'Seven - Home Item Block',
-          'seven_product' => 'Seven - Product',
-          'seven_slideshow_item' => 'Seven - SlideShow Item',
+          'article' => 0,
+          'book' => 0,
+          'data_company' => 'data_company',
+          'data_person' => 0,
+          'earlyiq_slides' => 0,
+          'nodeblocks' => 0,
+          'page' => 0,
+          'panel' => 0,
+          'partner' => 0,
+          'poll' => 0,
+          'seven_client' => 0,
+          'seven_home_item_block' => 0,
+          'seven_product' => 0,
+          'seven_slideshow_item' => 0,
+          'webform' => 0,
         ),
         'view' => array(
           'args' => array(),
@@ -237,6 +245,9 @@ function commerce_ef_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'commerce_node_checkout',
+      'commerce_cart_settings' => array(
+        'field_access' => 1,
+      ),
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -252,15 +263,16 @@ function commerce_ef_field_default_fields() {
       'entity_type' => 'commerce_line_item',
       'field_name' => 'commerce_node_checkout_node',
       'label' => 'Associated content',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 2,
+        'weight' => '2',
       ),
     ),
   );
@@ -344,7 +356,7 @@ function commerce_ef_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'commerce_product_reference_autocomplete',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -428,7 +440,7 @@ function commerce_ef_field_default_fields() {
           'currency_code' => 'default',
         ),
         'type' => 'commerce_price_full',
-        'weight' => 1,
+        'weight' => '1',
       ),
     ),
   );
@@ -512,7 +524,7 @@ function commerce_ef_field_default_fields() {
           'currency_code' => 'default',
         ),
         'type' => 'commerce_price_full',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
