@@ -51,7 +51,12 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
   //$form['additional_settings']['#access'] = FALSE;
   switch (arg(0)) {
     case "kiva-zip":
+      //dpm($form);
       $form['field_invite_officers']['#type'] = 'hidden';
+      $form['commerce_node_checkout_product']['#default_value'] = '2';
+      $form['commerce_node_checkout_product']['#access'] = FALSE;
+      $form['field_product_id']['und']['#default_value'][0] = '2';
+      $form['field_product_id']['#access'] = FALSE;
       //field_group_hide_field_groups($form, array('group_constituents'));
       //$form['#fieldgroups']['group_constituents']['#states']['invisible'] = array(
       //  ':input[name="field_trigger[' . LANGUAGE_NONE. ']"]' => array( 'value' => 'hide' ),
