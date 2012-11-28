@@ -305,9 +305,9 @@ function em_apply_node_insert($node) {
 	if ($node->type == 'data_company'){
     // @TODO this will need to move to firing on purchase complete
     // I think in function commerce_ef_commerce_checkout_complete($order)
-    _em_apply_invite($node);
+    //_em_apply_invite($node);
     // check who is updating the form
-	_em_apply_company_map($node);
+	  _em_apply_company_map($node);
 	}
 
 }
@@ -317,7 +317,7 @@ function em_apply_node_update($node) {
 	if ($node->type == 'data_company'){
     // @TODO this will need to move to firing on purchase complete
     // I think in function commerce_ef_commerce_checkout_complete($order)
-    _em_apply_invite($node);
+    //_em_apply_invite($node);
 		// check who is updating the form
     _em_apply_company_map($node);
 
@@ -557,7 +557,7 @@ function em_apply_user_insert(&$edit, $account, $category) {
 }
 
 function em_apply_user_update(&$edit, $account, $category) {
-	
+
 
 		$result = db_select('node','d')
 	   		->fields('d')
@@ -566,8 +566,8 @@ function em_apply_user_update(&$edit, $account, $category) {
 	  		->execute();
 	    while($record = $result->fetchAssoc()) {
 		    if($record['nid']){
-			  
-			  
+
+
 	  		  $_SESSION['data_form'] = $record['nid'];
 	  	  }
 	  	}
@@ -577,5 +577,5 @@ function em_apply_user_update(&$edit, $account, $category) {
 			$GLOBALS['destination'] = 'verification';
 	    }
 
-	
+
 }
