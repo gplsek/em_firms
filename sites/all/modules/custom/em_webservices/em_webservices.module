@@ -18,8 +18,21 @@ function em_webservices_menu() {
     'file' => 'kba/kba.inc',
     'type' => MENU_CALLBACK
   );
+
+  $items['verification'] = array(
+    'page callback' => 'em_webservices_verification',
+    'access callback' => TRUE,
+    'description' => 'KBA form',
+    'file' => 'kba/kba.inc',
+    'type' => MENU_CALLBACK
+  );
     
   return $items;
+}
+
+function em_webservices_verification(){
+	global $user;
+	return drupal_get_form("kba_wizard");
 }
 
 function em_webservices_kba_test(){

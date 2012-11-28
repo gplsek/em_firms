@@ -314,6 +314,12 @@ function kba_follow_up_question($form, &$form_state) {
       echo "Passed the verification";
       
       // end form wizard
+      $node = node_load($_SESSION['data_form']);
+
+	  $node->field_kba['und'][0]['value'] = true;
+	  node_save($node);
+
+	  drupal_goto('node/'.$_SESSION['data_form'].'/edit');
       $form_state["steps"] = 9999;
       
     }
@@ -332,6 +338,13 @@ function kba_follow_up_question_result($form, &$form_state) {
     
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
       echo "You have passed";
+
+    $node = node_load($_SESSION['data_form']);
+
+	$node->field_kba['und'][0]['value'] = true;
+	node_save($node);
+
+	drupal_goto('node/'.$_SESSION['data_form'].'/edit');
     }
   }
   

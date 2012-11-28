@@ -14,16 +14,16 @@ function em_apply_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
-  $items['kba'] = array(
-    'page callback' => 'em_apply_kba',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-  $items['verification'] = array(
-    'page callback' => 'em_apply_verification',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
+  // $items['kba'] = array(
+  //   'page callback' => 'em_apply_kba',
+  //   'access callback' => TRUE,
+  //   'type' => MENU_CALLBACK,
+  // );
+  // $items['verification'] = array(
+  //   'page callback' => 'em_apply_verification',
+  //   'access callback' => TRUE,
+  //   'type' => MENU_CALLBACK,
+  // );
   $items['test/verification'] = array(
     'page callback' => 'em_apply_test_verification',
     'access callback' => TRUE,
@@ -317,7 +317,7 @@ function em_apply_node_update($node) {
 	if ($node->type == 'data_company'){
     // @TODO this will need to move to firing on purchase complete
     // I think in function commerce_ef_commerce_checkout_complete($order)
-    //_em_apply_invite($node);
+    _em_apply_invite($node);
 		// check who is updating the form
     _em_apply_company_map($node);
 
@@ -526,29 +526,36 @@ function _em_apply_redirect_id($account) {
     drupal_goto('client/get-started');
   }
   //send them to person_data/kba form
-  $query = new EntityFieldQuery();
-  $entity = $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'data_person')
-    ->entityCondition('uid', $account->uid)
-    ->execute();
-  if($entity){
-    // we have a data_person node
-    $node = array_keys($entity['node']);
-    $nid = $node['0'];
+  	$result = db_select('node','d')
+ 		->fields('d')
+		->condition('type','data_person','=')
+		->condition('uid', $account->uid,'=')
+		->execute();
 
-    $dataPerson = node_load($nid);
-   if(empty($dataPerson->field_kba) || ($dataPerson->field_kba['und'][0]['value'] == 0)){
-      //send to kba process
-      $_SESSION['data_form'] = $nid;
-      unset($dataPerson);
-      $GLOBALS['destination'] = 'verification';
-      drupal_goto('verification');
-    } else {
-      //send to personal data form
-      unset($dataPerson);
-      drupal_goto('/node/'.$nid.'/edit');
-    }
-  }
+  while($record = $result->fetchAssoc()) {
+	    if($record['nid']){
+
+                $nid = $record['nid'];
+
+			    $dataPerson = node_load($nid);
+
+			   if(empty($dataPerson->field_kba) || ($dataPerson->field_kba['und'][0]['value'] == 0)){
+			      //send to kba process
+			      $_SESSION['data_form'] = $nid;
+			      unset($dataPerson);
+			      $GLOBALS['destination'] = 'verification';
+			      drupal_goto('verification');
+			    } else {
+			      unset($dataPerson);
+			      $GLOBALS['destination'] = '/node/'.$nid.'/edit';
+			      drupal_goto('/node/'.$nid.'/edit');
+			    }
+			  
+		  
+	  }
+	}
+
+  
 }
 
 
