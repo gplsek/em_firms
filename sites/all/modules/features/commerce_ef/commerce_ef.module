@@ -8,9 +8,10 @@ include_once 'commerce_ef.features.inc';
 
 
 function commerce_ef_commerce_checkout_complete($order) {
-  //dpm($order);
+  dpm($order);
   //$line_item = commerce_line_item_load($order['commerce_line_items']['und'][0]['line_item_id']);
   //dpm($line_item);
+  drupal_set_message("*** send invites ****");
   // invite officers and create users, as needed
   //_em_apply_invite($node);
   // send this Company's admin user to own verification form
@@ -30,4 +31,11 @@ function commerce_ef_form_commerce_checkout_form_checkout_alter(&$form, &$form_s
   $form['field_invite_officers']['und'][0]['field_email']['und'][0]['email']['#default_value'] = $account->mail;
   */
   //$form['customer_profile_billing']['commerce_customer_address']['und'][0]['name_block']['first_name']['value']['#default_value'] = "BALRG";
+  $form['buttons']['continue']['#value'] = 'Continue';
+}
+
+function commerce_ef_form_commerce_cart_add_to_cart_form_alter (&$form, &$form_state) {
+  dpm($form);
+  // Change the text on the Add to Cart submit button
+  $form['submit']['#value'] = 'Continue';
 }

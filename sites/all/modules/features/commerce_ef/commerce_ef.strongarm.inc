@@ -23,6 +23,7 @@ function commerce_ef_strongarm() {
   $strongarm->name = 'commerce_node_checkout_products_data_company';
   $strongarm->value = array(
     0 => 1,
+    1 => 2,
   );
   $export['commerce_node_checkout_products_data_company'] = $strongarm;
 
