@@ -13,6 +13,9 @@ function _kba_steps() {
       3 => array(
         'form' => 'kba_follow_up_question',
       ),
+      4 => array(
+        'form' => 'kba_follow_up_question_result',
+      )
     );
 }
 
@@ -129,7 +132,7 @@ function kba_wizard_next_submit($form, &$form_state) {
  */
 function kba_personal_info($form, &$form_state) {
   global $user;
-
+  drupal_set_message("HELLO I'M TESTING IT DUDES!!!!!!!!!!!!!!!!!!");
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
 		//'#default_value' => $data_nid,
@@ -152,13 +155,6 @@ function kba_personal_info($form, &$form_state) {
 		'#default_value' => !empty($form_state['values']['last_name']) ? $form_state['values']['last_name'] : ''
 
 	);
-	/*
-	$form['phone_number'] = array(
-		'#title' => t('Phone Number'),
-		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['phone_number']) ? $form_state['values']['phone_number'] : ''
-	);
-	*/
 	
 	$form['birthdate'] = array(
 	  '#title' => t('Birthdate'),
@@ -267,39 +263,83 @@ function kba_questions($form, &$form_state) {
 }
 
 /**
- * Custom validation form
- */
-function kba_questions_validate($form, &$form_state) {
-  /*
-  if ($form_state['values']['city'] == 'San Francisco') {
-    form_set_error('city', t('You were warned not to enter "San Francisco"'));
-  }
-  */
-}
-
-/**
- *
+ * 
  */
 function kba_follow_up_question($form, &$form_state) {
 
-  //print_r($form_state["step_information"]);
+  $form = array();
   
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
     $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
+      
+    $question = $response["questions"]["question"];
 
+    // User missed a question, ask the follow up question
+    if(!empty($question)) {
+      $transationID = $response["transaction-status"]["transaction-id"];
+      
+      $form['transaction_id'] = array(
+    		'#type' => 'hidden',
+    		'#default_value' => $transationID,
     
+    	);
+      
+      $questionSetID = $response["questions"]["question-set-id"];
+      
+      $form['question_set_id'] = array(
+    		'#type' => 'hidden',
+    		'#default_value' => $questionSetID,      
+    	);
+        
+      $questionTitle = $question["text"]["statement"];
+      $questionID = $question["question-id"];
+      $helpText = $question["help-text"]["statement"];
+      
+      $questionOptions = $question["choice"];
+      
+      // Form API question options
+      $questionFormOptions = array();
+      foreach($questionOptions as $questionOption) {
+         $questionFormOptions[$questionOption["choice-id"]] = $questionOption["text"]["statement"];
+      }
+      
+      $form["Question_".$questionID] = array(
+        '#type'=>'radios',
+        '#required' => TRUE,
+        '#options'=>$questionFormOptions,
+        '#title'=>t($questionTitle),
+        '#description'=>t($helpText)
+      );
+        
+    } else {
+      // User passed the verification
+      
+      echo "Passed the verification";
+      
+      
+    }
     
-    $form = array();
-    $form['aunts_name'] = array(
-      '#type' => 'textfield',
-      '#title' => t("Your first cousin's aunt's Social Security number"),
-      '#default_value' => !empty($form_state['values']['aunts_name']) ? $form_state['values']['aunts_name'] : '',
-    );
     
   }
   return $form;
 }
+
+function kba_follow_up_question_result($form, &$form_state) {
+  $form = array();
+  
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
+    $answers = $form_state["step_information"][3];
+    $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
+    
+    if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
+      echo "You have passed";
+    }
+  }
+  
+  return $form;
+}
+
 
 // And now comes the magic of the wizard, the function that should handle all the
 // inputs from the user on each different step.
@@ -361,8 +401,6 @@ function _ws_verification($data) {
   $addressState = $data["address"]["address"]["administrative_area"];
   $addressZip = $data["address"]["address"]["postal_code"];
   
-  //$phoneNumber = $data["address"]["address"]["phone_number"];
-  
   
   $requestData = array(
       "settings" => array(
@@ -393,18 +431,12 @@ function _ws_verification($data) {
               "address-zip"     => $addressZip,
               "address-context" => "primary"
           )
-          /*
-          "phone-number" => array(   // NOT REQUIRED
-              "phone-number" => $phoneNumber, 
-              "phone-number-context" => "home"
-          )
-          */
       ),
       "transaction" => array(
           "account-verification" => array(
               "account-maintenance" => array(
                   "account" => array(
-                      "customer-id" => "TESTING_0001" //$personID
+                      "customer-id" => "TESTING_".mt_rand(10, 1000000) //$personID
                   )
               ),
               "venue" => array(
@@ -470,15 +502,12 @@ function _ws_question_answers($data) {
   );
   
   $data = $webService->continuation($requestData);
-  echo json_pretty(json_encode($data), array("format"=>"html"));
+  //echo json_pretty(json_encode($data), array("format"=>"html"));
   
-  /*
   $results = null;
-  
-  if(!empty($data) && !empty($data["response"])) {
-    $results = json_encode($data["response"]);
+  if(!empty($data)) {
+    $results = json_encode($data);
   }
-  */
     
   return $results;
 
