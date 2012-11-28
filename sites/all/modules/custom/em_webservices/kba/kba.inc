@@ -132,7 +132,6 @@ function kba_wizard_next_submit($form, &$form_state) {
  */
 function kba_personal_info($form, &$form_state) {
   global $user;
-  drupal_set_message("HELLO I'M TESTING IT DUDES!!!!!!!!!!!!!!!!!!");
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
 		//'#default_value' => $data_nid,
@@ -201,9 +200,6 @@ function kba_questions($form, &$form_state) {
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
     
     $personalInformation = $form_state["step_information"][1];
-    
-    
-    //echo json_pretty($response, array("format"=>"html"));
     
     try {
       $response = json_decode(_ws_verification($personalInformation["stored_values"]), true);  
@@ -317,6 +313,8 @@ function kba_follow_up_question($form, &$form_state) {
       
       echo "Passed the verification";
       
+      // end form wizard
+      $form_state["steps"] = 9999;
       
     }
     
@@ -328,6 +326,8 @@ function kba_follow_up_question($form, &$form_state) {
 function kba_follow_up_question_result($form, &$form_state) {
   $form = array();
   
+  echo displayTree($form_state);
+  
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
     $answers = $form_state["step_information"][3];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
@@ -338,6 +338,19 @@ function kba_follow_up_question_result($form, &$form_state) {
   }
   
   return $form;
+}
+
+function displayTree($array) {
+     $newline = "<br>";
+     foreach($array as $key => $value) {    //cycle through each item in the array as key => value pairs
+         if (is_array($value) || is_object($value)) {        //if the VALUE is an array, then
+            //call it out as such, surround with brackets, and recursively call displayTree.
+             $value = "Array()" . $newline . "(<ul>" . displayTree($value) . "</ul>)" . $newline;
+         }
+        //if value isn't an array, it must be a string. output its' key and value.
+        $output .= "[$key] => " . $value . $newline;
+     }
+     return $output;
 }
 
 
@@ -362,7 +375,6 @@ function kba_wizard_submit($form, &$form_state) {
 
   // In this case we've completed the final page of the wizard, so process the
   // submitted information.
-  drupal_set_message(t('This information was collected by this wizard:'));
   foreach ($form_state['step_information'] as $index => $value) {
     // Remove FAPI fields included in the values (form_token, form_id and form_build_id
     // This is not required, you may access the values using $value['stored_values']
@@ -371,12 +383,7 @@ function kba_wizard_submit($form, &$form_state) {
     unset($value['stored_values']['form_id']);
     unset($value['stored_values']['form_build_id']);
     unset($value['stored_values']['form_token']);
-
-    // Now show all the values.
-    drupal_set_message(
-        t('Step @num collected the following values: <pre>@result</pre>', 
-        array('@num' => $index, '@result' => print_r($value['stored_values'], TRUE)))
-    );
+    
   }
 }
 
@@ -502,7 +509,6 @@ function _ws_question_answers($data) {
   );
   
   $data = $webService->continuation($requestData);
-  //echo json_pretty(json_encode($data), array("format"=>"html"));
   
   $results = null;
   if(!empty($data)) {
@@ -513,87 +519,3 @@ function _ws_question_answers($data) {
 
 
 }
-
-
-
-
-
-
-
-
-/**
- * Pretty-print JSON string
- *
- * Use 'format' option to select output format - currently html and txt supported, txt is default
- * Use 'indent' option to override the indentation string set in the format - by default for the 'txt' format it's a tab
- *
- * @param string $json Original JSON string
- * @param array $options Encoding options
- * @return string
- */
-function json_pretty($json, $options = array())
-{
-    $tokens = preg_split('|([\{\}\]\[,])|', $json, -1, PREG_SPLIT_DELIM_CAPTURE);
-    $result = '';
-    $indent = 0;
-
-    $format = 'txt';
-
-    //$ind = "\t";
-    $ind = "    ";
-
-    if (isset($options['format'])) {
-        $format = $options['format'];
-    }
-
-    switch ($format) {
-        case 'html':
-            $lineBreak = '<br />';
-            $ind = '&nbsp;&nbsp;&nbsp;&nbsp;';
-            break;
-        default:
-        case 'txt':
-            $lineBreak = "\n";
-            //$ind = "\t";
-            $ind = "    ";
-            break;
-    }
-
-    // override the defined indent setting with the supplied option
-    if (isset($options['indent'])) {
-        $ind = $options['indent'];
-    }
-
-    $inLiteral = false;
-    foreach ($tokens as $token) {
-        if ($token == '') {
-            continue;
-        }
-
-        $prefix = str_repeat($ind, $indent);
-        if (!$inLiteral && ($token == '{' || $token == '[')) {
-            $indent++;
-            if (($result != '') && ($result[(strlen($result) - 1)] == $lineBreak)) {
-                $result .= $prefix;
-            }
-            $result .= $token . $lineBreak;
-        } elseif (!$inLiteral && ($token == '}' || $token == ']')) {
-            $indent--;
-            $prefix = str_repeat($ind, $indent);
-            $result .= $lineBreak . $prefix . $token;
-        } elseif (!$inLiteral && $token == ',') {
-            $result .= $token . $lineBreak;
-        } else {
-            $result .= ( $inLiteral ? '' : $prefix ) . $token;
-
-            // Count # of unescaped double-quotes in token, subtract # of
-            // escaped double-quotes and if the result is odd then we are 
-            // inside a string literal
-            if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
-                $inLiteral = !$inLiteral;
-            }
-        }
-    }
-    return $result;
-}
-

@@ -12,7 +12,7 @@ function em_webservices_menu() {
 */
   
   $items['webservices/test/kba'] = array(
-    'page callback' => 'em_webservices_kba',
+    'page callback' => 'em_webservices_kba_test',
     'access callback' => TRUE,
     'description' => 'KBA Testing form',
     'file' => 'kba/kba.inc',
@@ -22,7 +22,17 @@ function em_webservices_menu() {
   return $items;
 }
 
-function em_webservices_kba(){
+function em_webservices_kba_test(){
 	global $user;
 	return drupal_get_form("kba_wizard");
+}
+
+/***
+ * 
+ * @param array $personData Data from the person that needs to be authenticated
+ **/
+function em_webservices_kba($personData, $callback) {
+  global $user;
+  
+  
 }
