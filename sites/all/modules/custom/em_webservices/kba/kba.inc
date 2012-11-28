@@ -326,8 +326,6 @@ function kba_follow_up_question($form, &$form_state) {
 function kba_follow_up_question_result($form, &$form_state) {
   $form = array();
   
-  echo displayTree($form_state);
-  
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
     $answers = $form_state["step_information"][3];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
@@ -339,20 +337,6 @@ function kba_follow_up_question_result($form, &$form_state) {
   
   return $form;
 }
-
-function displayTree($array) {
-     $newline = "<br>";
-     foreach($array as $key => $value) {    //cycle through each item in the array as key => value pairs
-         if (is_array($value) || is_object($value)) {        //if the VALUE is an array, then
-            //call it out as such, surround with brackets, and recursively call displayTree.
-             $value = "Array()" . $newline . "(<ul>" . displayTree($value) . "</ul>)" . $newline;
-         }
-        //if value isn't an array, it must be a string. output its' key and value.
-        $output .= "[$key] => " . $value . $newline;
-     }
-     return $output;
-}
-
 
 // And now comes the magic of the wizard, the function that should handle all the
 // inputs from the user on each different step.
