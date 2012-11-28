@@ -71,7 +71,7 @@ function core_ef_field_group_info() {
     'format_settings' => array(
       'label' => 'Officers',
       'instance_settings' => array(
-        'required_fields' => 1,
+        'required_fields' => 0,
         'classes' => '',
         'description' => '',
       ),

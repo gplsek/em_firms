@@ -10,7 +10,7 @@ function eiq_partners_menu() {
   $items = array();
 
   $items['kiva-zip/get-started'] = array(
-    'page callback' => 'eiq_partners_check',
+    'page callback' => '_eiq_partners_check',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -18,7 +18,7 @@ function eiq_partners_menu() {
 }
 
 
-function eiq_partners_check() {
+function _eiq_partners_check() {
   global $user;
 
   if($user->uid == '0'){
@@ -26,7 +26,8 @@ function eiq_partners_check() {
     setcookie("destination", arg(0) . '/get-started', time()+3600, "/");
     drupal_goto('user/login');
   }else{
-    return eiq_partners_startapp_form();
+    $_SESSION['partner'] = arg(0);
+    return _eiq_partners_startapp_form();
     //return drupal_get_form('data_company_node_form');
   }
   return;
@@ -35,7 +36,7 @@ function eiq_partners_check() {
 }
 
 
-function eiq_partners_startapp_form() {
+function _eiq_partners_startapp_form() {
   global $user;
   $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'data_company', 'language' => LANGUAGE_NONE);
   $form_state['build_info']['args'] = array($node);
@@ -48,40 +49,59 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
   //dpm($form['#fieldgroups']['group_constituents']);
   //dpm($form_state);
   //$form['field_product_id']['#type'] = 'hidden';
-  //$form['additional_settings']['#access'] = FALSE;
   switch (arg(0)) {
     case "kiva-zip":
       //dpm($form);
+      $fields = array("body",
+        "field_company_type",
+        "field_dba",
+        //"field_disclaimer",
+        "field_fein",
+        "field_website",
+        "field_year_of_legal_formation",
+        "field_agree_final",
+        "field_company_address",
+        "field_company_phone",
+        "field_facebook",
+        "field_linkedin",
+        //"field_product_id",
+        "field_state_incorp",
+        "field_state_registration",
+        "field_twitter",
+        //"field_invite_officers",
+        "field_purchase_completed",
+        "field_industry"
+      );
+      $form = _eiq_partners_hide_fields($form, $fields);
       $form['field_invite_officers']['#type'] = 'hidden';
+      $form['#groups']['group_constituents']->format_type = 'hidden';
+
+      // set partner product information
       $form['commerce_node_checkout_product']['#default_value'] = '2';
       $form['commerce_node_checkout_product']['#access'] = FALSE;
+      //$form['commerce_node_checkout_product']['#disabled'] = TRUE;
       $form['field_product_id']['und']['#default_value'][0] = '2';
       $form['field_product_id']['#access'] = FALSE;
-      //field_group_hide_field_groups($form, array('group_constituents'));
-      //$form['#fieldgroups']['group_constituents']['#states']['invisible'] = array(
-      //  ':input[name="field_trigger[' . LANGUAGE_NONE. ']"]' => array( 'value' => 'hide' ),
-      //);
-      //unset($form['#fieldgroups']['group_constituents']);
-      //unset($form['field_invite_officers']['und']['add_more']);
-      //unset($form['field_invite_officers']);
+      //$form['field_product_id']['#disabled'] = TRUE;
+      $form['field_disclaimer']['und']['#title'] = "I agree to Kiva-specific EarlyIQ Disclaimer.";
       break;
   }
 
   return $form;
 }
-/**
- * Implements field_group_build_pre_render_alter.
- */
-/*function eiq_partners_field_group_build_pre_render_alter(&$element) {
-  $element['group_constituents']['#states'] = array(
-    'visible' => array(
-      '#edit-field-wi-provide-credits-und' => array('checked' => TRUE),
-    )
-  );
-}*/
 
-/*function eiq_partners_node_create ($node) {
-  if ($node->type == 'YOUR_NODE_TYPE') {
-     drupal_goto('YOUR_DESTINATION');
+function _eiq_partners_hide_fields($form, $fields) {
+  foreach ($fields as $field) {
+    //$form[$field]['#access'] = FALSE;
+    unset($form[$field]);
   }
-}*/
+  return $form;
+}
+
+function eiq_partners_form_commerce_checkout_form_checkout_alter(&$form, &$form_state) {
+  //dpm($form);
+  if (isset($_SESSION['partner']) && $_SESSION['partner'] == "kiva-zip") {
+    $form['customer_profile_billing']['#access'] = FALSE;
+    $form['commerce_payment']['#type'] = 'hidden';
+  }
+}

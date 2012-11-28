@@ -140,6 +140,7 @@ function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
       $form['field_agree_final']['#disabled'] = TRUE;
     }
   }
+  $form['actions']['submit']['#value'] = "Continue";
   return $form;
 }
 

@@ -34,11 +34,12 @@ function commerce_ef_form_commerce_checkout_form_checkout_alter(&$form, &$form_s
   $form['field_invite_officers']['und'][0]['field_email']['und'][0]['email']['#default_value'] = $account->mail;
   */
   //$form['customer_profile_billing']['commerce_customer_address']['und'][0]['name_block']['first_name']['value']['#default_value'] = "BALRG";
+  $form['cart_contents']['#title'] = "Pending Company Applications";
   $form['buttons']['continue']['#value'] = 'Continue';
 }
 
 function commerce_ef_form_commerce_cart_add_to_cart_form_alter (&$form, &$form_state) {
-  dpm($form);
+  //dpm($form);
   // Change the text on the Add to Cart submit button
   $form['submit']['#value'] = 'Continue';
 }
