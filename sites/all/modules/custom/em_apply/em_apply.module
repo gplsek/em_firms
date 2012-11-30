@@ -308,7 +308,7 @@ function em_apply_node_insert($node) {
       _em_apply_invite($node);
     // check who is updating the form
 	  _em_apply_company_map($node);
-	
+
 	  _em_apply_redirect_id($user);
 	}
 
@@ -507,8 +507,12 @@ function _em_apply_invite($node) {
 function em_apply_node_prepare($node) {
   if ($node->type == 'data_company'){
     // this works as a test
-	  //$node->field_fein['und'][0]['value'] = 'test fein';
+	  $node->field_fein['und'][0]['value'] = '*********';
 	}
+  if ($node->type == 'data_person'){
+    // this works as a test
+    $node->field_ssn['und'][0]['value'] = '***-**-****';
+  }
 }
 
 
@@ -560,10 +564,10 @@ function _em_apply_redirect_id($account) {
 			         unset($dataPerson);
 			      	 $GLOBALS['destination'] = '';
 			      	 //drupal_goto('/node/'.$nid.'/edit');
-			
+
 				  }
 			    }
-			  
+
 		  }
 	  }
 	}
@@ -597,7 +601,7 @@ function em_apply_user_update(&$edit, $account, $category) {
          if($node->field_kba['und'][0]['value'] <> 1){
 			$GLOBALS['destination'] = 'verification';
 	     }
-        } 
+        }
 
 
 }
