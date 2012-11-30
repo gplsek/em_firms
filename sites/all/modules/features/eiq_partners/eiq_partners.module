@@ -105,3 +105,40 @@ function eiq_partners_form_commerce_checkout_form_checkout_alter(&$form, &$form_
     $form['commerce_payment']['#type'] = 'hidden';
   }
 }
+
+function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
+  //dpm($form['#fieldgroups']['group_constituents']);
+  //dpm($form);
+  //$form['field_product_id']['#type'] = 'hidden';
+  switch ($_SESSION['partner']) {
+    case "kiva-zip":
+      $fields = array(
+        'title',
+        //'field_company',
+        //'field_dob',
+        'field_email_address',
+        'field_gender',
+        'field_kba',
+        //'field_name_first',
+        //'field_name_last',
+        'field_name_maiden',
+        //'field_name_middle',
+        'field_name_suffix',
+        //'field_ssn',
+        //'field_address',
+        'field_agree_final',
+        'field_citizenship',
+        'field_civil',
+        'field_criminal',
+        'field_education',
+        'field_employment',
+        'field_linkedin_profile',
+        //'field_convictions',
+      );
+      $form = _eiq_partners_hide_fields($form, $fields);
+      unset($form['field_address']['und'][0]['field_address_dates']);
+      unset($form['field_address']['und']['add_more']);
+      $form['#groups']['group_personal_info']->format_type = 'hidden';
+      break;
+  }
+}
