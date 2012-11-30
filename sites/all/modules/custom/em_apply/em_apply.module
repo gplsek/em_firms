@@ -308,6 +308,8 @@ function em_apply_node_insert($node) {
       _em_apply_invite($node);
     // check who is updating the form
 	  _em_apply_company_map($node);
+	
+	  _em_apply_redirect_id($user);
 	}
 
 }
@@ -395,7 +397,6 @@ function _em_apply_invite($node) {
   $company_name = $node->title;
   foreach($node->field_invite_officers['und'] as $invitee){
     $users = field_collection_item_load($invitee['value'], $reset = FALSE);
-    //dpm($users);
     $fname = $users->field_first_name['und'][0]['value'];
     $lname = $users->field_last_name['und'][0]['value'];
     $email = $users->field_email['und'][0]['email'];

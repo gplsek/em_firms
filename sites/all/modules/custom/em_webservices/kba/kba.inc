@@ -132,26 +132,42 @@ function kba_wizard_next_submit($form, &$form_state) {
  */
 function kba_personal_info($form, &$form_state) {
   global $user;
+  	global $user;
+	$data_nid = $_SESSION['data_form'];
+	$node = node_load($data_nid);
+
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
 		//'#default_value' => $data_nid,
 
 	);
+	$form['suffix'] = array(
+		'#title' => t('Suffix'),
+		'#type' => 'textfield',
+		'#default_value' => $node->field_name_suffix['und'][0]['value'],
+
+	);
 	$form['first_name'] = array(
 		'#title' => t('First Name'),
 		'#type' => 'textfield',
-    '#default_value' => !empty($form_state['values']['first_name']) ? $form_state['values']['first_name'] : ''
+        '#default_value' => !empty($form_state['values']['first_name']) ? $form_state['values']['first_name'] : $node->field_name_first['und'][0]['value']
 
 	);
 	$form['middle_name'] = array(
 		'#title' => t('Middle Name'),
 		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['middle_name']) ? $form_state['values']['middle_name'] : ''
+		'#default_value' => !empty($form_state['values']['middle_name']) ? $form_state['values']['middle_name'] : $node->field_name_middle['und'][0]['value']
 	);
 	$form['last_name'] = array(
 		'#title' => t('Last Name'),
 		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['last_name']) ? $form_state['values']['last_name'] : ''
+		'#default_value' => !empty($form_state['values']['last_name']) ? $form_state['values']['last_name'] : $node->field_name_last['und'][0]['value']
+
+	);
+	$form['maiden_name'] = array(
+		'#title' => t('Maiden Name'),
+		'#type' => 'textfield',
+		'#default_value' => $node->field_name_maiden['und'][0]['value'],
 
 	);
 	
@@ -170,7 +186,7 @@ function kba_personal_info($form, &$form_state) {
 	  '#type' => 'select',
 	  '#description' => t('Select your gender'),
 	  '#options' => array('Male' => 'Male', 'Female' => 'Female'),
-	  '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : ''
+	  '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : $node->field_gender['und'][0]['value']
 	);
 
 	$form['ssn'] = array(
@@ -314,10 +330,12 @@ function kba_follow_up_question($form, &$form_state) {
       echo "Passed the verification";
       
       // end form wizard
-      $node = node_load($_SESSION['data_form']);
+      //$node = node_load($_SESSION['data_form']);
 
-	  $node->field_kba['und'][0]['value'] = true;
-	  node_save($node);
+	  //$node->field_kba['und'][0]['value'] = true;
+	  print_r($form_state['step_information'][1]['stored_values']);
+	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
+	  //node_save($node);
 
 	  drupal_goto('node/'.$_SESSION['data_form'].'/edit');
       $form_state["steps"] = 9999;
@@ -339,17 +357,56 @@ function kba_follow_up_question_result($form, &$form_state) {
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
       echo "You have passed";
 
-    $node = node_load($_SESSION['data_form']);
+    //$node = node_load($_SESSION['data_form']);
 
-	$node->field_kba['und'][0]['value'] = true;
-	node_save($node);
+	//$node->field_kba['und'][0]['value'] = true;
+	  print_r($form_state['step_information'][1]['stored_values']);
+	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
+	  
+	//node_save($node);
 
 	drupal_goto('node/'.$_SESSION['data_form'].'/edit');
     }
+    _kba_colect_data($form_state['step_information'][1]['stored_values'],false);
   }
   
   return $form;
 }
+
+
+
+
+function _kba_colect_data($data,$kba){
+
+	$node = node_load($_SESSION['data_form']);
+
+	$node->field_name_last['und'][0]['value'] = $data['last_name'];
+	$node->field_name_first['und'][0]['value'] = $data['first_name'];
+	$node->field_name_maiden['und'][0]['value'] = $data['maiden_name'];
+	$node->field_name_middle['und'][0]['value'] = $data['middle_name'];
+	$node->field_name_suffix['und'][0]['value'] = $form_state['values']['suffix'];
+	$node->field_gender['und'][0]['value'] = $data['gender'];
+	$node->field_ssn['und'][0]['value'] = $$data['ssn'];
+	$node->field_dob['und'][0]['value'] = $data['birthdate']['year'].'-'.$data['birthdate']['month'].'-'.$data['birthdate']['day'];
+	$node->field_address_history['und'][0] = $data['address']['address'];
+   $node->field_kba['und'][0]['value'] = $kba;
+
+
+
+
+	node_save($node);
+
+
+
+
+
+}
+
+
+
+
+
+
 
 // And now comes the magic of the wizard, the function that should handle all the
 // inputs from the user on each different step.
