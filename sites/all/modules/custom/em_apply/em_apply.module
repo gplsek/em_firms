@@ -408,7 +408,12 @@ function _em_apply_invite($node) {
       //send email to notify of invite  drupal_mail()
 
         $mail_params = array(
-        	 'message' => 'You have been invited to earlyIQ.com .....',
+        	 'message' => '<p>You have been invited to enter your personal information on a company application on EarlyIQ.com.
+			 You may now log in to your existing account by clicking this link or copying and pasting it to your browser:
+			 <a href="http://dev.earlyiq.com/user/">http://dev.earlyiq.com/user/</a></p>
+			 <p>Once logged in, you will be prompted to enter your personal information.</p>
+			 <p>Thank you,<br>
+		 	 -- EarlyIQ team</p>',
         	 'subject' => 'Application Invitation',
              'headers' => '',
     	     'node' => '',
