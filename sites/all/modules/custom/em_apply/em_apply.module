@@ -305,7 +305,7 @@ function em_apply_node_insert($node) {
 	if ($node->type == 'data_company'){
     // @TODO this will need to move to firing on purchase complete
     // I think in function commerce_ef_commerce_checkout_complete($order)
-    //_em_apply_invite($node);
+      _em_apply_invite($node);
     // check who is updating the form
 	  _em_apply_company_map($node);
 	}
@@ -538,7 +538,7 @@ function _em_apply_redirect_id($account) {
                 $nid = $record['nid'];
 
 			    $dataPerson = node_load($nid);
-
+             if(!empty($dataPerson)){
 			   if(empty($dataPerson->field_kba) || ($dataPerson->field_kba['und'][0]['value'] == 0)){
 			      //send to kba process
 			      $_SESSION['data_form'] = $nid;
@@ -546,16 +546,23 @@ function _em_apply_redirect_id($account) {
 			      $GLOBALS['destination'] = 'verification';
 			      drupal_goto('verification');
 			    } else {
-			      unset($dataPerson);
-			      $GLOBALS['destination'] = '/node/'.$nid.'/edit';
-			      drupal_goto('/node/'.$nid.'/edit');
+				  if(($dataPerson->field_agree_final['und'][0]['value'] == 0) || empty($dataPerson->field_agree_final)){
+			      	unset($dataPerson);
+			      	$GLOBALS['destination'] = '/node/'.$nid.'/edit';
+			      	drupal_goto('/node/'.$nid.'/edit');
+		          }else{
+			         unset($dataPerson);
+			      	 $GLOBALS['destination'] = '';
+			      	 //drupal_goto('/node/'.$nid.'/edit');
+			
+				  }
 			    }
 			  
-		  
+		  }
 	  }
 	}
 
-  
+  $GLOBALS['destination'] = '';
 }
 
 
@@ -580,9 +587,11 @@ function em_apply_user_update(&$edit, $account, $category) {
 	  	}
 
         $node = node_load($record['nid']);
-        if($node->field_kba['und'][0]['value'] <> 1){
+        if(!empty($node)){
+         if($node->field_kba['und'][0]['value'] <> 1){
 			$GLOBALS['destination'] = 'verification';
-	    }
+	     }
+        } 
 
 
 }
