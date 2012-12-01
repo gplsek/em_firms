@@ -2,6 +2,22 @@
 
 require_once "classes/KBAWebService.php";
 
+/**
+ * Settings
+ */
+variable_set("rsa_username", "EmergingFirmsINTEG");
+variable_set("rsa_password", '$u85ApDR!c2');
+variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
+variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
+variable_set("rsa_state", "testing");
+variable_set("rsa_api_trace", 1); // used for debugging
+
+
+/**
+ * Associative array of the form steps
+ *
+ * @return array form wizard steps
+ */
 function _kba_steps() {
   return array(
       1 => array(
@@ -19,17 +35,23 @@ function _kba_steps() {
     );
 }
 
+/**
+ * Entry point to the KBA wizard
+ * 
+ * @return array a form in the Drupal Form API format
+ */
 function kba_wizard($form, &$form_state) {
 
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
     $form_state['step'] = 1;
-
+    
     // This array contains the function to be called at each step to get the
     // relevant form elements. It will also store state information for each
     // step.
     $form_state['step_information'] = _kba_steps();
   }
+  
   $step = &$form_state['step'];
   drupal_set_title(t('Verification: Step @step', array('@step' => $step)));
 
@@ -42,7 +64,7 @@ function kba_wizard($form, &$form_state) {
   // skip all complaints about validation when using the back button. The
   // values entered will be discarded, but they will not be validated, which
   // would be annoying in a "back" button.
-  if ($step > 1) {
+  if ($step > 1 && !$form_state['hide_previous_button']) {
     $form['prev'] = array(
       '#type' => 'submit',
       '#value' => t('Previous'),
@@ -53,7 +75,7 @@ function kba_wizard($form, &$form_state) {
   }
 
   // Show the Next button only if there are more steps defined.
-  if ($step < count($form_state['step_information'])) {
+  if ($step < count($form_state['step_information']) && !$form_state['hide_next_button']) {
     // The Next button should be included on every step
     $form['next'] = array(
       '#type' => 'submit',
@@ -77,6 +99,11 @@ function kba_wizard($form, &$form_state) {
   if (function_exists($form_state['step_information'][$step]['form'] . '_validate')) {
     $form['next']['#validate'] = array($form_state['step_information'][$step]['form'] . '_validate');
   }
+  
+  // Option to show buttons
+  $form_state['hide_next_button'] = false;
+  $form_state['hide_previous_button'] = false;
+    
 
   return $form;
 }
@@ -87,6 +114,8 @@ function kba_wizard($form, &$form_state) {
  * - Decrements the step counter
  * - Replaces $form_state['values'] with the values from the previous state.
  * - Forces form rebuild.
+ *
+ * @return array a form in the Drupal Form API format
  */
 function kba_wizard_previous_submit($form, &$form_state) {
   $current_step = &$form_state['step'];
@@ -109,6 +138,7 @@ function kba_wizard_previous_submit($form, &$form_state) {
  * @param $form
  * @param $form_state
  *
+ * @return array a form in the Drupal Form API format
  */
 function kba_wizard_next_submit($form, &$form_state) {
   $current_step = &$form_state['step'];
@@ -128,17 +158,18 @@ function kba_wizard_next_submit($form, &$form_state) {
 }
 
 /**
+ * Retrieves the personal information form, to be sent to get the KBA questions
  *
+ * @return array a form in the Drupal Form API format
  */
 function kba_personal_info($form, &$form_state) {
   global $user;
-  	global $user;
 	$data_nid = $_SESSION['data_form'];
 	$node = node_load($data_nid);
 
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
-		//'#default_value' => $data_nid,
+		'#default_value' => $data_nid,
 
 	);
 	$form['suffix'] = array(
@@ -207,7 +238,9 @@ function kba_personal_info($form, &$form_state) {
 }
 
 /**
- * 
+ * Retrieves the KBA questions
+ *
+ * @return array a form in the Drupal Form API format
  */
 function kba_questions($form, &$form_state) {
   global $user;
@@ -263,11 +296,23 @@ function kba_questions($form, &$form_state) {
         }
         
       } else {
-        echo "COULD NOT FIND QUESTIONS";
+        
+        $form['error'] = array(
+          '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
+        );
+        
+        // end form
+        $form_state['hide_next_button'] = true;
       }
       
     } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    
+        $form['error'] = array(
+          '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
+        );
+        
+        // end form
+        $form_state['hide_next_button'] = true;
     }
   }
   
@@ -275,7 +320,9 @@ function kba_questions($form, &$form_state) {
 }
 
 /**
- * 
+ * Retrieves the follow up question or a you have passed message.
+ *
+ * @return array a form in the Drupal Form API format
  */
 function kba_follow_up_question($form, &$form_state) {
 
@@ -332,12 +379,12 @@ function kba_follow_up_question($form, &$form_state) {
       // end form wizard
       //$node = node_load($_SESSION['data_form']);
 
-	  //$node->field_kba['und'][0]['value'] = true;
-	  print_r($form_state['step_information'][1]['stored_values']);
-	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
-	  //node_save($node);
-
-	  drupal_goto('node/'.$_SESSION['data_form'].'/edit');
+  	  //$node->field_kba['und'][0]['value'] = true;
+  	  print_r($form_state['step_information'][1]['stored_values']);
+  	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
+  	  //node_save($node);
+  
+  	  drupal_goto('node/'.$_SESSION['data_form'].'/edit');
       $form_state["steps"] = 9999;
       
     }
@@ -347,6 +394,11 @@ function kba_follow_up_question($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Retrieves the result of the KBA
+ *
+ * @return array a form in the Drupal Form API format
+ */
 function kba_follow_up_question_result($form, &$form_state) {
   $form = array();
   
@@ -357,16 +409,16 @@ function kba_follow_up_question_result($form, &$form_state) {
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
       echo "You have passed";
 
-    //$node = node_load($_SESSION['data_form']);
-
-	//$node->field_kba['und'][0]['value'] = true;
-	  print_r($form_state['step_information'][1]['stored_values']);
-	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
+      //$node = node_load($_SESSION['data_form']);
+      //$node->field_kba['und'][0]['value'] = true;
+      print_r($form_state['step_information'][1]['stored_values']);
+      _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
 	  
-	//node_save($node);
+      //node_save($node);
 
-	drupal_goto('node/'.$_SESSION['data_form'].'/edit');
+      drupal_goto('node/'.$_SESSION['data_form'].'/edit');
     }
+    
     _kba_colect_data($form_state['step_information'][1]['stored_values'],false);
   }
   
@@ -374,8 +426,11 @@ function kba_follow_up_question_result($form, &$form_state) {
 }
 
 
-
-
+/**
+ * Saves the personal information in a node
+ *
+ * @return null
+ */
 function _kba_colect_data($data,$kba){
 
 	$node = node_load($_SESSION['data_form']);
@@ -389,17 +444,9 @@ function _kba_colect_data($data,$kba){
 	$node->field_ssn['und'][0]['value'] = $$data['ssn'];
 	$node->field_dob['und'][0]['value'] = $data['birthdate']['year'].'-'.$data['birthdate']['month'].'-'.$data['birthdate']['day'];
 	$node->field_address_history['und'][0] = $data['address']['address'];
-   $node->field_kba['und'][0]['value'] = $kba;
-
-
-
+  $node->field_kba['und'][0]['value'] = $kba;
 
 	node_save($node);
-
-
-
-
-
 }
 
 
@@ -408,8 +455,6 @@ function _kba_colect_data($data,$kba){
 
 
 
-// And now comes the magic of the wizard, the function that should handle all the
-// inputs from the user on each different step.
 /**
  * Wizard form submit handler.
  * - Saves away $form_state['values']
@@ -441,38 +486,35 @@ function kba_wizard_submit($form, &$form_state) {
   }
 }
 
-
+/**
+ * Sends the personal information to the KBA in order to retreive questions
+ *
+ * @return string the json of the response, or null if empty.
+ */
 function _ws_verification($data) {
   
-  $options = array("login" => "EmergingFirmsINTEG", "password" => '$u85ApDR!c2', 'trace' => 1);
-  $webService = new KBAWebService($options, dirname(__FILE__)."/rsa_kba.wsdl");
+  $webService = _createWebService();
   
-  $personID = $data["data_person_nid"];
-  $firstName = $data["first_name"];
-  $lastName  = $data["last_name"];
-  $email     = $data["email"];
-  $ssn       = $data["ssn"];
-  $birthYear = $data["birthdate"]["year"];
+  $personID   = $data["data_person_nid"];
+  $firstName  = $data["first_name"];
+  $lastName   = $data["last_name"];
+  $email      = $data["email"];
+  $ssn        = $data["ssn"];
+  $birthYear  = $data["birthdate"]["year"];
   $birthMonth = $data["birthdate"]["month"];
-  $birthDay = $data["birthdate"]["day"];
+  $birthDay   = $data["birthdate"]["day"];
   
-  $address1 = $data["address"]["address"]["thoroughfare"];
-  $address2 = $data["address"]["address"]["premise"];
-  $addressCity = $data["address"]["address"]["locality"];
+  $address1   = $data["address"]["address"]["thoroughfare"];
+  $address2   = $data["address"]["address"]["premise"];
+  $addressCity  = $data["address"]["address"]["locality"];
   $addressState = $data["address"]["address"]["administrative_area"];
-  $addressZip = $data["address"]["address"]["postal_code"];
+  $addressZip   = $data["address"]["address"]["postal_code"];
   
+  $settings = _getWebServiceSettings();
+  $settings["task"] = "iauth"; // adding an additional setting for this specific call
   
   $requestData = array(
-      "settings" => array(
-          "account-name" => "Customers:EmergingFirms:CompanyApp",
-          "mode" => "testing",
-          //"mode" => "simulated", // simulated testing
-          //"simulator-mode"=>"questions",
-          
-          "ruleset" => "customers.emergingfirms.compapp.4quest",
-          "task" => "iauth"
-      ),
+      "settings" => $settings,
       "person" => array(
           "name-first" => $firstName,
           "name-last"  => $lastName,
@@ -497,24 +539,24 @@ function _ws_verification($data) {
           "account-verification" => array(
               "account-maintenance" => array(
                   "account" => array(
-                      "customer-id" => "TESTING_".mt_rand(10, 1000000) //$personID
+                      "customer-id" => $personID
                   )
               ),
               "venue" => array(
                   "online" => array(
                       "credential" => array(
-  				        "credential-method" => "ssn"
+        				        "credential-method" => "ssn"
                       )
                   )
               ),
-              "activity-date" => gmdate("c")
+              "activity-date" => gmdate("c") // current datetime in GMT and in the ISO 8601 format.
           )
       )
   );
   
   $data = $webService->identityVerification($requestData);
-  $results = null;
   
+  $results = null;
   if(!empty($data) && !empty($data["response"])) {
     $results = json_encode($data["response"]);
   }
@@ -522,10 +564,14 @@ function _ws_verification($data) {
   return $results;
 }
 
+/**
+ * Sends the answers to the KBA, retrieves the response in JSON
+ * 
+ * @return string the json of the response, or null if empty.
+ */
 function _ws_question_answers($data) {
   
-  $options = array("login" => "EmergingFirmsINTEG", "password" => '$u85ApDR!c2', 'trace' => 1);
-  $webService = new KBAWebService($options, dirname(__FILE__)."/rsa_kba.wsdl");
+  $webService = _createWebService();
   
   $transactionID = $data["transaction_id"];
   $questionSetID = $data["question_set_id"];
@@ -548,14 +594,12 @@ function _ws_question_answers($data) {
     }
     
   }
+  
+  $settings = _getWebServiceSettings();
+  $settings["transaction-id"] = $transactionID; // adding an additional setting for this specific call
   			
   $requestData = array(
-      "settings" => array(
-          "account-name" => "Customers:EmergingFirms:CompanyApp",
-          "mode" => "live",
-          "ruleset" => "customers.emergingfirms.compapp.4quest",
-          "transaction-id" => $transactionID
-      ),
+      "settings" => $settings,
       "answers" => array(
           "question-set-id" => $questionSetID,
           "answer"  => $answers
@@ -570,6 +614,40 @@ function _ws_question_answers($data) {
   }
     
   return $results;
-
-
 }
+
+/**
+ * Creates the KBA webservice with the default settings
+ *
+ * @return KBAWebService the KBA class
+ */
+function _createWebService() {
+  
+  return new KBAWebService(
+    array(
+      "login" => variable_get("rsa_username"),
+      "password" => variable_get("rsa_password"),
+      'trace' => variable_get("rsa_api_trace")
+    ),
+    dirname(__FILE__)."/rsa_kba.wsdl" // real path to the RSA KBA wsdl
+  );
+}
+
+/**
+ * Retrieves the RSA KBA web service settings
+ *
+ * @return array the default settings for the RSA KBA API
+ */
+function _getWebServiceSettings() {
+  return array(
+    "account-name" => variable_get("rsa_account"),
+    "mode" => variable_get("rsa_state"),
+    "ruleset" => variable_get("rsa_ruleset"),
+    
+    // Settings for simulated mode
+    // "mode" => "simulated",
+    // "simulator-mode"=>"questions",
+
+  );
+}
+
