@@ -554,7 +554,15 @@ function _ws_verification($data) {
       )
   );
   
-  $data = $webService->identityVerification($requestData);
+  $data = $webService->identityVerification($requestData); 
+  
+  // ----------------------------- FOR TESTING PURPOSES ------------------------------
+  echo "<h1>------REQUEST-----</h1><br>";
+  echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+  echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+  echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+  // --------------------------------------------------------------------------------
+  
   
   $results = null;
   if(!empty($data) && !empty($data["response"])) {
@@ -651,3 +659,142 @@ function _getWebServiceSettings() {
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************************************************
+                             REMOVE BELOW AFTER TESTING
+ *****************************************************************************************/                             
+
+
+
+
+/**
+ * Pretty-print JSON string
+ *
+ * Use 'format' option to select output format - currently html and txt supported, txt is default
+ * Use 'indent' option to override the indentation string set in the format - by default for the 'txt' format it's a tab
+ *
+ * @param string $json Original JSON string
+ * @param array $options Encoding options
+ * @return string
+ */
+function json_pretty($json, $options = array())
+{
+    $tokens = preg_split('|([\{\}\]\[,])|', $json, -1, PREG_SPLIT_DELIM_CAPTURE);
+    $result = '';
+    $indent = 0;
+
+    $format = 'txt';
+
+    //$ind = "\t";
+    $ind = "    ";
+
+    if (isset($options['format'])) {
+        $format = $options['format'];
+    }
+
+    switch ($format) {
+        case 'html':
+            $lineBreak = '<br />';
+            $ind = '&nbsp;&nbsp;&nbsp;&nbsp;';
+            break;
+        default:
+        case 'txt':
+            $lineBreak = "\n";
+            //$ind = "\t";
+            $ind = "    ";
+            break;
+    }
+
+    // override the defined indent setting with the supplied option
+    if (isset($options['indent'])) {
+        $ind = $options['indent'];
+    }
+
+    $inLiteral = false;
+    foreach ($tokens as $token) {
+        if ($token == '') {
+            continue;
+        }
+
+        $prefix = str_repeat($ind, $indent);
+        if (!$inLiteral && ($token == '{' || $token == '[')) {
+            $indent++;
+            if (($result != '') && ($result[(strlen($result) - 1)] == $lineBreak)) {
+                $result .= $prefix;
+            }
+            $result .= $token . $lineBreak;
+        } elseif (!$inLiteral && ($token == '}' || $token == ']')) {
+            $indent--;
+            $prefix = str_repeat($ind, $indent);
+            $result .= $lineBreak . $prefix . $token;
+        } elseif (!$inLiteral && $token == ',') {
+            $result .= $token . $lineBreak;
+        } else {
+            $result .= ( $inLiteral ? '' : $prefix ) . $token;
+
+            // Count # of unescaped double-quotes in token, subtract # of
+            // escaped double-quotes and if the result is odd then we are 
+            // inside a string literal
+            if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
+                $inLiteral = !$inLiteral;
+            }
+        }
+    }
+    return $result;
+}
+
+/** Prettifies an XML string into a human-readable and indented work of art 
+ *  @param string $xml The XML as a string 
+ *  @param boolean $html_output True if the output should be escaped (for use in HTML) 
+ */  
+function xmlpp($xml, $html_output=false) {  
+    $xml_obj = new SimpleXMLElement($xml);  
+    $level = 4;  
+    $indent = 0; // current indentation level  
+    $pretty = array();  
+      
+    // get an array containing each XML element  
+    $xml = explode("\n", preg_replace('/>\s*</', ">\n<", $xml_obj->asXML()));  
+  
+    // shift off opening XML tag if present  
+    if (count($xml) && preg_match('/^<\?\s*xml/', $xml[0])) {  
+      $pretty[] = array_shift($xml);  
+    }  
+  
+    foreach ($xml as $el) {  
+      if (preg_match('/^<([\w])+[^>\/]*>$/U', $el)) {  
+          // opening tag, increase indent  
+          $pretty[] = str_repeat(' ', $indent) . $el;  
+          $indent += $level;  
+      } else {  
+        if (preg_match('/^<\/.+>$/', $el)) {              
+          $indent -= $level;  // closing tag, decrease indent  
+        }  
+        if ($indent < 0) {  
+          $indent += $level;  
+        }  
+        $pretty[] = str_repeat(' ', $indent) . $el;  
+      }  
+    }     
+    $xml = implode("\n", $pretty);     
+    return ($html_output) ? htmlentities($xml) : $xml;  
+} 
