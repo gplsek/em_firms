@@ -91,14 +91,14 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   $form['field_kba']['#access'] = FALSE;
   $form['additional_settings']['#access'] = FALSE;
   $form['field_company']['#disabled'] = TRUE;
-  $form['field_name_first']['#disabled'] = TRUE;
+  /*$form['field_name_first']['#disabled'] = TRUE;
   $form['field_name_last']['#disabled'] = TRUE;
   $form['field_name_middle']['#disabled'] = TRUE;
   $form['field_name_maiden']['#disabled'] = TRUE;
   $form['field_name_suffix']['#disabled'] = TRUE;
   $form['field_ssn']['#disabled'] = TRUE;
   $form['field_dob']['#disabled'] = TRUE;
-  $form['field_gender']['#disabled'] = TRUE;
+  $form['field_gender']['#disabled'] = TRUE;*/
   $form['field_email_address']['#disabled'] = TRUE;
    // Change button labels for Residence
   _core_ef_set_button($form['field_address']['und'], "Add another Address", "Remove this Address", TRUE);
