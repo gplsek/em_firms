@@ -499,7 +499,7 @@ function _ws_verification($data) {
   $firstName  = $data["first_name"];
   $lastName   = $data["last_name"];
   $email      = $data["email"];
-  $ssn        = $data["ssn"];
+  $ssn        = preg_replace('/[^0-9]/', '', $data["ssn"]); // removes any non-integer characters
   $birthYear  = $data["birthdate"]["year"];
   $birthMonth = $data["birthdate"]["month"];
   $birthDay   = $data["birthdate"]["day"];
@@ -512,6 +512,7 @@ function _ws_verification($data) {
   
   $settings = _getWebServiceSettings();
   $settings["task"] = "iauth"; // adding an additional setting for this specific call
+  
   
   $requestData = array(
       "settings" => $settings,
