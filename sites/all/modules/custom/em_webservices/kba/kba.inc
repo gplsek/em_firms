@@ -327,14 +327,14 @@ function kba_follow_up_question($form, &$form_state) {
     } else {
       // User passed the verification
       
-      echo "Passed the verification";
+     // echo "Passed the verification";
       
       // end form wizard
       //$node = node_load($_SESSION['data_form']);
 
 	  //$node->field_kba['und'][0]['value'] = true;
-	  print_r($form_state['step_information'][1]['stored_values']);
-	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
+	  //print_r($form_state['step_information'][1]['stored_values']);
+	  _kba_collect_data($form_state['step_information'][1]['stored_values'],1);
 	  //node_save($node);
 
 	  drupal_goto('node/'.$_SESSION['data_form'].'/edit');
@@ -355,19 +355,19 @@ function kba_follow_up_question_result($form, &$form_state) {
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
     
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
-      echo "You have passed";
+      //echo "You have passed";
 
     //$node = node_load($_SESSION['data_form']);
 
 	//$node->field_kba['und'][0]['value'] = true;
-	  print_r($form_state['step_information'][1]['stored_values']);
-	  _kba_colect_data($form_state['step_information'][1]['stored_values'],true);
+	  //print_r($form_state['step_information'][1]['stored_values']);
+	  _kba_collect_data($form_state['step_information'][1]['stored_values'],1);
 	  
 	//node_save($node);
 
 	drupal_goto('node/'.$_SESSION['data_form'].'/edit');
     }
-    _kba_colect_data($form_state['step_information'][1]['stored_values'],false);
+     _kba_collect_data($form_state['step_information'][1]['stored_values'],0);
   }
   
   return $form;
@@ -376,7 +376,7 @@ function kba_follow_up_question_result($form, &$form_state) {
 
 
 
-function _kba_colect_data($data,$kba){
+function _kba_collect_data($data){
 
 	$node = node_load($_SESSION['data_form']);
 
@@ -389,7 +389,7 @@ function _kba_colect_data($data,$kba){
 	$node->field_ssn['und'][0]['value'] = $$data['ssn'];
 	$node->field_dob['und'][0]['value'] = $data['birthdate']['year'].'-'.$data['birthdate']['month'].'-'.$data['birthdate']['day'];
 	$node->field_address_history['und'][0] = $data['address']['address'];
-   $node->field_kba['und'][0]['value'] = $kba;
+    //$node->field_kba['und'][0]['value'] = $kba;
 
 
 
