@@ -73,8 +73,10 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
         "field_industry"
       );
       $form = _eiq_partners_hide_fields($form, $fields);
-      $form['field_invite_officers']['#type'] = 'hidden';
-      $form['#groups']['group_constituents']->format_type = 'hidden';
+      //$form['field_invite_officers']['#type'] = 'hidden';
+      //$form['#groups']['group_constituents']->format_type = 'hidden';
+      unset($form['field_invite_officers']['und']['add_more']);
+      $form['field_invite_officers']['und']['#title'] = 'Invite Officer';
 
       // set partner product information
       $form['commerce_node_checkout_product']['#default_value'] = '2';
@@ -103,5 +105,42 @@ function eiq_partners_form_commerce_checkout_form_checkout_alter(&$form, &$form_
   if (isset($_SESSION['partner']) && $_SESSION['partner'] == "kiva-zip") {
     $form['customer_profile_billing']['#access'] = FALSE;
     $form['commerce_payment']['#type'] = 'hidden';
+  }
+}
+
+function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
+  //dpm($form['#fieldgroups']['group_constituents']);
+  //dpm($form);
+  //$form['field_product_id']['#type'] = 'hidden';
+  switch ($_SESSION['partner']) {
+    case "kiva-zip":
+      $fields = array(
+        'title',
+        //'field_company',
+        //'field_dob',
+        'field_email_address',
+        'field_gender',
+        'field_kba',
+        //'field_name_first',
+        //'field_name_last',
+        'field_name_maiden',
+        //'field_name_middle',
+        'field_name_suffix',
+        //'field_ssn',
+        //'field_address',
+        'field_agree_final',
+        'field_citizenship',
+        'field_civil',
+        'field_criminal',
+        'field_education',
+        'field_employment',
+        'field_linkedin_profile',
+        //'field_convictions',
+      );
+      $form = _eiq_partners_hide_fields($form, $fields);
+      unset($form['field_address']['und'][0]['field_address_dates']);
+      unset($form['field_address']['und']['add_more']);
+      $form['#groups']['group_personal_info']->format_type = 'hidden';
+      break;
   }
 }

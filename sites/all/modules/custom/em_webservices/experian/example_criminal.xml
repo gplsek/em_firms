@@ -1,0 +1,137 @@
+<Search_results>
+<Request>
+<ref/>
+<lastname>breen</lastname>
+<firstname>john</firstname>
+<middlename/>
+<dob/>
+<include_partial_DOB/>
+<category>ALL</category>
+<state>in</state>
+<search_type>0</search_type>
+<source_layout>5</source_layout>
+</Request>
+<Returned>1</Returned>
+<Record>
+<IDCaseNumber>3139139</IDCaseNumber>
+<Category>Criminal/traffic</Category>
+<SSN/>
+<Fullname>BREEN, JOHN J</Fullname>
+<LastName>BREEN</LastName>
+<FirstName>JOHN</FirstName>
+<MiddleName>J</MiddleName>
+<Generation/>
+<DOB/>
+<BirthState/>
+<AKA1/>
+<AKA2/>
+<DOBAKA/>
+<Address1>16150 Branchwood Lane</Address1>
+<Address2/>
+<City>Granger</City>
+<State>IN</State>
+<Zip>46530</Zip>
+<Age/>
+<Hair/>
+<Eyes/>
+<Height/>
+<Weight/>
+<Race/>
+<ScarsMarks/>
+<Sex/>
+<SkinTone/>
+<MilitaryService/>
+<Photo/>
+<SourceState>IN</SourceState>
+<SourceName>IN Circuit Courts</SourceName>
+<source>inaoc</source>
+<Charge_info>
+<charge>
+<ChargesFiledDate>20010112</ChargesFiledDate>
+<OffenseDate/>
+<OffenseCode>35-48-4-11 (1)</OffenseCode>
+<NCICCode/>
+<OffenseDesc1>POSSESSION OF MARIJUANA</OffenseDesc1>
+<OffenseDesc2/>
+<Counts>1</Counts>
+<Plea/>
+<ConvictionDate/>
+<ConvictionPlace/>
+<SentenceLength/>
+<ProbationLength/>
+<Court>Hamilton Superior Court 4</Court>
+<Disposition>Conversion Unknown</Disposition>
+<DispositionDate>20010308</DispositionDate>
+<ArrestDate/>
+<ParoleDate/>
+<ReleaseDate/>
+<AdmittedDate/>
+<CourtCosts/>
+<ArrestingAgency/>
+<caseType>CM - Criminal Misdemeanor</caseType>
+<Fines/>
+<caseno>29D04-0101-CM-000186</caseno>
+</charge>
+<charge>
+<ChargesFiledDate>20010112</ChargesFiledDate>
+<OffenseDate/>
+<OffenseCode>7.1-5-7-7</OffenseCode>
+<NCICCode/>
+<OffenseDesc1>ILLEGAL CONSUMPTION/POSSESSION</OffenseDesc1>
+<OffenseDesc2/>
+<Counts>2</Counts>
+<Plea/>
+<ConvictionDate/>
+<ConvictionPlace/>
+<SentenceLength/>
+<ProbationLength/>
+<Court>Hamilton Superior Court 4</Court>
+<Disposition>Conversion Unknown</Disposition>
+<DispositionDate>20010308</DispositionDate>
+<ArrestDate/>
+<ParoleDate/>
+<ReleaseDate/>
+<AdmittedDate/>
+<CourtCosts/>
+<ArrestingAgency/>
+<caseType>CM - Criminal Misdemeanor</caseType>
+<Fines/>
+<caseno>29D04-0101-CM-000186</caseno>
+</charge>
+</Charge_info>
+<AdditionalSourceData>
+<source_state>IN</source_state>
+<source_name>IN Circuit Courts</source_name>
+<ID>3139139</ID>
+<Name>BREEN, JOHN J</Name>
+<FirstName>JOHN</FirstName>
+<MiddleName>J</MiddleName>
+<LastName>BREEN</LastName>
+<Address>16150 Branchwood Lane</Address>
+<City>Granger</City>
+<State>IN</State>
+<Zip>46530</Zip>
+<CaseNo>29D04-0101-CM-000186</CaseNo>
+<Title>State of Indiana vs. John J. Breen</Title>
+<CaseType>CM - Criminal Misdemeanor</CaseType>
+<DateFiled>01/12/2001</DateFiled>
+<Location>Hamilton Superior Court 4</Location>
+<Plaintiff>State of Indiana</Plaintiff>
+<Charge_Name>Breen, John J.</Charge_Name>
+<Charge_Number>1;(2)2</Charge_Number>
+<Charge_Description>
+POSSESSION OF MARIJUANA;(2)ILLEGAL CONSUMPTION/POSSESSION
+</Charge_Description>
+<Charge_Statute>35-48-4-11 (1);(2)7.1-5-7-7</Charge_Statute>
+<Charge_Level>Misdemeanor Class A;(2)Misdemeanor Class C</Charge_Level>
+<Charge_Date>07/25/1999</Charge_Date>
+<Charge_DispNumber>1;(2)2</Charge_DispNumber>
+<Charge_DispDate>03/08/2001</Charge_DispDate>
+<Charge_DispCharge>
+POSSESSION OF MARIJUANA;(2)ILLEGAL CONSUMPTION/POSSESSION
+</Charge_DispCharge>
+<Charge_DispStatus>Conversion Unknown</Charge_DispStatus>
+<DateAdded>20101001</DateAdded>
+</AdditionalSourceData>
+</Record>
+</Search_results>

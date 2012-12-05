@@ -1,0 +1,50 @@
+<xmlgw>
+<search_response>
+    <search>STPEOPLE</search> 
+    <search_identifier>search-id</search_identifier> 
+    <search_criteria>
+        <style>cvdefault</style> 
+        <ssn>123456789</ssn> 
+    </search_criteria>
+    <rows_returned>1</rows_returned> 
+    <response_data>
+    <response_row>
+        <lastname>Smith</lastname> 
+        <firstname>Tim</firstname> 
+        <middlename /> 
+        <prefix /> 
+        <suffix /> 
+        <akalist > 
+           <aka>alias 1</aka>
+           <aka>alias 2</aka>
+        </akalist > 
+        <ssn>123456789</ssn> 
+        <ssnstate>CA</ssnstate> 
+        <ssnyears>2005</ssnyears> 
+        <deceased /> 
+        <dob /> 
+        <fullstreet>1234 E Elm ST APT 206</fullstreet> 
+        <housenum>1234</housenum> 
+        <predir>E</predir> 
+        <streetname>Elm</streetname> 
+        <streettype>ST</streettype> 
+        <postdir /> 
+        <apt>206</apt> 
+        <city>Fullerton</city> 
+        <county>ORANGE</county> 
+        <state>CA</state> 
+        <zip>92806</zip> 
+        <plusfour /> 
+        <phonelist > 
+           <phone>9999999999</phone>
+           <phone>9888888888</phone>
+        </phonelist > 
+        <firstdate>20070700</firstdate> 
+        <lastdate>20070700</lastdate> 
+        <timesreported>1</timesreported> 
+        <employer >XYZ company </employer> 
+        <occupation >Laborer </occupation>
+    </response_row>
+    </response_data>
+</search_response>
+</xmlgw>
