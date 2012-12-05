@@ -126,6 +126,7 @@
     $pathSprite: $pathImg + 'eiq_sprite.png';
     $color-black:#000000;
     $color-white:#ffffff;
+    $color-green:#60a940;
     $color-header-green:#62a934;
     $color-blue:#235A9F;
     $color-text-grey:#889297;
@@ -1510,7 +1511,7 @@ body.not-front {
     #block-system-main-menu ul li a.active-trail,
     #block-system-main-menu ul li:hover a,
     #block-system-main-menu ul li a:focus {
-        border-bottom: solid 3px #60a940; /* green */
+        border-bottom: solid 3px $color-green; /* green */
     }
 
     /* Main Menu - Dropdowns */
@@ -1519,7 +1520,7 @@ body.not-front {
         background: none repeat scroll 0 0 #FFFFFF;
         /*border-color: #ff6600 #CCCCCC #CCCCCC;*/ /* orange */
         /*border-color: #3A9BD0 #CCCCCC #CCCCCC;*/ /* blue */
-        border-color: #60a940 #CCCCCC #CCCCCC; /* green */
+        border-color: $color-green #CCCCCC #CCCCCC; /* green */
         border-style: solid;
         border-width: medium 1px 1px;
         display: none;
@@ -2022,7 +2023,7 @@ a.views-more-link:hover {
   @include wrap();
   background: white !important;
   border:1px solid #ccc;
-  border-top:3px solid #60a940;
+  border-top:3px solid $color-green;
   padding: 10px 10px 10px 10px;
   margin: 0;
   box-shadow: 1px 3px 6px #333;
