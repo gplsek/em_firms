@@ -507,11 +507,11 @@ function _em_apply_invite($node) {
 function em_apply_node_prepare($node) {
   if ($node->type == 'data_company'){
     // this works as a test
-	  $node->field_fein['und'][0]['value'] = '*********';
+	  //$node->field_fein['und'][0]['value'] = '*********';
 	}
   if ($node->type == 'data_person'){
     // this works as a test
-    $node->field_ssn['und'][0]['value'] = '***-**-****';
+    //$node->field_ssn['und'][0]['value'] = '***-**-****';
   }
 }
 
