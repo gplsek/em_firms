@@ -73,8 +73,10 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
         "field_industry"
       );
       $form = _eiq_partners_hide_fields($form, $fields);
-      $form['field_invite_officers']['#type'] = 'hidden';
-      $form['#groups']['group_constituents']->format_type = 'hidden';
+      //$form['field_invite_officers']['#type'] = 'hidden';
+      //$form['#groups']['group_constituents']->format_type = 'hidden';
+      unset($form['field_invite_officers']['und']['add_more']);
+      $form['field_invite_officers']['und']['#title'] = 'Invite Officer';
 
       // set partner product information
       $form['commerce_node_checkout_product']['#default_value'] = '2';
