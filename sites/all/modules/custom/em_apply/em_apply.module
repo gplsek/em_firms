@@ -308,12 +308,8 @@ function em_apply_node_insert($node) {
     global $user;
     if ($node->type == 'data_company'){
     // @TODO this will need to move to firing on purchase complete
-    // I think in function commerce_ef_commerce_checkout_complete($order)
-      _em_apply_invite($node);
-    // check who is updating the form
       _em_apply_company_map($node);
-
-      _em_apply_redirect_id($user);
+     /// _em_apply_redirect_id($user);
     }
 
 }
@@ -500,24 +496,7 @@ function _em_apply_invite($node) {
 }
 
 
-// function em_apply_node_update($node) {
-//  if ($node->type == 'data_company'){
-//     // this works as a test
-//      //unset($node->field_fein);
-//  }
-//
-// }
 
-function em_apply_node_prepare($node) {
-  if ($node->type == 'data_company'){
-    // this works as a test
-      //$node->field_fein['und'][0]['value'] = '*********';
-    }
-  if ($node->type == 'data_person'){
-    // this works as a test
-    //$node->field_ssn['und'][0]['value'] = '***-**-****';
-  }
-}
 
 
 /**
