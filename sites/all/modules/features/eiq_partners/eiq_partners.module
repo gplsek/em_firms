@@ -27,6 +27,7 @@ function _eiq_partners_check() {
     drupal_goto('user/login');
   }else{
     $_SESSION['partner'] = arg(0);
+    //drupal_goto('user/'.$user->uid.'/apply');
     return _eiq_partners_startapp_form();
     //return drupal_get_form('data_company_node_form');
   }
@@ -142,5 +143,15 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
       unset($form['field_address']['und']['add_more']);
       $form['#groups']['group_personal_info']->format_type = 'hidden';
       break;
+  }
+}
+
+function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
+  // setup redirect to correct Application if session exists for a prtner
+  // and must be after password reset is completed
+  global $user;
+  if (!isset($_SESSION['pass_reset_' . $user->uid]) && isset($_SESSION['partner'])) {
+      $account = user_load($user->uid);
+      _em_apply_redirect_id($account);
   }
 }

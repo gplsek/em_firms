@@ -277,10 +277,10 @@ function em_apply_check(){
     global $user;
 
     if($user->uid == '0'){
-    $_SESSION['destination'] = 'client/get-started';
-    setcookie("destination", 'client/get-started', time()+3600, "/");
-        drupal_goto('user/login');
-    }else{
+      $_SESSION['partner'] = arg(0);
+      setcookie("partner", arg(0), time()+3600, "/");
+      drupal_goto('user/login');
+    } else {
     // @TODO add lookup for open apps here
     // send user to the appropriate open application
     // if more than one application is open to user, then send to /user where they can decide from list
@@ -533,11 +533,11 @@ function em_apply_user_login(&$edit, $account) {
 
 
 function _em_apply_redirect_id($account) {
-  if (isset($_COOKIE['destination']) && $_COOKIE['destination'] == 'client/get-started') {
+  if (isset($_SESSION['partner'])) {
     //if cookie exists then expire it and set new destination
-    setcookie("destination", "", time() - 3600, "/");
-    $GLOBALS['destination'] = 'client/get-started';
-    drupal_goto('client/get-started');
+    setcookie("partner", "", time() - 3600, "/");
+    $GLOBALS['destination'] = $_SESSION['partner'] . '/get-started';
+    drupal_goto($_SESSION['partner'] . '/get-started');
   }
   //send them to person_data/kba form
     $result = db_select('node','d')
