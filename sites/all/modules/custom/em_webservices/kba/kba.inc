@@ -165,75 +165,75 @@ function kba_wizard_next_submit($form, &$form_state) {
 function kba_personal_info($form, &$form_state) {
   global $user;
 
-	$node = node_load($form_state['node']);
-	$address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
+    $node = node_load($form_state['node']);
+    $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
-	  return "You are not authorized";
+      return "You are not authorized";
     }
-	$form['data_person_nid'] = array(
-		'#type' => 'hidden',
-		'#default_value' => $form_state['node'],
+    $form['data_person_nid'] = array(
+        '#type' => 'hidden',
+        '#default_value' => $form_state['node'],
 
-	);
-	$form['suffix'] = array(
-		'#title' => t('Suffix'),
-		'#type' => 'textfield',
-		'#default_value' => $node->field_name_suffix['und'][0]['value'],
+    );
+    $form['suffix'] = array(
+        '#title' => t('Suffix'),
+        '#type' => 'textfield',
+        '#default_value' => $node->field_name_suffix['und'][0]['value'],
 
-	);
-	$form['first_name'] = array(
-		'#title' => t('First Name'),
-		'#type' => 'textfield',
+    );
+    $form['first_name'] = array(
+        '#title' => t('First Name'),
+        '#type' => 'textfield',
         '#default_value' => !empty($form_state['values']['first_name']) ? $form_state['values']['first_name'] : $node->field_name_first['und'][0]['value']
 
-	);
-	$form['middle_name'] = array(
-		'#title' => t('Middle Name'),
-		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['middle_name']) ? $form_state['values']['middle_name'] : $node->field_name_middle['und'][0]['value']
-	);
-	$form['last_name'] = array(
-		'#title' => t('Last Name'),
-		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['last_name']) ? $form_state['values']['last_name'] : $node->field_name_last['und'][0]['value']
+    );
+    $form['middle_name'] = array(
+        '#title' => t('Middle Name'),
+        '#type' => 'textfield',
+        '#default_value' => !empty($form_state['values']['middle_name']) ? $form_state['values']['middle_name'] : $node->field_name_middle['und'][0]['value']
+    );
+    $form['last_name'] = array(
+        '#title' => t('Last Name'),
+        '#type' => 'textfield',
+        '#default_value' => !empty($form_state['values']['last_name']) ? $form_state['values']['last_name'] : $node->field_name_last['und'][0]['value']
 
-	);
-	$form['maiden_name'] = array(
-		'#title' => t('Maiden Name'),
-		'#type' => 'textfield',
-		'#default_value' => $node->field_name_maiden['und'][0]['value'],
+    );
+    $form['maiden_name'] = array(
+        '#title' => t('Maiden Name'),
+        '#type' => 'textfield',
+        '#default_value' => $node->field_name_maiden['und'][0]['value'],
 
-	);
-	$dob = $node->field_dob['und'][0]['value'];
-	$dob = str_replace(' 00:00:00','',$dob);
-	$dob = explode('-',$dob);
+    );
+    $dob = $node->field_dob['und'][0]['value'];
+    $dob = str_replace(' 00:00:00','',$dob);
+    $dob = explode('-',$dob);
 
-	$form['birthdate'] = array(
-	  '#title' => t('Birthdate'),
-	  '#type' => 'date',
-	  '#description' => t('Select your birthdate'),
-	  '#default_value' => array(
-	  	  	'month' => str_replace('0','',$dob[1]),
-	  	  	'day' => str_replace('0','',$dob[2]),
-	  	  	'year' => $dob[0],
-	  	 )
-	);
-	$form['gender'] = array(
-	  '#title' => t('Gender'),
-	  '#type' => 'select',
-	  '#description' => t('Select your gender'),
-	  '#options' => array('Male' => 'Male', 'Female' => 'Female'),
-	  '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : $node->field_gender['und'][0]['value']
-	);
+    $form['birthdate'] = array(
+      '#title' => t('Birthdate'),
+      '#type' => 'date',
+      '#description' => t('Select your birthdate'),
+      '#default_value' => array(
+            'month' => str_replace('0','',$dob[1]),
+            'day' => str_replace('0','',$dob[2]),
+            'year' => $dob[0],
+         )
+    );
+    $form['gender'] = array(
+      '#title' => t('Gender'),
+      '#type' => 'select',
+      '#description' => t('Select your gender'),
+      '#options' => array('Male' => 'Male', 'Female' => 'Female'),
+      '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : $node->field_gender['und'][0]['value']
+    );
 
-	$form['ssn'] = array(
-		'#title' => t('Social Security Number'),
-		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : $node->field_ssn['und'][0]['value']
-	);
+    $form['ssn'] = array(
+        '#title' => t('Social Security Number'),
+        '#type' => 'textfield',
+        '#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : $node->field_ssn['und'][0]['value']
+    );
 
-	$form['address'] = array(
+    $form['address'] = array(
     '#type' => 'addressfield',
     '#title' => t('Address'),
     '#required' => TRUE,
@@ -241,8 +241,8 @@ function kba_personal_info($form, &$form_state) {
     '#default_value' => $address[$node->field_address['und'][0]['value']]->field_address_full['und'][0],
     '#description' => "Please enter your address."
   );
-		  
-	return $form;
+          
+    return $form;
 }
 
 /**
@@ -264,10 +264,10 @@ function kba_questions($form, &$form_state) {
       $transationID = $response["transaction-status"]["transaction-id"];
       
       $form['transaction_id'] = array(
-    		'#type' => 'hidden',
-    		'#default_value' => $transationID,
+            '#type' => 'hidden',
+            '#default_value' => $transationID,
     
-    	);
+        );
       
       $questions = $response["questions"]["question"];
       
@@ -276,9 +276,9 @@ function kba_questions($form, &$form_state) {
         $questionSetID = $response["questions"]["question-set-id"];
         
         $form['question_set_id'] = array(
-      		'#type' => 'hidden',
-      		'#default_value' => $questionSetID,      
-      	);
+            '#type' => 'hidden',
+            '#default_value' => $questionSetID,      
+        );
         
         foreach($questions as $question) {
           
@@ -347,17 +347,17 @@ function kba_follow_up_question($form, &$form_state) {
       $transationID = $response["transaction-status"]["transaction-id"];
       
       $form['transaction_id'] = array(
-    		'#type' => 'hidden',
-    		'#default_value' => $transationID,
+            '#type' => 'hidden',
+            '#default_value' => $transationID,
     
-    	);
+        );
       
       $questionSetID = $response["questions"]["question-set-id"];
       
       $form['question_set_id'] = array(
-    		'#type' => 'hidden',
-    		'#default_value' => $questionSetID,      
-    	);
+            '#type' => 'hidden',
+            '#default_value' => $questionSetID,      
+        );
         
       $questionTitle = $question["text"]["statement"];
       $questionID = $question["question-id"];
@@ -388,12 +388,12 @@ function kba_follow_up_question($form, &$form_state) {
       //$node = node_load($_SESSION['data_form']);
 
 
-	  //$node->field_kba['und'][0]['value'] = true;
-	  //print_r($form_state['step_information'][1]['stored_values']);
-	  _kba_collect_data($form_state['step_information'][1]['stored_values'],1);
-	  //node_save($node);
+      //$node->field_kba['und'][0]['value'] = true;
+      //print_r($form_state['step_information'][1]['stored_values']);
+      _kba_collect_data($form_state['step_information'][1]['stored_values'],1);
+      //node_save($node);
 
-	  drupal_goto('node/'.$_SESSION['data_form'].'/edit');
+      drupal_goto('node/'.$_SESSION['data_form'].'/edit');
 
 
       $form_state["steps"] = 9999;
@@ -426,7 +426,7 @@ function kba_follow_up_question_result($form, &$form_state) {
       print_r($form_state['step_information'][1]['stored_values']);
       _kba_colect_data($form_state['step_information'][1]['stored_values'],1);
 
-	  
+      
       //node_save($node);
 
       drupal_goto('node/'.$_SESSION['data_form'].'/edit');
@@ -449,23 +449,23 @@ function kba_follow_up_question_result($form, &$form_state) {
 function _kba_colect_data($data,$kba){
 
 
-	$node = node_load($_SESSION['data_form']);
+    $node = node_load($_SESSION['data_form']);
 
-	$node->field_name_last['und'][0]['value'] = $data['last_name'];
-	$node->field_name_first['und'][0]['value'] = $data['first_name'];
-	$node->field_name_maiden['und'][0]['value'] = $data['maiden_name'];
-	$node->field_name_middle['und'][0]['value'] = $data['middle_name'];
-	$node->field_name_suffix['und'][0]['value'] = $form_state['values']['suffix'];
-	$node->field_gender['und'][0]['value'] = $data['gender'];
-	$node->field_ssn['und'][0]['value'] = $$data['ssn'];
-	$node->field_dob['und'][0]['value'] = $data['birthdate']['year'].'-'.$data['birthdate']['month'].'-'.$data['birthdate']['day'];
-	$node->field_address_history['und'][0] = $data['address']['address'];
+    $node->field_name_last['und'][0]['value'] = $data['last_name'];
+    $node->field_name_first['und'][0]['value'] = $data['first_name'];
+    $node->field_name_maiden['und'][0]['value'] = $data['maiden_name'];
+    $node->field_name_middle['und'][0]['value'] = $data['middle_name'];
+    $node->field_name_suffix['und'][0]['value'] = $form_state['values']['suffix'];
+    $node->field_gender['und'][0]['value'] = $data['gender'];
+    $node->field_ssn['und'][0]['value'] = $$data['ssn'];
+    $node->field_dob['und'][0]['value'] = $data['birthdate']['year'].'-'.$data['birthdate']['month'].'-'.$data['birthdate']['day'];
+    $node->field_address_history['und'][0] = $data['address']['address'];
 
     $node->field_kba['und'][0]['value'] = $kba;
 
 
 
-	node_save($node);
+    node_save($node);
 }
 
 
@@ -565,7 +565,7 @@ function _ws_verification($data) {
               "venue" => array(
                   "online" => array(
                       "credential" => array(
-        				        "credential-method" => "ssn"
+                                "credential-method" => "ssn"
                       )
                   )
               ),
@@ -625,7 +625,7 @@ function _ws_question_answers($data) {
   
   $settings = _getWebServiceSettings();
   $settings["transaction-id"] = $transactionID; // adding an additional setting for this specific call
-  			
+            
   $requestData = array(
       "settings" => $settings,
       "answers" => array(
