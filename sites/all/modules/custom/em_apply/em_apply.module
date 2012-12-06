@@ -277,10 +277,10 @@ function em_apply_check(){
     global $user;
 
     if($user->uid == '0'){
-    $_SESSION['destination'] = 'client/get-started';
-    setcookie("destination", 'client/get-started', time()+3600, "/");
-        drupal_goto('user/login');
-    }else{
+      $_SESSION['partner'] = arg(0);
+      setcookie("partner", arg(0), time()+3600, "/");
+      drupal_goto('user/login');
+    } else {
     // @TODO add lookup for open apps here
     // send user to the appropriate open application
     // if more than one application is open to user, then send to /user where they can decide from list
@@ -293,10 +293,13 @@ function em_apply_check(){
 
 function em_apply_form($uid){
   global $user;
+  _em_apply_redirect_id($user);
+  /*
   $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => 'data_company', 'language' => LANGUAGE_NONE);
   $form_state['build_info']['args'] = array($node);
   form_load_include($form_state, 'inc', 'node', 'node.pages');
   return drupal_build_form('data_company_node_form', $form_state);
+  */
 }
 
 
@@ -308,8 +311,17 @@ function em_apply_node_insert($node) {
     global $user;
     if ($node->type == 'data_company'){
     // @TODO this will need to move to firing on purchase complete
+<<<<<<< HEAD
       _em_apply_company_map($node);
      /// _em_apply_redirect_id($user);
+=======
+    // I think in function commerce_ef_commerce_checkout_complete($order)
+      //_em_apply_invite($node);
+    // check who is updating the form
+      _em_apply_company_map($node);
+
+     //_em_apply_redirect_id($user);
+>>>>>>> eaeda32501def4942fadf6e771d7e90606ba9ae3
     }
 
 }
@@ -422,7 +434,7 @@ function _em_apply_invite($node) {
         );
         $mail_params['headers']['Content-Type'] = 'text/html; charset=UTF-8';
         $message = drupal_mail('em_apply', 'application', $email, language_default(), $mail_params, $email,TRUE);
-
+        drupal_set_message("Personal Application was created for " . $email);
 
 
     }else{
@@ -448,6 +460,7 @@ function _em_apply_invite($node) {
       //register_no_approval_required
       //register_admin_created
       _user_mail_notify('register_no_approval_required', $newUser);
+      drupal_set_message("User account and Personal Application was created for " . $email);
       //$newUser = user_load_by_mail($email);
       $nuid = $newUser->uid;
       unset($newUser);
@@ -505,18 +518,16 @@ function _em_apply_invite($node) {
 function em_apply_user_login(&$edit, $account) {
   if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset' || variable_get('login_destination_immediate_redirect', FALSE)) {
     _em_apply_redirect_id($account);
-  }// else{
-  //    drupal_goto(referer_uri());
-  //   }
+  }
 }
 
 
 function _em_apply_redirect_id($account) {
-  if (isset($_COOKIE['destination']) && $_COOKIE['destination'] == 'client/get-started') {
+  if (isset($_SESSION['partner'])) {
     //if cookie exists then expire it and set new destination
-    setcookie("destination", "", time() - 3600, "/");
-    $GLOBALS['destination'] = 'client/get-started';
-    drupal_goto('client/get-started');
+    setcookie("partner", "", time() - 3600, "/");
+    $GLOBALS['destination'] = $_SESSION['partner'] . '/get-started';
+    drupal_goto($_SESSION['partner'] . '/get-started');
   }
   //send them to person_data/kba form
     $result = db_select('node','d')
@@ -532,7 +543,7 @@ function _em_apply_redirect_id($account) {
 
                 $dataPerson = node_load($nid);
              if(!empty($dataPerson)){
-               if(empty($dataPerson->field_kba) || ($dataPerson->field_kba['und'][0]['value'] == 0)){
+               if((empty($dataPerson->field_kba) || $dataPerson->field_kba['und'][0]['value'] == 0) && $dataPerson->field_agree_final['und'][0]['value'] == 1){
                   //send to kba process
                   $_SESSION['data_form'] = $nid;
                   unset($dataPerson);
@@ -541,12 +552,12 @@ function _em_apply_redirect_id($account) {
                 } else {
                   if(($dataPerson->field_agree_final['und'][0]['value'] == 0) || empty($dataPerson->field_agree_final)){
                     unset($dataPerson);
-                    $GLOBALS['destination'] = '/node/'.$nid.'/edit';
-                    drupal_goto('/node/'.$nid.'/edit');
+                    $GLOBALS['destination'] = 'node/'.$nid.'/edit';
+                    drupal_goto('node/'.$nid.'/edit');
                   }else{
                      unset($dataPerson);
                      $GLOBALS['destination'] = '';
-                     //drupal_goto('/node/'.$nid.'/edit');
+                     //drupal_goto('node/'.$nid.'/edit');
 
                   }
                 }

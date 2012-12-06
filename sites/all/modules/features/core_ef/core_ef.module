@@ -35,8 +35,6 @@ function core_ef_init() {
 function core_ef_node_presave($node) {
   if ($node->type == 'data_person' && $node->is_new == FALSE){
     if ($node->field_kba == FALSE && $node->field_verify_count < 2) {
-      dpm('do something here');
-      dpm($node);
       $GLOBALS['destination'] = 'verification/'.$node->nid;
     } else {
       drupal_set_message("You have exceeded the limit for attempts. If you need to try again, call David Trissel at (858) 243-0224.");
@@ -86,16 +84,8 @@ function core_ef_form_user_register_form_alter(&$form, &$form_state) {
 function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
   $form['contact']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
-  $form['field_client_type']['#disabled'] = TRUE;
-  // setup redirect to Company Appliation if cookie exists for client/get-started
-  // and must be after password reset is completed
-  global $user;
-  if (!isset($_SESSION['pass_reset_' . $user->uid]) && isset($_COOKIE['destination'])) {
-    if ($_COOKIE['destination'] == 'client/get-started') {
-      $account = user_load($user->uid);
-      _em_apply_redirect_id($account);
-    }
-  }
+  $form['field_client_type']['#access'] = FALSE;
+  $form['field_notes']['#access'] = FALSE;
 }
 
 
@@ -119,6 +109,8 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   $form['field_dob']['#disabled'] = TRUE;
   $form['field_gender']['#disabled'] = TRUE;*/
   $form['field_email_address']['#disabled'] = TRUE;
+  $form['actions']['submit']['#value'] = "Continue";
+
    // Change button labels for Residence
   _core_ef_set_button($form['field_address']['und'], "Add another Address", "Remove this Address", TRUE);
   // Change button labels for Employment
