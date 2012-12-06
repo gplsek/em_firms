@@ -12,6 +12,11 @@ variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
 variable_set("rsa_state", "pilot");
 variable_set("rsa_api_trace", 1); // used for debugging
 
+/**
+ * KBA error codes
+ */
+define("KBA_ERROR_TWO_OR_MORE_QUESTIONS_WRONG", 1);
+define("KBA_ERROR_FOLLOW_UP_QUESTION_WRONG", 2);
 
 /**
  * Associative array of the form steps
@@ -380,11 +385,15 @@ function kba_follow_up_question($form, &$form_state) {
       );
         
     } else {
-      // User passed the verification
+    
+      if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
+        //User has passed
+        kba_passed($form_state);
+      } else {
+        // User has failed
+        kba_failed($form_state, KBA_ERROR_TWO_OR_MORE_QUESTIONS_WRONG);
+      }
       
-     // echo "Passed the verification";
-      
-      // end form wizard
       //$node = node_load($_SESSION['data_form']);
 
 
@@ -418,8 +427,9 @@ function kba_follow_up_question_result($form, &$form_state) {
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
     
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
-      //echo "You have passed";
-
+      
+      //User has passed
+      kba_passed($form_state);
 
       //$node = node_load($_SESSION['data_form']);
       //$node->field_kba['und'][0]['value'] = true;
@@ -430,6 +440,11 @@ function kba_follow_up_question_result($form, &$form_state) {
       //node_save($node);
 
       drupal_goto('node/'.$_SESSION['data_form'].'/edit');
+    } else {
+    
+      // User has failed
+      kba_failed($form_state, KBA_ERROR_FOLLOW_UP_QUESTION_WRONG);
+      
     }
 
      _kba_collect_data($form_state['step_information'][1]['stored_values'],0);
@@ -679,7 +694,24 @@ function _getWebServiceSettings() {
   );
 }
 
+/**
+ * Called when the user has passed the KBA process
+ * 
+ * @param array The form state when the user passed
+ */
+function kba_passed($form_state) {
+  
+}
 
+/**
+ * Called when the user has failed the KBA process
+ *
+ * @param array The form state when user failed
+ * @param int The KBA error code
+ */
+function kba_failed($form_state, $error_code) {
+  
+}
 
 
 
