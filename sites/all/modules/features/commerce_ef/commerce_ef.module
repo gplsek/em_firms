@@ -18,7 +18,7 @@ function commerce_ef_commerce_checkout_complete($order) {
   // invite officers and create users, as needed
   _em_apply_invite($node);
   // send this Company's admin user to own verification form
-  drupal_goto('verification');
+  drupal_goto('verification/' . $node->nid);
   //$account = user_load($order['uid']);
   //dpm($account);
   //_em_apply_redirect_id($account);
