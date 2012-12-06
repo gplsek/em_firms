@@ -5052,6 +5052,75 @@ function core_ef_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-data_person-field_verify_count'.
+  $fields['node-data_person-field_verify_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_verify_count',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'data_person',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 23,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_verify_count',
+      'label' => 'Verify count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '25',
+      ),
+    ),
+  );
+
   // Exported field: 'node-earlyiq_slides-body'.
   $fields['node-earlyiq_slides-body'] = array(
     'field_config' => array(
@@ -6704,6 +6773,7 @@ function core_ef_field_default_fields() {
   t('Type');
   t('URL');
   t('URL to go');
+  t('Verify count');
   t('Year of Legal Formation');
   t('Zip Code');
   t('http://www.facebook.com/yourname');
