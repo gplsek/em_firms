@@ -560,31 +560,11 @@ function _em_apply_redirect_id($account) {
 
 
 function em_apply_user_insert(&$edit, $account, $category) {
-  $GLOBALS['destination'] = '';
+    $GLOBALS['destination'] = '';
 }
 
 function em_apply_user_update(&$edit, $account, $category) {
 
-
-        $result = db_select('node','d')
-            ->fields('d')
-            ->condition('type','data_person','=')
-            ->condition('uid', $account->uid,'=')
-            ->execute();
-        while($record = $result->fetchAssoc()) {
-            if($record['nid']){
-
-
-              $_SESSION['data_form'] = $record['nid'];
-          }
-        }
-
-        $node = node_load($record['nid']);
-        if(!empty($node)){
-         if($node->field_kba['und'][0]['value'] <> 1){
-            $GLOBALS['destination'] = 'verification/'.$node->nid;
-         }
-        }
-
+     _em_apply_redirect_id($account);
 
 }
