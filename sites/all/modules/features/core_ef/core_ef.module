@@ -33,16 +33,17 @@ function core_ef_init() {
  *  Implements hook_node_presave
  */
 function core_ef_node_presave($node) {
-  /*if ($node->type == 'data_person'){
+  if ($node->type == 'data_person' && $node->is_new == FALSE){
     if ($node->field_kba == FALSE && $node->field_verify_count < 2) {
-      // do something here
+      dpm('do something here');
+      dpm($node);
       $GLOBALS['destination'] = 'verification/'.$node->nid;
     } else {
       drupal_set_message("You have exceeded the limit for attempts. If you need to try again, call David Trissel at (858) 243-0224.");
       $GLOBALS['destination'] = '';
     }
 
-  }*/
+  }
 }
 
 function core_ef_mail_alter(&$message) {

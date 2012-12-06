@@ -67,15 +67,16 @@
  * @param $hook
  *   The name of the template being rendered ("html" in this case.)
  */
-/* -- Delete this line if you want to use this function
-function STARTERKIT_preprocess_html(&$variables, $hook) {
-  $variables['sample_variable'] = t('Lorem ipsum.');
+function seven_doublemthemes_preprocess_html(&$variables, $hook) {
+  //$variables['sample_variable'] = t('Lorem ipsum.');
 
   // The body tag's classes are controlled by the $classes_array variable. To
   // remove a class from $classes_array, use array_diff().
   //$variables['classes_array'] = array_diff($variables['classes_array'], array('class-to-remove'));
+  if (isset($_SESSION['partner'])) {
+    $variables['classes_array'][] = 'partner-' . $_SESSION['partner'];
+  }
 }
-// */
 
 /**
  * Override or insert variables into the page templates.
