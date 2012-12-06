@@ -15,8 +15,10 @@ variable_set("rsa_api_trace", 1); // used for debugging
 /**
  * KBA error codes
  */
-define("KBA_ERROR_TWO_OR_MORE_QUESTIONS_WRONG", 1);
-define("KBA_ERROR_FOLLOW_UP_QUESTION_WRONG", 2);
+define("KBA_ERROR_SERVICE_CANNOT_BE_REACHED", 1);
+define("KBA_ERROR_PERSONAL_INFORMATION", 2);
+define("KBA_ERROR_TWO_OR_MORE_QUESTIONS_WRONG", 3);
+define("KBA_ERROR_FOLLOW_UP_QUESTION_WRONG", 4);
 
 /**
  * Associative array of the form steps
@@ -310,6 +312,8 @@ function kba_questions($form, &$form_state) {
         
       } else {
         
+        kba_failed($form_state, KBA_ERROR_PERSONAL_INFORMATION);
+        
         $form['error'] = array(
           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
         );
@@ -319,7 +323,9 @@ function kba_questions($form, &$form_state) {
       }
       
     } catch (Exception $e) {
-    
+        
+        kba_failed($form_state, KBA_ERROR_SERVICE_CANNOT_BE_REACHED);
+        
         $form['error'] = array(
           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
         );
