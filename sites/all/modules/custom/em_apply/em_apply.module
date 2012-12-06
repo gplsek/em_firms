@@ -505,9 +505,9 @@ function _em_apply_invite($node) {
  * Implements hook_user_login
  */
 function em_apply_user_login(&$edit, $account) {
-  if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset' || variable_get('login_destination_immediate_redirect', FALSE)) {
+  //if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset' || variable_get('login_destination_immediate_redirect', FALSE)) {
     _em_apply_redirect_id($account);
-  }
+  //}
 }
 
 
