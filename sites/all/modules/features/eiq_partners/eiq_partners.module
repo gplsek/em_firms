@@ -113,36 +113,42 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form['#fieldgroups']['group_constituents']);
   //dpm($form);
   //$form['field_product_id']['#type'] = 'hidden';
-  switch ($_SESSION['partner']) {
-    case "kiva-zip":
-      $fields = array(
-        'title',
-        //'field_company',
-        //'field_dob',
-        'field_email_address',
-        'field_gender',
-        'field_kba',
-        //'field_name_first',
-        //'field_name_last',
-        'field_name_maiden',
-        //'field_name_middle',
-        'field_name_suffix',
-        //'field_ssn',
-        //'field_address',
-        'field_agree_final',
-        'field_citizenship',
-        'field_civil',
-        'field_criminal',
-        'field_education',
-        'field_employment',
-        'field_linkedin_profile',
-        //'field_convictions',
-      );
-      $form = _eiq_partners_hide_fields($form, $fields);
-      unset($form['field_address']['und'][0]['field_address_dates']);
-      unset($form['field_address']['und']['add_more']);
-      $form['#groups']['group_personal_info']->format_type = 'hidden';
-      break;
+  if (isset($form['field_company']['und'][0]['nid']['#default_value'])) {
+    $company_node = node_load($form['field_company']['und'][0]['nid']['#default_value']);
+    $product_id = $company_node->field_product_id['und'][0]['product_id'];
+    switch ($product_id) {
+      case "2": // works for kiva-zip partner
+        $fields = array(
+          'title',
+          //'field_company',
+          //'field_dob',
+          'field_email_address',
+          'field_gender',
+          'field_kba',
+          //'field_name_first',
+          //'field_name_last',
+          'field_name_maiden',
+          //'field_name_middle',
+          'field_name_suffix',
+          //'field_ssn',
+          //'field_address',
+          'field_agree_final',
+          'field_citizenship',
+          'field_civil',
+          'field_criminal',
+          'field_education',
+          'field_employment',
+          'field_linkedin_profile',
+          //'field_convictions',
+        );
+        $form = _eiq_partners_hide_fields($form, $fields);
+        unset($form['field_address']['und'][0]['field_address_dates']);
+        unset($form['field_address']['und']['add_more']);
+        $form['#groups']['group_personal_info']->format_type = 'hidden';
+        break;
+    }
+  } else {
+    drupal_set_message("No product is associated with this application. Please contact the site admin.");
   }
 }
 
