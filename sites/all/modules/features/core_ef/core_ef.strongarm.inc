@@ -28,7 +28,7 @@ function core_ef_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_data_person';
-  $strongarm->value = 'edit-submission';
+  $strongarm->value = 'edit-diff';
   $export['additional_settings__active_tab_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1696,7 +1696,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mb_content_tabcn_data_person';
-  $strongarm->value = '1';
+  $strongarm->value = 0;
   $export['mb_content_tabcn_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -2832,7 +2832,7 @@ admin/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'show_preview_changes_data_person';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['show_preview_changes_data_person'] = $strongarm;
 
   $strongarm = new stdClass();
