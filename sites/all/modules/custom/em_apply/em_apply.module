@@ -24,8 +24,9 @@ function em_apply_menu() {
   //   'access callback' => TRUE,
   //   'type' => MENU_CALLBACK,
   // );
-  $items['test/verification'] = array(
+  $items['test/verification/%'] = array(
     'page callback' => 'em_apply_test_verification',
+    'page arguments' => array(2),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -53,20 +54,23 @@ function em_apply_kba(){
     }
 }
 
-function em_apply_verification(){
+function em_apply_verification($nid){
 	global $user;
-	if($_SESSION['data_form']){
+	$node = node_load($nid);
+	print "UID: ".$node->uid;
+	die();
+	if($node->uid == $user->uid){
 	 return drupal_get_form('em_apply_verification_form');
 
     }else{
-	  print "No session";
+	  print "Access Denied, you do not have permissions to this data";
 	  return;
     }
 }
 function em_apply_test_verification(){
   // set session data with nid for the data_person form to use for testing
   $_SESSION['data_form'] = 91;
-  return drupal_get_form('em_apply_verification_form');
+  return drupal_get_form('em_apply_verification_form',91);
 }
 
 function em_apply_verification_form($form, &$form_state){
@@ -553,8 +557,8 @@ function _em_apply_redirect_id($account) {
 			      //send to kba process
 			      $_SESSION['data_form'] = $nid;
 			      unset($dataPerson);
-			      $GLOBALS['destination'] = 'verification';
-			      drupal_goto('verification');
+			      $GLOBALS['destination'] = 'verification/'.$nid;
+			      drupal_goto('verification/'.$nid);
 			    } else {
 				  if(($dataPerson->field_agree_final['und'][0]['value'] == 0) || empty($dataPerson->field_agree_final)){
 			      	unset($dataPerson);
@@ -599,7 +603,7 @@ function em_apply_user_update(&$edit, $account, $category) {
         $node = node_load($record['nid']);
         if(!empty($node)){
          if($node->field_kba['und'][0]['value'] <> 1){
-			$GLOBALS['destination'] = 'verification';
+			$GLOBALS['destination'] = 'verification/'.$node->nid;
 	     }
         }
 

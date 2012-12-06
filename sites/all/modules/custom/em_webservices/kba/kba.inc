@@ -40,8 +40,8 @@ function _kba_steps() {
  * 
  * @return array a form in the Drupal Form API format
  */
-function kba_wizard($form, &$form_state) {
-
+function kba_wizard($form, &$form_state, $nid) {
+  $form_state['node'] = $nid;
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
     $form_state['step'] = 1;
@@ -164,12 +164,16 @@ function kba_wizard_next_submit($form, &$form_state) {
  */
 function kba_personal_info($form, &$form_state) {
   global $user;
-	$data_nid = $_SESSION['data_form'];
-	$node = node_load($data_nid);
 
+	$node = node_load($form_state['node']);
+	$address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
+
+    if($node->uid <> $user->uid){
+	  return "You are not authorized";
+    }
 	$form['data_person_nid'] = array(
 		'#type' => 'hidden',
-		'#default_value' => $data_nid,
+		'#default_value' => $form_state['node'],
 
 	);
 	$form['suffix'] = array(
@@ -201,16 +205,19 @@ function kba_personal_info($form, &$form_state) {
 		'#default_value' => $node->field_name_maiden['und'][0]['value'],
 
 	);
-	
+	$dob = $node->field_dob['und'][0]['value'];
+	$dob = str_replace(' 00:00:00','',$dob);
+	$dob = explode('-',$dob);
+
 	$form['birthdate'] = array(
 	  '#title' => t('Birthdate'),
 	  '#type' => 'date',
 	  '#description' => t('Select your birthdate'),
 	  '#default_value' => array(
-	  	    'month' => format_date(time(), 'custom', 'n'),
-	  	    'day' => format_date(time(), 'custom', 'j'),
-	  	    'year' => format_date(time(), 'custom', 'Y'),
-        )
+	  	  	'month' => str_replace('0','',$dob[1]),
+	  	  	'day' => str_replace('0','',$dob[2]),
+	  	  	'year' => $dob[0],
+	  	 )
 	);
 	$form['gender'] = array(
 	  '#title' => t('Gender'),
@@ -223,14 +230,15 @@ function kba_personal_info($form, &$form_state) {
 	$form['ssn'] = array(
 		'#title' => t('Social Security Number'),
 		'#type' => 'textfield',
-		'#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : ''
+		'#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : $node->field_ssn['und'][0]['value']
 	);
 
 	$form['address'] = array(
     '#type' => 'addressfield',
     '#title' => t('Address'),
     '#required' => TRUE,
-    '#default_value' => array('country' => 'US'), // Selects USA by default
+    //'#default_value' => array('country' => 'US'), // Selects USA by default
+    '#default_value' => $address[$node->field_address['und'][0]['value']]->field_address_full['und'][0],
     '#description' => "Please enter your address."
   );
 		  

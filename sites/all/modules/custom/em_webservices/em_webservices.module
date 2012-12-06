@@ -11,8 +11,9 @@ function em_webservices_menu() {
     'type' => MENU_CALLBACK
   );
 
-  $items['verification'] = array(
+  $items['verification/%'] = array(
     'page callback' => 'em_webservices_verification',
+    'page arguments' => array(2),
     'access callback' => TRUE,
     'description' => 'KBA form',
     'file' => 'kba/kba.inc',
@@ -30,9 +31,16 @@ function em_webservices_menu() {
   return $items;
 }
 
-function em_webservices_verification() {
+function em_webservices_verification($nid) {
 	global $user;
-	return drupal_get_form("kba_wizard");
+	$node = node_load($nid);
+	if (($user->uid == $node->uid) && ($node->type == 'data_person')){
+		unset($node);
+		return drupal_get_form("kba_wizard",$nid);
+	}else{
+		unset($node);
+		return "Access Denied, you do not have permissions to this data";
+	}
 }
 
 function em_webservices_kba_test(){
