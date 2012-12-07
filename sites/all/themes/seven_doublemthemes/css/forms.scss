@@ -1,53 +1,48 @@
 /* all forms */
-
-
 #main-wrapper form {
-  // inputs
-  input[type='text'], textarea, input[type='password'] {
-    @include border-radius(4px);
-    border-color:#bbb;
-    margin:0;
-    padding-left:5px;
-    &:focus {
-      border-color:$color-text-grey;
+    
+    textarea,
+    input[type='text'],
+    input[type='password'] {
+        @include border-radius(4px);
+        border-color:#bbb;
+        margin:0;
+        padding-left:5px;
+
+        &:focus {
+          border-color:$color-text-grey;
+        }
     }
-  }
 
-  // input padding, sans textarea
-  input[type='text'], input[type='password'], input[type='email'] {
-    padding-top:5px;
-    padding-bottom:5px;
-  }
-  /*
-  textarea {
-    width:432px;
-  }*/
-  .grippie {display:none;}
-}
+    // input padding, textarea exluded
+    input[type='text'],
+    input[type='password'],
+    input[type='email'] {
+        padding-top:5px;
+        padding-bottom:5px;
+    }
 
-fieldset legend,
-html.js fieldset.collapsible .fieldset-legend {
-  @include wrap();
-  display:block;
-  width:100%;
+    .grippie {
+        display:none;
+    }
 }
 
 html.js fieldset.collapsed {
-  height:auto !important; // or
+    height:auto !important; // override
 }
 
 // white arrows
 html.js fieldset.collapsible .fieldset-legend {
-  background-image:url($pathImg + 'menu-expanded-wht.png');
+    background-image:url($pathImg + 'menu-expanded-wht.png');
 }
 
 html.js fieldset.collapsed .fieldset-legend {
-  background-image:url($pathImg + 'menu-collapsed-wht.png');  
+    background-image:url($pathImg + 'menu-collapsed-wht.png');  
 }
 
 // ajax icon override
 html.js input.form-autocomplete {
-  background-position:100% 5px;
+    background-position:100% 5px;
 }
 
 .field-type-link-field label,
@@ -55,28 +50,50 @@ html.js input.form-autocomplete {
 .field-type-link-field .link-field-subrow .link-field-url,
 .field-type-link-field .link-field-subrow .link-field-url .form-item,
 .field-type-link-field .description {
-  display:block;
+    display:block;
 }
 
 .field-type-link-field .link-field-subrow{
-  float:left;
+    float:left;
 }
 
 .field-type-link-field .description {
-  font-style:italic;
-  padding-left:15px;
+    font-style:italic;
+    padding-left:15px;
 }
 
 .form-type-textarea {
-  @include wrap();
+    @include wrap();
 
-  .form-textarea-wrapper {
-    float:left;
-    width:69%;
-  }
+    .form-textarea-wrapper {
+        float:left;
+        width:69%;
+    }
+}
+// block display elements
+#field-invite-officers-values,
+#field-address-values,
+fieldset legend,
+html.js fieldset.collapsible .fieldset-legend {
+    @include wrap();
+    display:block;
+    width:100%;
 }
 
+#field-address-values,
+#field-invite-officers-values {
+    padding-left:10px;
+    .field-label {
+        width:760px;
+    }
+}
 
+.tabledrag-toggle-weight-wrapper a {
+    color:$color-text-grey;
+    text-decoration:none;
+    padding-right:10px;
+    font-size:12px;
+}
 
 
 
@@ -145,29 +162,30 @@ html.js input.form-autocomplete {
 /* layouts */
 
 // login, register, etc.
-.page-user-register, .page-user-login {
+.page-user-register,
+.page-user-login {
   
-  form {
+    form {
     padding:15px 0;
     width:630px;
-  
-    .form-item {
-      display:block;
-      padding:10px 0;
+
+        .form-item {
+            display:block;
+            padding:10px 0;
+            input {
+                width:429px;
+            }
+        }
+
+        label {
+            float:left;
+            width:120px;
+        }
+
+        input#edit-captcha-response {
+            width:390px;
+        }
     }
-  
-    label {
-      float:left;
-      min-width:190px;
-      width:23%;
-    }
-  
-    .form-item input {
-      width:429px;
-    }
-  
-    input#edit-captcha-response {width:390px;}
-  }
 }
 
 #main-report-wrapper,
@@ -180,6 +198,7 @@ html.js input.form-autocomplete {
   border:1px solid #d4d4d4;
   padding:20px 0;
 }
+
 // no sidebars
 .section-verification,
 .page-user-apply,
@@ -193,10 +212,6 @@ html.js input.form-autocomplete {
     max-width:850px; // prototype
     padding:20px 15px;
     width:80%; // prototype
-  }
-  label {
-    min-width:190px;
-    width:23%;
   }
 }
 
@@ -262,35 +277,87 @@ html.js input.form-autocomplete {
 
 
 
+div.status, .ok {
+    @include border-radius(5px);
+        @include gradient('formHeader');
+        border:0;   
+        color:$color-white;
+        height:20px;
+        font-size:13px;
+        line-height:20px;
+        padding:10px 0 10px 20px;
 
+      a, a:link, a:visited {
+        color:$color-white;
+        text-decoration:none;
 
+        &:hover {
+          text-decoration:underline;
+        }
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// all forms sans user-forms
+.section-kiva-zip,
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register,
+.page-user-login,
+.node-type-data-person,
+.page-user-reset {
+// submit buttons
+    input[type='submit'] {
+    @include eiq_action_btn(auto, 30px);
+    float:left;
+    font-size:15px;
+    margin:10px 15px 0 !important;
+    padding:0 15px !important; //or
+        &:hover {
+            cursor:pointer;
+        }
+    }
+}
+.section-kiva-zip,
+.page-checkout,
 .section-verification,
 .page-user-apply,
 .page-node-add-data-person,
 .page-node-add-data-company,
 .section-beta,
 .page-user-register {
+// legends
+    legend {
+        @include border-radius(5px);
+        @include gradient('formHeader');
+        color:$color-white;
+        height:20px;
+        font-size:13px;
+        line-height:20px;
+        padding:10px 0 10px 20px;
+
+      a, a:link, a:visited {
+        color:$color-white;
+        text-decoration:none;
+
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+}
+// all forms sans user-forms
+.section-kiva-zip,
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register,
+.node-type-data-person {
 
   h1 {
     text-align:center;
@@ -342,34 +409,45 @@ html.js input.form-autocomplete {
     }
 
     // labels
-    label {
-      float:left;
-      line-height:24px;
-      padding-left:2%;
-      text-align:left;
+    label,
+    #field-dba-values thead,
+    #field-year-of-legal-formation-add-more-wrapper legend {
+        float:left;
+        line-height:24px;
+        padding-left:2%;
+        text-align:left;
+        min-width:190px;
+        width:23%;
     }
 
-    // legends
-    legend {
-      @include border-radius(5px);
-      @include gradient('formHeader');
-      color:$color-white;
-      padding-left:15px;
-
-      a, a:link, a:visited {
-        color:$color-white;
-        text-decoration:none;
-
-        &:hover {
-          text-decoration:underline;
+    //override
+    #field-year-of-legal-formation-add-more-wrapper {
+        legend {
+            @include border-radius(0);
+            background:none;
+            color:#333;
+            float:left;
+            font-weight:bold;
+            height:auto;
         }
-      }
+        .fieldset-wrapper {
+            float:left;
+            padding:0;
+            .date-no-float {
+                width:100%;
+            }
+            .container-inline-date .date-padding {
+                padding:0;
+            }
+        }
+
     }
 
     // generic checkbox styles
     .form-type-checkbox {
-      clear:both;
-      display:block;
+        @include wrap();
+        clear:both;
+        display:block;
     }
 
     // text & email inputs
@@ -380,17 +458,6 @@ html.js input.form-autocomplete {
       width:68%;
     }
     
-    // submit buttons
-    input[type='submit'] {
-    @include eiq_action_btn(auto, 44px);
-    float:left;
-    font-size:15px;
-    margin:10px 15px 0 !important;
-    padding:0 15px !important; //or
-      &:hover {
-        cursor:pointer;
-      }
-    }
 
     // inline buttons
     #edit-sac,
@@ -427,6 +494,11 @@ html.js input.form-autocomplete {
   .field-name-field-agree-final {
     @include wrap();
     padding:10px 0;
+    label {
+        font-size:12px;
+        font-style:italic;
+        font-weight:bold;
+    }
   }
   
   /* prototype overrides */
@@ -437,8 +509,8 @@ html.js input.form-autocomplete {
     display:block;
   }
 
-  .field-name-field-address-state .form-select {
-    width:auto;
+  .form-select {
+    width:69%;
   }
 
   // city input
@@ -542,6 +614,104 @@ html.js input.form-autocomplete {
 }
 
 
+// add person/company
+// dba vals
+#field-dba-values {
+
+}
+
+// kiva-zip specific
+.section-kiva-zip {
+    .field-name-field-disclaimer label {
+        width:300px;
+    }
+    form fieldset {
+        border:0;
+        margin-bottom:15px;
+    }
+    form legend {
+        padding-left:0;
+        .fieldset-legend {
+            margin-left:10px;
+        }
+    }
+}
+
+.logged-in.node-type-data-person {
+    div.tabs {
+        display:none;
+    }
+    form {
+        display:block;
+        padding-top:15px;
+    }
+    #edit-field-dob {
+        fieldset {
+            border:0 !important;
+        }
+        legend {
+            float:left;
+            font-weight:bold;
+            padding-left:2%;
+            width:23%;
+            min-width:190px;
+        }
+        .fieldset-wrapper {
+            float:left;
+            padding:0;
+            width:67%;
+        }
+    }
+    .container-inline-date .date-padding {
+        padding:0;
+    }
+    .container-inline-date .form-item .form-item {
+        float:left;
+        width:670px;
+        label {
+            float:left;
+            min-width:80px;
+            width:100px;
+        }
+        div {
+            float:left;
+            width:450px;
+        }
+    }
+    .form-item-field-convictions-und {
+        @include wrap();
+        display:block;
+
+        label {
+            float:left;
+            width:23%;
+            padding-left:2%;
+            min-width:190px;
+        }
+        
+        #edit-field-convictions-und {
+            float:left;
+            width:67%;
+        
+            .form-item {
+                float:left;
+                line-height:16px;
+                width:200px;
+                label {
+                    width:40px;
+                    min-width:40px;
+                }
+            }
+        }
+    }
+}
+
+.node-type-data-person form fieldset {
+    border:0;
+    label {
+        padding-left:0;
+    }
+}
 
 
 
@@ -591,21 +761,21 @@ html.js input.form-autocomplete {
 
 
 
+/* report card form styles */
 
+// sample report page only 
+.section-products #main {
+    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat; 
+    padding-bottom:90px; // helps clear bg image
+}
+.page-node-43 {
+  #main-wrapper {
+    background:url($pathImg + 'sample-report-background.png') right bottom no-repeat;
+    padding-bottom:60px;
+  }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* sample report card */
+// global
 #main-report-wrapper, #main-report-wrapper div {
   @include wrap();
 }
@@ -753,6 +923,7 @@ html.js input.form-autocomplete {
       color:$color-white;
       font-size:17px;
       line-height:18px;
+      margin:0;
       padding-left:20px;
       width:250px;
     }
@@ -842,6 +1013,7 @@ html.js input.form-autocomplete {
       border-bottom:1px solid #c3c3c3;
       clear:both;
       display:block;
+      margin:0;
       padding:6px 0 2px;
       
       ul {
@@ -878,6 +1050,8 @@ html.js input.form-autocomplete {
         width:375px;
       
         p {
+          font-size:12px;
+          line-height:22px;
           margin:0;
           padding:0;
         }
