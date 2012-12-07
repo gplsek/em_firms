@@ -50,6 +50,10 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
   //dpm($form['#fieldgroups']['group_constituents']);
   //dpm($form_state);
   //$form['field_product_id']['#type'] = 'hidden';
+  global $user;
+  if ($user->uid == 1) {
+    drupal_set_message("WARNING: You are logged in as user 1. This commerce page will not work correctly. Please login or masquerade as another user.");
+  }
   $partner = "client";
   switch (arg(0)) {
     case "kiva-zip":
