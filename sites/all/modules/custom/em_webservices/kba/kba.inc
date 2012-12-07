@@ -467,7 +467,7 @@ function kba_follow_up_question_result($form, &$form_state) {
  *
  * @return null
  */
-function _kba_colect_data($data,$kba){
+function _kba_colect_data($data,$kba) {
 
 
     $node = node_load($_SESSION['data_form']);
@@ -598,10 +598,10 @@ function _ws_verification($data) {
   $data = $webService->identityVerification($requestData); 
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
-  echo "<h1>------REQUEST-----</h1><br>";
-  echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-  echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-  echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+  //echo "<h1>------REQUEST-----</h1><br>";
+  //echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+  //echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+  //echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
   // --------------------------------------------------------------------------------
   
   
