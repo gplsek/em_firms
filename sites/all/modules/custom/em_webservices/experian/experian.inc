@@ -5,6 +5,10 @@ require_once("xml2json/xml2json.php");
 define("EXPERIAN_USERNAME", "emerging");
 define("EXPERIAN_PASSWORD", "dfgr^e3r9s");
 
+define("DATATYPE_CIVIL", "civil");
+define("DATATYPE_CRIMINAL", "criminal");
+define("DATATYPE_ADDRESS", "address");
+
 
 /**
  * Experian Form
@@ -17,18 +21,19 @@ function experian_test($form, &$form_state) {
   if(!empty($form_state["rebuild"]) && !empty($form_state["values"])) {
     $data = $form_state["values"];
     
-    
+    $mode = $data["mode"] ? "PRODUCTION" : "TESTING";
+        
     if($data["product"] == "criminal") {
       $dob = $data["birthdate"]["year"].$data["birthdate"]["month"].$data["birthdate"]["day"];
-      $form = experian_criminal_form($data["first_name"], $data["last_name"], $dob, $data["ssn"]);
+      $form = experian_criminal_form($data["first_name"], $data["last_name"], $dob, $data["ssn"], $mode);
     }
     
     if($data["product"] == "civil") {
-      $form = experian_civil_form($data["ssn"]);
+      $form = experian_civil_form($data["ssn"], $mode);
     }
     
     if($data["product"] == "address") {
-      $form = experian_address_form($data["ssn"]);
+      $form = experian_address_form($data["ssn"], $mode);
     }
     
   } else {
@@ -68,7 +73,13 @@ function experian_test($form, &$form_state) {
         "address"=>"Address"
       ),
       '#default_value' => 'criminal',
-      '#title'=>t('Select Product')
+
+    );
+  	
+  	$form['mode'] = array(
+      '#type' => 'checkbox',
+      '#title'=>t('Live (Will cost money)'),
+      '#default_value' => 0
     );
   	
   	$form['submit'] = array(
@@ -92,12 +103,16 @@ function experian_test_submit($form, &$form_state) {
  * 
  * @return array a form in the Drupal Form API format
  */
-function experian_criminal_form($firstName, $lastName, $dob, $ssn) {
+function experian_criminal_form($firstName, $lastName, $dob, $ssn, $mode) {
   $form = array();
   
-  $history = json_decode(getCriminalHistory($firstName, $lastName, $dob, $ssn), true);
+  $history = json_decode(getCriminalHistory($firstName, $lastName, $dob, $ssn, $mode), true);
   
-  $historyJSON = json_encode($history["Search_results"]["Record"]);
+  if(!empty($history["Search_results"]["Record"])) {
+    $historyJSON = json_encode($history["Search_results"]["Record"]);
+  } else {
+    $historyJSON = json_encode($history);
+  }
   
   $form['jsonView'] = array(
 		'#markup' => _getMarkup($historyJSON)
@@ -111,10 +126,10 @@ function experian_criminal_form($firstName, $lastName, $dob, $ssn) {
  * 
  * @return array a form in the Drupal Form API format
  */
-function experian_civil_form($ssn) {
+function experian_civil_form($ssn, $mode) {
   $form = array();
   
-  $history = json_decode(getCivilHistory($ssn), true);
+  $history = json_decode(getCivilHistory($ssn, $mode), true);
   if(!empty($history)) {
     $historyJSON = json_encode($history["xmlgw"]["search_response"]["response_data"]);
   }
@@ -129,13 +144,21 @@ function experian_civil_form($ssn) {
 /**
  * Entry point to get Address History
  * 
+ * Retrieves the data and saves it, then returns a drupal form
+ *
  * @return array a form in the Drupal Form API format
  */
-function experian_address_form($ssn) {
+function experian_address_form($ssn, $mode) {
   $form = array();
 
-  $history = json_decode(getAddressHistory($ssn), true);
-  $historyJSON = json_encode($history["xmlgw"]["search_response"]["response_data"]);
+  $history = json_decode(getAddressHistory($ssn, $mode), true);
+  if(!empty($history)) {
+    // Save the data
+    $node = node_load($nodeID);
+    $node->field_results_address_history['und'][0]['value'] = $json;
+    
+    $historyJSON = json_encode($history["xmlgw"]["search_response"]["response_data"]);
+  }
   
   $form['jsonView'] = array(
 		'#markup' => _getMarkup($historyJSON)
@@ -145,82 +168,123 @@ function experian_address_form($ssn) {
 }
 
 
-function getCriminalHistory($firstName, $lastName, $dateOfBirth, $ssn) {
-/* PRODUCTION
-
-  $url = "https://www.appcheckdata.com/ws_criminal3/criminal.svc/xml/ssn?".
-  "account=".urlencode(EXPERIAN_USERNAME).
-  "&key=".urlencode(EXPERIAN_PASSWORD).
-  "&ssn_source=1".
-  "&ssn=".urlencode($ssn).
-  "&lastname=".urlencode($lastName).
-  "&firstname=".urlencode($firstName).
-  "&DOB_yyyymmdd=".urlencode($dateOfBirth).
-  "&disclaimers_agree=y".
-  "&ref=CS";
+function getCriminalHistory($firstName, $lastName, $dateOfBirth, $ssn, $mode = "TESTING") {
   
-  $xml = file_get_contents($url);
-*/  
-
-  $xml = file_get_contents(dirname(__FILE__)."/example_criminal.xml");
+  if($mode == "TESTING") {
   
-  return _xmlToJSON($xml);
-}
-
-function getCivilHistory($ssn) {
-/* PRODUCTION
-
-  $url = "https://www.appcheckdata.com/xmlcivil/index.php".
-  "account=".urlencode(EXPERIAN_USERNAME).
-  "&key=".urlencode(EXPERIAN_PASSWORD).
-  "&ssn=".urlencode($ssn);
+    $xml = file_get_contents(dirname(__FILE__)."/example_criminal.xml");
+    
+  } else {
   
-  $xml = file_get_contents($url);
-*/
-  
-  $xml = file_get_contents(dirname(__FILE__)."/example_civil.xml");
-
-  return _xmlToJSON($xml);
-}
-
-
-function getAddressHistory($ssn) {
-  /* PRODUCTION
-  
-  $postdata = http_build_query(array("request"=> urlencode('<?xml version="1.0"?>
-    <xmlgw>
-     <session>
-          <user_id>'.EXPERIAN_USERNAME.'</user_id>
-          <password>'.EXPERIAN_PASSWORD.'</password>
-          <customer_reference>Emerging Firms</customer_reference>
-     </session>
-     <search_request>
-          <search>stpeople</search>
-          <search_identifier>search-id</search_identifier>
-          <search_criteria>
-          <ssn>'.$ssn.'</ssn>
-          </search_criteria>
-     </search_request>
-    </xmlgw>')));
-
-  $opts = array('http' =>
-      array(
-          'method'  => 'POST',
-          'header'  => 'Content-type: application/x-www-form-urlencoded',
-          'content' => $postdata
-      )
-  );
-  
-  $context  = stream_context_create($opts);
-  
-  $xml = file_get_contents('https://appcheckdata.com/xmlssn/ssntracer_pr.php', false, $context);
-  */
-  
-  $xml = file_get_contents(dirname(__FILE__)."/example_address.xml");  
+    /* PRODUCTION */
+    $url = "https://www.appcheckdata.com/ws_criminal3/criminal.svc/xml/ssn?".
+    "account=".urlencode(EXPERIAN_USERNAME).
+    "&key=".urlencode(EXPERIAN_PASSWORD).
+    "&ssn_source=1".
+    "&ssn=".urlencode($ssn).
+    "&lastname=".urlencode($lastName).
+    "&firstname=".urlencode($firstName).
+    "&DOB_yyyymmdd=".urlencode($dateOfBirth).
+    "&disclaimers_agree=y".
+    "&search_type= 0".
+    "&source_layout=5". 
+    "&ref=CS";
+    
+    $xml = file_get_contents($url);
+    
+    echo "RESPONSE[".htmlentities($xml)."]";
+  }
   
   return _xmlToJSON($xml);
 }
 
+function getCivilHistory($ssn, $mode = "TESTING") {
+
+
+  if($mode == "TESTING") {
+    $xml = file_get_contents(dirname(__FILE__)."/example_civil.xml");  
+  } else {
+  
+    /* PRODUCTION */
+    $url = "https://www.appcheckdata.com/xmlcivil/index.php".
+    "account=".urlencode(EXPERIAN_USERNAME).
+    "&key=".urlencode(EXPERIAN_PASSWORD).
+    "&ssn=".urlencode($ssn);
+    $xml = file_get_contents($url);
+    
+  }
+  
+  return _xmlToJSON($xml);
+}
+
+
+function getAddressHistory($ssn, $mode = "TESTING") {
+  
+  if($mode == "TESTING") {
+  
+    $xml = file_get_contents(dirname(__FILE__)."/example_address.xml");  
+    
+  } else {
+  
+    /* PRODUCTION */  
+    $postdata = http_build_query(array("request"=> urlencode('<?xml version="1.0"?>
+      <xmlgw>
+       <session>
+            <user_id>'.EXPERIAN_USERNAME.'</user_id>
+            <password>'.EXPERIAN_PASSWORD.'</password>
+            <customer_reference>Emerging Firms</customer_reference>
+       </session>
+       <search_request>
+            <search>stpeople</search>
+            <search_identifier>search-id</search_identifier>
+            <search_criteria>
+            <ssn>'.$ssn.'</ssn>
+            </search_criteria>
+       </search_request>
+      </xmlgw>')));
+  
+    $opts = array('http' =>
+        array(
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $postdata
+        )
+    );
+    
+    $context  = stream_context_create($opts);
+    
+    $xml = file_get_contents('https://appcheckdata.com/xmlssn/ssntracer_pr.php', false, $context);
+  }
+  
+  return _xmlToJSON($xml);
+}
+
+/**
+ * Saves Civil/Criminal/Address History JSON to the given node
+ *
+ *
+ */
+function _saveNode($nodeID, $json, $dataType) {
+  
+  // Save the data
+  $node = node_load($nodeID);
+  
+  if($dataType == DATATYPE_CIVIL) {
+  
+    $node->field_results_address_civil['und'][0]['value'] = $json;
+    
+  } else if($dataType == DATATYPE_CRIMINAL) {
+  
+    $node->field_results_address_criminal['und'][0]['value'] = $json;
+    
+  } else if($dataType == DATATYPE_ADDRESS) {
+  
+    $node->field_results_address_history['und'][0]['value'] = $json;
+    
+  }
+  
+  node_save($node);
+}
 
 function _getMarkup($json = "{}") {
   $markup = "";
@@ -249,6 +313,7 @@ function _getMarkup($json = "{}") {
 
 /**
  * Converts XML to JSON
+ *
  * @param string xml
  * @return string json string
  */
