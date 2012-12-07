@@ -639,7 +639,12 @@ function core_ef_user_default_permissions() {
   $permissions['create data_company content'] = array(
     'name' => 'create data_company content',
     'roles' => array(
-      0 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'beta',
+      2 => 'co_admin',
+      3 => 'co_user',
+      4 => 'partner admin',
+      5 => 'report viewer',
     ),
     'module' => 'node',
   );
@@ -649,8 +654,11 @@ function core_ef_user_default_permissions() {
     'name' => 'create data_person content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'co_admin',
-      2 => 'co_user',
+      1 => 'beta',
+      2 => 'co_admin',
+      3 => 'co_user',
+      4 => 'partner admin',
+      5 => 'report viewer',
     ),
     'module' => 'node',
   );

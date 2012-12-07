@@ -34,6 +34,12 @@ function core_ef_user_default_roles() {
     'weight' => '3',
   );
 
+  // Exported role: partner admin.
+  $roles['partner admin'] = array(
+    'name' => 'partner admin',
+    'weight' => '7',
+  );
+
   // Exported role: report viewer.
   $roles['report viewer'] = array(
     'name' => 'report viewer',
