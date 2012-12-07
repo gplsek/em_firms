@@ -447,7 +447,7 @@ function kba_follow_up_question_result($form, &$form_state) {
       //$node = node_load($_SESSION['data_form']);
       //$node->field_kba['und'][0]['value'] = true;
       print_r($form_state['step_information'][1]['stored_values']);
-      _kba_colect_data($form_state['step_information'][1]['stored_values'],1);
+
 
       
       //node_save($node);
@@ -460,7 +460,7 @@ function kba_follow_up_question_result($form, &$form_state) {
       
     }
 
-     _kba_collect_data($form_state['step_information'][1]['stored_values'],0);
+
 
   }
   
@@ -713,6 +713,8 @@ function _getWebServiceSettings() {
  * @param array The form state when the user passed
  */
 function kba_passed($form_state) {
+	drupal_set_message('you have passed','status');
+	drupal_goto('/');
   
 }
 
