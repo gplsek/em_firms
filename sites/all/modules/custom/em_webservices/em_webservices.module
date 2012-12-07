@@ -13,7 +13,7 @@ function em_webservices_menu() {
 
   $items['verification/%'] = array(
     'page callback' => 'em_webservices_verification',
-    'page arguments' => array(2),
+    'page arguments' => array(1),
     'access callback' => TRUE,
     'description' => 'KBA form',
     'file' => 'kba/kba.inc',

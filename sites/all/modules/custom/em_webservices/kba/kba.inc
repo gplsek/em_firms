@@ -178,35 +178,42 @@ function kba_personal_info($form, &$form_state) {
     if($node->uid <> $user->uid){
       return "You are not authorized";
     }
-    $form['data_person_nid'] = array(
+    $form['message'] = array(
+    	'#markup' => t('You are about to get verified :) good luck'),
+    );
+    $form['data'] = array(
+    	'#type' => 'fieldset',
+        '#access' => FALSE
+    );
+    $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
         '#default_value' => $form_state['node'],
 
     );
-    $form['suffix'] = array(
+    $form['data']['suffix'] = array(
         '#title' => t('Suffix'),
         '#type' => 'textfield',
         '#default_value' => $node->field_name_suffix['und'][0]['value'],
 
     );
-    $form['first_name'] = array(
+    $form['data']['first_name'] = array(
         '#title' => t('First Name'),
         '#type' => 'textfield',
         '#default_value' => !empty($form_state['values']['first_name']) ? $form_state['values']['first_name'] : $node->field_name_first['und'][0]['value']
 
     );
-    $form['middle_name'] = array(
+    $form['data']['middle_name'] = array(
         '#title' => t('Middle Name'),
         '#type' => 'textfield',
         '#default_value' => !empty($form_state['values']['middle_name']) ? $form_state['values']['middle_name'] : $node->field_name_middle['und'][0]['value']
     );
-    $form['last_name'] = array(
+    $form['data']['last_name'] = array(
         '#title' => t('Last Name'),
         '#type' => 'textfield',
         '#default_value' => !empty($form_state['values']['last_name']) ? $form_state['values']['last_name'] : $node->field_name_last['und'][0]['value']
 
     );
-    $form['maiden_name'] = array(
+    $form['data']['maiden_name'] = array(
         '#title' => t('Maiden Name'),
         '#type' => 'textfield',
         '#default_value' => $node->field_name_maiden['und'][0]['value'],
@@ -216,7 +223,7 @@ function kba_personal_info($form, &$form_state) {
     $dob = str_replace(' 00:00:00','',$dob);
     $dob = explode('-',$dob);
 
-    $form['birthdate'] = array(
+    $form['data']['birthdate'] = array(
       '#title' => t('Birthdate'),
       '#type' => 'date',
       '#description' => t('Select your birthdate'),
@@ -226,7 +233,7 @@ function kba_personal_info($form, &$form_state) {
             'year' => $dob[0],
          )
     );
-    $form['gender'] = array(
+    $form['data']['gender'] = array(
       '#title' => t('Gender'),
       '#type' => 'select',
       '#description' => t('Select your gender'),
@@ -234,13 +241,13 @@ function kba_personal_info($form, &$form_state) {
       '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : $node->field_gender['und'][0]['value']
     );
 
-    $form['ssn'] = array(
+    $form['data']['ssn'] = array(
         '#title' => t('Social Security Number'),
         '#type' => 'textfield',
         '#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : $node->field_ssn['und'][0]['value']
     );
 
-    $form['address'] = array(
+    $form['data']['address'] = array(
     '#type' => 'addressfield',
     '#title' => t('Address'),
     '#required' => TRUE,
@@ -716,6 +723,28 @@ function kba_passed($form_state) {
  * @param int The KBA error code
  */
 function kba_failed($form_state, $error_code) {
+	
+	switch ($error_code) {
+	    case 1:
+	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>";
+	        break;
+	    case 2:
+	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>.";
+	        break;
+	    case 3:
+	        $error = "You have missed too many questions";
+	        break;
+	    case 4:
+		    $error = "You have missed the follow up question";
+		break;
+	}
+	
+	
+	drupal_set_message($error,'status');
+    drupal_goto('node/'.$form_state['node'].'/edit');
+	
+	
+	
   
 }
 
