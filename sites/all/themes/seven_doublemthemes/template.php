@@ -73,8 +73,8 @@ function seven_doublemthemes_preprocess_html(&$variables, $hook) {
   // The body tag's classes are controlled by the $classes_array variable. To
   // remove a class from $classes_array, use array_diff().
   //$variables['classes_array'] = array_diff($variables['classes_array'], array('class-to-remove'));
-  if (isset($_SESSION['partner'])) {
-    $variables['classes_array'][] = 'partner-' . $_SESSION['partner'];
+  if (context_isset('eiq_commerce', 'partner')) {
+    $variables['classes_array'][] = 'partner-' . context_get('eiq_commerce', 'partner');
   }
 }
 

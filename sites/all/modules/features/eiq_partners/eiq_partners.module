@@ -50,9 +50,11 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
   //dpm($form['#fieldgroups']['group_constituents']);
   //dpm($form_state);
   //$form['field_product_id']['#type'] = 'hidden';
+  $partner = "client";
   switch (arg(0)) {
     case "kiva-zip":
       //dpm($form);
+      $partner = arg(0);
       $fields = array("body",
         "field_company_type",
         "field_dba",
@@ -87,9 +89,12 @@ function eiq_partners_form_data_company_node_form_alter(&$form, &$form_state) {
       $form['field_product_id']['#access'] = FALSE;
       //$form['field_product_id']['#disabled'] = TRUE;
       $form['field_disclaimer']['und']['#title'] = "I agree to Kiva-specific EarlyIQ Disclaimer.";
+
+      context_set('eiq_commerce', 'partner', $partner);
       break;
   }
 
+  context_set('eiq_commerce', 'partner', $partner);
   return $form;
 }
 
@@ -116,8 +121,10 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
   if (isset($form['field_company']['und'][0]['nid']['#default_value'])) {
     $company_node = node_load($form['field_company']['und'][0]['nid']['#default_value']);
     $product_id = $company_node->field_product_id['und'][0]['product_id'];
+    $partner = "client";
     switch ($product_id) {
       case "2": // works for kiva-zip partner
+        $partner = 'kiva-zip';
         $fields = array(
           'title',
           //'field_company',
@@ -147,6 +154,7 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         $form['#groups']['group_personal_info']->format_type = 'hidden';
         break;
     }
+    context_set('eiq_commerce', 'partner', $partner);
   } else {
     drupal_set_message("No product is associated with this application. Please contact the site admin.");
   }
