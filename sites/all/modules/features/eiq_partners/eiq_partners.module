@@ -180,3 +180,52 @@ function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
       _em_apply_redirect_id($account);
   }
 }
+
+/**
+ * Implements hook_user_login
+ */
+/*function eiq_partners_user_login(&$edit, $account) {
+  dpm("logging in");
+  _eiq_partners_get_partner($account);
+}*/
+
+/**
+ * Implements hook_init
+ */
+function eiq_partners_init() {
+  if (arg(0) == "user" && arg(1) == "reset") {
+    $account = user_load(arg(2));
+    _eiq_partners_get_partner($account);
+  }
+}
+
+
+function _eiq_partners_get_partner($account) {
+  //send them to person_data/kba form
+  $result = db_select('node','d')
+      ->fields('d')
+      ->condition('type','data_person','=')
+      ->condition('uid', $account->uid,'=')
+      ->execute();
+
+  while($record = $result->fetchAssoc()) {
+    if($record['nid']){
+      $nid = $record['nid'];
+
+      $dataPerson = node_load($nid);
+      if(!empty($dataPerson)){
+        $company_node = node_load($dataPerson->field_company['und'][0]['nid']);
+        $product_id = $company_node->field_product_id['und'][0]['product_id'];
+        $partner = "client";
+        switch ($product_id) {
+          case "2": // works for kiva-zip partner
+            $partner = 'kiva-zip';
+            break;
+        }
+        context_set('eiq_commerce', 'partner', $partner);
+      }
+    }
+  }
+
+}
+
