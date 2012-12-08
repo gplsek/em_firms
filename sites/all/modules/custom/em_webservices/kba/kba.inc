@@ -71,7 +71,7 @@ function kba_wizard($form, &$form_state, $nid) {
   // skip all complaints about validation when using the back button. The
   // values entered will be discarded, but they will not be validated, which
   // would be annoying in a "back" button.
-  if ($step > 1 && !$form_state['hide_previous_button']) {
+  if ($step > 1) {
     $form['prev'] = array(
       '#type' => 'submit',
       '#value' => t('Previous'),
@@ -82,7 +82,7 @@ function kba_wizard($form, &$form_state, $nid) {
   }
 
   // Show the Next button only if there are more steps defined.
-  if ($step < count($form_state['step_information']) && !$form_state['hide_next_button']) {
+  if ($step < count($form_state['step_information'])) {
     // The Next button should be included on every step
     $form['next'] = array(
       '#type' => 'submit',
@@ -106,10 +106,6 @@ function kba_wizard($form, &$form_state, $nid) {
   if (function_exists($form_state['step_information'][$step]['form'] . '_validate')) {
     $form['next']['#validate'] = array($form_state['step_information'][$step]['form'] . '_validate');
   }
-  
-  // Option to show buttons
-  $form_state['hide_next_button'] = false;
-  $form_state['hide_previous_button'] = false;
     
 
   return $form;
@@ -325,8 +321,6 @@ function kba_questions($form, &$form_state) {
           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
         );
         
-        // end form
-        $form_state['hide_next_button'] = true;
       }
       
     } catch (Exception $e) {
@@ -336,9 +330,6 @@ function kba_questions($form, &$form_state) {
         $form['error'] = array(
           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
         );
-        
-        // end form
-        $form_state['hide_next_button'] = true;
     }
   }
   
