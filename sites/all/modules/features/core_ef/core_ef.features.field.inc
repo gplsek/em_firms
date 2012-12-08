@@ -125,7 +125,8 @@ function core_ef_field_default_fields() {
         ),
       ),
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S.
+addresses are allowed.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -3966,7 +3967,12 @@ function core_ef_field_default_fields() {
       'bundle' => 'data_person',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor
+or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle
+convictions. Answer “no” if you have no criminal convictions.
+
+For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
+use the Add Another button to enter additional convictions.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -4108,7 +4114,7 @@ function core_ef_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'data_person',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Enter your data of birth in MM/DD/YYYY format.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -4132,7 +4138,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_dob',
-      'label' => 'Birth Date',
+      'label' => 'Date of Birth',
       'required' => 0,
       'settings' => array(
         'default_value' => 'blank',
@@ -4153,7 +4159,7 @@ function core_ef_field_default_fields() {
           'year_range' => '-0:-100',
         ),
         'type' => 'date_select',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -4710,7 +4716,7 @@ function core_ef_field_default_fields() {
       'bundle' => 'data_person',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Enter your full legal name. No aliases, nicknames, or other names or references.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -4741,7 +4747,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -4893,7 +4899,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -5039,7 +5045,7 @@ function core_ef_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '26',
+        'weight' => '16',
       ),
     ),
   );
@@ -5109,7 +5115,7 @@ function core_ef_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '27',
+        'weight' => '17',
       ),
     ),
   );
@@ -5179,7 +5185,7 @@ function core_ef_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '28',
+        'weight' => '18',
       ),
     ),
   );
@@ -5224,7 +5230,8 @@ function core_ef_field_default_fields() {
       'bundle' => 'data_person',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your
+name and date of birth.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -5257,7 +5264,7 @@ function core_ef_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'masked_input',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -5326,7 +5333,7 @@ function core_ef_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '25',
+        'weight' => '15',
       ),
     ),
   );
@@ -6907,7 +6914,12 @@ function core_ef_field_default_fields() {
   t('Address');
   t('Address (cont.)');
   t('Affiliation');
-  t('Birth Date');
+  t('Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor
+or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle
+convictions. Answer “no” if you have no criminal convictions.
+
+For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
+use the Add Another button to enter additional convictions.');
   t('Body');
   t('City');
   t('Civil Background');
@@ -6925,6 +6937,7 @@ function core_ef_field_default_fields() {
   t('County');
   t('Criminal Convictions');
   t('DBA');
+  t('Date of Birth');
   t('Dates of Employment');
   t('Dates of Residence');
   t('Degree Type');
@@ -6934,6 +6947,12 @@ function core_ef_field_default_fields() {
   t('Email');
   t('Email Address');
   t('Employment History');
+  t('Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your
+name and date of birth.');
+  t('Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S.
+addresses are allowed.');
+  t('Enter your data of birth in MM/DD/YYYY format.');
+  t('Enter your full legal name. No aliases, nicknames, or other names or references.');
   t('FEIN');
   t('FaceBook');
   t('First Name');

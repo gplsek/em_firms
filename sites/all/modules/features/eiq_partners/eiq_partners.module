@@ -143,10 +143,10 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
           'field_name_suffix',
           //'field_ssn',
           //'field_address',
-          'field_agree_final',
+          //'field_agree_final',
           'field_citizenship',
           'field_civil',
-          'field_criminal',
+          //'field_criminal',
           'field_education',
           'field_employment',
           'field_linkedin_profile',
@@ -155,7 +155,13 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         $form = _eiq_partners_hide_fields($form, $fields);
         unset($form['field_address']['und'][0]['field_address_dates']);
         unset($form['field_address']['und']['add_more']);
+        $form['field_address']['und']['#title'] = "Current Address";
         $form['#groups']['group_personal_info']->format_type = 'hidden';
+        $form['field_criminal']['und'][0]['field_criminal_type']['#access'] = FALSE;
+        $form['field_criminal']['und'][0]['field_criminal_level']['#access'] = FALSE;
+        $form['field_criminal']['und'][0]['field_criminal_year']['#access'] = FALSE;
+        $form['field_criminal']['und'][0]['field_criminal_description']['#access'] = FALSE;
+        $form['field_agree_final']['und']['#title'] = "By checking this box, you are affirming that all the information you have provided is complete and accurate. You give your explicit permission for the information to be used in accordance with our Terms and Conditions.You understand that the information you have provided will be used to perform background research and validation associated with your application to be listed on the Kiva Zip lending site. This is not a credit report or credit check, nor will your credit records be accessed. This information is not being used to make a lending decision.";
         break;
     }
     context_set('eiq_commerce', 'partner', $partner);
