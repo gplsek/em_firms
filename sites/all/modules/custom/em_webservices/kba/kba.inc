@@ -545,7 +545,6 @@ function _ws_verification($data) {
   $personID   = $data["data_person_nid"];
   $firstName  = $data["first_name"];
   $lastName   = $data["last_name"];
-  $email      = $data["email"];
   $ssn        = preg_replace('/[^0-9]/', '', $data["ssn"]); // removes any non-integer characters
   $birthYear  = $data["birthdate"]["year"];
   $birthMonth = $data["birthdate"]["month"];
@@ -566,7 +565,6 @@ function _ws_verification($data) {
       "person" => array(
           "name-first" => $firstName,
           "name-last"  => $lastName,
-          "email" => $email, // NOT REQUIRED
           "ssn" => $ssn,
           "ssn-type" => "ssn9",
           "birthdate" => array(
