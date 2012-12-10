@@ -99,7 +99,7 @@
     <?php endif; ?>
 
     <?php print render($page['header']); ?>
-    <?php print render($main_menu); ?>
+    <?php print '<div id="block-system-main-menu">' . render($main_menu) . '</div>'; ?>
     <?php print render($main_menu_jump); ?>
 
   </div></header><!-- /.section, /#header -->
