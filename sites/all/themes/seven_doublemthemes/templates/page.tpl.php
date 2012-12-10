@@ -99,6 +99,8 @@
     <?php endif; ?>
 
     <?php print render($page['header']); ?>
+    <?php print render($main_menu); ?>
+    <?php print render($main_menu_jump); ?>
 
   </div></header><!-- /.section, /#header -->
 

@@ -96,12 +96,12 @@ function seven_doublemthemes_preprocess_page(&$variables, $hook) {
       break;
   }
   if (context_isset('eiq_commerce', 'partner')) {
-    $block_main = module_invoke('menu', 'block_view', 'main-menu');
-    $block_jump = module_invoke('jump_menu', 'block_view', 'jump_menu-m_main-menu');
-    $variables['main-menu'] = '';
+    $variables['main_menu'] = '';
+    $variables['main_menu_jump'] = '';
   } else {
     //$variables['main-menu'] = drupal_render($block_main['content']) . drupal_render($block_jump['content']);
-    $variables['main-menu'] = drupal_render($block_main['content']);
+    $variables['main_menu'] = module_invoke('system', 'block_view', 'main-menu');
+    $variables['main_menu_jump'] = module_invoke('jump_menu', 'block_view', 'jump_menu-m_main-menu');
   }
 }
 
