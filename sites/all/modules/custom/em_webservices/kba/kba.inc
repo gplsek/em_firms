@@ -73,13 +73,13 @@ function kba_wizard($form, &$form_state, $nid) {
   // values entered will be discarded, but they will not be validated, which
   // would be annoying in a "back" button.
   if ($step > 1) {
-    $form['prev'] = array(
-      '#type' => 'submit',
-      '#value' => t('Previous'),
-      '#name' => 'prev',
-      '#submit' => array('kba_wizard_previous_submit'),
-      '#limit_validation_errors' => array(),
-    );
+    // $form['prev'] = array(
+    //       '#type' => 'submit',
+    //       '#value' => t('Previous'),
+    //       '#name' => 'prev',
+    //       '#submit' => array('kba_wizard_previous_submit'),
+    //       '#limit_validation_errors' => array(),
+    //     );
   }
 
   // Show the Next button only if there are more steps defined.
@@ -744,6 +744,7 @@ function em_webservices_complete($nid){
     $addresshtml .= '<br>'.$addressCountry;
 
     $rows[] = array('Address', $addresshtml);
+    $rows[] = array(drupal_render(drupal_get_form('_print_form')),drupal_render(drupal_get_form('_exit_form')));  
     $header = array('','');
 	
 	
@@ -753,6 +754,40 @@ function em_webservices_complete($nid){
 	    'rows' => $rows,
 	    'attributes' => array('width' => '100%')
 	));
+}
+
+function _print_form($form, &$form_state){
+	
+	$form['next'] = array(
+      '#type' => 'submit',
+      '#value' => t('Print'),
+      '#name' => 'print',
+      '#submit' => array('kba_wizard_print'),
+    );
+
+    return $form;
+}
+
+function _exit_form($form, &$form_state){
+	
+	$form['next'] = array(
+      '#type' => 'submit',
+      '#value' => t('Exit'),
+      '#name' => 'exit',
+      '#submit' => array('kba_wizard_exit'),
+    );
+
+    return $form;
+}
+
+function kba_wizard_print(){
+	drupal_set_message("Printing");
+	return;
+
+}
+
+function kba_wizard_exit(){
+	drupal_goto('');
 }
 
 /**
