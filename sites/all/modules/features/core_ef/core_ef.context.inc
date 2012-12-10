@@ -358,21 +358,15 @@ function core_ef_context_default_contexts() {
   $context->description = '';
   $context->tag = 'sitewide';
   $context->conditions = array(
-    'sitewide' => array(
+    'context' => array(
       'values' => array(
-        1 => 1,
+        '~eiq_commerce' => '~eiq_commerce',
       ),
     ),
   );
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'system-user-menu' => array(
-          'module' => 'system',
-          'delta' => 'user-menu',
-          'region' => 'header',
-          'weight' => '-10',
-        ),
         'system-main-menu' => array(
           'module' => 'system',
           'delta' => 'main-menu',
@@ -592,6 +586,38 @@ function core_ef_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('sidebar1');
   $export['teasers_main_constituents'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'user_menu';
+  $context->description = '';
+  $context->tag = 'sitewide';
+  $context->conditions = array(
+    'sitewide' => array(
+      'values' => array(
+        1 => 1,
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'system-user-menu' => array(
+          'module' => 'system',
+          'delta' => 'user-menu',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('sitewide');
+  $export['user_menu'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */

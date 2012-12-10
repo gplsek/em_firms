@@ -895,7 +895,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'context_block_rebuild_needed';
-  $strongarm->value = TRUE;
+  $strongarm->value = FALSE;
   $export['context_block_rebuild_needed'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -907,7 +907,7 @@ node/*/edit';
     'hp_slideshow5' => FALSE,
     'hp_slideshow7' => FALSE,
     'footer' => FALSE,
-    'main_menu' => FALSE,
+    'main_menu' => TRUE,
     'masquerade' => FALSE,
   );
   $export['context_status'] = $strongarm;
