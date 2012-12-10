@@ -46,6 +46,7 @@ function em_webservices_menu() {
 }
 
 function em_webservices_status($nid){
+	context_set('eiq_commerce', 'partner', 'kiva-zip');
 	
 	$html = "<p>Don't worry, there's probably a simple reason why this
 	happened. This does not mean your application has

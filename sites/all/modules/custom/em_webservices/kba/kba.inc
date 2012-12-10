@@ -48,6 +48,7 @@ function _kba_steps() {
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard($form, &$form_state, $nid) {
+  context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form_state['node'] = $nid;
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
@@ -121,6 +122,7 @@ function kba_wizard($form, &$form_state, $nid) {
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard_previous_submit($form, &$form_state) {
+	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $current_step = &$form_state['step'];
   $form_state['step_information'][$current_step]['stored_values'] = $form_state['values'];
   if ($current_step > 1) {
@@ -144,6 +146,7 @@ function kba_wizard_previous_submit($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard_next_submit($form, &$form_state) {
+	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $current_step = &$form_state['step'];
   $form_state['step_information'][$current_step]['stored_values'] = $form_state['values'];
 
@@ -166,6 +169,7 @@ function kba_wizard_next_submit($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_personal_info($form, &$form_state) {
+	context_set('eiq_commerce', 'partner', 'kiva-zip');
   global $user;
 
     $node = node_load($form_state['node']);
@@ -261,6 +265,7 @@ function kba_personal_info($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_questions($form, &$form_state) {
+	context_set('eiq_commerce', 'partner', 'kiva-zip');
   global $user;
   $form = array();
   
@@ -342,7 +347,7 @@ function kba_questions($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_follow_up_question($form, &$form_state) {
-
+  context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
   
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
@@ -416,6 +421,7 @@ function kba_follow_up_question($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_follow_up_question_result($form, &$form_state) {
+	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
   
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
@@ -693,7 +699,7 @@ function kba_passed($form_state) {
 }
 
 function em_webservices_complete($nid){
-
+   context_set('eiq_commerce', 'partner', 'kiva-zip');
 	//show thanks for playin page KIVA values only now
 	$rows = array();
 	$header = array();
