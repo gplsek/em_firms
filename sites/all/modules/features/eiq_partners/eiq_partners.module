@@ -180,6 +180,23 @@ function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
       _em_apply_redirect_id($account);
   }
 }
+function eiq_partners_form_user_pass_reset_alter(&$form, &$form_state) {
+  dpm($form);
+  $form['message']['#markup'] = "<h2>Weclome. Thank you for your interest.</h2><p>As part of the process for applying to be listed on Kiva Zip, we ask that you complete this simple 3-Step identity and background validation process.The information you enter will be <u>kept confidential</u> and <u>will not be shared</u> with anyone outside of Kiva Zip and its business partners for the specific use of verifying your identity and background as described in our Terms and Conditions. Completing the steps should take no more than 5 minutes. So let’s get started!</p>";
+  $form['actions']['submit']['#value'] = "Get Started";
+        $form['cancel'] = array(
+      '#type' => 'submit',
+      '#access' => TRUE,
+      '#value' => 'Cancel',
+      '#weight' => 160,
+      '#submit' => array('_eiq_partners_form_cancel') //This is the name of a function reproduced below
+      );
+
+}
+
+function _eiq_partners_form_cancel() {
+  drupal_goto('user/logout');
+}
 
 /**
  * Implements hook_user_login
