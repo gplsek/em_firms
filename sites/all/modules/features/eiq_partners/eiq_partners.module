@@ -229,3 +229,13 @@ function _eiq_partners_get_partner($account) {
 
 }
 
+function _eiq_partners_notify_analyst($nid, $status) {
+  // send email to the partner analyst
+  // change ownership of node
+  switch ($status) {
+    case 'pass':
+      break;
+    case 'fail':
+      break;
+  }
+}
