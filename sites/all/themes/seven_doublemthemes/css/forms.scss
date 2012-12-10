@@ -277,11 +277,25 @@ html.js fieldset.collapsible .fieldset-legend {
 
 
 
+.partner-kiva-zip {
 
+  header {
+    border-bottom:0;
+  }
 
+  #logo-partner {
+    float:left; 
+  }
 
+  #eiq-logo {
+    float:right;
+    padding-top:25px;
+  }
 
-
+  .breadcrumb {
+    display:none;
+  }
+}
 
 
 
@@ -297,7 +311,7 @@ div.status, .ok {
     background:#e5e5e5;
     border:0;   
     color:#666;
-    height:20px;
+    height:auto;
     font-size:12px;
     line-height:20px;
     padding:10px 0 10px 20px;
@@ -638,6 +652,13 @@ div.status, .ok {
 
 }
 
+.logged-in.page-verification #content form {
+  text-align:center;
+  input[type='submit'] {
+    float:none;
+    margin:15px auto;
+  }
+}
 .logged-in.node-type-data-person.partner-kiva-zip {
 
   #edit-field-criminal {
