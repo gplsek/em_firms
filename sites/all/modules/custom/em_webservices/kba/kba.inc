@@ -702,8 +702,19 @@ function _getWebServiceSettings() {
  * @param array The form state when the user passed
  */
 function kba_passed($form_state) {
-	drupal_set_message('you have passed','status');
-	drupal_goto('/');
+	$message = "<p>Success! You're done with the application
+	process.</p>
+	<p>
+	Thanks for taking the time to complete the identity
+	validation and background verification process. A
+	report is being sent to Kiva Zip with your information.
+	We'll be in touch with you regarding next steps in
+	your application process. If you'd like, use the print
+	key below to print a copy of the information you
+	submitted.</p>";
+	
+	drupal_set_message($message,'status');
+	drupal_goto('node/'.$form_state['node']');
   
 }
 
@@ -723,7 +734,9 @@ function kba_failed($form_state, $error_code) {
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>.";
 	        break;
 	    case 3:
-	        $error = "You have missed too many questions";
+	        $error = "Sorry. We weren't able to verify your identity.";
+	        drupal_set_message($error,'status');
+		    drupal_goto('verification/'.$form_state['node'].'/status');
 	        break;
 	    case 4:
 		    $error = "You have missed the follow up question";

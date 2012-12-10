@@ -19,6 +19,13 @@ function em_webservices_menu() {
     'file' => 'kba/kba.inc',
     'type' => MENU_CALLBACK
   );
+  $items['verification/%/status'] = array(
+    'page callback' => 'em_webservices_status',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'file' => 'kba/kba.inc',
+    'type' => MENU_CALLBACK
+  );
   
   $items['webservices/test/experian'] = array(
     'page callback' => 'em_webservices_experian',
@@ -29,6 +36,16 @@ function em_webservices_menu() {
   );
    
   return $items;
+}
+
+function em_webservices_status($nid){
+	
+	$html = "<p>Don't worry, there's probably a simple reason why this
+	happened. This does not mean your application has
+	been rejected. We'll be in touch with you regarding
+	next steps in your application process. Thank you.</p>";
+	
+	return $html;
 }
 
 function em_webservices_verification($nid) {
