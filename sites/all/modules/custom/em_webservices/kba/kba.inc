@@ -714,7 +714,7 @@ function kba_passed($form_state) {
 	submitted.</p>";
 	
 	drupal_set_message($message,'status');
-	drupal_goto('node/'.$form_state['node']');
+	drupal_goto('node/'.$form_state['node']);
   
 }
 
