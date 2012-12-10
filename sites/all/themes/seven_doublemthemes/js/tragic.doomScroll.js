@@ -54,7 +54,7 @@ dScroll.prototype.initScroll = function() {
 	this.totalWidth = this.totalItemWidth * this.slideItems.length;
 	this.totalSlide = this.slideNumber * this.totalItemWidth;
 	this.container.left = 0;
-	if(this.pageDots && this.slideItems.length > this.numberShown) this.makePageDots();
+	if(this.pageDots && this.slideItems.length > this.numberShown && !($('.page-dots').length)) this.makePageDots();
 	this.animate = false;
 	this.disabled = false;
 	this.createScroll();
@@ -71,16 +71,16 @@ dScroll.prototype.addNodes = function(number) {
 // Set start position and adjust css for container and frame
 dScroll.prototype.createScroll =  function() {
 	var frameWidth = this.totalItemWidth * this.numberShown - parseInt($(this.slideItems[0]).css('margin-right'));
-	this.container.css({'width': this.totalWidth + 'px',
-		'height': this.totalItemHeight + 'px',
+	this.container.css({
+		//'width': this.totalWidth + 'px',
 		'position': 'absolute',
 		'left': this.container.left + 'px'});
-	this.frame.css({'width': frameWidth + 'px',
-		'height': this.totalItemHeight + 'px',
+	this.frame.css({
+		//'width': frameWidth + 'px',
 		'position':'relative',
 		'overflow': 'hidden'});
-	this.slideItems.css({'width': this.itemWidth + 'px',
-		'height': this.itemHeight + 'px',
+	this.slideItems.css({
+		//'width': this.itemWidth + 'px',
 		'float': 'left'});
 	this.addBtnEvent();	// add arrow events
 	if(this.initFunc) this.initFunc();

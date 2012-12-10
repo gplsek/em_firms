@@ -133,6 +133,41 @@
     }
 } //  @include eiq_action_btn(217px, 44px);
 
+@mixin block_description() {
+  @include border-radius(5px);
+  @include size(25px !important, 16px);
+  border-top:1px solid #fff;
+  border-right:1px solid #fff;
+  display:block;
+  overflow:hidden;
+  padding:2px 5px 0 8px;
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:99;
+  .help-icon {
+    @include size(18px, 20px);
+    float:right;
+    padding-left:5px;
+  }
+  .help-info {
+    @include opacity(0);
+    text-align:left;
+  }
+  overflow:hidden;
+  &:hover {
+    @include size(auto !important, auto);
+    background:$color-white;
+    border:1px solid $color-light-grey;
+    cursor:pointer;
+    max-width:550px;
+    overflow:auto;
+    padding-bottom:5px;
+    .help-info {
+    @include opacity(1);
+    }
+  }
+}
 // vars
     $pathImg: '../images/';
     $pathSprite: $pathImg + 'eiq_sprite.png';
@@ -721,7 +756,7 @@ body.not-front {
       p a {
         @include eiq_action_btn(217px, 44px);
         @include gradient('blue_btn');
-        &;focus, &:hover {
+        &:focus, &:hover {
           @include gradient('blue_btn_hover');
         }
         &:first {
@@ -750,7 +785,7 @@ body.not-front {
     padding:0 0 0 24px;
     text-decoration:none;
     &:hover {
-      color:$color:#777;
+      color:#777;
     }
   }
 }
@@ -808,74 +843,6 @@ body.not-front {
 
 
 /* START INHERITED STYLES FROM SEVEN THEME */
-/* start responsive-screen-layout */
-.view-seven-features-side-block-2 .views-row, #block-views-seven-features-side-block-block .views-row {
-    border-bottom: 1px dashed #E0E0E0;
-    float: left;
-    margin-right: 25px;
-    width: 100%;
-}
-
-/* Welcome Block */
-#block-block-1 h2 {
-    font-size: 24px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Contact Page */
 #locationmap_map, #block-locationmap-image img{
@@ -1061,54 +1028,6 @@ body.not-front {
       font-size: 24px;
     }
 
-    /* Sidebar Features 
-
-    #block-views-seven-features-side-block-block .views-row {
-        border-bottom: 1px dashed #E0E0E0;
-        margin-bottom: 28px;
-        padding-bottom: 7px;
-    }
-
-    #block-views-seven-features-side-block-block .views-field-field-image {
-      float: left;
-    }
-
-    #block-views-seven-features-side-block-block .views-field-title h3 {
-        font-size: 20px;
-        line-height: 25px;
-        margin-bottom: 13px;
-        padding-top: 0;
-    }
-
-    #block-views-seven-features-side-block-block .views-field-body {
-        clear: both;
-    }
-*/
-
-    /* Sidebar Features 2 
-
-    .view-seven-features-side-block-2 .views-row {
-        border-bottom: 1px dashed #E0E0E0;
-        margin-bottom: 28px;
-        padding-bottom: 7px;
-    }
-
-    .view-seven-features-side-block-2 .views-field-field-image  {
-      float: left;
-    }
-
-    .view-seven-features-side-block-2 .views-field-title h3 {
-        font-size: 20px;
-        line-height: 25px;
-        margin-bottom: 13px;
-        padding-top: 0;
-    }
-
-    .view-seven-features-side-block-2 .views-field-body {
-        clear: both;
-    }
-
-*/
     /* Closure */
 
     .closure {
@@ -1215,42 +1134,6 @@ body.not-front {
     #block-multiblock-1 li a.active, body.not-front #block-multiblock-1 li a.active-trail{
       color: #999999;
     }
-
-
-    /* Recent Articles
-
-    #block-views-seven-recent-articles-block-1 .views-field-field-image{
-      float: left;
-    }
-
-    #block-views-seven-recent-articles-block-1 img {
-        border: 1px solid #555555;
-        margin-right: 10px;
-        padding: 2px;
-    }
-
-    #block-views-seven-recent-articles-block-1 h4 a {
-        font-size: 13px;
-        margin-top: 0;
-        text-decoration: none;
-    }
-
-    #block-views-seven-recent-articles-block-1 h4{
-        font-size: 13px;
-        margin-top: 0;
-        text-decoration: none;
-    }
-
-    #block-views-seven-recent-articles-block-1 .views-row-first {
-        border-bottom: 1px dashed;
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-    }
-
-    #block-views-seven-recent-articles-block-1 .views-field-created {
-        font-size: 11px;
-    }
-*/
 
     /* Copyright */
 
@@ -1625,28 +1508,34 @@ a.views-more-link:hover {
 
 // slideshow
 #block-views-earlyiq-slideshow-block-block {
-  @include size(100%, 460px);
-  border-bottom:3px solid #ccc;
-  display:block;
-  margin-bottom:15px;
+    @include size(100%, 460px);
+    border-bottom:3px solid #ccc;
+    display:block;
+    margin-bottom:15px;
 
-  #slider-read-more {
-    background:url($pathImg + 'icon_slider_read-more.png') 0 -3px no-repeat;
-    clear:left;
-    float:left;
-    padding-left:20px;
-    // this is going to be a link to content
+    #slider-read-more {
+        background:url($pathImg + 'icon_slider_read-more.png') 0 -3px no-repeat;
+        clear:left;
+        float:left;
+        padding-left:20px;
+        // this is going to be a link to content
 
-    a {
-      color:$color-text-grey;
-      font-size:17px;
-      line-height:19px;
-      text-decoration:none;
-      &:hover {color:$color-blue;}
+        a {
+            color:$color-text-grey;
+            font-size:17px;
+            line-height:19px;
+            text-decoration:none;
+                
+            &:hover {
+                color:$color-blue;
+            }
+        }
     }
-  }
 
-  .view-content {padding-bottom:35px;}
+    .view-content {
+        height:405px;
+        padding-bottom:35px;
+    }
 
   .slideshow-items {
     @include size(960px, 408px);
@@ -2638,6 +2527,6 @@ body.front h1,
 
 
 
-
+/* imported stylesheets*/
 @import 'forms.scss';
 @import 'responsive.scss';

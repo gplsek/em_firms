@@ -90,11 +90,21 @@ html.js fieldset.collapsible .fieldset-legend {
 
 .tabledrag-toggle-weight-wrapper a {
     color:$color-text-grey;
-    text-decoration:none;
-    padding-right:10px;
+    float:right;
     font-size:12px;
+    margin-right:10px;
+    padding-right:10px;
+    text-decoration:none;
 }
 
+#block-masquerade-masquerade form fieldset legend {
+
+}
+#block-masquerade-masquerade form input[type='text'] {
+    width:200px;
+    padding:4px;
+    margin-bottom:15px;
+}
 
 
 
@@ -275,29 +285,25 @@ html.js fieldset.collapsible .fieldset-legend {
 
 
 
-
+.draggable a.tabledrag-handle {
+    margin-left:0;
+}
+form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
+    padding-right:0;
+}
 
 div.status, .ok {
     @include border-radius(5px);
-        @include gradient('formHeader');
-        border:0;   
-        color:$color-white;
-        height:20px;
-        font-size:13px;
-        line-height:20px;
-        padding:10px 0 10px 20px;
-
-      a, a:link, a:visited {
-        color:$color-white;
-        text-decoration:none;
-
-        &:hover {
-          text-decoration:underline;
-        }
-    }
+    background:#e5e5e5;
+    border:0;   
+    color:#666;
+    height:20px;
+    font-size:12px;
+    line-height:20px;
+    padding:10px 0 10px 20px;
 }
-
-.section-kiva-zip,
+.page-user.page-user-edit .region-content form,
+.section-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
 .page-user-apply,
@@ -313,14 +319,14 @@ div.status, .ok {
     @include eiq_action_btn(auto, 30px);
     float:left;
     font-size:15px;
-    margin:10px 15px 0 !important;
-    padding:0 15px !important; //or
+    margin-top:10px 15px;
+    padding:0 15px;
         &:hover {
             cursor:pointer;
         }
     }
 }
-.section-kiva-zip,
+.section-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
 .page-user-apply,
@@ -349,7 +355,7 @@ div.status, .ok {
     }
 }
 // all forms sans user-forms
-.section-kiva-zip,
+.section-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
 .page-user-apply,
@@ -414,10 +420,10 @@ div.status, .ok {
     #field-year-of-legal-formation-add-more-wrapper legend {
         float:left;
         line-height:24px;
-        padding-left:2%;
+        padding-left:5px;
         text-align:left;
-        min-width:190px;
-        width:23%;
+        //min-width:190px;
+        width:200px;
     }
 
     //override
@@ -455,7 +461,7 @@ div.status, .ok {
     input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
-      width:68%;
+      width:580px;
     }
     
 
@@ -509,10 +515,6 @@ div.status, .ok {
     display:block;
   }
 
-  .form-select {
-    width:69%;
-  }
-
   // city input
   .field-name-field-address-city {
     @include wrap();
@@ -533,6 +535,22 @@ div.status, .ok {
   }
 }
 
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register,
+.node-type-data-person {
+  .form-select {
+    width:550px;
+  }
+}
+
+.section-kiva-zip.node-type-data-person .form-select {
+  width:140px;
+}
 
 
 
@@ -620,8 +638,125 @@ div.status, .ok {
 
 }
 
+.logged-in.node-type-data-person.partner-kiva-zip {
+
+  #edit-field-criminal {
+    .form-wrapper, .form-radios, .form-item, input[type='radio'] {
+      float:left;
+    }
+    .form-radios {
+      width:300px;
+    }
+    .form-item {
+
+    }
+
+    input[type='text'], select {
+      width:auto !important;
+    }
+  }
+  .addressfield-container-inline {
+    div.form-item {
+      clear:none;
+      float:left;
+      input[type="text"],
+      select {
+        width:auto;
+      }
+    }
+  }
+  #edit-field-convictions {
+    float:left;
+    padding-right:12px;
+    label, .form-radios {
+      float:left;
+    }
+  }
+  #edit-field-convictions,
+  #edit-field-name-first,
+  #edit-field-name-middle,
+  #edit-field-name-last,
+  .form-item-field-dob-und-0-value-month,
+  .form-item-field-dob-und-0-value-day,
+  .form-item-field-dob-und-0-value-year {
+    float:left;
+  }
+  #edit-field-name-first {
+    width:320px !important;
+  }
+  #edit-field-name-middle {
+    width:175px !important;
+  }
+  #edit-field-name-last {
+    width:320px !important;
+  }
+  #edit-field-name-first,
+  #edit-field-name-last {
+    input[type='text'] {
+      width:200px !important;
+    }
+  }
+  #edit-field-agree-final {
+    clear:both;
+    input, label {
+      float:left;
+    }
+    label {
+      width:600px;
+    }
+  }
+  #edit-field-dob {
+    clear:left;
+    float:left;
+    padding-right:25px;
+  }
+  #edit-field-name-middle {
+    input[type='text'] {
+      width:50px;
+    }
+    label {
+      width:95px;
+    }
+  }
+  label {
+    padding-right:10px;
+    width:auto;
+  }
+  #field-ssn-add-more-wrapper {
+    float:left;
+  }
+  .field-name-field-ssn {
+    clear:right;
+    float:left;
+    width:355px;
+    input[type='text'] {
+      width:153px !important;
+    }
+  }
+  /* all blue question mark styles */
+  #edit-field-convictions,
+  .field-name-field-dob,
+  .form-item-field-name-last-und-0-value,
+  .field-name-field-ssn {
+    position:relative;
+    .description {
+      @include block_description();
+    }
+  }
+
+  #addressfield-wrapper {
+    position:relative;
+    .fieldset-description {
+      @include block_description();
+    }
+  }
+}
 // kiva-zip specific
-.section-kiva-zip {
+.section-kiva-zip #main-wrapper {
+    .form-actions {
+        float:left;
+        padding-left:5px;/*outline*/
+    }
     .field-name-field-disclaimer label {
         width:300px;
     }
@@ -646,21 +781,39 @@ div.status, .ok {
         padding-top:15px;
     }
     #edit-field-dob {
+      width:auto;
+      .date-no-float {
+        width:100%;
+      }
         fieldset {
             border:0 !important;
         }
         legend {
             float:left;
             font-weight:bold;
-            padding-left:2%;
-            width:23%;
-            min-width:190px;
+            line-height:24px;
+            padding-left:5px;
+            width:auto;
+            padding-right:10px;
         }
         .fieldset-wrapper {
             float:left;
             padding:0;
-            width:67%;
         }
+        .form-item div {
+          clear:none;
+          margin-right:10px;
+          width:auto;
+        }
+        .form-item label {
+          min-width:auto;
+          width:auto !important;
+          padding-right:10px;
+        }
+        select {
+          width: auto !important;
+        }
+
     }
     .container-inline-date .date-padding {
         padding:0;
@@ -683,20 +836,21 @@ div.status, .ok {
         display:block;
 
         label {
-            float:left;
-            width:23%;
-            padding-left:2%;
-            min-width:190px;
+           // float:left;
+           // width:200px;
+           // padding-left:5px;
+            //min-width:190px;
         }
         
         #edit-field-convictions-und {
-            float:left;
-            width:67%;
+            //float:left;
+            //width:550px;
         
             .form-item {
+              clear:none;
                 float:left;
                 line-height:16px;
-                width:200px;
+                width:90px;
                 label {
                     width:40px;
                     min-width:40px;
@@ -713,31 +867,43 @@ div.status, .ok {
     }
 }
 
+form .field-multiple-table td.field-multiple-drag {
+  width:20px;
+}
 
 
+/* one-time login notification page */
+.partner-kiva-zip.page-user-reset {
+    #content form .form-actions {
+        clear:right;
+        float:left;
+    }
+}
 
+// meant for user one-time change account info name,email pw, may need stronger hook
+.page-user.page-user-edit {
+    .tabs {
+        display:none;
+    }
+    div.status {
+        @include wrap();
+        background:none;
+        color:$color-black;
+        float:right;
+        width:40%;
+    }
+    
+    .region-content {
+        float:left;
+        width:55%;
+    }
 
+    form .description {
+        display:block;
+        padding:15px 180px 0 0;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

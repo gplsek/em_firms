@@ -9,12 +9,13 @@
     #block-views-earlyiq-slideshow-block-block .view-content,
     #block-views-earlyiq-slideshow-block-block .slideshow-items,
     #block-views-earlyiq-slideshow-block-block .slideshow-items .views-row,
-    #block-views-seven-features-block-block .views-row,e
-    .rgion-bottom {
+    #block-views-seven-features-block-block .views-row,
+    .region-bottom {
         min-width:250px;
-        width:100% !important;
-        //height:auto;
+        width:100%;
+        height:100%;
     }
+    
     body.not-front.one-sidebar {
         .region-sidebar-first {
             width:25%;
@@ -53,10 +54,15 @@
     }
     #block-views-earlyiq-slideshow-block-block .slideshow-items .views-row .views-field.views-field-field-slide-image {
         margin:0 auto;
-        width:95%;
+        max-width:650px;
+        padding:0 5px 5px 5px;
+        width:100%;
+        height:auto;
+        text-align:center;
         img {
-            width:100% !important;
-            height: auto !important;
+            max-width:650px;
+            width:90%;
+            height: auto;
         }
     }
     #block-views-earlyiq-slideshow-block-block .slideshow-items .views-row .views-field.views-field-field-slide-image {
@@ -70,13 +76,15 @@
         float:none;
         margin:0 auto 15px;
     }
+    // outer container
     #block-views-earlyiq-slideshow-block-block {
-        height:700px !important;
+        height:680px;
     }
+    // inner containers and page-dots bottom
     #block-views-earlyiq-slideshow-block-block .view-content,
     #block-views-earlyiq-slideshow-block-block .slideshow-items,
     #block-views-earlyiq-slideshow-block-block .views-row {
-        height:670px !important;
+        height:625px;
     }
 }
 
@@ -111,6 +119,15 @@
 
 /* mobile */
 @media screen and (max-width: 670px) {
+    #block-views-earlyiq-slideshow-block-block {
+        height:690px !important;
+    }
+    
+    #block-views-earlyiq-slideshow-block-block .view-content,
+    #block-views-earlyiq-slideshow-block-block .slideshow-items,
+    #block-views-earlyiq-slideshow-block-block .views-row {
+        height:635px !important;
+    }
     body.not-front.one-sidebar {
         header {
             margin-bottom:0;
@@ -232,13 +249,13 @@
 @media screen and (max-width: 425px) {
 
     #block-views-earlyiq-slideshow-block-block {
-        height:735px !important;
+        height:580px !important;
     }
     
     #block-views-earlyiq-slideshow-block-block .view-content,
     #block-views-earlyiq-slideshow-block-block .slideshow-items,
     #block-views-earlyiq-slideshow-block-block .views-row {
-        height:695px !important;
+        height:525px !important;
     }
 
     #block-system-main-menu ul li a {
@@ -247,7 +264,7 @@
     }
     div.qtip {
         text-align:center !important;
-        width:100% !important;
+        width:100%;
     }
     .qtip-contentWrapper, .qtip-content {
         padding:0 !important;
