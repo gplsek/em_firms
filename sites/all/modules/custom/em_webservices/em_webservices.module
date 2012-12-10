@@ -26,6 +26,13 @@ function em_webservices_menu() {
     'file' => 'kba/kba.inc',
     'type' => MENU_CALLBACK
   );
+  $items['verification/%/complete'] = array(
+    'page callback' => 'em_webservices_complete',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'file' => 'kba/kba.inc',
+    'type' => MENU_CALLBACK
+  );
   
   $items['webservices/test/experian'] = array(
     'page callback' => 'em_webservices_experian',

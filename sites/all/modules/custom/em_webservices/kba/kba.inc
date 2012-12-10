@@ -179,7 +179,7 @@ function kba_personal_info($form, &$form_state) {
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
-        '#access' => FALSE
+        //'#access' => FALSE
     );
     $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
@@ -398,15 +398,7 @@ function kba_follow_up_question($form, &$form_state) {
         kba_failed($form_state, KBA_ERROR_TWO_OR_MORE_QUESTIONS_WRONG);
       }
       
-      //$node = node_load($_SESSION['data_form']);
-
-
-      //$node->field_kba['und'][0]['value'] = true;
-      //print_r($form_state['step_information'][1]['stored_values']);
-      _kba_collect_data($form_state['step_information'][1]['stored_values'],1);
-      //node_save($node);
-
-      drupal_goto('node/'.$_SESSION['data_form'].'/edit');
+       drupal_goto('node/'.$form_state['node'].'/edit');
 
 
       $form_state["steps"] = 9999;
@@ -435,15 +427,7 @@ function kba_follow_up_question_result($form, &$form_state) {
       //User has passed
       kba_passed($form_state);
 
-      //$node = node_load($_SESSION['data_form']);
-      //$node->field_kba['und'][0]['value'] = true;
-      print_r($form_state['step_information'][1]['stored_values']);
-
-
-      
-      //node_save($node);
-
-      drupal_goto('node/'.$_SESSION['data_form'].'/edit');
+     
     } else {
     
       // User has failed
@@ -702,20 +686,67 @@ function _getWebServiceSettings() {
  * @param array The form state when the user passed
  */
 function kba_passed($form_state) {
-	$message = "<p>Success! You're done with the application
-	process.</p>
-	<p>
-	Thanks for taking the time to complete the identity
+	//TO DO:  update the KBA complete flag and change node ownership
+	
+   drupal_goto('verification/'.$form_state['node'].'/complete');
+  
+}
+
+function em_webservices_complete($nid){
+	
+	//show thanks for playin page KIVA values only now
+	$rows = array();
+	$header = array();
+	$message = "Success! You're done with the application
+	process.";
+	drupal_set_message($message,'status');
+	
+	$node = node_load($nid);
+
+    $fname = $node->field_name_last['und'][0]['value'];
+    $lname = $node->field_name_first['und'][0]['value'];
+    
+    $maiden_name = $node->field_name_maiden['und'][0]['value'];
+    $middle_name = $node->field_name_middle['und'][0]['value'];
+    
+    $suffix = $node->field_name_suffix['und'][0]['value'];
+    $gender = $node->field_gender['und'][0]['value'];
+    $address_ent = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
+
+    $address = $address_ent[$node->field_address['und'][0]['value']]->field_address_full['und'][0];
+    $rows[] = array('','Thanks for taking the time to complete the identity
 	validation and background verification process. A
 	report is being sent to Kiva Zip with your information.
-	We'll be in touch with you regarding next steps in
-	your application process. If you'd like, use the print
+	We\'ll be in touch with you regarding next steps in
+	your application process. If you\'d like, use the print
 	key below to print a copy of the information you
-	submitted.</p>";
+	submitted');
+    $rows[] = array('Name', $suffix.' '.$fname.' '.$middle_name .' '.$lname);
+
+    $address1   = $address["thoroughfare"];
+    $address2   = $address["premise"];
+    $addressCity  = $address["locality"];
+    $addressState = $address["administrative_area"];
+    $addressZip   = $address["postal_code"];
+    $addressZip   = $address["country"];
+    $addresshtml = $address1;
+    if($address2 <> ''){
+	 $addresshtml .= '<br>'.$address2;
+   }
+    $addresshtml .= '<br>'.$addressCity;
+    $addresshtml .= '<br>'.$addressState.' '.$addressZip;
+    $addresshtml .= '<br>'.$addressCountry;
+
+    $rows[] = array('Address', $addresshtml);
+    $header = array('','');
 	
-	drupal_set_message($message,'status');
-	drupal_goto('node/'.$form_state['node']);
-  
+	
+	
+	return theme('table', array(
+	    'header' => $header, 
+	    'rows' => $rows,
+	    'attributes' => array('width' => '100%')
+	));
 }
 
 /**
