@@ -88,6 +88,22 @@ function seven_doublemthemes_preprocess_html(&$variables, $hook) {
  */
 function seven_doublemthemes_preprocess_page(&$variables, $hook) {
   //$variables['logo'] = str_replace('default/files/', 'default/files/styles/logo/public/', $variables['logo']);
+  $variables['logo_images'] =  '<a href="/" title="Home" rel="home" id="logo"><img src="' . $variables['logo'] . '" alt="Home" /></a><a href="/" title="Home" rel="home" id="mobile-logo"><img src="' . $variables['logo'] . '" alt="Home" /></a>';
+  $partner = context_get('eiq_commerce', 'partner') ? context_get('eiq_commerce', 'partner') : 'client';
+  switch ($partner) {
+    case 'kiva-zip':
+      $variables['logo_images'] = '<a href="/" title="Partner" rel="partner" id="logo-partner"><img src="/sites/all/themes/seven_doublemthemes/images/partners/logo-kiva-zip.png" alt="Partner" /></a><a href="/" title="Home" rel="home" id="eiq-logo"><img src="' . $variables['logo'] . '" alt="Home" /></a>';
+      break;
+  }
+  if (context_isset('eiq_commerce', 'partner')) {
+    $block_main = module_invoke('menu', 'block_view', 'main-menu');
+    $block_jump = module_invoke('jump_menu', 'block_view', 'jump_menu-m_main-menu');
+    $variables['main-menu'] = '';
+  } else {
+    //$variables['main-menu'] = drupal_render($block_main['content']) . drupal_render($block_jump['content']);
+    $variables['main-menu'] = drupal_render($block_main['content']);
+  }
+  dpm($variables['main-menu']);
 }
 
 
