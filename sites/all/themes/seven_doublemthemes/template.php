@@ -103,7 +103,6 @@ function seven_doublemthemes_preprocess_page(&$variables, $hook) {
     //$variables['main-menu'] = drupal_render($block_main['content']) . drupal_render($block_jump['content']);
     $variables['main-menu'] = drupal_render($block_main['content']);
   }
-  dpm($variables['main-menu']);
 }
 
 
