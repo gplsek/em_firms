@@ -179,7 +179,7 @@ function kba_personal_info($form, &$form_state) {
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
-        //'#access' => FALSE
+        '#access' => FALSE
     );
     $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
@@ -693,7 +693,7 @@ function kba_passed($form_state) {
 }
 
 function em_webservices_complete($nid){
-	
+
 	//show thanks for playin page KIVA values only now
 	$rows = array();
 	$header = array();

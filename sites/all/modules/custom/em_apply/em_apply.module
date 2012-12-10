@@ -439,6 +439,8 @@ function _em_apply_invite($node) {
               $account = new stdClass;
       $account->is_new = TRUE;
       $account->name = $fname.' '.$lname;
+      $account->field_name_first['und'][0]['value'] = $fname;
+      $account->field_name_last['und'][0]['value'] = $lname;
       //$account->pass = user_hash_password('');
       $account->mail = $email;
       $account->init = $email;
