@@ -17,23 +17,24 @@ define("DATATYPE_ADDRESS", "address");
 function experian_test($form, &$form_state) {
   $form = array();
   
-  
   if(!empty($form_state["rebuild"]) && !empty($form_state["values"])) {
     $data = $form_state["values"];
+    
+    $nodeID = $data["node_id"];
     
     $mode = $data["mode"] ? "PRODUCTION" : "TESTING";
         
     if($data["product"] == "criminal") {
       $dob = $data["birthdate"]["year"].$data["birthdate"]["month"].$data["birthdate"]["day"];
-      $form = experian_criminal_form($data["first_name"], $data["last_name"], $dob, $data["ssn"], $mode);
+      $form = experian_criminal_form($nodeID, $data["first_name"], $data["last_name"], $dob, $data["ssn"], $mode);
     }
     
     if($data["product"] == "civil") {
-      $form = experian_civil_form($data["ssn"], $mode);
+      $form = experian_civil_form($nodeID, $data["ssn"], $mode);
     }
     
     if($data["product"] == "address") {
-      $form = experian_address_form($data["ssn"], $mode);
+      $form = experian_address_form($nodeID, $data["ssn"], $mode);
     }
     
   } else {
@@ -103,10 +104,13 @@ function experian_test_submit($form, &$form_state) {
  * 
  * @return array a form in the Drupal Form API format
  */
-function experian_criminal_form($firstName, $lastName, $dob, $ssn, $mode) {
+function experian_criminal_form($nodeID, $firstName, $lastName, $dob, $ssn, $mode) {
   $form = array();
   
-  $history = json_decode(getCriminalHistory($firstName, $lastName, $dob, $ssn, $mode), true);
+  $json = getCriminalHistory($firstName, $lastName, $dob, $ssn, $mode);
+  _saveNode($nodeID, $json, DATATYPE_CRIMINAL);
+  
+  $history = json_decode($json, true);
   
   if(!empty($history["Search_results"]["Record"])) {
     $historyJSON = json_encode($history["Search_results"]["Record"]);
@@ -129,7 +133,11 @@ function experian_criminal_form($firstName, $lastName, $dob, $ssn, $mode) {
 function experian_civil_form($ssn, $mode) {
   $form = array();
   
-  $history = json_decode(getCivilHistory($ssn, $mode), true);
+  $json = getCivilHistory($ssn, $mode);
+  _saveNode($nodeID, $json, DATATYPE_CIVIL);
+  
+  $history = json_decode($json, true);
+  
   if(!empty($history)) {
     $historyJSON = json_encode($history["xmlgw"]["search_response"]["response_data"]);
   }
@@ -150,8 +158,12 @@ function experian_civil_form($ssn, $mode) {
  */
 function experian_address_form($ssn, $mode) {
   $form = array();
-
-  $history = json_decode(getAddressHistory($ssn, $mode), true);
+  
+  $json = getAddressHistory($ssn, $mode);
+  _saveNode($nodeID, $json, DATATYPE_ADDRESS);
+  
+  $history = json_decode(, true);
+  
   if(!empty($history)) {
     // Save the data
     $node = node_load($nodeID);
@@ -262,7 +274,9 @@ function getAddressHistory($ssn, $mode = "TESTING") {
 /**
  * Saves Civil/Criminal/Address History JSON to the given node
  *
- *
+ * @param int The id of the node
+ * @param string The JSON string of the data
+ * @param string The type of JSON data included (criminal, civil, address)
  */
 function _saveNode($nodeID, $json, $dataType) {
   

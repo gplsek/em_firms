@@ -168,7 +168,7 @@ class xml2json {
 		}
 
 		if ($recursionDepth == 0) {
-			if (get_class($simpleXmlElementObject) != SIMPLE_XML_ELEMENT_PHP_CLASS) {
+			if (is_object($simpleXmlElementObject) && get_class($simpleXmlElementObject) != SIMPLE_XML_ELEMENT_PHP_CLASS) {
 				// If the external caller doesn't call this function initially  
 				// with a SimpleXMLElement object, return now.				
 				return(null);				
@@ -179,7 +179,7 @@ class xml2json {
 			}
 		} // End of if ($recursionDepth == 0) {		
 				
-		if (get_class($simpleXmlElementObject) == SIMPLE_XML_ELEMENT_PHP_CLASS) {
+		if (is_object($simpleXmlElementObject) && get_class($simpleXmlElementObject) == SIMPLE_XML_ELEMENT_PHP_CLASS) {
 			// Get a copy of the simpleXmlElementObject
 			$copyOfsimpleXmlElementObject = $simpleXmlElementObject;
       		// Get the object variables in the SimpleXmlElement object for us to iterate.
