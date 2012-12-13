@@ -1,0 +1,1290 @@
+/* all forms */
+#main-wrapper form {
+    
+    textarea,
+    input[type='text'],
+    input[type='password'] {
+        @include border-radius(4px);
+        border-color:#bbb;
+        margin:0;
+        padding-left:5px;
+
+        &:focus {
+          border-color:$color-text-grey;
+        }
+    }
+
+    // input padding, textarea exluded
+    input[type='text'],
+    input[type='password'],
+    input[type='email'] {
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+
+    .grippie {
+        display:none;
+    }
+}
+
+html.js fieldset.collapsed {
+    height:auto !important; // override
+}
+
+// white arrows
+html.js fieldset.collapsible .fieldset-legend {
+    background-image:url($pathImg + 'menu-expanded-wht.png');
+}
+
+html.js fieldset.collapsed .fieldset-legend {
+    background-image:url($pathImg + 'menu-collapsed-wht.png');  
+}
+
+// ajax icon override
+html.js input.form-autocomplete {
+    background-position:100% 5px;
+}
+
+.field-type-link-field label,
+.field-type-link-field .link-field-subrow,
+.field-type-link-field .link-field-subrow .link-field-url,
+.field-type-link-field .link-field-subrow .link-field-url .form-item,
+.field-type-link-field .description {
+    display:block;
+}
+
+.field-type-link-field .link-field-subrow{
+    float:left;
+}
+
+.field-type-link-field .description {
+    font-style:italic;
+    padding-left:15px;
+}
+
+.form-type-textarea {
+    @include wrap();
+
+    .form-textarea-wrapper {
+        float:left;
+        width:69%;
+    }
+}
+// block display elements
+#field-invite-officers-values,
+#field-address-values,
+fieldset legend,
+html.js fieldset.collapsible .fieldset-legend {
+    @include wrap();
+    display:block;
+    width:100%;
+}
+
+#field-address-values,
+#field-invite-officers-values {
+    padding-left:10px;
+    .field-label {
+        width:760px;
+    }
+}
+
+.tabledrag-toggle-weight-wrapper a {
+    color:$color-text-grey;
+    float:right;
+    font-size:12px;
+    margin-right:10px;
+    padding-right:10px;
+    text-decoration:none;
+}
+
+#block-masquerade-masquerade form fieldset legend {
+
+}
+#block-masquerade-masquerade form input[type='text'] {
+    width:200px;
+    padding:4px;
+    margin-bottom:15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* layouts */
+
+// login, register, etc.
+.page-user-register,
+.page-user-login {
+  
+    form {
+    padding:15px 0;
+    width:630px;
+
+        .form-item {
+            display:block;
+            padding:10px 0;
+            input {
+                width:429px;
+            }
+        }
+
+        label {
+            float:left;
+            width:120px;
+        }
+
+        input#edit-captcha-response {
+            width:390px;
+        }
+    }
+}
+
+#main-report-wrapper,
+.section-verification #block-system-main,
+.page-user-apply #block-system-main,
+.page-node-add-data-person #block-system-main,
+.page-node-add-data-company #block-system-main {
+  @include wrap();
+  background:url($pathImg + 'bg_pattern_forms.png') 0 0 repeat;
+  border:1px solid #d4d4d4;
+  padding:20px 0;
+}
+
+// no sidebars
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company {
+  
+  form {
+    background:$color-white;
+    border:1px solid #e2e2e2;
+    margin:0 auto;
+    max-width:850px; // prototype
+    padding:20px 15px;
+    width:80%; // prototype
+  }
+}
+
+// sidebar page
+.section-beta {
+  
+  .region-content .field-name-body {
+    float:left;
+    margin-right:20px;
+    width:300px;
+  }
+  
+  form {
+    float:right;
+    width:435px;
+  }
+
+  label {
+    width:25%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.partner-kiva-zip {
+
+  header {
+    border-bottom:0;
+  }
+
+  .region-header {
+    clear:right;
+    padding-top:5px;
+  }
+  #logo-partner {
+    float:left; 
+  }
+
+  #eiq-logo {
+    float:right;
+    padding-top:25px;
+  }
+
+  .breadcrumb {
+    display:none;
+  }
+  #edit-delete {
+    margin-right:15px;
+  }
+}
+
+
+
+.draggable a.tabledrag-handle {
+    margin-left:0;
+}
+form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
+    padding-right:0;
+}
+
+div.status, .ok {
+    @include border-radius(5px);
+    background:#e5e5e5;
+    border:0;   
+    color:#666;
+    height:auto;
+    font-size:12px;
+    line-height:20px;
+    padding:10px 0 10px 20px;
+}
+.page-user.page-user-edit .region-content form,
+.section-kiva-zip #main-wrapper,
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register,
+.page-user-login,
+.node-type-data-person,
+.page-user-reset {
+// submit buttons
+    input[type='submit'] {
+    @include eiq_action_btn(auto, 30px);
+    float:left;
+    font-size:15px;
+    margin-top:10px 15px;
+    padding:0 15px;
+        &:hover {
+            cursor:pointer;
+        }
+    }
+}
+.section-kiva-zip #main-wrapper,
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register {
+// legends
+    legend {
+        @include border-radius(5px);
+        @include gradient('formHeader');
+        color:$color-white;
+        height:20px;
+        font-size:13px;
+        line-height:20px;
+        padding:10px 0 10px 20px;
+
+      a, a:link, a:visited {
+        color:$color-white;
+        text-decoration:none;
+
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+}
+// all forms sans user-forms
+.section-kiva-zip #main-wrapper,
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register,
+.node-type-data-person {
+
+  h1 {
+    text-align:center;
+  }
+  
+  form {    
+    @include wrap();
+
+    input,
+    select,
+    textarea {
+      margin:0; 
+    }
+
+    // ajax headers
+    th, thead th {
+      background:none;
+      border:0;
+    }
+    
+    // tables
+    tr.odd, tr.even {
+      background:none;
+      border:0;
+      padding:0;
+    }
+
+    // fieldsets
+    fieldset {
+      @include wrap();
+      @include border-radius(4px);
+      border:1px solid #dcdcdc;
+      margin:0 auto;
+      padding:0;
+    
+      // inner fieldsets
+      fieldset {
+        background:none;
+        border:0;
+        margin:0;
+        padding:0;
+      }
+
+      // fieldset wrappers
+      .fieldset-wrapper {
+        background:$color-white;
+        padding-top:20px;
+      }
+    }
+
+    // labels
+    label,
+    #field-dba-values thead,
+    #field-year-of-legal-formation-add-more-wrapper legend {
+        float:left;
+        line-height:24px;
+        padding-left:5px;
+        text-align:left;
+        //min-width:190px;
+        width:200px;
+    }
+
+    //override
+    #field-year-of-legal-formation-add-more-wrapper {
+        legend {
+            @include border-radius(0);
+            background:none;
+            color:#333;
+            float:left;
+            font-weight:bold;
+            height:auto;
+        }
+        .fieldset-wrapper {
+            float:left;
+            padding:0;
+            .date-no-float {
+                width:100%;
+            }
+            .container-inline-date .date-padding {
+                padding:0;
+            }
+        }
+
+    }
+
+    // generic checkbox styles
+    .form-type-checkbox {
+        @include wrap();
+        clear:both;
+        display:block;
+    }
+
+    // text & email inputs
+    input[type='text'],
+    input[type='email'] {
+      @include border-radius(2px);
+      border:1px solid #bbb;
+      width:580px;
+    }
+    
+
+    // inline buttons
+    #edit-sac,
+    #edit-submit,
+    #edit-cancel {
+        float:left;
+        margin-right:15px;
+    }
+  }
+
+  /*fields*/
+  
+  .form-item {
+    clear:left;
+  }
+  
+  .form-item, 
+  .field-group-fieldset.group-company .fieldset-wrapper .form-wrapper {
+    padding-bottom:15px;
+    margin:0;
+  }
+
+  .form-type-checkbox .form-item label.option {
+    font-weight:bold;
+    line-height:20px;
+  }
+
+  .field-type-field-collection {
+    padding:15px 0;
+  }
+
+  // agreement fields
+  .field-name-field-disclaimer,
+  .field-name-field-agree-final {
+    @include wrap();
+    padding:10px 0;
+    label {
+        font-size:12px;
+        font-style:italic;
+        font-weight:bold;
+    }
+  }
+  
+  /* prototype overrides */
+  .field-name-field-address-city,
+  .field-name-field-address-state,
+  .field-name-field-address-zip {
+    float:none;
+    display:block;
+  }
+
+  // city input
+  .field-name-field-address-city {
+    @include wrap();
+  }
+
+  .field-name-field-address-zip {
+    display:block;
+    float:none; /* overrides, prototype */
+  
+    label {
+      line-height:13px;
+    }
+  
+    input[type='text'] {
+      margin-top:5px;
+      //width:90px;
+    }
+  }
+}
+
+.page-checkout,
+.section-verification,
+.page-user-apply,
+.page-node-add-data-person,
+.page-node-add-data-company,
+.section-beta,
+.page-user-register,
+.node-type-data-person {
+  .form-select {
+    width:550px;
+  }
+}
+
+.section-kiva-zip.node-type-data-person .form-select {
+  width:140px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* page specific styles */
+
+// person/company forms
+.page-node-add-data-person,
+.page-node-add-data-company {
+  .form-item-field-address-und-0-field-address-full-und-0-postal-code {
+    clear:both;
+  }
+}
+
+
+// add person/company
+// dba vals
+#field-dba-values {
+
+}
+
+.logged-in.page-verification #content form {
+  text-align:center;
+  input[type='submit'] {
+    float:none;
+    margin:15px auto;
+  }
+}
+.logged-in.node-type-data-person.partner-kiva-zip {
+
+  #edit-field-criminal {
+    .form-wrapper, .form-radios, .form-item, input[type='radio'] {
+      float:left;
+    }
+    .form-radios {
+      width:300px;
+    }
+    .form-item {
+
+    }
+
+    input[type='text'], select {
+      width:auto !important;
+    }
+  }
+  .addressfield-container-inline {
+    div.form-item {
+      clear:none;
+      float:left;
+      input[type="text"],
+      select {
+        width:auto;
+      }
+    }
+  }
+  #edit-field-convictions {
+    float:left;
+    padding-right:12px;
+    label, .form-radios {
+      float:left;
+    }
+  }
+  #edit-field-convictions,
+  #edit-field-name-first,
+  #edit-field-name-middle,
+  #edit-field-name-last,
+  .form-item-field-dob-und-0-value-month,
+  .form-item-field-dob-und-0-value-day,
+  .form-item-field-dob-und-0-value-year {
+    float:left;
+  }
+  #edit-field-name-first {
+    width:320px !important;
+  }
+  #edit-field-name-middle {
+    width:175px !important;
+  }
+  #edit-field-name-last {
+    width:320px !important;
+  }
+  #edit-field-name-first,
+  #edit-field-name-last {
+    input[type='text'] {
+      width:200px !important;
+    }
+  }
+  #edit-field-agree-final {
+    clear:both;
+    input, label {
+      float:left;
+    }
+    label {
+      width:600px;
+    }
+  }
+  #edit-field-dob {
+    clear:left;
+    float:left;
+    padding-right:25px;
+  }
+  #edit-field-name-middle {
+    input[type='text'] {
+      width:50px;
+    }
+    label {
+      width:95px;
+    }
+  }
+  label {
+    padding-right:10px;
+    width:auto;
+  }
+  #field-ssn-add-more-wrapper {
+    float:left;
+  }
+  .field-name-field-ssn {
+    clear:right;
+    float:left;
+    width:355px;
+    input[type='text'] {
+      width:153px !important;
+    }
+  }
+  /* all blue question mark styles */
+  #edit-field-convictions,
+  .field-name-field-dob,
+  .form-item-field-name-last-und-0-value,
+  .field-name-field-ssn {
+    position:relative;
+    .description {
+      @include block_description();
+    }
+  }
+
+  #addressfield-wrapper {
+    position:relative;
+    .fieldset-description {
+      @include block_description();
+    }
+  }
+}
+// kiva-zip specific
+.section-kiva-zip #main-wrapper {
+    .form-actions {
+        float:left;
+        padding-left:5px;/*outline*/
+    }
+    .field-name-field-disclaimer label {
+        width:300px;
+    }
+    form fieldset {
+        border:0;
+        margin-bottom:15px;
+    }
+    form legend {
+        padding-left:0;
+        .fieldset-legend {
+            margin-left:10px;
+        }
+    }
+}
+
+#kiva-zip-thank-you-success {
+  
+  h3 {
+    font-size:18px;
+    line-height:22px;
+  }
+  
+  p {
+    font-size:13px;
+    padding:0 30px;
+  }
+  
+  li {
+
+    label, span {
+      float:left;
+      width:auto;
+    }
+    label {
+      font-weight:bold;
+    }
+
+    span {
+
+    }
+
+    p {
+      display:block;
+      margin:0 0 2px;
+    }
+  }
+
+}
+
+
+.logged-in.node-type-data-person {
+    div.tabs {
+        display:none;
+    }
+    form {
+        display:block;
+        padding-top:15px;
+    }
+    #edit-field-dob {
+      width:auto;
+      .date-no-float {
+        width:100%;
+      }
+        fieldset {
+            border:0 !important;
+        }
+        legend {
+            float:left;
+            font-weight:bold;
+            line-height:24px;
+            padding-left:5px;
+            width:auto;
+            padding-right:10px;
+        }
+        .fieldset-wrapper {
+            float:left;
+            padding:0;
+        }
+        .form-item div {
+          clear:none;
+          margin-right:10px;
+          width:auto;
+        }
+        .form-item label {
+          min-width:auto;
+          width:auto !important;
+          padding-right:10px;
+        }
+        select {
+          width: auto !important;
+        }
+
+    }
+    .container-inline-date .date-padding {
+        padding:0;
+    }
+    .container-inline-date .form-item .form-item {
+        float:left;
+        width:670px;
+        label {
+            float:left;
+            min-width:80px;
+            width:100px;
+        }
+        div {
+            float:left;
+            width:450px;
+        }
+    }
+    .form-item-field-convictions-und {
+        @include wrap();
+        display:block;
+
+        label {
+           // float:left;
+           // width:200px;
+           // padding-left:5px;
+            //min-width:190px;
+        }
+        
+        #edit-field-convictions-und {
+            //float:left;
+            //width:550px;
+        
+            .form-item {
+              clear:none;
+                float:left;
+                line-height:16px;
+                width:90px;
+                label {
+                    width:40px;
+                    min-width:40px;
+                }
+            }
+        }
+    }
+}
+
+.node-type-data-person form fieldset {
+    border:0;
+    label {
+        padding-left:0;
+    }
+}
+
+form .field-multiple-table td.field-multiple-drag {
+  width:20px;
+}
+
+
+/* one-time login notification page */
+.partner-kiva-zip.page-user-reset {
+    #content form .form-actions {
+        clear:right;
+        float:left;
+    }
+}
+
+// meant for user one-time change account info name,email pw, may need stronger hook
+.page-user.page-user-edit {
+    .tabs {
+        display:none;
+    }
+    div.status {
+        @include wrap();
+        background:none;
+        color:$color-black;
+        float:right;
+        width:40%;
+    }
+    
+    .region-content {
+        float:left;
+        width:55%;
+    }
+
+    form .description {
+        display:block;
+        padding:15px 180px 0 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* report card form styles */
+
+// sample report page only 
+.section-products #main {
+    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat; 
+    padding-bottom:90px; // helps clear bg image
+}
+.page-node-43 {
+  #main-wrapper {
+    background:url($pathImg + 'sample-report-background.png') right bottom no-repeat;
+    padding-bottom:60px;
+  }
+}
+
+// global
+#main-report-wrapper, #main-report-wrapper div {
+  @include wrap();
+}
+
+#main-report-inner {
+  display:block;
+  margin:0 auto;
+  width:760px;
+}
+
+#reported-company,
+#report-body .group-body {
+  background-color:$color-white;
+  border:1px solid #dcdcdc;
+}
+ 
+  #reported-company {
+    @include border-radius(5px);
+  }
+
+  #report-body .group-body {
+    @include mega-border-radius(0, 0, 5px, 5px);
+  }
+
+
+// header
+#report-header {
+  clear:both;
+
+  #logo {
+    float:left;
+    min-width:250px;
+    
+    img {
+      background:none;
+      border:none;
+      margin-bottom:15px;
+    }
+  }
+
+  h1 {
+    display:inline-block;
+    float:right;
+    font-size:18px;
+    line-height:36px !important;
+    padding-top:15px;
+    min-width:250px;
+  }
+}
+
+// company header
+#reported-company {
+  clear:both;
+  margin:0 0 20px;
+  padding:20px 0 0;
+
+  .left {
+    float:left;
+    padding:0 0 0 30px;
+    width:45%;
+
+    p {
+      font-size:12px;
+      line-height:17px;
+    }
+    
+    p.address {
+      margin:0;
+    }
+    
+    .website a {
+      color:#098eba;
+      font-weight:bold;
+      text-decoration:none;
+    }
+  }
+  
+  .right {
+    float:right;
+    padding:25px 50px 0 0;
+    width:30%;
+    font-size:12px;
+  }
+  
+  h2 {
+    color:#252525;
+    font-size:18px;
+    padding-bottom:15px;
+  }
+  
+  ul li {
+    padding-bottom:2px;
+  }
+
+  #reportedh2,
+  p.address,
+  p.phone,
+  label, 
+  ul li span {
+  font-weight:bold;
+  }
+}
+
+// report card body
+#report-body {
+  clear:both;
+
+  .report-group {
+    margin-bottom:15px;
+  }
+
+  .group-header {
+    @include mega-border-radius(4px);
+    @include gradient('formHeader');
+    clear:both;
+    display:block;
+    height:20px;
+    padding:10px 0;
+    width:759px; // border alignment
+    &.expand-group {
+      @include mega-border-radius(4px, 4px, 0, 0);
+    }
+
+    h3,
+    .rating,
+    .toggle,
+    .no-toggle {
+      @include text-shadow(1px, 1px, 1px, #333);
+      color:$color-white;
+    }
+
+    h3,
+    .rating {
+      float:left;
+    }
+    
+    .rating,
+    .toggle {
+      font-size:12px;
+      line-height:22px;
+      text-transform:uppercase;
+    }
+
+    h3{
+      color:$color-white;
+      font-size:17px;
+      line-height:18px;
+      margin:0;
+      padding-left:20px;
+      width:250px;
+    }
+
+    .rating {
+      width:185px;
+      
+      label {
+        float:left;
+        font-weight:normal;
+        padding-right:15px;
+      }
+      
+      .stars {
+        @include hide-text();
+        @include size(117px, 24px);
+        background-image:url($pathImg + 'sprite_report-stars.png');
+        background-repeat:no-repeat;
+      
+        &.one {background-position:0 -2px;}
+        &.one-half {background-position:0 -32px;}
+        &.two {background-position:0 -62px;}
+        &.two-half {background-position:0 -92px;}
+        &.three {background-position:0 -122px;}
+        &.three-half {background-position:0 -152px;}
+        &.four {background-position:0 -182px;}
+        &.four-half {background-position:0 -212px;}
+        &.five {background-position:0 -242px;}
+
+      }
+    }
+    // toggle general
+    .no-toggle, .toggle {
+      float:right;
+      margin-right:20px;
+      padding-right:20px;
+    }
+
+    .no-toggle {
+      font-size:10px;
+      line-height:22px;
+      margin-right:5px;
+      padding-right:5px;
+      text-transform:lowercase;
+      text-transform:capitalize;
+    }
+
+    .toggle.opened,
+    .toggle.closed {
+      background:url($pathImg + 'btn_report-toggle.png') right 4px no-repeat;
+      text-transform:uppercase;
+
+      &:hover {
+        cursor:pointer;
+      }
+    }  
+
+    .toggle.closed {
+        background-position:right -83px;
+    }
+    
+    // toggle functionality
+    .toggle.opened {display:none;}
+    &.expand-group .toggle.opened {display:block;}
+    &.expand-group .toggle.closed {display:none;}
+  }
+  
+  .toggle-container {
+    display:none;
+    opacity:0;
+    @include animation(500);
+  }
+  .toggle-container.active {
+    display:block;
+    opacity:1;
+    @include animation(500);
+  }
+
+  .group-body {
+    ul {
+      margin:0;
+      padding:0;
+    }
+
+    ul li {
+      @include wrap();
+      border-bottom:1px solid #c3c3c3;
+      clear:both;
+      display:block;
+      margin:0;
+      padding:6px 0 2px;
+      
+      ul {
+        list-style-type:disc;
+      }
+      
+      li {
+        border:0;
+        padding:0 0 0 15px;
+      }
+      
+      .left-col {
+        font-weight:bold;
+        float:left;
+        padding-left:20px;
+        width:250px;
+      }
+
+      .report-icon {
+        @include hide-text();
+        @include size(30px, 25px);
+        float:left;
+        background:url($pathImg + 'sprite_report-checks.png') 0 0 no-repeat;
+      
+        &.fail {background-position:0 -30px;}
+        &.warn {background-position:0 -60px;}
+        &.note {background-position:0 -90px;}
+      }
+      
+      .right-col {
+        float:left;
+        margin:0;
+        padding-left:15px;
+        width:375px;
+      
+        p {
+          font-size:12px;
+          line-height:22px;
+          margin:0;
+          padding:0;
+        }
+      }
+    }
+  }
+}
