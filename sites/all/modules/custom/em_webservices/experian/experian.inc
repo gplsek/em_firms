@@ -20,10 +20,11 @@ function experian_test($form, &$form_state) {
   if(!empty($form_state["rebuild"]) && !empty($form_state["values"])) {
     $data = $form_state["values"];
     
-    $nodeID = $data["node_id"];
+    $nodeID = null;
+    //$nodeID = $data["node_id"];
     
     $mode = $data["mode"] ? "PRODUCTION" : "TESTING";
-        
+            
     if($data["product"] == "criminal") {
       $dob = $data["birthdate"]["year"].$data["birthdate"]["month"].$data["birthdate"]["day"];
       $form = experian_criminal_form($nodeID, $data["first_name"], $data["last_name"], $dob, $data["ssn"], $mode);
@@ -164,11 +165,7 @@ function experian_address_form($ssn, $mode) {
   
   $history = json_decode($json, true);
   
-  if(!empty($history)) {
-    // Save the data
-    $node = node_load($nodeID);
-    $node->field_results_address_history['und'][0]['value'] = $json;
-    
+  if(!empty($history)) {  
     $historyJSON = json_encode($history["xmlgw"]["search_response"]["response_data"]);
   }
   
@@ -280,24 +277,30 @@ function getAddressHistory($ssn, $mode = "TESTING") {
  */
 function _saveNode($nodeID, $json, $dataType) {
   
-  // Save the data
-  $node = node_load($nodeID);
-  
-  if($dataType == DATATYPE_CIVIL) {
-  
-    $node->field_results_address_civil['und'][0]['value'] = $json;
+  if(!empty($nodeID)) {
+    // Save the data
+    $node = node_load($nodeID);
     
-  } else if($dataType == DATATYPE_CRIMINAL) {
-  
-    $node->field_results_address_criminal['und'][0]['value'] = $json;
+    if(!empty($node)) {    
     
-  } else if($dataType == DATATYPE_ADDRESS) {
-  
-    $node->field_results_address_history['und'][0]['value'] = $json;
+      if($dataType == DATATYPE_CIVIL) {
+      
+        $node->field_results_address_civil['und'][0]['value'] = $json;
+        
+      } else if($dataType == DATATYPE_CRIMINAL) {
+      
+        $node->field_results_address_criminal['und'][0]['value'] = $json;
+        
+      } else if($dataType == DATATYPE_ADDRESS) {
+      
+        $node->field_results_address_history['und'][0]['value'] = $json;
+        
+      }
+      
+      node_save($node);
+    }
     
   }
-  
-  node_save($node);
 }
 
 function _getMarkup($json = "{}") {
