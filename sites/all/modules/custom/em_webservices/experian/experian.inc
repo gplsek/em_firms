@@ -162,7 +162,7 @@ function experian_address_form($ssn, $mode) {
   $json = getAddressHistory($ssn, $mode);
   _saveNode($nodeID, $json, DATATYPE_ADDRESS);
   
-  $history = json_decode(, true);
+  $history = json_decode($json, true);
   
   if(!empty($history)) {
     // Save the data
