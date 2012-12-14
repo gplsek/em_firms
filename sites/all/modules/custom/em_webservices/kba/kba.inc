@@ -183,7 +183,7 @@ function kba_personal_info($form, &$form_state) {
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
-        '#access' => FALSE
+        //'#access' => FALSE
     );
     $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
@@ -584,12 +584,12 @@ function _ws_verification($data) {
   $data = $webService->identityVerification($requestData); 
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
-  //echo "<h1>------REQUEST-----</h1><br>";
-  //echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-  //echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-  //echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+  // echo "<h1>------REQUEST-----</h1><br>";
+  //     echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+  //     echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+  //     echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
   // --------------------------------------------------------------------------------
-  
+ 
   
   $results = null;
   if(!empty($data) && !empty($data["response"])) {
@@ -693,7 +693,13 @@ function _getWebServiceSettings() {
  */
 function kba_passed($form_state) {
 	//TO DO:  update the KBA complete flag and change node ownership
-	
+	$node = node_load($form_state['node']);
+	$cnid = $node->field_company['und'][0]['nid'];
+	$company = node_load($cnid);
+	$node->uid = $company->uid;
+	$node->field_kba['und'][0]['value'] = 1;
+	node_save($node);
+   _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'pass');
    drupal_goto('verification/'.$form_state['node'].'/complete');
   
 }
@@ -808,10 +814,14 @@ function kba_failed($form_state, $error_code) {
 	    case 3:
 	        $error = "Sorry. We weren't able to verify your identity.";
 	        drupal_set_message($error,'status');
+	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 	        break;
 	    case 4:
 		    $error = "You have missed the follow up question";
+		    drupal_set_message($error,'status');
+	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
 	
