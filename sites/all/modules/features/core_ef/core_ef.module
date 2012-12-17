@@ -93,6 +93,7 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form);
   //dpm($form_state);
 
+  $form['field_ssn']['und'][0]['value']['#type'] = 'password';
   $form['field_kba']['#access'] = FALSE;
   $form['field_verify_count']['#access'] = FALSE;
   $form['additional_settings']['#access'] = FALSE;
@@ -119,6 +120,11 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   _core_ef_set_button($form['field_education']['und'], "Add another Degree", "Remove this Degree", TRUE);
   // Change button labels for Criminal
   _core_ef_set_button($form['field_criminal']['und'], "Add another Conviction", "Remove this Conviction", TRUE);
+  /*_core_ef_hide_field($form['field_criminal']['und'], "field_criminal_description");
+  _core_ef_hide_field($form['field_criminal']['und'], "field_criminal_level");
+  _core_ef_hide_field($form['field_criminal']['und'], "field_criminal_type");
+  _core_ef_hide_field($form['field_criminal']['und'], "field_criminal_year");
+  */
 
   return $form;
 }
@@ -168,6 +174,22 @@ function _core_ef_set_button(&$field, $label_add, $label_remove, $remove_button 
   }
   return $field;
 }
+
+function _core_ef_hide_field($group, $hide_field) {
+  foreach ($group as $key => $fields) {
+    if (is_numeric($key)) {
+      foreach ($fields as &$field) {
+      dpm($field);
+          if ($field == $hide_field) {
+          dpm('unsetting ' . $group . $key . $hide_field);
+          unset($field);
+        }
+      }
+    }
+  }
+  return $group;
+}
+
 
 function core_ef_date_combo_process_alter(&$element, $form_state, $context) {
   if ($element['#field_name'] == 'field_address_dates') {
