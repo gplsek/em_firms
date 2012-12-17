@@ -37,8 +37,8 @@ function core_ef_node_presave($node) {
     if ($node->field_kba['und'][0]['value'] == 0 && $node->field_verify_count['und'][0]['value'] < 2) {
       $GLOBALS['destination'] = 'verification/'.$node->nid;
     } else {
-      drupal_set_message("You have exceeded the limit for attempts. If you need to try again, call David Trissel at (858) 243-0224.");
-      $GLOBALS['destination'] = '';
+      drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+      drupal_goto('verification/'.$form_state['node'].'/status');
     }
 
   }
