@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the EIQ Report Card feature.
+ */
+
+include_once 'eiq_report_card.features.inc';
