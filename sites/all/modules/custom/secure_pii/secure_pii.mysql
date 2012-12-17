@@ -1,0 +1,372 @@
+DELIMITER //
+DROP PROCEDURE IF EXISTS update_pii_ssn //
+CREATE PROCEDURE update_pii_ssn(
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_nid                   INT       ,
+        IN  p_delta                 INT       ,
+        IN  p_ssn                   VARCHAR(255)
+     )
+BEGIN
+START TRANSACTION;
+
+UPDATE field_data_field_ssn
+  SET
+    revision_id = p_vid,
+    language = p_lang,
+    field_ssn_value = p_ssn
+  WHERE
+    entity_id = p_nid AND
+    delta = p_delta;
+
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS update_pii_dob //
+CREATE PROCEDURE update_pii_dob(
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_nid                   INT       ,
+        IN  p_delta                 INT       ,
+        IN  p_dob                   DATETIME
+     )
+BEGIN
+START TRANSACTION;
+
+UPDATE field_data_field_dob
+  SET
+    revision_id = p_vid,
+    language = p_lang,
+    field_dob_value = p_dob
+  WHERE
+    entity_id = p_nid AND
+    delta = p_delta;
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS update_pii_results_address_history //
+CREATE PROCEDURE update_pii_results_address_history(
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_nid                   INT       ,
+        IN  p_delta                 INT       ,
+        IN  p_address               LONGTEXT
+     )
+BEGIN
+START TRANSACTION;
+
+UPDATE field_data_field_results_address_history
+  SET
+    revision_id = p_vid,
+    language = p_lang,
+    field_results_address_history_value = p_address
+  WHERE
+    entity_id = p_nid AND
+    delta = p_delta;
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS update_pii_results_criminal_history //
+CREATE PROCEDURE update_pii_results_criminal_history(
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_nid                   INT       ,
+        IN  p_delta                 INT       ,
+        IN  p_criminal              LONGTEXT
+     )
+BEGIN
+START TRANSACTION;
+
+UPDATE field_data_field_results_criminal_history
+  SET
+    revision_id = p_vid,
+    language = p_lang,
+    field_results_criminal_history_value = p_criminal
+  WHERE
+    entity_id = p_nid AND
+    delta = p_delta;
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS update_pii_results_civil_history //
+CREATE PROCEDURE update_pii_results_civil_history(
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_nid                   INT       ,
+        IN  p_delta                 INT       ,
+        IN  p_civil                 LONGTEXT
+     )
+BEGIN
+START TRANSACTION;
+
+UPDATE field_data_field_results_civil_history
+  SET
+    revision_id = p_vid,
+    language = p_lang,
+    field_results_civil_history_value = p_civil
+  WHERE
+    entity_id = p_nid AND
+    delta = p_delta;
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS insert_pii_ssn //
+CREATE PROCEDURE insert_pii_ssn
+     (
+        IN  p_entity                VARCHAR(128)   ,
+        IN  p_bundle                VARCHAR(128)   ,
+        IN  p_nid                   INT       ,
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_delta                 INT   ,
+        IN  p_ssn                   VARCHAR(255)
+      )
+BEGIN
+START TRANSACTION;
+
+INSERT INTO field_data_field_ssn (
+    entity_type,
+    bundle,
+    entity_id,
+    revision_id,
+    language,
+    delta,
+    field_ssn_value
+  )
+  VALUES (
+    p_entity,
+    p_bundle,
+    p_nid,
+    p_vid,
+    p_lang,
+    p_delta,
+    p_ssn
+  );
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS insert_pii_dob //
+CREATE PROCEDURE insert_pii_dob
+     (
+        IN  p_entity                VARCHAR(128)   ,
+        IN  p_bundle                VARCHAR(128)   ,
+        IN  p_nid                   INT       ,
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_delta                 INT   ,
+        IN  p_dob                   DATETIME
+      )
+BEGIN
+START TRANSACTION;
+
+INSERT INTO field_data_field_dob (
+    entity_type,
+    bundle,
+    entity_id,
+    revision_id,
+    language,
+    delta,
+    field_dob_value
+  )
+  VALUES (
+    p_entity,
+    p_bundle,
+    p_nid,
+    p_vid,
+    p_lang,
+    p_delta,
+    p_dob,
+    p_dob
+  );
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS insert_pii_results_address_history //
+CREATE PROCEDURE insert_pii_results_address_history
+     (
+        IN  p_entity                VARCHAR(128)   ,
+        IN  p_bundle                VARCHAR(128)   ,
+        IN  p_nid                   INT       ,
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_delta                 INT   ,
+        IN  p_address               LONGTEXT
+      )
+BEGIN
+START TRANSACTION;
+
+INSERT INTO field_data_field_results_address_history (
+    entity_type,
+    bundle,
+    deleted,
+    entity_id,
+    revision_id,
+    language,
+    delta,
+    field_results_address_history_value
+  )
+  VALUES (
+    p_entity,
+    p_bundle,
+    0,
+    p_nid,
+    p_vid,
+    p_lang,
+    p_delta,
+    p_address
+  );
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS insert_pii_results_criminal_history //
+CREATE PROCEDURE insert_pii_results_criminal_history
+     (
+        IN  p_entity                VARCHAR(128)   ,
+        IN  p_bundle                VARCHAR(128)   ,
+        IN  p_nid                   INT       ,
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_delta                 INT   ,
+        IN  p_criminal              LONGTEXT
+      )
+BEGIN
+START TRANSACTION;
+
+INSERT INTO field_data_field_results_criminal_history (
+    entity_type,
+    bundle,
+    deleted,
+    entity_id,
+    revision_id,
+    language,
+    delta,
+    field_results_criminal_history_value
+  )
+  VALUES (
+    p_entity,
+    p_bundle,
+    0,
+    p_nid,
+    p_vid,
+    p_lang,
+    p_delta,
+    p_criminal
+  );
+COMMIT;
+END //
+DELIMITER ;
+
+
+
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS insert_pii_results_civil_history //
+CREATE PROCEDURE insert_pii_results_civil_history
+     (
+        IN  p_entity                VARCHAR(128)   ,
+        IN  p_bundle                VARCHAR(128)   ,
+        IN  p_nid                   INT       ,
+        IN  p_vid                   INT       ,
+        IN  p_lang                  VARCHAR(32)   ,
+        IN  p_delta                 INT   ,
+        IN  p_civil                 LONGTEXT
+      )
+BEGIN
+START TRANSACTION;
+
+INSERT INTO field_data_field_results_civil_history (
+    entity_type,
+    bundle,
+    deleted,
+    entity_id,
+    revision_id,
+    language,
+    delta,
+    field_results_civil_history_value
+  )
+  VALUES (
+    p_entity,
+    p_bundle,
+    0,
+    p_nid,
+    p_vid,
+    p_lang,
+    p_delta,
+    p_civil
+  );
+COMMIT;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS cc_pii_field //
+CREATE PROCEDURE cc_pii_field
+     (
+        IN  p_cid                VARCHAR(255)
+      )
+BEGIN
+START TRANSACTION;
+
+DELETE FROM cache_field
+  WHERE
+    cid = p_cid;
+COMMIT;
+END //
+DELIMITER ;

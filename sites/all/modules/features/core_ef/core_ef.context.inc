@@ -354,44 +354,6 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
-  $context->name = 'main_menu';
-  $context->description = '';
-  $context->tag = 'sitewide';
-  $context->conditions = array(
-    'context' => array(
-      'values' => array(
-        '~eiq_commerce' => '~eiq_commerce',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'system-main-menu' => array(
-          'module' => 'system',
-          'delta' => 'main-menu',
-          'region' => 'header',
-          'weight' => '-9',
-        ),
-        'jump_menu-jump_menu-m_main-menu' => array(
-          'module' => 'jump_menu',
-          'delta' => 'jump_menu-m_main-menu',
-          'region' => 'header',
-          'weight' => '-8',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('sitewide');
-  $export['main_menu'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
   $context->name = 'markets';
   $context->description = '';
   $context->tag = 'Page Specific';

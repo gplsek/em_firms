@@ -1,0 +1,160 @@
+<?php
+
+/**
+ * See README.txt for information about what this module does and the proper
+ * configuration for Drupal to support it.
+ */
+
+$GLOBALS['pii_fields'] = array(
+  'field_ssn',
+  'field_results_address_history',
+  'field_results_criminal_history',
+  'field_results_civil_history',
+);
+//    'field_dob',
+//    'field_dob' => '1999-01-01 00:00:00',
+$GLOBALS['pii_default_values'] = array(
+  'field_ssn' => '000000000',
+  'field_results_address_history' => '',
+  'field_results_criminal_history' => '',
+  'field_results_civil_history' => '',
+);
+
+
+/**
+ *  Implements hook_node_prepare
+ */
+function secure_pii_node_prepare($node) {
+  if ($node->type == 'data_person'){
+    global $pii_fields;
+    // decrypt the pii fields on load
+    foreach ($pii_fields as $field) {
+      if (isset($node->{$field}['und'])) {
+        $node->{$field}['und'][0]['value'] = _secure_pii_decrypt($node->{$field}['und'][0]['value']);
+        //dpm("decrypted");
+        //dpm($node->{$field}['und'][0]['value']);
+      }
+    }
+  }
+}
+
+function _secure_pii_encrypt($str) {
+  return aes_encrypt($str);
+}
+function _secure_pii_decrypt($str) {
+  return aes_decrypt($str);
+}
+
+/**
+ *  Implements hook_node_presave
+ */
+function secure_pii_node_presave($node) {
+  //dpm($node);
+  // On the public site, if this is an 'insert' then values needs to be obscured prior the current node_save and stored in non-node fields so they can be inserted to 'eiq_private' Database with the nid/vid. The values for nid/vid do not exist until until after node_save then they can be accessed in hook_node_insert in order to insert the entire "duplicate" record into the private tables. If any of the PII fields do not have data entered during insert then we add default values so they can be kept in sync between the 2 databases easier.
+  // On the private site, the PII values will not be obscured prior to node_save but obscured values will need to be inserted/updated to the public tables to keep the two databases in sync.
+  if ($node->type == 'data_person'){
+    global $pii_default_values, $pii_fields;
+    // If this is an insert, then create the values for the PII fields to save into the _private/_public tables on node_insert.
+    // If this is an update, then check if the field's value is the "public default" value and do NOT save over it in the _private tables.
+    foreach ($pii_fields as $field) {
+      if (isset($node->{$field}['und'][0]) && $node->{$field}['und'][0]['value'] != $pii_default_values[$field]) {
+        $node->pii[$field] = _secure_pii_check_private() ? $pii_default_values[$field] : $node->{$field}['und'][0]['value'];
+      } else {
+        $node->pii[$field] = $pii_default_values[$field];
+      }
+      $node->pii[$field] = _secure_pii_encrypt($node->pii[$field]);
+      $node->{$field}['und'][0]['value'] = _secure_pii_encrypt(_secure_pii_check_private() ? $node->{$field}['und'][0]['value'] : $pii_default_values[$field]);
+    }
+  }
+}
+/**
+ *  Implements hook_node_insert
+ */
+function secure_pii_node_insert($node) {
+  if ($node->type == 'data_person') {
+    _secure_pii_data_insert_broker($node);
+  }
+}
+
+/**
+ *  Implements hook_node_update
+ */
+function secure_pii_node_update($node) {
+  if ($node->type == 'data_person') {
+    _secure_pii_data_update_broker($node);
+  }
+}
+
+// Setup Environment variables to determine where to apply privacy
+function _secure_pii_check_private() {
+  global $conf;
+  $environs = array(
+    "public" => array('local', 'dev', 'stage', 'prod'),
+    "private" => array('intranet-local', 'intranet-dev', 'intranet-stage', 'intranet'),
+  );
+  if (in_array($conf['environment'], $environs["private"])) {
+    //dpm('env=' . $conf['environment'] . "|private");
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ *  Private function to act on all PII fields
+ */
+function _secure_pii_data_insert_broker($node) {
+  global $pii_fields;
+  foreach ($pii_fields as $field) {
+    //dpm('pii insert ' . $field);
+    $sql = "call insert_pii_" . str_replace('field_', '', $field) . "(
+      'node',
+      '" . $node->type . "',
+      " . $node->nid . ",
+      " . $node->vid . ",
+      '" . $node->language . "',
+      0,
+      '" . $node->pii[$field] . "'
+    )";
+    _secure_pii_db($sql);
+  }
+}
+function _secure_pii_data_update_broker($node) {
+  global $pii_fields;
+  foreach ($pii_fields as $field) {
+    // always udpate from private
+    // only update on public if the field's value is changed
+    //dpm("original");
+    //dpm($node->original->{$field}['und'][0]['value']);
+    //dpm("pii");
+    //dpm($node->pii[$field]);
+    if ((!_secure_pii_check_private() && $node->original->{$field}['und'][0]['value'] != $node->pii[$field]) || (_secure_pii_check_private())) {
+      //dpm('pii update ' . $field);
+      $sql = "call update_pii_" . str_replace('field_', '', $field) . "(
+        " . $node->vid . ",
+        '" . $node->language . "',
+        " . $node->nid . ",
+        0,
+        '" . $node->pii[$field] . "'
+      )";
+      _secure_pii_db($sql);
+      // once this node is updated then clear the cache
+      $sql = "call cc_pii_field('field:node:" . $node->nid . "')";
+      _secure_pii_db($sql);
+    }
+  }
+}
+
+function _secure_pii_db($sql) {
+  if (_secure_pii_check_private()) {
+    // We're on a private site so set active database to public db for the special insert.
+    db_set_active('publicDB');
+  } else {
+    // We're on a public site so set active database to private db for the special insert.
+    db_set_active('privateDB');
+  }
+  // do db transaction
+  //dpm($sql);
+  db_query($sql);
+  // set active database back to default
+  db_set_active('default');
+}

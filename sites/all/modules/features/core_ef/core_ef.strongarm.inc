@@ -895,7 +895,7 @@ node/*/edit';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'context_block_rebuild_needed';
-  $strongarm->value = FALSE;
+  $strongarm->value = TRUE;
   $export['context_block_rebuild_needed'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -3013,7 +3013,7 @@ admin/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
-  $strongarm->value = 'seven_doublemthemes';
+  $strongarm->value = 'earlyiq';
   $export['theme_default'] = $strongarm;
 
   $strongarm = new stdClass();
