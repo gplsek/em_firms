@@ -1,0 +1,7 @@
+name = "Secure PII"
+description = "Manage insert and select operations on PII data"
+core = "7.x"
+package = "EM"
+
+dependencies[] = environment_indicator
+dependencies[] = aes

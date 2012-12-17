@@ -1569,6 +1569,9 @@ function format_string($string, array $args = array()) {
  * @ingroup sanitization
  */
 function check_plain($text) {
+  if (!mb_detect_encoding($text, 'UTF-8', true)) {
+        $text = mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1');
+  }
   return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 }
 
