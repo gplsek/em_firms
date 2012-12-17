@@ -1,6 +1,14 @@
+/***********************************
+*   earlyiq form styles
+*   Developer: tragic{media}
+***********************************/
+
 /* all forms */
 #main-wrapper form {
     
+    .form-item, .form-actions {
+      margin:0;
+    }
     textarea,
     input[type='text'],
     input[type='password'] {
@@ -82,6 +90,9 @@ html.js fieldset.collapsible .fieldset-legend {
 
 #field-address-values,
 #field-invite-officers-values {
+    thead label {
+      padding-left:0;
+    }
     padding-left:10px;
     .field-label {
         width:760px;
@@ -105,69 +116,7 @@ html.js fieldset.collapsible .fieldset-legend {
     padding:4px;
     margin-bottom:15px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/***************************************************************************************************************/
 
 /* layouts */
 
@@ -243,68 +192,7 @@ html.js fieldset.collapsible .fieldset-legend {
     width:25%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.partner-kiva-zip {
-
-  header {
-    border-bottom:0;
-  }
-
-  .region-header {
-    clear:right;
-    padding-top:5px;
-  }
-  #logo-partner {
-    float:left; 
-  }
-
-  #eiq-logo {
-    float:right;
-    padding-top:25px;
-  }
-
-  .breadcrumb {
-    display:none;
-  }
-  #edit-delete {
-    margin-right:15px;
-  }
-}
-
-
+/***************************************************************************************************************/
 
 .draggable a.tabledrag-handle {
     margin-left:0;
@@ -322,6 +210,14 @@ div.status, .ok {
     font-size:12px;
     line-height:20px;
     padding:10px 0 10px 20px;
+}
+.password-confirm .ok {
+  @include border-radius(0);
+  background:none;
+  color:#234600;
+  font-size:13px;
+  line-height:15px;
+  padding:0;
 }
 .page-user.page-user-edit .region-content form,
 .section-kiva-zip #main-wrapper,
@@ -569,78 +465,16 @@ div.status, .ok {
   }
 }
 
+// row weights override 
+.node-type-data-person .delta-order .form-select {
+  width:auto;
+}
+
 .section-kiva-zip.node-type-data-person .form-select {
   width:140px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/***************************************************************************************************************/
 
 /* page specific styles */
 
@@ -752,10 +586,12 @@ div.status, .ok {
   }
   #field-ssn-add-more-wrapper {
     float:left;
+    
   }
   .field-name-field-ssn {
     clear:right;
     float:left;
+    margin-left:9px;
     width:355px;
     input[type='text'] {
       width:153px !important;
@@ -779,7 +615,87 @@ div.status, .ok {
     }
   }
 }
+
+// hide footers
+
+// possible extra hook .node-type-data-company
+.partner-kiva-zip {
+
+  &.page-user-reset #content .messages.status {
+    display:none;
+  }
+
+  #block-system-user-menu,
+  .closure {
+    display:none; 
+    /* temporary solution for hiding footer on kivazip pages */
+  }
+}
+
+
 // kiva-zip specific
+.partner-kiva-zip {
+
+  header {
+    border-bottom:0;
+  }
+  
+  // personal info page
+  &.node-type-data-person {
+    .field-name-field-address-full fieldset legend {
+      display:none;
+    }
+    form .field-multiple-table td.field-multiple-drag {
+      display:none; // hide row drag
+    }
+    form label {
+
+    }
+    #main-wrapper form .form-disabled.form-type-textfield input[type='text'] {
+      border:0;
+      color:#333;
+      font-size:13px;
+      line-height:23px;
+      font-weight:bold;
+      padding:0;
+    }
+  }
+
+  // one time login page
+  &.page-user-reset {
+    form {
+      @include wrap();
+      margin:0 auto;
+      width:75%;
+      input[type='submit'] {
+        margin-top:15px;
+      }
+    }
+  } 
+
+  .region-header {
+    clear:right;
+    padding-top:5px;
+  }
+  
+  #logo-partner {
+    float:left; 
+  }
+
+  #eiq-logo {
+    float:right;
+    padding-top:25px;
+  }
+
+  .breadcrumb {
+    display:none;
+  }
+  
+  #edit-delete {
+    margin-right:15px;
+  }
+}
+
 .section-kiva-zip #main-wrapper {
     .form-actions {
         float:left;
@@ -865,7 +781,7 @@ div.status, .ok {
         }
         .form-item div {
           clear:none;
-          margin-right:10px;
+          margin-right:11px;
           width:auto;
         }
         .form-item label {
@@ -913,10 +829,13 @@ div.status, .ok {
               clear:none;
                 float:left;
                 line-height:16px;
-                width:90px;
-                label {
-                    width:40px;
-                    min-width:40px;
+                padding-left:2px;
+                width:80px;
+                input, label {
+                    float:left;
+                }
+                input {
+                  margin-top:4px;
                 }
             }
         }
@@ -927,6 +846,9 @@ div.status, .ok {
     border:0;
     label {
         padding-left:0;
+    }
+    .addressfield-container-inline label {
+      padding-left:15px;
     }
 }
 
@@ -968,27 +890,7 @@ form .field-multiple-table td.field-multiple-drag {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/***************************************************************************************************************/
 
 /* report card form styles */
 
@@ -1168,10 +1070,10 @@ form .field-multiple-table td.field-multiple-drag {
       
       .stars {
         @include hide-text();
-        @include size(117px, 24px);
+        @include size(117px, 0);
         background-image:url($pathImg + 'sprite_report-stars.png');
         background-repeat:no-repeat;
-      
+        padding-top:24px;
         &.one {background-position:0 -2px;}
         &.one-half {background-position:0 -32px;}
         &.two {background-position:0 -62px;}
@@ -1263,7 +1165,8 @@ form .field-multiple-table td.field-multiple-drag {
 
       .report-icon {
         @include hide-text();
-        @include size(30px, 25px);
+        @include size(30px, 0);
+        padding-top:25px;
         float:left;
         background:url($pathImg + 'sprite_report-checks.png') 0 0 no-repeat;
       

@@ -6,7 +6,7 @@ core        = 7.x
 base theme  = zen
 
 stylesheets[print][] 	= includes/print.css
-stylesheets[all][] 		= includes/tm_style.scss
+stylesheets[all][] 		= includes/base.scss
 
 scripts[] = includes/jquery-1.7.1.min.js
 scripts[] = includes/earlyiq.doomScroll.js
