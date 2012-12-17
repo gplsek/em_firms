@@ -254,5 +254,5 @@ function _eiq_partners_get_partner($account) {
 
 function _eiq_partners_notify_analyst($node, $uid, $status) {
   $partner_admin = user_load($uid);
-  mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']))
+  mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']));
 }
