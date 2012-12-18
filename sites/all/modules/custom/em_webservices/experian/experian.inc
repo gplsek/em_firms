@@ -26,8 +26,28 @@ function experian_test($form, &$form_state) {
     $mode = $data["mode"] ? "PRODUCTION" : "TESTING";
             
     if($data["product"] == "criminal") {
-      $dob = $data["birthdate"]["year"].$data["birthdate"]["month"].$data["birthdate"]["day"];
-      $form = experian_criminal_form($nodeID, $data["first_name"], $data["last_name"], $dob, $data["ssn"], $mode);
+      
+      $month = $data["birthdate"]["month"];
+      $day = $data["birthdate"]["day"];
+      
+      if($month < 10) {
+        $month = "0".$month;
+      }
+      
+      if($day < 10) {
+        $day = "0".$day;
+      }
+      
+      $dob = $data["birthdate"]["year"].$month.$day;
+      $form = experian_criminal_form(
+          $nodeID, 
+          $data["first_name"], 
+          $data["last_name"], 
+          $dob, 
+          $data["ssn"], 
+          $mode
+      );
+      
     }
     
     if($data["product"] == "civil") {
@@ -205,8 +225,10 @@ function getCriminalHistory($firstName, $lastName, $dateOfBirth, $ssn, $mode = "
     "&search_type=0".
     "&source_layout=5".
     "&ref=CS";
-    $xml = file_get_contents($url);
+    //$xml = file_get_contents($url);
   }
+  
+  echo $url."<br><br>";
   
   return _xmlToJSON($xml);
 }
