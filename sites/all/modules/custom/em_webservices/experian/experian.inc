@@ -46,8 +46,7 @@ function experian_test($form, &$form_state) {
           $dob, 
           $data["ssn"], 
           $mode
-      );
-      
+      );      
     }
     
     if($data["product"] == "civil") {
@@ -225,10 +224,8 @@ function getCriminalHistory($firstName, $lastName, $dateOfBirth, $ssn, $mode = "
     "&search_type=0".
     "&source_layout=5".
     "&ref=CS";
-    //$xml = file_get_contents($url);
+    $xml = file_get_contents($url);
   }
-  
-  echo $url."<br><br>";
   
   return _xmlToJSON($xml);
 }
