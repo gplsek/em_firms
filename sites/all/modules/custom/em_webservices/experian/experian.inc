@@ -223,10 +223,13 @@ function getCriminalHistory($firstName, $lastName, $dateOfBirth, $ssn, $mode = "
     "&disclaimers_agree=true".
     "&search_type=0".
     "&source_layout=5".
+    "&all_sor=true".
+    "&all_patriot=true".
+    "&include_partial_DOB=1".
+    "&include_partial_middlename=2".
     "&ref=CS";
     $xml = file_get_contents($url);
   }
-  
   return _xmlToJSON($xml);
 }
 
