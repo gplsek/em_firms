@@ -92,8 +92,9 @@ function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
 function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form);
   //dpm($form_state);
-
-  $form['field_ssn']['und'][0]['value']['#type'] = 'password';
+  if (!module_exists(secure_pii) || (module_exists(secure_pii) && !_secure_pii_check_private())) {
+    $form['field_ssn']['und'][0]['value']['#type'] = 'password';
+  }
   $form['field_kba']['#access'] = FALSE;
   $form['field_verify_count']['#access'] = FALSE;
   $form['additional_settings']['#access'] = FALSE;
