@@ -530,6 +530,7 @@ function _em_apply_redirect_id($account) {
 
   while($record = $result->fetchAssoc()) {
         if($record['nid']){
+	      $nid = $record['nid'];
           $dataPerson = node_load($record['nid']);
              if(!empty($dataPerson)){
                if(($dataPerson->field_kba['und'][0]['value'] == 0) && ($dataPerson->field_agree_final['und'][0]['value'] == 1)){
