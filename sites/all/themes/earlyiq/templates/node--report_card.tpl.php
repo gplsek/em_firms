@@ -1,31 +1,80 @@
 <?php
-//dpm($node);
 
+  // Default Values
   $company_name = "[Company Name]";
   $company_description = "[Company Description]";
   $company_address = "[Company Address]";
-  $company_phone = "[Company Phone]";
-  $company_fax = "[Company Fax]";
+  $company_phone = "[Company Phone]";	
   $company_url = "http://www.companyurl.com";
   $officers = array();
+  
+  
+  $companyNodeID = $node->field_company["und"][0]["nid"];
+  
+  if(!empty($companyNodeID)) {
+  
+    $companyNode = node_load($companyNodeID, null, true);
+    
+    if(!empty($companyNode)) {
+          
+      try {
+        $company_name = $companyNode->title;
+        $company_description = $companyNode->body["und"][0]["safe_value"];
+        $company_url = $companyNode->field_website["und"][0]["url"];
+        $company_phone = $companyNode->field_company_phone["und"][0]["value"];
+        
+        // Get Address
+        $companyAddressNodeID = $companyNode->field_company_address["und"][0]["value"];
+        
+        $companyAddressNode = entity_load('field_collection_item', array($companyAddressNodeID));
+        $companyAddressNode = reset($companyAddressNode); // get first element in the array
+        
+        $company_address1 = $companyAddressNode->field_address_address1["und"][0]["safe_value"];
+        $company_address2 = $companyAddressNode->field_address_address2["und"][0]["safe_value"];
+        $company_address_city = $companyAddressNode->field_address_city["und"][0]["safe_value"];
+        $company_address_state = $companyAddressNode->field_address_state["und"][0]["value"];
+        $company_address_zipcode = $companyAddressNode->field_address_zip["und"][0]["postal"];
+        
+        $company_address = $company_address1."<br/>";
+        if(!empty($company_address2)) {
+          $company_address .= $company_address2."<br/>";          
+        }
+        $company_address .= $company_address_city.",&nbsp;".
+                            $company_address_state."&nbsp;".
+                            $company_address_zipcode;
+        
+        // Get Officers
+        $companyOfficersNodeID = $companyNode->field_invite_officers["und"][0]["value"];
+        $companyOfficersNode = entity_load('field_collection_item', array($companyOfficersNodeID));
+
+        foreach($companyOfficersNode as $officer) {
+          $officers[] = array(
+            "fullname" => $officer->field_last_name["und"][0]["safe_value"].",&nbsp;".
+                          $officer->field_first_name["und"][0]["safe_value"],
+            "title" => "Officer"
+          );          
+        }        
+        
+      } catch(Exception $e) {
+        // Do nothing at the moment
+      }
+      
+    }
+  }
+  
   
   $tqScore = $node->field_tq_score["und"][0]["value"]; // decimal
   $backgroundVerification = $node->field_background_verification["und"][0]["value"]; // bool
   $criminalRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
   $civilRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
   $patriotActCheck = $node->field_patriot_act_check["und"][0]["value"]; // decimal
-  /*
-  
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  $ = $node->["und"][0]["value"];
-  */
+ 
 ?>
+
+
+
+
+
 <div id="main-report-wrapper">
   <div id="main-report-inner">
     <div class="contain" id="report-header">
@@ -37,7 +86,7 @@
           <h2><?php echo $company_name; ?></h2>
           <p><?php echo $company_description; ?></p>
           <p class="address"><?php echo $company_address; ?></p>
-          <p class="phone">Phone: <?php echo $company_phone; ?> Fax: <?php echo $company_fax; ?></p>
+          <p class="phone">Phone: <?php echo $company_phone; ?></p>
           <p class="website"><a href="<?php echo $company_url; ?>" target="_blank"><?php echo $company_url; ?></a></p>
         </div>
         <div class="right">
@@ -135,19 +184,14 @@
     </div>
   </div>
 </div>
-<?php
 
-function show_listitems($items) {
-  foreach ($items as $item) {
-    echo '<li>';
-    echo '  <span class="left-col">' . $item['title'] . '</span> ';
-    echo '  <span class="report-icon ' . $item['class'] . '" title="' . $item['icon-description'] . '">' . $item['rating'] . '</span>';
-    echo '  <div class="right-col">';
-    echo '    <p>' . $item['explanation'] . '</p>';
-    echo '  </div>';
-    echo '</li>';
-  }
-}
+
+
+
+
+
+
+<?php
 
 function getList($node, $listName) {
   $html = "";
