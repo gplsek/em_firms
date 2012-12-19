@@ -90,10 +90,10 @@ html.js fieldset.collapsible .fieldset-legend {
 
 #field-address-values,
 #field-invite-officers-values {
+    padding-left:10px;
     thead label {
       padding-left:0;
     }
-    padding-left:10px;
     .field-label {
         width:760px;
     }
@@ -273,8 +273,8 @@ div.status, .ok {
       }
     }
 }
+
 // all forms sans user-forms
-.partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
@@ -574,6 +574,7 @@ div.status, .ok {
   #edit-field-dob {
     clear:left;
     float:left;
+    padding-top:5px;
     padding-right:25px;
   }
   #edit-field-name-middle {
@@ -584,7 +585,7 @@ div.status, .ok {
       width:95px;
     }
   }
-  label {
+  form label {
     padding-right:10px;
     width:auto;
   }
@@ -597,7 +598,8 @@ div.status, .ok {
     float:left;
     margin-left:9px;
     width:355px;
-    input[type='text'] {
+    input[type='text'],
+    input[type='password'], {
       width:153px !important;
     }
   }
@@ -717,7 +719,7 @@ div.status, .ok {
     form legend {
         padding-left:0;
         .fieldset-legend {
-            margin-left:10px;
+            margin-left:5px; /*rev 10 tmp */
         }
     }
 }
@@ -774,12 +776,16 @@ div.status, .ok {
             border:0 !important;
         }
         legend {
+            @include border-radius(0);
+            background:none;
+            color:#333;
             float:left;
             font-weight:bold;
+            height:auto;
             line-height:24px;
             padding-left:5px;
             width:auto;
-            padding-right:10px;
+            padding: 0 10px 0 0;
         }
         .fieldset-wrapper {
             float:left;
@@ -893,6 +899,9 @@ form .field-multiple-table td.field-multiple-drag {
     form .description {
         display:block;
         padding:15px 180px 0 0;
+        &.password-suggestions {
+          padding-right:15px;
+        }
     }
 
 }
