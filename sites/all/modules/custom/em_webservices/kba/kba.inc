@@ -171,8 +171,14 @@ function kba_wizard_next_submit($form, &$form_state) {
 function kba_personal_info($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   global $user;
+  
+
 
     $node = node_load($form_state['node']);
+    if($node->field_verify_count['und'][0]['value'] >= 2){
+	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+	  drupal_goto('verification/'.$form_state['node'].'/status');
+    }
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
@@ -183,7 +189,7 @@ function kba_personal_info($form, &$form_state) {
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
-        //'#access' => FALSE
+        '#access' => FALSE
     );
     $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
@@ -698,6 +704,7 @@ function kba_passed($form_state) {
 	$company = node_load($cnid);
 	$node->uid = $company->uid;
 	$node->field_kba['und'][0]['value'] = 1;
+	$node->field_verify_count['und'][0]['value'] = ++1;
 	node_save($node);
    _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'pass');
    drupal_goto('verification/'.$form_state['node'].'/complete');
@@ -804,6 +811,10 @@ function kba_wizard_exit(){
  */
 function kba_failed($form_state, $error_code) {
 	
+    $node = node_load($form_state['node']);
+    $node->field_verify_count['und'][0]['value'] = ++1;
+	node_save($node);
+	
 	switch ($error_code) {
 	    case 1:
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>";
@@ -819,13 +830,14 @@ function kba_failed($form_state, $error_code) {
 	        break;
 	    case 4:
 		    $error = "You have missed the follow up question";
+		    
 		    drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
 	
-	
+
 	drupal_set_message($error,'status');
     drupal_goto('node/'.$form_state['node'].'/edit');
 	

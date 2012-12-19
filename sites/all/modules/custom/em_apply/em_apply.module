@@ -514,6 +514,7 @@ function em_apply_user_login(&$edit, $account) {
 
 
 function _em_apply_redirect_id($account) {
+
   if (isset($_SESSION['partner'])) {
     //if cookie exists then expire it and set new destination
     setcookie("partner", "", time() - 3600, "/");
@@ -529,13 +530,11 @@ function _em_apply_redirect_id($account) {
 
   while($record = $result->fetchAssoc()) {
         if($record['nid']){
-
-                $nid = $record['nid'];
-
-                $dataPerson = node_load($nid);
+          $dataPerson = node_load($record['nid']);
              if(!empty($dataPerson)){
-               if((empty($dataPerson->field_kba) || $dataPerson->field_kba['und'][0]['value'] == 0) && $dataPerson->field_agree_final['und'][0]['value'] == 1){
+               if(($dataPerson->field_kba['und'][0]['value'] == 0) && ($dataPerson->field_agree_final['und'][0]['value'] == 1)){
                   //send to kba process
+                  	print "HERe";die();
                   $_SESSION['data_form'] = $nid;
                   unset($dataPerson);
                   $GLOBALS['destination'] = 'verification/'.$nid;
