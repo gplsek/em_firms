@@ -151,7 +151,6 @@ li a.active {
 #block-system-main-menu {
     a, a:visited {
         color:$color-link-grey;
-        border-bottom: solid 3px #FFFFFF;
         display: block;
         font-size: 15px;
         margin-right: 20px;
@@ -159,6 +158,10 @@ li a.active {
         text-decoration: none;
         padding-top:0 !important;
         padding-bottom:12px !important;
+        
+        &.last {
+          margin-right:0;
+        }
 
         &:hover,
         &:focus {
@@ -172,7 +175,7 @@ li a.active {
         }
     }
  
-    &.last a {
+    li.last a {
         margin-right: 0;
     }
 
@@ -315,6 +318,9 @@ header {
     float: left;
     margin: 0;
     padding: 0;
+    img {
+      padding-top:10px; /* align txt */
+    }
 }
 
 .region-header {
@@ -693,6 +699,10 @@ body.front .active-trail {
             display:inline;
             float:left;
             font-size:10px;
+            margin-right:5px;
+            &.last {
+              margin-right:0;
+            }
         }
     }
 }

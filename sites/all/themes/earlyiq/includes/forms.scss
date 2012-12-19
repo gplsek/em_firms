@@ -221,6 +221,7 @@ div.status, .ok {
 }
 .page-user.page-user-edit .region-content form,
 .partner-kiva-zip #main-wrapper,
+.page-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
 .page-user-apply,
@@ -244,6 +245,7 @@ div.status, .ok {
     }
 }
 .partner-kiva-zip #main-wrapper,
+.page-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
 .page-user-apply,
@@ -273,6 +275,7 @@ div.status, .ok {
 }
 // all forms sans user-forms
 .partner-kiva-zip #main-wrapper,
+.page-kiva-zip #main-wrapper,
 .page-checkout,
 .section-verification,
 .page-user-apply,
@@ -469,7 +472,7 @@ div.status, .ok {
 .node-type-data-person .delta-order .form-select {
   width:auto;
 }
-
+.page-kiva-zip.node-type-data-person .form-select,
 .partner-kiva-zip.node-type-data-person .form-select {
   width:140px;
 }
@@ -500,6 +503,7 @@ div.status, .ok {
     margin:15px auto;
   }
 }
+.logged-in.node-type-data-person.page-kiva-zip,
 .logged-in.node-type-data-person.partner-kiva-zip {
 
   #edit-field-criminal {
@@ -619,6 +623,7 @@ div.status, .ok {
 // hide footers
 
 // possible extra hook .node-type-data-company
+.page-kiva-zip,
 .partner-kiva-zip {
 
   &.page-user-reset #content .messages.status {
@@ -634,6 +639,7 @@ div.status, .ok {
 
 
 // kiva-zip specific
+.page-kiva-zip,
 .partner-kiva-zip {
 
   header {
@@ -695,7 +701,7 @@ div.status, .ok {
     margin-right:15px;
   }
 }
-
+.page-kiva-zip #main-wrapper,
 .partner-kiva-zip #main-wrapper {
     .form-actions {
         float:left;
@@ -858,6 +864,7 @@ form .field-multiple-table td.field-multiple-drag {
 
 
 /* one-time login notification page */
+.page-kiva-zip.page-user-reset,
 .partner-kiva-zip.page-user-reset {
     #content form .form-actions {
         clear:right;
