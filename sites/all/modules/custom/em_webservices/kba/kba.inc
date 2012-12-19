@@ -704,7 +704,7 @@ function kba_passed($form_state) {
 	$company = node_load($cnid);
 	$node->uid = $company->uid;
 	$node->field_kba['und'][0]['value'] = 1;
-	$node->field_verify_count['und'][0]['value'] = ++1;
+	$node->field_verify_count['und'][0]['value'] = $node->field_verify_count['und'][0]['value'] + 1;
 	node_save($node);
    _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'pass');
    drupal_goto('verification/'.$form_state['node'].'/complete');
@@ -812,7 +812,7 @@ function kba_wizard_exit(){
 function kba_failed($form_state, $error_code) {
 	
     $node = node_load($form_state['node']);
-    $node->field_verify_count['und'][0]['value'] = ++1;
+    $node->field_verify_count['und'][0]['value'] = $node->field_verify_count['und'][0]['value'] +1;
 	node_save($node);
 	
 	switch ($error_code) {
