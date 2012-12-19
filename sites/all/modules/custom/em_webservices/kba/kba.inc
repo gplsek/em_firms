@@ -189,7 +189,7 @@ function kba_personal_info($form, &$form_state) {
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
-        '#access' => FALSE
+        //'#access' => FALSE
     );
     $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
@@ -328,9 +328,9 @@ function kba_questions($form, &$form_state) {
         
         kba_failed($form_state, KBA_ERROR_PERSONAL_INFORMATION);
         
-        $form['error'] = array(
-          '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
-        );
+        // $form['error'] = array(
+        //           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
+        //         );
         
       }
       
@@ -338,9 +338,9 @@ function kba_questions($form, &$form_state) {
         
         kba_failed($form_state, KBA_ERROR_SERVICE_CANNOT_BE_REACHED);
         
-        $form['error'] = array(
-          '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
-        );
+        // $form['error'] = array(
+        //           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
+        //         );
     }
   }
   
