@@ -127,6 +127,8 @@ a {
     color:$color-blue;
     }
 }
+
+a:active,
 li a.active {
     color: #000;
 }
@@ -503,11 +505,12 @@ body.front .active-trail {
             list-style: none;
             display:inline;
             float:left;
-            font-size: 0.8em;
+            font-size:10px;
             a,
             a.hover,
             a.active,
             a.visited {
+                color:$color-black;
                 font-size:13px;
                 line-height:18px;
                 text-decoration: none;
@@ -522,6 +525,22 @@ body.front .active-trail {
 /* footer */
 .region-bottom ul.menu li.leaf a {
     color:$color-white;
+}
+
+// footer overrides
+#block-menu-menu-footer {
+  
+  ul, ul li {
+    list-style:none !important;
+    margin:0;
+    padding:0;
+
+    a {
+      font-size:13px;
+      line-height:24px;
+      text-decoration:none !important;
+    }
+  }
 }
 
 /* Main Menu */
@@ -539,16 +558,18 @@ body.front .active-trail {
 
 #block-system-main-menu ul {
     @include wrap();
+    margin:0;
+    padding:0;
 
     li {
         display: block;
         float: left;
     
         a, a:visited {
-            color:$color-black;
+            color:$color-link-grey;
             border-bottom: solid 3px #FFFFFF;
             display: block;
-            font-size: 13px;
+            font-size: 15px;
             margin-right: 20px;
             padding: 10px 0 5px;
             text-decoration: none;
@@ -562,6 +583,7 @@ body.front .active-trail {
         
             &:hover,
             &:active {
+                border:0 !important;
                 color:$color-link-grey;
             }
         }
@@ -574,7 +596,8 @@ body.front .active-trail {
         a:focus,
         a.active,
         a.active-trail {
-            border-bottom: solid 3px $color-green;
+            border: 0 !important;
+//            border-bottom: solid 3px $color-green;
         }
     }
 }
@@ -1010,9 +1033,16 @@ a.views-more-link:hover {
 }
 
 /* trustwave block */
+#block-core-ef-footer-trust-block {
+  float:right;
+  width:105px;
+  margin-right:0;
+  padding-right:0;
+}
+
 #trustwave_block {
   float:right;
-  width:115px;
+  width:105px;
   img {
     @include size(auto !important, auto !important); // resp o.r.
     border:0 !important;
@@ -1270,11 +1300,10 @@ div.widgets-element-horizontal {
         }
     }
 
-    .region-bottom h2.block-title {
+    .region-bottom .block h2 {
         color: #DDDDDD;
         font-size: 19px;
-        padding-bottom: 
-        21px;
+        padding-bottom:10px;
     }
     
 /* END INHERITED STYLES FROM SEVEN THEME */

@@ -34,11 +34,11 @@
         Enterprise Management Report</h1>
       <div id="reported-company">
         <div class="left">
-          <h2><?= $company_name ?></h2>
-          <p><?= $company_description ?></p>
-          <p class="address"><?= $company_address ?></p>
-          <p class="phone">Phone: <?= $company_phone ?> Fax: <?= $company_fax ?></p>
-          <p class="website"><a href="<?= $company_url ?>" target="_blank"><?= $company_url ?></a></p>
+          <h2><?php echo $company_name; ?></h2>
+          <p><?php echo $company_description; ?></p>
+          <p class="address"><?php echo $company_address; ?></p>
+          <p class="phone">Phone: <?php echo $company_phone; ?> Fax: <?php echo $company_fax; ?></p>
+          <p class="website"><a href="<?php echo $company_url; ?>" target="_blank"><?php echo $company_url; ?></a></p>
         </div>
         <div class="right">
           <label id="company-titles">Key Executives and Shareholders</label>
@@ -63,8 +63,8 @@
           <h3>TQ Score<sup>TM</sup></h3>
           <div class="rating">
             <label>total</label>
-            <div class="stars <?= decimalToWord($tqScore) ?>">
-              <?= $tqScore ?></div>
+            <div class="stars <?php echo decimalToWord($tqScore); ?>">
+              <?php echo $tqScore; ?></div>
           </div>
           <div class="no-toggle"></div>
         </div>
@@ -72,7 +72,7 @@
       <div class="report-group toggle-group">
         <div class="group-header">
           <h3>Background Verification</h3>
-          <div class="rating"><label><?=$backgroundVerification?"PASSED":"FAILED"?></label></div>
+          <div class="rating"><label><?php echo $backgroundVerification?"PASSED":"FAILED"; ?></label></div>
           <div class="toggle opened" rel="report-BV">
             CLOSE</div>
           <div class="toggle closed" rel="report-BV">
@@ -80,7 +80,7 @@
         </div>
         <div class="group-body toggle-container" id="report-BV">
           <ul id="group-body-items">
-            <?=getList($node, "background_verification")?>
+            <?php echo getList($node, "background_verification"); ?>
           </ul>
         </div>
       </div>
@@ -91,8 +91,8 @@
             Criminal Records Check</h3>
           <div class="rating">
             <label>total</label>
-            <div class="stars <?= decimalToWord($criminalRecordsCheck) ?>">
-              <?= $criminalRecordsCheck ?></div>
+            <div class="stars <?php echo decimalToWord($criminalRecordsCheck); ?>">
+              <?php echo  $criminalRecordsCheck ?></div>
           </div>
           <div class="toggle opened" rel="report-CRC">
             CLOSE</div>
@@ -101,7 +101,7 @@
         </div>
         <div class="group-body toggle-container" id="report-CRC">
           <ul id="group-body-items">
-            <?=getList($node, "criminal_records")?>
+            <?php echo getList($node, "criminal_records"); ?>
           </ul>
         </div>
       </div>
@@ -111,8 +111,8 @@
             Civil Records Check</h3>
           <div class="rating">
             <label>total</label>
-            <div class="stars <?= decimalToWord($civilRecordsCheck) ?>">
-              <?= $civilRecordsCheck ?></div>
+            <div class="stars <?php echo decimalToWord($civilRecordsCheck); ?>">
+              <?php echo  $civilRecordsCheck ?></div>
           </div>
           <div class="toggle opened" rel="report-CivRC">
             CLOSE</div>
@@ -121,14 +121,14 @@
         </div>
         <div class="group-body toggle-container" id="report-CivRC">
           <ul id="group-body-items">
-            <?=getList($node, "civil_records")?>
+            <?php echo getList($node, "civil_records"); ?>
           </ul>
         </div>
       </div>
       <div class="report-group toggle-group">
         <div class="group-header no-details">
           <h3>Patriot Act Check</h3>
-          <div class="rating"><label><?=$patriotActCheck?"PASSED":"FAILED"?></label></div>
+          <div class="rating"><label><?php echo $patriotActCheck?"PASSED":"FAILED"; ?></label></div>
           <div class="no-toggle"></div>
         </div>
       </div>

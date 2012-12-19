@@ -252,13 +252,7 @@ function _eiq_partners_get_partner($account) {
 
 }
 
-function _eiq_partners_notify_analyst($nid, $status) {
-  // send email to the partner analyst
-  // change ownership of node
-  switch ($status) {
-    case 'pass':
-      break;
-    case 'fail':
-      break;
-  }
+function _eiq_partners_notify_analyst($node, $uid, $status) {
+  $partner_admin = user_load($uid);
+  mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']));
 }
