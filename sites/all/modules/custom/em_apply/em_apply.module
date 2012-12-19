@@ -535,7 +535,6 @@ function _em_apply_redirect_id($account) {
              if(!empty($dataPerson)){
                if(($dataPerson->field_kba['und'][0]['value'] == 0) && ($dataPerson->field_agree_final['und'][0]['value'] == 1)){
                   //send to kba process
-                  	print "HERe";die();
                   $_SESSION['data_form'] = $nid;
                   unset($dataPerson);
                   $GLOBALS['destination'] = 'verification/'.$nid;

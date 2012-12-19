@@ -36,10 +36,10 @@ function core_ef_node_presave($node) {
   if ($node->type == 'data_person' && $node->is_new == FALSE){
     if (($node->field_kba['und'][0]['value'] == 0) && $node->field_verify_count['und'][0]['value'] < 2) {
       $GLOBALS['destination'] = 'verification/'.$node->nid;
-    } else {
-      drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
-      drupal_goto('verification/'.$form_state['node'].'/status');
-    }
+    } // else {
+    //       drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+    //       drupal_goto('verification/'.$node->nid.'/status');
+    //     }
 
   }
 }
