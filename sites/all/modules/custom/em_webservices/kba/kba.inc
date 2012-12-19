@@ -812,6 +812,12 @@ function kba_wizard_exit(){
 function kba_failed($form_state, $error_code) {
 	
     $node = node_load($form_state['node']);
+   // if($node->field_verify_count['und'][0]['value'] > 2){
+   //       drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+   //       drupal_goto('verification/'.$node->nid.'/status');
+   //     }
+
+
     $node->field_verify_count['und'][0]['value'] = $node->field_verify_count['und'][0]['value'] +1;
 	node_save($node);
 	
