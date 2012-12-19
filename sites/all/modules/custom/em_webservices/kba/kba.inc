@@ -189,7 +189,7 @@ function kba_personal_info($form, &$form_state) {
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
-        //'#access' => FALSE
+        '#access' => FALSE
     );
     $form['data']['data_person_nid'] = array(
         '#type' => 'hidden',
