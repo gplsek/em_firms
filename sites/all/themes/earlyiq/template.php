@@ -87,6 +87,7 @@ function earlyiq_preprocess_html(&$variables, $hook) {
  *   The name of the template being rendered ("page" in this case.)
  */
 function earlyiq_preprocess_page(&$variables, $hook) {
+  //dpm($variables['node']);
   //$variables['logo'] = str_replace('default/files/', 'default/files/styles/logo/public/', $variables['logo']);
   $variables['logo_images'] =  '<a href="/" title="Home" rel="home" id="logo"><img src="' . $variables['logo'] . '" alt="Home" /></a><a href="/" title="Home" rel="home" id="mobile-logo"><img src="' . $variables['logo'] . '" alt="Home" /></a>';
   $partner = context_get('eiq_commerce', 'partner') ? context_get('eiq_commerce', 'partner') : 'client';
@@ -103,6 +104,10 @@ function earlyiq_preprocess_page(&$variables, $hook) {
     $variables['main_menu'] = module_invoke('system', 'block_view', 'main-menu');
     $variables['main_menu_jump'] = module_invoke('jump_menu', 'block_view', 'jump_menu-m_main-menu');
   }
+  if ((arg(0) == "user" && arg(1) == "reset") || ($variables['node']->type == 'data_person') || (arg(1) == "validation")) {
+    $variables['show_steps'] = '<div id="show-steps"><span id="step1"></span><span id="step2"></span><span id="step3"></span></div>';
+  }
+
 }
 
 

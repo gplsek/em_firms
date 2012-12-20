@@ -111,7 +111,9 @@
     <?php print render($page['sidebar_first']); ?>
 
     <section id="content" class="column"><div class="section">
-
+      <?php if (isset($show_steps)) {
+        echo $show_steps;
+      } ?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
