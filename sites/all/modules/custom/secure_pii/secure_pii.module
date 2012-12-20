@@ -65,6 +65,11 @@ function secure_pii_node_presave($node) {
       $node->pii[$field] = _secure_pii_encrypt($node->pii[$field]);
       $node->{$field}['und'][0]['value'] = _secure_pii_encrypt(_secure_pii_check_private() ? $node->{$field}['und'][0]['value'] : $pii_default_values[$field]);
     }
+    if (_secure_pii_check_private() ) {
+      $_SESSION['piissn'] = $node->field_ssn['und'][0]['value'];
+    } else {}
+      $_SESSION['piissn'] = $node->pii['field_ssn'];
+    }
   }
 }
 /**
@@ -73,8 +78,7 @@ function secure_pii_node_presave($node) {
 function secure_pii_node_insert($node) {
   if ($node->type == 'data_person') {
     _secure_pii_data_insert_broker($node);
-    $_SESSION['piissn'] = $node->pii['field_ssn'];
-  }
+ }
 }
 
 /**
@@ -83,7 +87,6 @@ function secure_pii_node_insert($node) {
 function secure_pii_node_update($node) {
   if ($node->type == 'data_person') {
     _secure_pii_data_update_broker($node);
-    $_SESSION['piissn'] = $node->pii['field_ssn'];
   }
 }
 
