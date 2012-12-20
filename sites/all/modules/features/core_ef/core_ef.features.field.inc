@@ -104,7 +104,7 @@ function core_ef_field_default_fields() {
       'module' => 'addressfield',
       'settings' => array(
         'field_encrypt' => array(
-          'ekncrypt' => 0,
+          'encrypt' => 0,
           'phrase' => '',
         ),
       ),
@@ -125,7 +125,7 @@ function core_ef_field_default_fields() {
         ),
       ),
       'deleted' => '0',
-      'description' => '<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>',
+      'description' => '<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -6906,9 +6906,9 @@ use the Add Another button to enter additional convictions.</p></span>',
   t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info"><p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
 use the Add Another button to enter additional convictions.</p></span>');
   t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.</span>');
+  t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>');
   t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your data of birth in MM/DD/YYYY format.</span>');
   t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your full legal name. No aliases, nicknames, or other names or references.</span>');
-  t('<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>');
   t('<ul><li><em>Startup</em> will get you information about our services for startups. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>');
   t('Additional Images');
   t('Address');
