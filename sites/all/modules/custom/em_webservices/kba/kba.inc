@@ -246,11 +246,11 @@ function kba_personal_info($form, &$form_state) {
       '#options' => array('Male' => 'Male', 'Female' => 'Female'),
       '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : $node->field_gender['und'][0]['value']
     );
-
+    
     $form['data']['ssn'] = array(
         '#title' => t('Social Security Number'),
         '#type' => 'textfield',
-        '#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : $node->field_ssn['und'][0]['value']
+        '#default_value' => !empty($form_state['values']['ssn']) ? $form_state['values']['ssn'] : aes_decrypt($_SESSION['piissn'])
     );
 
     $form['data']['address'] = array(
