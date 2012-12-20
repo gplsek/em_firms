@@ -66,7 +66,7 @@
   $tqScore = $node->field_tq_score["und"][0]["value"]; // decimal
   $backgroundVerification = $node->field_background_verification["und"][0]["value"]; // bool
   $criminalRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
-  $civilRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
+  $civilRecordsCheck = $node->field_civil_records_check["und"][0]["value"]; // decimal
   $patriotActCheck = $node->field_patriot_act_check["und"][0]["value"]; // decimal
  
 ?>
@@ -230,17 +230,28 @@ function getItemHTML($node, $fieldName) {
   
   $icon = getItemIcon($node, $fieldName);
   
+  $iconHelpText = getIconHelpText($icon, $fieldName);
+  
+  $descriptionText = getDescriptionText($node, $fieldName);
+  
+  $descriptionElementHTML = "";
+  
+  if(!empty($descriptionText)) {
+    $descriptionElementHTML = '<br/><p>'.$descriptionText.'</p>';
+  }
+  
   return '<li>'.
           '<span class="left-col" 
                  title="'.getHelpText($fieldName).'">'.
               getFieldLabel($fieldName).
           '</span>'.
           '<span class="report-icon '.$icon.'" 
-                 title="'.getIconHelpText($icon).'">'.
+                 title="'.$iconHelpText.'">'.
               $icon.
           '</span>'.
           '<div class="right-col">'.
-            '<p>'.getDescriptionText($node, $fieldName).'</p>'.
+            '<p>'.$iconHelpText.'</p>'.
+            $descriptionElementHTML.
           '</div>'.
         '</li>';
 }
@@ -299,20 +310,150 @@ function getFieldLabel($fieldName) {
 function getDescriptionText($node, $fieldName) {
   $fieldName .= "_desc";
   $fieldObject = $node->$fieldName;
-  return $fieldObject["und"][0]["value"];
+  $fieldValue = null;
+  if(!empty($fieldObject)) {
+    $fieldValue = $fieldObject["und"][0]["value"];
+  }
+  return $fieldValue;
 }
 
-function getIconHelpText($icon) {
+
+
+
+function getIconHelpText($icon, $fieldName) {
+
   $helpText = "";
   if($icon == "pass") {
-    $helpText = "Green.  This means everything for this line item checked out OK.";
+    
+    switch($fieldName) {
+      case "field_name_verification": 
+        $helpText = "Borrower personally identifiable information shows no major inconsistencies.";
+        break;
+      case "field_positive_id_auth":
+        $helpText = "Borrower passed identity validation.  Stolen or fictitious identity unlikely.";   
+        break;
+      case "field_alias_search":
+        $helpText = "";
+        break;    
+      case "field_nat_felony_search":
+        $helpText = "No felonies convictions found";
+        break;    
+      case "field_nat_misdmnr_search":
+        $helpText = "No misdemeanor convictions found";
+        break;    
+      case "field_judgements":
+        $helpText = "No judgment records against borrower found";
+        break;    
+      case "field_tax_liens":
+        $helpText = "No tax lien records for borrower found";
+        break;    
+      case "field_bankruptcies":
+        $helpText = "No personal bankruptcy records were found.";
+        break;    
+      case "field_pending_litigations":
+        $helpText = "No pending civil litigation records against borrower were found";
+        break;    
+    }
   } else if($icon == "fail") {
-    $helpText = "Failure.";
+  
+    switch($fieldName) {
+      case "field_name_verification": 
+        $helpText = "Borrower personally identifiable information is inconsistent.  No further analysis conducted.";
+        break;
+      case "field_positive_id_auth":
+        $helpText = "Borrower failed identity validation.   No further analysis conducted.";   
+        break;
+      case "field_alias_search":
+        $helpText = "";
+        break;    
+      case "field_nat_felony_search":
+        $helpText = "Significant felony conviction history found.";
+        break;    
+      case "field_nat_misdmnr_search":
+        $helpText = "Significant misdemeanor conviction history found.";
+        break;    
+      case "field_judgements":
+        $helpText = "Significant civil judgment history against borrower found.";
+        break;    
+      case "field_tax_liens":
+        $helpText = "";
+        break;    
+      case "field_bankruptcies":
+        $helpText = "";
+        break;    
+      case "field_pending_litigations":
+        $helpText = "";
+        break;    
+    }
+
+    
   } else if($icon == "note") {
-    $helpText = "Informational.  This means information about this specific line item was found but likely doesn't warrant further investigation.";
+  
+    switch($fieldName) {
+      case "field_name_verification": 
+        $helpText = "";
+        break;
+      case "field_positive_id_auth":
+        $helpText = "";   
+        break;
+      case "field_alias_search":
+        $helpText = "Shown for information only.";
+        break;    
+      case "field_nat_felony_search":
+        $helpText = "";
+        break;    
+      case "field_nat_misdmnr_search":
+        $helpText = "1 self-disclosed misdemeanor conviction was confirmed for a non-white-collar crime.";
+        break;    
+      case "field_judgements":
+        $helpText = "No unsatisfied judgments against borrower found for non-fraud-related cases.";
+        break;    
+      case "field_tax_liens":
+        $helpText = "Tax lien(s) for borrower found";
+        break;    
+      case "field_bankruptcies":
+        $helpText = "A personal bankruptcy was found.";
+        break;    
+      case "field_pending_litigations":
+        $helpText = "Pending litigation againsts borrower was found for a non-fraud-related case.";
+        break;    
+    }
+
+    
   } else if($icon == "warn") {
-    $helpText = "Warning.";
+  
+    switch($fieldName) {
+      case "field_name_verification": 
+        $helpText = "";
+        break;
+      case "field_positive_id_auth":
+        $helpText = "";   
+        break;
+      case "field_alias_search":
+        $helpText = "";
+        break;    
+      case "field_nat_felony_search":
+        $helpText = "1 self-disclosed felony conviction was confirmed for a non-white-collar crime.";
+        break;    
+      case "field_nat_misdmnr_search":
+        $helpText = "Marginal misdemeanor conviction history found";
+        break;    
+      case "field_judgements":
+        $helpText = "Marginal civil judgment history against borrower found.";
+        break;    
+      case "field_tax_liens":
+        $helpText = "";
+        break;    
+      case "field_bankruptcies":
+        $helpText = "";
+        break;    
+      case "field_pending_litigations":
+        $helpText = "Pending litigation was found against borrower for a fraud related case";
+        break;    
+    }
   }
+  
+  return $helpText;
 }
 
 ?>
