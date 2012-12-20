@@ -97,21 +97,17 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   if (!module_exists("secure_pii") || (module_exists("secure_pii") && !_secure_pii_check_private())) {
     $form['field_ssn']['und'][0]['value']['#type'] = 'password';
   }
+  // remove '[nid:]' from the Comapny title (node reference) Field
+  $form['field_company']['und'][0]['nid']['#value_callback'] = '_core_ef_company_title';
+  unset($form['field_company']['und'][0]['nid']['#autocomplete_path']);
+  $form['field_company']['#disabled'] = TRUE;
+
   $form['field_kba']['#access'] = FALSE;
   $form['field_verify_count']['#access'] = FALSE;
   $form['additional_settings']['#access'] = FALSE;
-  $form['field_company']['#disabled'] = TRUE;
   $form['field_results_address_history']['#access'] = FALSE;
   $form['field_results_civil_history']['#access'] = FALSE;
   $form['field_results_criminal_history']['#access'] = FALSE;
-  /*$form['field_name_first']['#disabled'] = TRUE;
-  $form['field_name_last']['#disabled'] = TRUE;
-  $form['field_name_middle']['#disabled'] = TRUE;
-  $form['field_name_maiden']['#disabled'] = TRUE;
-  $form['field_name_suffix']['#disabled'] = TRUE;
-  $form['field_ssn']['#disabled'] = TRUE;
-  $form['field_dob']['#disabled'] = TRUE;
-  $form['field_gender']['#disabled'] = TRUE;*/
   $form['field_email_address']['#disabled'] = TRUE;
   $form['actions']['submit']['#value'] = "Continue";
 
@@ -131,6 +127,32 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
 
   return $form;
 }
+
+
+/**
+ * Value callback for a node_reference autocomplete element.
+ *
+ * Replace the node nid with a node title.
+ */
+function _core_ef_company_title($element, $input = FALSE, $form_state) {
+  if ($input === FALSE) {
+    // We're building the displayed 'default value': expand the raw nid into
+    // "node title [nid:n]".
+    $nid = $element['#default_value'];
+    if (!empty($nid)) {
+      $q = db_select('node', 'n');
+      $node_title_alias = $q->addField('n', 'title');
+      $q->addTag('node_access')
+        ->condition('n.nid', $nid)
+        ->range(0, 1);
+      $result = $q->execute();
+      // @todo If no result (node doesn't exist or no access).
+      $value = $result->fetchField();
+      return $value;
+    }
+  }
+}
+
 
 function core_ef_form_data_company_node_form_alter(&$form, &$form_state) {
   //dpm($form);

@@ -184,7 +184,123 @@
   }
 }
 
-/* theme stylesheets */
+/*
+ * Reset
+ */
+
+/* reset styles */
+ul, ,ul ul, ul ol, ol, ol ol, ol ul, dt, dd, form,
+.item-list ul, .item-list ul ul,  .item-list ul ol,
+.item-list ol ol, .item-list ol ul, .item-list ul li,
+ul.menu li, li.expanded, li.collapsed, li.leaf, li,
+#content .section,
+.section-what-we-do .region-content .field-name-field-image img,
+#block-views-earlyiq-slideshow-block-block ul,
+#block-views-earlyiq-slideshow-block-block ul li,
+#block-views-earlyiq-slideshow-block-block ul .item-list,
+#block-system-main-menu ul,
+#block-menu-menu-footer ul,
+#block-menu-menu-footer ul li,
+.region-footer .block,
+#block-block-7 p {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 0;
+  border-bottom: none;
+}
+
+tbody {
+  border-top: none;
+}
+
+fieldset {
+  padding: 0.5em;
+}
+
+img {
+  border: 0;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+  white-space: nowrap;
+}
+
+#content {
+    font-size:13px;
+    line-height:15px;
+    margin:0;
+}
+
+body {
+    color: #333333;
+    -webkit-font-smoothing:antialiased; // mac
+    font-family: 'arial', arial, helvetica, sans-serif;
+}
+
+sup, sub {
+    font-size:9px !important;
+}
+
+ul li {
+    padding-bottom:5px;
+}
+
+#content ul li {
+    margin-left:20px;
+}
+
+/*
+ * hidden elems
+ */
+
+h1#page-title,
+body.front h1,
+body.front #link-home,
+.maintenance-page h1.title,
+.not-logged-in .comment ul.links,
+.page-user #edit-timezone,
+.page-toboggan-denied #user-login .description,
+.permalink,
+.view-seven-home-page-empty-view,
+#block-jump-menu-jump-menu-m-main-menu,
+#mobile-logo,
+#trustwave_block h2 {
+  display:none;
+}
+
+/*
+ *  drupal
+ */
+
+// masquerade
+#block-masquerade-masquerade {
+    @include wrap();
+}
+
+// wysiwyg
+.block_quote {
+    display:block;
+    padding:20px 30px !important;
+    text-align:center;
+}
+.float_left {float:left;}
+.float_right {float:right;}
+.clear_both {clear:both;display:block;}
+
+/*
+ *  theme stylesheets
+ */
 
 @import 'styles.scss';
 @import 'forms.scss';

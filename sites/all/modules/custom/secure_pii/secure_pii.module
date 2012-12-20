@@ -73,6 +73,7 @@ function secure_pii_node_presave($node) {
 function secure_pii_node_insert($node) {
   if ($node->type == 'data_person') {
     _secure_pii_data_insert_broker($node);
+    $_SESSION['piissn'] = $node->pii['field_ssn'];
   }
 }
 
@@ -82,6 +83,7 @@ function secure_pii_node_insert($node) {
 function secure_pii_node_update($node) {
   if ($node->type == 'data_person') {
     _secure_pii_data_update_broker($node);
+    $_SESSION['piissn'] = $node->pii['field_ssn'];
   }
 }
 

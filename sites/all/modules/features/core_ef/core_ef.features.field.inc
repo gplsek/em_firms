@@ -104,7 +104,7 @@ function core_ef_field_default_fields() {
       'module' => 'addressfield',
       'settings' => array(
         'field_encrypt' => array(
-          'ekncrypt' => 0,
+          'encrypt' => 0,
           'phrase' => '',
         ),
       ),
@@ -125,7 +125,7 @@ function core_ef_field_default_fields() {
         ),
       ),
       'deleted' => '0',
-      'description' => '<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>',
+      'description' => '<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -3966,8 +3966,7 @@ function core_ef_field_default_fields() {
       'bundle' => 'data_person',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info"><p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle
-convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
+      'description' => '<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info"><p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
 use the Add Another button to enter additional convictions.</p></span>',
       'display' => array(
         'default' => array(
@@ -4110,7 +4109,7 @@ use the Add Another button to enter additional convictions.</p></span>',
     'field_instance' => array(
       'bundle' => 'data_person',
       'deleted' => '0',
-      'description' => '<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your data of birth in MM/DD/YYYY format.</span>',
+      'description' => '<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your data of birth in MM/DD/YYYY format.</span>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -4712,7 +4711,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'bundle' => 'data_person',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your full legal name. No aliases, nicknames, or other names or references.</span>',
+      'description' => '<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your full legal name. No aliases, nicknames, or other names or references.</span>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -5226,7 +5225,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'bundle' => 'data_person',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.</span>',
+      'description' => '<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.</span>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -5244,7 +5243,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_ssn',
-      'label' => 'Social Security Number',
+      'label' => 'SSN',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -6904,13 +6903,12 @@ use the Add Another button to enter additional convictions.</p></span>',
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info"><p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle
-convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
+  t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info"><p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
 use the Add Another button to enter additional convictions.</p></span>');
-  t('<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.</span>');
-  t('<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>');
-  t('<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your data of birth in MM/DD/YYYY format.</span>');
-  t('<span class="help-icon"><img src="/sites/all/themes/seven_doublemthemes/images/icon_form-more-info.png"></span><span class="help-info">Enter your full legal name. No aliases, nicknames, or other names or references.</span>');
+  t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.</span>');
+  t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span>');
+  t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your data of birth in MM/DD/YYYY format.</span>');
+  t('<span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your full legal name. No aliases, nicknames, or other names or references.</span>');
   t('<ul><li><em>Startup</em> will get you information about our services for startups. </li><li><em>Partner/Portal</em> will get you news and information on our affiliate services. </li><li><em>Investor</em> will help you learn more about your potential investments.</li></ul>');
   t('Additional Images');
   t('Address');
@@ -6977,11 +6975,11 @@ use the Add Another button to enter additional convictions.</p></span>');
   t('Results address history');
   t('Results civil history');
   t('Results criminal history');
+  t('SSN');
   t('Select multiple countries by holding the \'ctrl\' key and clicking each selection.');
   t('Seven - Slide Image');
   t('Slideshow Position');
   t('Slideshow Type');
-  t('Social Security Number');
   t('State');
   t('State of Incorp (for corp)');
   t('State of Registration');
