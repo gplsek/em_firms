@@ -67,7 +67,7 @@ function secure_pii_node_presave($node) {
     }
     if (_secure_pii_check_private() ) {
       $_SESSION['piissn'] = $node->field_ssn['und'][0]['value'];
-    } else {}
+    } else {
       $_SESSION['piissn'] = $node->pii['field_ssn'];
     }
   }
