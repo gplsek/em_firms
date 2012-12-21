@@ -143,7 +143,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_address_full',
       'label' => 'Address',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -658,6 +658,9 @@ function core_ef_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_criminal_county',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -674,6 +677,10 @@ function core_ef_field_default_fields() {
       'locked' => '0',
       'module' => 'text',
       'settings' => array(
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
         'max_length' => '255',
       ),
       'translatable' => '0',
@@ -842,6 +849,9 @@ function core_ef_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_criminal_state',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -853,6 +863,10 @@ function core_ef_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(),
         'allowed_values_function' => 'list_predefined_options_list_option_us_states',
+        'field_encrypt' => array(
+          'encrypt' => 0,
+          'phrase' => '',
+        ),
       ),
       'translatable' => '0',
       'type' => 'list_text',
@@ -3679,7 +3693,7 @@ function core_ef_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_agree_final',
       'label' => 'I agree that my personal information is true and correct.',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -3921,6 +3935,7 @@ function core_ef_field_default_fields() {
         'settings' => array(
           'autocomplete_match' => 'contains',
           'autocomplete_path' => 'node_reference/autocomplete',
+          'references_id_trim_roles' => array(),
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
@@ -4134,7 +4149,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'entity_type' => 'node',
       'field_name' => 'field_dob',
       'label' => 'Date of Birth',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'default_value' => 'blank',
         'default_value2' => 'same',
@@ -4287,7 +4302,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'entity_type' => 'node',
       'field_name' => 'field_email_address',
       'label' => 'Email Address',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -4429,7 +4444,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'entity_type' => 'node',
       'field_name' => 'field_gender',
       'label' => 'Gender',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -4654,7 +4669,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'entity_type' => 'node',
       'field_name' => 'field_name_first',
       'label' => 'First Name',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -4730,7 +4745,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'entity_type' => 'node',
       'field_name' => 'field_name_last',
       'label' => 'Last Name',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -5244,7 +5259,7 @@ use the Add Another button to enter additional convictions.</p></span>',
       'entity_type' => 'node',
       'field_name' => 'field_ssn',
       'label' => 'SSN',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -5696,7 +5711,7 @@ use the Add Another button to enter additional convictions.</p></span>',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '-4',
+        'weight' => -4,
       ),
     ),
   );
