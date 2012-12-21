@@ -79,9 +79,24 @@
   <div id="main-report-inner">
     <div class="contain" id="report-header">
       <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/earlyiq/logo.png" /> </a>
-      <h1>
-        Enterprise Management Report</h1>
+      <h1>Kiva Applicant Report</h1>
       <div id="reported-company">
+      
+        <div class="left">
+					<h2><?php echo $company_name; ?></h2>
+					<?php
+            foreach ($officers as $officer) {
+              echo   '<p>Applicant:&nbsp;'.$officer['fullname'].'</p>';
+            }
+            ?>
+				</div>
+				<div class="right">
+					<ul>
+					</ul>
+				</div>
+				
+      <!--
+      
         <div class="left">
           <h2><?php echo $company_name; ?></h2>
           <p><?php echo $company_description; ?></p>
@@ -104,6 +119,8 @@
           </ul>
         </div>
       </div>
+      
+      //-->
     </div>
     <div id="report-body">
       
