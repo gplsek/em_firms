@@ -78,7 +78,7 @@
 <div id="main-report-wrapper">
   <div id="main-report-inner">
     <div class="contain" id="report-header">
-      <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/seven_doublemthemes/logo.png" /> </a>
+      <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/earlyiq/logo.png" /> </a>
       <h1>
         Enterprise Management Report</h1>
       <div id="reported-company">
