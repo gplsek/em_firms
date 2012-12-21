@@ -185,7 +185,7 @@ function commerce_ef_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -356,7 +356,7 @@ function commerce_ef_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'commerce_product_reference_autocomplete',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -440,7 +440,7 @@ function commerce_ef_field_default_fields() {
           'currency_code' => 'default',
         ),
         'type' => 'commerce_price_full',
-        'weight' => '1',
+        'weight' => 1,
       ),
     ),
   );
@@ -524,7 +524,7 @@ function commerce_ef_field_default_fields() {
           'currency_code' => 'default',
         ),
         'type' => 'commerce_price_full',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
