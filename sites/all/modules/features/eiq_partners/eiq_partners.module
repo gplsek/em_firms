@@ -157,10 +157,11 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         unset($form['field_address']['und']['add_more']);
         $form['field_address']['und']['#title'] = "Current Address";
         $form['#groups']['group_personal_info']->format_type = 'hidden';
-        $form['field_criminal']['und'][0]['field_criminal_type']['#access'] = FALSE;
-        $form['field_criminal']['und'][0]['field_criminal_level']['#access'] = FALSE;
-        $form['field_criminal']['und'][0]['field_criminal_year']['#access'] = FALSE;
-        $form['field_criminal']['und'][0]['field_criminal_description']['#access'] = FALSE;
+        // hiding nested fields
+        _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_description");
+        _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_level");
+        _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_type");
+        _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_year");
         $form['field_agree_final']['und']['#title'] = "By checking this box, you are affirming that all the information you have provided is complete and accurate and you give your explicit permission for the information to be used in accordance with our Terms and Conditions. You understand that the information you have provided will be used to perform background research and validation of the answers submitted in your loan application and your Trustee's endorsement to be listed on the Kiva Zip lending site. This is not a credit report or credit check, nor will your credit records be accessed.";
         break;
     }
@@ -168,6 +169,16 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
   } else {
     drupal_set_message("No product is associated with this application. Please contact the site admin.");
   }
+}
+
+
+function _eiq_partners_hide_field(&$field, $hide_field) {
+  foreach ($field as $key => $value) {
+    if (is_numeric($key)) {
+      unset($field[$key][$hide_field]);
+    }
+  }
+  return $field;
 }
 
 function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
