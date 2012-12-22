@@ -35,8 +35,7 @@ function core_ef_init() {
 function core_ef_node_presave($node) {
   if ($node->type == 'data_person' && $node->is_new == FALSE){
     if ($node->field_kba['und'][0]['value'] == 0) {
-	  $_SESSION['piissn'] = $node->pii['field_ssn'];
-	  $node->field_verify_count['und'][0]['value'] = 0;
+  	  $node->field_verify_count['und'][0]['value'] = 0;
       $GLOBALS['destination'] = 'verification/'.$node->nid;
     } // else {
     //       drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
@@ -90,12 +89,20 @@ function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
   $form['field_notes']['#access'] = FALSE;
 }
 
-
+function _core_ef_my_ssn($content, $element) {
+  $ssn = $element['#default_value'];
+  $content = str_replace('input type="password"', 'input type="password" value="' . $ssn . '" ', $content);
+  return $content;
+}
 function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form);
   //dpm($form_state);
   if (!module_exists("secure_pii") || (module_exists("secure_pii") && !_secure_pii_check_private())) {
     $form['field_ssn']['und'][0]['value']['#type'] = 'password';
+    $form['field_ssn']['und'][0]['value']['#post_render'] = array('_core_ef_my_ssn');
+    $form['field_ssn']['und'][0]['value']['#size'] = 9;
+    unset($form['field_ssn']['und'][0]['value']['#mask']);
+    unset($form['field_ssn']['und'][0]['value']['#placeholder']);
   }
   // remove '[nid:]' from the Comapny title (node reference) Field
   $form['field_company']['und'][0]['nid']['#value_callback'] = '_core_ef_company_title';

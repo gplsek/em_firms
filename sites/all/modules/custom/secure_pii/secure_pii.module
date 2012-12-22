@@ -31,10 +31,9 @@ function secure_pii_node_prepare($node) {
     foreach ($pii_fields as $field) {
       if (isset($node->{$field}['und'])) {
         $node->{$field}['und'][0]['value'] = _secure_pii_decrypt($node->{$field}['und'][0]['value']);
-        //dpm("decrypted");
-        //dpm($node->{$field}['und'][0]['value']);
       }
     }
+    return $node;
   }
 }
 
@@ -87,6 +86,9 @@ function secure_pii_node_insert($node) {
 function secure_pii_node_update($node) {
   if ($node->type == 'data_person') {
     _secure_pii_data_update_broker($node);
+    // once this node is updated then clear the cache
+    $sql = "call cc_pii_field('field:node:" . $node->nid . "')";
+    _secure_pii_db($sql);
   }
 }
 
@@ -141,9 +143,6 @@ function _secure_pii_data_update_broker($node) {
         0,
         '" . $node->pii[$field] . "'
       )";
-      _secure_pii_db($sql);
-      // once this node is updated then clear the cache
-      $sql = "call cc_pii_field('field:node:" . $node->nid . "')";
       _secure_pii_db($sql);
     }
   }
