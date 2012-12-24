@@ -278,10 +278,10 @@ function kba_questions($form, &$form_state) {
    if($node->uid <> $user->uid){
       return "You are not authorized";
    }
-   // if($node->field_verify_count['und'][0]['value'] >= 2){
-   // 	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-   // 	  drupal_goto('verification/'.$form_state['node'].'/status');
-   //     }
+   if($node->field_verify_count['und'][0]['value'] >= 2){
+   	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+   	  drupal_goto('verification/'.$form_state['node'].'/status');
+   }
 
   $form = array();
   
@@ -833,13 +833,13 @@ function kba_failed($form_state, $error_code) {
            $count_ter = field_get_items('node', $node, 'field_verify_count');
            $count = $node->field_verify_count['und'][0]['value'];
 
-          if($count > 2){
-		   drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
-		   drupal_goto('verification/'.$node->nid.'/status');
+           if($count > 2){
+		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+		    drupal_goto('verification/'.$node->nid.'/status');
 		   }
            $count = $count + 1;
-            $node->field_verify_count['und'][0]['value'] = $count;
-		    field_attach_update('node', $node);
+           $node->field_verify_count['und'][0]['value'] = $count;
+		   field_attach_update('node', $node);
 
 	
 	switch ($error_code) {
