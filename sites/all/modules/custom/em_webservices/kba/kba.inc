@@ -27,16 +27,16 @@ define("KBA_ERROR_FOLLOW_UP_QUESTION_WRONG", 4);
  */
 function _kba_steps() {
   return array(
+      // 1 => array(
+      //         'form' => 'kba_personal_info',
+      //       ),
       1 => array(
-        'form' => 'kba_personal_info',
-      ),
-      2 => array(
         'form' => 'kba_questions',
       ),
-      3 => array(
+      2 => array(
         'form' => 'kba_follow_up_question',
       ),
-      4 => array(
+      3 => array(
         'form' => 'kba_follow_up_question_result',
       )
     );
@@ -175,10 +175,10 @@ function kba_personal_info($form, &$form_state) {
 
 
     $node = node_load($form_state['node']);
-    if($node->field_verify_count['und'][0]['value'] >= 2){
-	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-	  drupal_goto('verification/'.$form_state['node'].'/status');
-    }
+    // if($node->field_verify_count['und'][0]['value'] >= 2){
+    // 	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+    // 	  drupal_goto('verification/'.$form_state['node'].'/status');
+    //     }
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
@@ -272,16 +272,27 @@ function kba_personal_info($form, &$form_state) {
  */
 function kba_questions($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
-  global $user;
+    global $user;
+   
+   $node = node_load($form_state['node']);
+   if($node->uid <> $user->uid){
+      return "You are not authorized";
+   }
+   // if($node->field_verify_count['und'][0]['value'] >= 2){
+   // 	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+   // 	  drupal_goto('verification/'.$form_state['node'].'/status');
+   //     }
+
   $form = array();
   
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
+ // if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
     
-    $personalInformation = $form_state["step_information"][1];
+    //$personalInformation = $form_state["step_information"][1];
     
     try {
-      $response = json_decode(_ws_verification($personalInformation["stored_values"]), true);  
-      
+      //$response = json_decode(_ws_verification($personalInformation["stored_values"]), true);  
+      $response = json_decode(_ws_verification($form_state['node']), true);
+
       $transationID = $response["transaction-status"]["transaction-id"];
       
       $form['transaction_id'] = array(
@@ -328,9 +339,7 @@ function kba_questions($form, &$form_state) {
         
         kba_failed($form_state, KBA_ERROR_PERSONAL_INFORMATION);
         
-        // $form['error'] = array(
-        //           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
-        //         );
+
         
       }
       
@@ -338,11 +347,9 @@ function kba_questions($form, &$form_state) {
         
         kba_failed($form_state, KBA_ERROR_SERVICE_CANNOT_BE_REACHED);
         
-        // $form['error'] = array(
-        //           '#markup' => '<div>The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href="/contact">here</a>.</div>'
-        //         );
+
     }
-  }
+  //}
   
   return $form;
 }
@@ -356,8 +363,8 @@ function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
   
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
-    $answers = $form_state["step_information"][2];
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {  
+    $answers = $form_state["step_information"][1];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
       
     $question = $response["questions"]["question"];
@@ -430,8 +437,8 @@ function kba_follow_up_question_result($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
   
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
-    $answers = $form_state["step_information"][3];
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
+    $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
     
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
@@ -525,23 +532,31 @@ function kba_wizard_submit($form, &$form_state) {
  *
  * @return string the json of the response, or null if empty.
  */
-function _ws_verification($data) {
+function _ws_verification($nid) {
   
   $webService = _createWebService();
   
-  $personID   = $data["data_person_nid"];
-  $firstName  = $data["first_name"];
-  $lastName   = $data["last_name"];
-  $ssn        = preg_replace('/[^0-9]/', '', $data["ssn"]); // removes any non-integer characters
-  $birthYear  = $data["birthdate"]["year"];
-  $birthMonth = $data["birthdate"]["month"];
-  $birthDay   = $data["birthdate"]["day"];
+  $ssn = aes_decrypt($_SESSION['piissn']);
+  $node = node_load($nid);
+  $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
+  $dob = $node->field_dob['und'][0]['value'];
+  $dob = str_replace(' 00:00:00','',$dob);
+  $dob = explode('-',$dob);
   
-  $address1   = $data["address"]["address"]["thoroughfare"];
-  $address2   = $data["address"]["address"]["premise"];
-  $addressCity  = $data["address"]["address"]["locality"];
-  $addressState = $data["address"]["address"]["administrative_area"];
-  $addressZip   = $data["address"]["address"]["postal_code"];
+  $personID   = $nid;
+  $firstName  = $node->field_name_first['und'][0]['value'];
+  $lastName   = $node->field_name_last['und'][0]['value'];
+  $ssn        = preg_replace('/[^0-9]/', '', $ssn); // removes any non-integer characters
+  $birthYear  = $dob[0];
+  $birthMonth = $dob[1];
+  $birthDay   = $dob[2];
+  $addy = $address[$node->field_address['und'][0]['value']]->field_address_full['und'][0];
+
+  $address1   = $addy["thoroughfare"];
+  $address2   = $addy["premise"];
+  $addressCity  = $addy["locality"];
+  $addressState = $addy["administrative_area"];
+  $addressZip   = $addy["postal_code"];
   
   $settings = _getWebServiceSettings();
   $settings["task"] = "iauth"; // adding an additional setting for this specific call
@@ -590,13 +605,14 @@ function _ws_verification($data) {
   $data = $webService->identityVerification($requestData); 
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
-  // echo "<h1>------REQUEST-----</h1><br>";
-  //     echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-  //     echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-  //     echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
-  // --------------------------------------------------------------------------------
+   // echo "<h1>------REQUEST-----</h1><br>";
+   //     echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+   //     echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+   //     echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+   // --------------------------------------------------------------------------------
  
-  
+
+
   $results = null;
   if(!empty($data) && !empty($data["response"])) {
     $results = json_encode($data["response"]);
@@ -812,14 +828,19 @@ function kba_wizard_exit(){
 function kba_failed($form_state, $error_code) {
 	
     $node = node_load($form_state['node']);
-   // if($node->field_verify_count['und'][0]['value'] > 2){
-   //       drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
-   //       drupal_goto('verification/'.$node->nid.'/status');
-   //     }
+  
 
+           $count_ter = field_get_items('node', $node, 'field_verify_count');
+           $count = $node->field_verify_count['und'][0]['value'];
 
-    $node->field_verify_count['und'][0]['value'] = $node->field_verify_count['und'][0]['value'] +1;
-	node_save($node);
+          if($count > 2){
+		   drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+		   drupal_goto('verification/'.$node->nid.'/status');
+		   }
+           $count = $count + 1;
+            $node->field_verify_count['und'][0]['value'] = $count;
+		    field_attach_update('node', $node);
+
 	
 	switch ($error_code) {
 	    case 1:
