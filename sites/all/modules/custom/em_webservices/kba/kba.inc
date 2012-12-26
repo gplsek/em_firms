@@ -791,6 +791,7 @@ function _print_form($form, &$form_state){
       '#type' => 'submit',
       '#value' => t('Print'),
       '#name' => 'print',
+      '#attributes' => array('onclick' => 'window.print()'),
       '#submit' => array('kba_wizard_print'),
     );
 
@@ -801,7 +802,7 @@ function _exit_form($form, &$form_state){
 	
 	$form['next'] = array(
       '#type' => 'submit',
-      '#value' => t('Exit'),
+      '#value' => t('Leave'),
       '#name' => 'exit',
       '#submit' => array('kba_wizard_exit'),
     );
@@ -816,7 +817,7 @@ function kba_wizard_print(){
 }
 
 function kba_wizard_exit(){
-	drupal_goto('');
+	drupal_goto('/user/logout');
 }
 
 /**
