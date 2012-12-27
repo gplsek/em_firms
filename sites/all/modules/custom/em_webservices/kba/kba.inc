@@ -284,7 +284,6 @@ function kba_questions($form, &$form_state) {
    }
 
   $form = array();
-  
  // if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
     
     //$personalInformation = $form_state["step_information"][1];
@@ -306,7 +305,11 @@ function kba_questions($form, &$form_state) {
       if(!empty($questions)) {
       
         $questionSetID = $response["questions"]["question-set-id"];
-        
+
+        $form['message'] = array(
+	    	'#markup' => t('This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.'),
+	    );
+	
         $form['question_set_id'] = array(
             '#type' => 'hidden',
             '#default_value' => $questionSetID,      
@@ -328,7 +331,7 @@ function kba_questions($form, &$form_state) {
           
           $form["Question_".$questionID] = array(
             '#type'=>'radios',
-            '#required' => TRUE,
+            //'#required' => TRUE,
             '#options'=>$questionFormOptions,
             '#title'=>t($questionTitle),
             '#description'=>t($helpText)
@@ -350,7 +353,7 @@ function kba_questions($form, &$form_state) {
 
     }
   //}
-  
+
   return $form;
 }
 
@@ -362,7 +365,6 @@ function kba_questions($form, &$form_state) {
 function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
-  
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {  
     $answers = $form_state["step_information"][1];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
@@ -400,7 +402,7 @@ function kba_follow_up_question($form, &$form_state) {
       
       $form["Question_".$questionID] = array(
         '#type'=>'radios',
-        '#required' => TRUE,
+       // '#required' => TRUE,
         '#options'=>$questionFormOptions,
         '#title'=>t($questionTitle),
         '#description'=>t($helpText)
@@ -510,6 +512,7 @@ function _kba_colect_data($data,$kba) {
  * @ingroup kb
  */
 function kba_wizard_submit($form, &$form_state) {
+
   $current_step = &$form_state['step'];
   $form_state['step_information'][$current_step]['stored_values'] = $form_state['values'];
 
