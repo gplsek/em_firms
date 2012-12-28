@@ -62,7 +62,13 @@ function secure_pii_node_presave($node) {
         $node->pii[$field] = $pii_default_values[$field];
       }
       $node->pii[$field] = _secure_pii_encrypt($node->pii[$field]);
-      $node->{$field}['und'][0]['value'] = _secure_pii_encrypt(_secure_pii_check_private() ? $node->{$field}['und'][0]['value'] : $pii_default_values[$field]);
+      if ($field == "field_ssn" && $node->is_new) {
+        // set NULL value on insert for SSN so the password field does not appear to have data on user's first entry
+        $node->{$field}['und'][0]['value'] = NULL;
+      } else {
+        // set default or actual value for PII fields depending on the current server environment
+        $node->{$field}['und'][0]['value'] = _secure_pii_encrypt(_secure_pii_check_private() ? $node->{$field}['und'][0]['value'] : $pii_default_values[$field]);
+      }
     }
     if (_secure_pii_check_private() ) {
       $_SESSION['piissn'] = $node->field_ssn['und'][0]['value'];
