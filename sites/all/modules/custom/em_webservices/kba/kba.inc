@@ -608,10 +608,10 @@ function _ws_verification($nid) {
   $data = $webService->identityVerification($requestData); 
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
-   // echo "<h1>------REQUEST-----</h1><br>";
-   //     echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-   //     echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-   //     echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+        echo "<h1>------REQUEST-----</h1><br>";
+        echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+        echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+        echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
    // --------------------------------------------------------------------------------
  
 
@@ -667,6 +667,11 @@ function _ws_question_answers($data) {
   );
   
   $data = $webService->continuation($requestData);
+  
+  // TESTING
+      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+      echo json_pretty(json_encode($data), array("format"=>"html"));
+
   
   $results = null;
   if(!empty($data)) {
