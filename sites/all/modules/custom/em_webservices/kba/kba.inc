@@ -27,16 +27,13 @@ define("KBA_ERROR_FOLLOW_UP_QUESTION_WRONG", 4);
  */
 function _kba_steps() {
   return array(
-      // 1 => array(
-      //         'form' => 'kba_personal_info',
-      //       ),
-      1 => array(
+      2 => array(
         'form' => 'kba_questions',
       ),
-      2 => array(
+      3 => array(
         'form' => 'kba_follow_up_question',
       ),
-      3 => array(
+      4 => array(
         'form' => 'kba_follow_up_question_result',
       )
     );
@@ -52,7 +49,7 @@ function kba_wizard($form, &$form_state, $nid) {
   $form_state['node'] = $nid;
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
-    $form_state['step'] = 1;
+    $form_state['step'] = 2;
     
     // This array contains the function to be called at each step to get the
     // relevant form elements. It will also store state information for each
@@ -67,20 +64,6 @@ function kba_wizard($form, &$form_state, $nid) {
   // form elements to display for this step.
   $form = $form_state['step_information'][$step]['form']($form, $form_state);
 
-  // Show the 'previous' button if appropriate. Note that #submit is set to
-  // a special submit handler, and that we use #limit_validation_errors to
-  // skip all complaints about validation when using the back button. The
-  // values entered will be discarded, but they will not be validated, which
-  // would be annoying in a "back" button.
-  if ($step > 1) {
-    // $form['prev'] = array(
-    //       '#type' => 'submit',
-    //       '#value' => t('Previous'),
-    //       '#name' => 'prev',
-    //       '#submit' => array('kba_wizard_previous_submit'),
-    //       '#limit_validation_errors' => array(),
-    //     );
-  }
 
   // Show the Next button only if there are more steps defined.
   if ($step < count($form_state['step_information'])) {
@@ -146,6 +129,7 @@ function kba_wizard_previous_submit($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard_next_submit($form, &$form_state) {
+
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $current_step = &$form_state['step'];
   $form_state['step_information'][$current_step]['stored_values'] = $form_state['values'];
@@ -170,7 +154,7 @@ function kba_wizard_next_submit($form, &$form_state) {
  */
 function kba_personal_info($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
-  global $user;
+    global $user;
   
 
 
@@ -278,10 +262,10 @@ function kba_questions($form, &$form_state) {
    if($node->uid <> $user->uid){
       return "You are not authorized";
    }
-   if($node->field_verify_count['und'][0]['value'] >= 2){
-   	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-   	  drupal_goto('verification/'.$form_state['node'].'/status');
-   }
+   // if($node->field_verify_count['und'][0]['value'] >= 2){
+   //    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+   //    	  drupal_goto('verification/'.$form_state['node'].'/status');
+   //    }
 
   $form = array();
  // if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
@@ -365,8 +349,9 @@ function kba_questions($form, &$form_state) {
 function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {  
-    $answers = $form_state["step_information"][1];
+
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
+    $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
       
     $question = $response["questions"]["question"];
@@ -439,8 +424,8 @@ function kba_follow_up_question_result($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
   
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
-    $answers = $form_state["step_information"][2];
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
+    $answers = $form_state["step_information"][3];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
     
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
@@ -462,37 +447,6 @@ function kba_follow_up_question_result($form, &$form_state) {
   
   return $form;
 }
-
-
-
-/**
- * Saves the personal information in a node
- *
- * @return null
- */
-function _kba_colect_data($data,$kba) {
-
-
-    $node = node_load($_SESSION['data_form']);
-
-    $node->field_name_last['und'][0]['value'] = $data['last_name'];
-    $node->field_name_first['und'][0]['value'] = $data['first_name'];
-    $node->field_name_maiden['und'][0]['value'] = $data['maiden_name'];
-    $node->field_name_middle['und'][0]['value'] = $data['middle_name'];
-    $node->field_name_suffix['und'][0]['value'] = $form_state['values']['suffix'];
-    $node->field_gender['und'][0]['value'] = $data['gender'];
-    $node->field_ssn['und'][0]['value'] = $$data['ssn'];
-    $node->field_dob['und'][0]['value'] = $data['birthdate']['year'].'-'.$data['birthdate']['month'].'-'.$data['birthdate']['day'];
-    $node->field_address_history['und'][0] = $data['address']['address'];
-
-    $node->field_kba['und'][0]['value'] = $kba;
-
-
-
-    node_save($node);
-}
-
-
 
 
 
@@ -608,10 +562,10 @@ function _ws_verification($nid) {
   $data = $webService->identityVerification($requestData); 
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
-   // echo "<h1>------REQUEST-----</h1><br>";
-   //     echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-   //     echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-   //     echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+   echo "<h1>------REQUEST-----</h1><br>";
+          echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+          echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+          echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
    // --------------------------------------------------------------------------------
  
 
