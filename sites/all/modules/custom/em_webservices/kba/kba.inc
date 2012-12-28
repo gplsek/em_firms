@@ -9,7 +9,7 @@ variable_set("rsa_username", "EmergingFirmsINTEG");
 variable_set("rsa_password", '$u85ApDR!c2');
 variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
 variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
-variable_set("rsa_state", "testing"); // pilot
+variable_set("rsa_state", "simulated"); // pilot, testing, simulated
 variable_set("rsa_api_trace", 1); // used for debugging
 
 /**
@@ -295,7 +295,7 @@ function kba_questions($form, &$form_state) {
         $form['message'] = array(
 	    	'#markup' => t('This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.'),
 	    );
-	
+
         $form['question_set_id'] = array(
             '#type' => 'hidden',
             '#default_value' => $questionSetID,      
@@ -565,10 +565,10 @@ function _ws_verification($nid) {
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
 
-        echo "<h1>------REQUEST-----</h1><br>";
-        echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-        echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-        echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+  //      echo "<h1>------REQUEST-----</h1><br>";
+  //      echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+  //      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+  //      echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
 
    // --------------------------------------------------------------------------------
  
@@ -627,8 +627,8 @@ function _ws_question_answers($data) {
   $data = $webService->continuation($requestData);
   
   // TESTING
-      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-      echo json_pretty(json_encode($data), array("format"=>"html"));
+  //    echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+  //    echo json_pretty(json_encode($data), array("format"=>"html"));
 
   
   $results = null;
@@ -668,8 +668,8 @@ function _getWebServiceSettings() {
     "ruleset" => variable_get("rsa_ruleset"),
     
     // Settings for simulated mode
-    // "mode" => "simulated",
-    // "simulator-mode"=>"questions",
+    //"mode" => "simulated",
+    "simulator-mode"=>"questions"
 
   );
 }
@@ -701,7 +701,7 @@ function em_webservices_complete($nid){
 	$message = "Success! You're done with the application
 	process.";
 	drupal_set_message($message,'status');
-	
+
 	$node = node_load($nid);
 
     $fname = $node->field_name_last['und'][0]['value'];
@@ -741,9 +741,9 @@ function em_webservices_complete($nid){
     $rows[] = array('Address', $addresshtml);
     $rows[] = array(drupal_render(drupal_get_form('_print_form')),drupal_render(drupal_get_form('_exit_form')));  
     $header = array('','');
-	
-	
-	
+
+
+
 	return theme('table', array(
 	    'header' => $header, 
 	    'rows' => $rows,
@@ -752,7 +752,7 @@ function em_webservices_complete($nid){
 }
 
 function _print_form($form, &$form_state){
-	
+
 	$form['next'] = array(
       '#type' => 'submit',
       '#value' => t('Print'),
@@ -765,7 +765,7 @@ function _print_form($form, &$form_state){
 }
 
 function _exit_form($form, &$form_state){
-	
+
 	$form['next'] = array(
       '#type' => 'submit',
       '#value' => t('Leave'),
@@ -793,7 +793,7 @@ function kba_wizard_exit(){
  * @param int The KBA error code
  */
 function kba_failed($form_state, $error_code) {
-	
+
     $node = node_load($form_state['node']);
   
 
@@ -808,7 +808,7 @@ function kba_failed($form_state, $error_code) {
            $node->field_verify_count['und'][0]['value'] = $count;
 		   field_attach_update('node', $node);
 
-	
+
 	switch ($error_code) {
 	    case 1:
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>";
@@ -824,19 +824,19 @@ function kba_failed($form_state, $error_code) {
 	        break;
 	    case 4:
 		    $error = "You have missed the follow up question";
-		    
+
 		    drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
-	
+
 
 	drupal_set_message($error,'status');
     drupal_goto('node/'.$form_state['node'].'/edit');
-	
-	
-	
+
+
+
   
 }
 
