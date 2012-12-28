@@ -159,10 +159,10 @@ function kba_personal_info($form, &$form_state) {
 
 
     $node = node_load($form_state['node']);
-    // if($node->field_verify_count['und'][0]['value'] >= 2){
-    // 	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-    // 	  drupal_goto('verification/'.$form_state['node'].'/status');
-    //     }
+    if($node->field_verify_count['und'][0]['value'] >= 2){
+    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+    	  drupal_goto('verification/'.$form_state['node'].'/status');
+        }
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
@@ -262,6 +262,8 @@ function kba_questions($form, &$form_state) {
    if($node->uid <> $user->uid){
       return "You are not authorized";
    }
+   // check if user has compled more than 2 times
+
    // if($node->field_verify_count['und'][0]['value'] >= 2){
    //    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
    //    	  drupal_goto('verification/'.$form_state['node'].'/status');
@@ -562,10 +564,12 @@ function _ws_verification($nid) {
   $data = $webService->identityVerification($requestData); 
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
-   echo "<h1>------REQUEST-----</h1><br>";
-          echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-          echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-          echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+
+        echo "<h1>------REQUEST-----</h1><br>";
+        echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+        echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+        echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+
    // --------------------------------------------------------------------------------
  
 
@@ -621,6 +625,11 @@ function _ws_question_answers($data) {
   );
   
   $data = $webService->continuation($requestData);
+  
+  // TESTING
+      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+      echo json_pretty(json_encode($data), array("format"=>"html"));
+
   
   $results = null;
   if(!empty($data)) {
