@@ -28,9 +28,9 @@ var $ = jQuery.noConflict();
     }
 
     /* test for appropriate values in SSN input */
-    if($('#edit-name').length) {
+    /*if($('#edit-name').length) {
         ssnCheck('#edit-name');
-    }
+    }*/
 
     /* toggle script for reports page(s) */
     /* dev version, need to optimize */
@@ -107,4 +107,23 @@ function ssnCheck(input) {
 function fireError(onInput) {
     $(onInput).val('ex: 111-22-3333');
     $(onInput).addClass('error');
+}
+
+/* basic function for showing/hiding report list item details */
+function toggleDetails() {
+    $('.report-details-toggle a').click(function() {
+        if($(this).hasClass('show-detail')) {
+            $(this).parent().children('.details-toggle-container') {
+                // show
+                $(this).css('display', 'none');
+                $(this).parent().children('hide-detail').css('display', 'block');
+            }
+        } else if ($(this).hasClass('show-detail')) {
+            $(this).parent().children('.details-toggle-container') {
+                // hide
+                $(this).css('display', 'none');
+                $(this).parent().children('show-detail').css('display', 'block');
+            }
+        }
+    });
 }
