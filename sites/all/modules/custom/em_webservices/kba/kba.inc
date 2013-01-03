@@ -129,7 +129,8 @@ function kba_wizard_previous_submit($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard_next_submit($form, &$form_state) {
-
+print_r($form_state);
+die();
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $current_step = &$form_state['step'];
   $form_state['step_information'][$current_step]['stored_values'] = $form_state['values'];
@@ -351,7 +352,8 @@ function kba_questions($form, &$form_state) {
 function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
-
+print_r($form_state["step_information"]);
+die();
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
     $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
@@ -565,10 +567,10 @@ function _ws_verification($nid) {
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
 
-        echo "<h1>------REQUEST-----</h1><br>";
-        echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-        echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-        echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
+        // echo "<h1>------REQUEST-----</h1><br>";
+        //         echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+        //         echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
+        //         echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
 
    // --------------------------------------------------------------------------------
  
