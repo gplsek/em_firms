@@ -27,7 +27,10 @@ var $ = jQuery.noConflict();
         predef('#block-system-main-menu li a');
     }
 
-
+    /* test for appropriate values in SSN input */
+    if($('#edit-name').length) {
+        ssnCheck('#edit-name');
+    }
 
     /* toggle script for reports page(s) */
     /* dev version, need to optimize */
@@ -73,4 +76,35 @@ function predef(menu) {
     $(menu).click(function(e){
         e.preventDefault();
     });
+}
+
+/* SSN INPUT CHECK */
+
+/* testing on name input for now */
+function ssnCheck(input) {
+    var iVal, val2;
+    // reset value on focus
+    $(input).focus(function() {
+        $(this).val('');
+    });
+    $(input).blur(function() {
+        iVal = this.value;
+        if($(this).hasClass('error')) $(this).removeClass('error');
+        if(iVal.length > 8 && iVal.length < 12) {
+            val2 = iVal.replace(/-/g, "");
+            $(this).val(val2);
+            if(val2.length == 9 && $.isNumeric(val2)) {
+                $(this).value == val2;
+            } else { 
+                fireError($(this));
+            } 
+        } else {
+            fireError($(this));
+        }
+    });
+}
+
+function fireError(onInput) {
+    $(onInput).val('ex: 111-22-3333');
+    $(onInput).addClass('error');
 }
