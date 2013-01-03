@@ -251,3 +251,4 @@ function earlyiq_fieldset($variables) {
   $output .= "</fieldset>\n";
   return $output;
 }
+
