@@ -202,12 +202,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 }
 
 div.status, .ok {
-    @include border-radius(5px);
-    background:#e5e5e5;
+    //background:#e5e5e5;
     border:0;   
-    color:#666;
+    color:#222;
     height:auto;
     font-size:12px;
+    font-weight:bold;
     line-height:20px;
     padding:10px 0 10px 20px;
 }
@@ -378,6 +378,7 @@ div.status, .ok {
 
     // text & email inputs
     input[type='text'],
+    input[type='password'],
     input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
@@ -496,12 +497,13 @@ div.status, .ok {
 
 }
 
+/* KBA verification questions */
 .logged-in.page-verification #content form {
-  text-align:center;
   input[type='submit'] {
     float:none;
     margin:15px auto;
   }
+
 }
 .logged-in.node-type-data-person.page-kiva-zip,
 .logged-in.node-type-data-person.partner-kiva-zip {
@@ -547,19 +549,23 @@ div.status, .ok {
   .form-item-field-dob-und-0-value-year {
     float:left;
   }
+
+  /* first / middle / lastname input and label styles */
   #edit-field-name-first {
-    width:320px !important;
+    width:250px !important;
   }
   #edit-field-name-middle {
-    width:175px !important;
+    width:255px !important;
   }
   #edit-field-name-last {
-    width:320px !important;
+    width:280px !important;
   }
+
   #edit-field-name-first,
+  #edit-field-name-middle,
   #edit-field-name-last {
     input[type='text'] {
-      width:200px !important;
+      width:145px !important;
     }
   }
   #edit-field-agree-final {
@@ -576,13 +582,13 @@ div.status, .ok {
     float:left;
     padding-top:5px;
     padding-right:25px;
+    .form-item {
+      padding-bottom:0;
+    }
   }
   #edit-field-name-middle {
     input[type='text'] {
       width:50px;
-    }
-    label {
-      width:95px;
     }
   }
   form label {
@@ -597,7 +603,7 @@ div.status, .ok {
     clear:right;
     float:left;
     margin-left:9px;
-    width:355px;
+    width:245px;
     input[type='text'],
     input[type='password'], {
       width:153px !important;
@@ -619,6 +625,10 @@ div.status, .ok {
     .fieldset-description {
       @include block_description();
     }
+    form label {
+      text-align:right;
+      width:75px;
+    } 
   }
 }
 
@@ -773,7 +783,7 @@ div.status, .ok {
         width:100%;
       }
         fieldset {
-            border:0 !important;
+          margin-bottom:0;
         }
         legend {
             @include border-radius(0);
@@ -859,8 +869,8 @@ div.status, .ok {
     label {
         padding-left:0;
     }
-    .addressfield-container-inline label {
-      padding-left:15px;
+    .addressfield-container-inline .form-item {
+      padding-right:15px;
     }
 }
 

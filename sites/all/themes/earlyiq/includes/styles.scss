@@ -348,7 +348,7 @@ body.not-front {
 }
 
 /* sidebar */
-.sidebar {
+.sidebar, .region-sidebar-first {
   
   #block-nodeblock-35 {
     padding-top:15px;
@@ -635,7 +635,8 @@ body.front .active-trail {
     padding:3px 0 6px;
   }
 }
-.sidebar .block-menu {
+.sidebar .block-menu,
+.region-sidebar-first .block-menu {
   
   h2 {
     font-size:20px;
@@ -654,6 +655,7 @@ body.front .active-trail {
       font-size:14px;
       font-weight:bold !important;
       line-height:16px;
+      text-decoration:none;
     }
   }
 }
