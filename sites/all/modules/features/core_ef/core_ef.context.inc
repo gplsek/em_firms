@@ -482,6 +482,44 @@ function core_ef_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'report_cards';
+  $context->description = '';
+  $context->tag = 'user';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'user' => 'user',
+        'users/*' => 'users/*',
+      ),
+    ),
+    'user' => array(
+      'values' => array(
+        'report viewer' => 'report viewer',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-my_report_cards-block' => array(
+          'module' => 'views',
+          'delta' => 'my_report_cards-block',
+          'region' => 'sidebar_second',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('user');
+  $export['report_cards'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'sidebar_detail_pages';
   $context->description = '';
   $context->tag = 'Sidebar 1';
