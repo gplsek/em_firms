@@ -27,6 +27,9 @@ define("KBA_ERROR_FOLLOW_UP_QUESTION_WRONG", 4);
  */
 function _kba_steps() {
   return array(
+	  1 => array(
+        'form' => 'kba_personal_info',
+      ),
       2 => array(
         'form' => 'kba_questions',
       ),
@@ -49,7 +52,7 @@ function kba_wizard($form, &$form_state, $nid) {
   $form_state['node'] = $nid;
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
-    $form_state['step'] = 2;
+    $form_state['step'] = 1;
     
     // This array contains the function to be called at each step to get the
     // relevant form elements. It will also store state information for each
@@ -129,12 +132,10 @@ function kba_wizard_previous_submit($form, &$form_state) {
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard_next_submit($form, &$form_state) {
-print_r($form_state);
-die();
+
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $current_step = &$form_state['step'];
   $form_state['step_information'][$current_step]['stored_values'] = $form_state['values'];
-
   if ($current_step < count($form_state['step_information'])) {
     $current_step++;
     if (!empty($form_state['step_information'][$current_step]['stored_values'])) {
@@ -143,6 +144,8 @@ die();
     else {
       $form_state['values'] = array();
     }
+
+
     $form_state['rebuild'] = TRUE;  // Force rebuild with next step.
     return;
   }
@@ -160,10 +163,10 @@ function kba_personal_info($form, &$form_state) {
 
 
     $node = node_load($form_state['node']);
-    if($node->field_verify_count['und'][0]['value'] >= 2){
-    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-    	  drupal_goto('verification/'.$form_state['node'].'/status');
-        }
+    // if($node->field_verify_count['und'][0]['value'] >= 2){
+    //     	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+    //     	  drupal_goto('verification/'.$form_state['node'].'/status');
+    //         }
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
@@ -270,8 +273,8 @@ function kba_questions($form, &$form_state) {
    //    	  drupal_goto('verification/'.$form_state['node'].'/status');
    //    }
 
-  $form = array();
- // if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
+
+ if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
     
     //$personalInformation = $form_state["step_information"][1];
     
@@ -339,7 +342,7 @@ function kba_questions($form, &$form_state) {
         
 
     }
-  //}
+  }
 
   return $form;
 }
@@ -352,8 +355,7 @@ function kba_questions($form, &$form_state) {
 function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
-print_r($form_state["step_information"]);
-die();
+
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
     $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
@@ -376,19 +378,19 @@ die();
             '#type' => 'hidden',
             '#default_value' => $questionSetID,      
         );
-        
-      $questionTitle = $question["text"]["statement"];
-      $questionID = $question["question-id"];
-      $helpText = $question["help-text"]["statement"];
+
+      $questionTitle = $question[0]["text"]["statement"];
+      $questionID = $question[0]["question-id"];
+      $helpText = $question[0]["help-text"]["statement"];
       
-      $questionOptions = $question["choice"];
+      $questionOptions = $question[0]["choice"];
       
       // Form API question options
       $questionFormOptions = array();
       foreach($questionOptions as $questionOption) {
          $questionFormOptions[$questionOption["choice-id"]] = $questionOption["text"]["statement"];
       }
-      
+
       $form["Question_".$questionID] = array(
         '#type'=>'radios',
        // '#required' => TRUE,
@@ -567,18 +569,10 @@ function _ws_verification($nid) {
   
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
 
-<<<<<<< HEAD
-        // echo "<h1>------REQUEST-----</h1><br>";
-        //         echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-        //         echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
-        //         echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
-=======
   //      echo "<h1>------REQUEST-----</h1><br>";
   //      echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
   //      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
   //      echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
->>>>>>> 14310018eeea9a2735734d9b1664c0b5c4c9ce31
-
    // --------------------------------------------------------------------------------
  
 
