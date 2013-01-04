@@ -52,7 +52,7 @@ function kba_wizard($form, &$form_state, $nid) {
   $form_state['node'] = $nid;
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
-    $form_state['step'] = 1;
+    $form_state['step'] = 2;
     
     // This array contains the function to be called at each step to get the
     // relevant form elements. It will also store state information for each
@@ -803,10 +803,10 @@ function kba_failed($form_state, $error_code) {
            $count_ter = field_get_items('node', $node, 'field_verify_count');
            $count = $node->field_verify_count['und'][0]['value'];
 
-           if($count > 2){
-		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
-		    drupal_goto('verification/'.$node->nid.'/status');
-		   }
+           // if($count > 2){
+           // 		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+           // 		    drupal_goto('verification/'.$node->nid.'/status');
+           // 		   }
            $count = $count + 1;
            $node->field_verify_count['und'][0]['value'] = $count;
 		   field_attach_update('node', $node);
