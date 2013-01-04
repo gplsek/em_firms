@@ -52,7 +52,7 @@ function kba_wizard($form, &$form_state, $nid) {
   $form_state['node'] = $nid;
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
-    $form_state['step'] = 2;
+    $form_state['step'] = 1;
     
     // This array contains the function to be called at each step to get the
     // relevant form elements. It will also store state information for each
@@ -321,7 +321,7 @@ function kba_questions($form, &$form_state) {
           
           $form["Question_".$questionID] = array(
             '#type'=>'radios',
-            //'#required' => TRUE,
+            '#required' => TRUE,
             '#options'=>$questionFormOptions,
             '#title'=>t($questionTitle),
             '#description'=>t($helpText)
@@ -393,7 +393,7 @@ function kba_follow_up_question($form, &$form_state) {
 
       $form["Question_".$questionID] = array(
         '#type'=>'radios',
-       // '#required' => TRUE,
+        '#required' => TRUE,
         '#options'=>$questionFormOptions,
         '#title'=>t($questionTitle),
         '#description'=>t($helpText)
