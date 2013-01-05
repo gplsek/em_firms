@@ -104,7 +104,7 @@ function earlyiq_preprocess_page(&$variables, $hook) {
     $variables['main_menu'] = module_invoke('system', 'block_view', 'main-menu');
     $variables['main_menu_jump'] = module_invoke('jump_menu', 'block_view', 'jump_menu-m_main-menu');
   }
-  if ((arg(0) == "user" && arg(1) == "reset") || ($variables['node']->type == 'data_person') || (arg(1) == "validation")) {
+  if ((arg(0) == "user" && arg(1) == "reset") || (isset($variables['node']) && $variables['node']->type == 'data_person') || (arg(1) == "validation")) {
     $variables['show_steps'] = '<div id="show-steps"><span id="step1"></span><span id="step2"></span><span id="step3"></span></div>';
   }
 
@@ -160,3 +160,95 @@ function STARTERKIT_preprocess_block(&$variables, $hook) {
   $variables['classes_array'][] = 'count-' . $variables['block_id'];
 }
 // */
+
+
+
+/**
+ *  Theme override for theme_form_element_label
+ */
+function earlyiq_form_element_label(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#field_name'])) {
+    switch ($element['#field_name']) {
+      case 'field_name_last':
+        $help_txt = "Enter your full legal name. No aliases, nicknames, or other names or references.";
+        break;
+      case 'field_ssn':
+        $help_txt = "Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.";
+        break;
+      case 'field_convictions':
+        $help_txt = "<p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
+use the Add Another button to enter additional convictions.</p>";
+        break;
+   }
+  }
+  $help_icon = isset($help_txt) ? '<span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span>' : '';
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // If title and required marker are both empty, output no label.
+  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
+    return '';
+  }
+
+  // If the element is required, a required marker is appended to the label.
+  $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '';
+
+  $title = filter_xss_admin($element['#title']);
+
+  $attributes = array();
+  // Style the label as class option to display inline with the element.
+  if ($element['#title_display'] == 'after') {
+    $attributes['class'] = 'option';
+  }
+  // Show label only to screen readers to avoid disruption in visual flows.
+  elseif ($element['#title_display'] == 'invisible') {
+    $attributes['class'] = 'element-invisible';
+  }
+
+  if (!empty($element['#id'])) {
+    $attributes['for'] = $element['#id'];
+  }
+
+  // The leading whitespace helps visually separate fields from inline labels.
+  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required !help', array('!title' => $title, '!required' => $required, '!help' => $help_icon)) . "</label>\n";
+}
+
+
+/**
+ *  Theme override for theme_fieldset
+ */
+function earlyiq_fieldset($variables) {
+  $element = $variables['element'];
+  if (isset($element['#title'])) {
+    switch (trim($element['#title'])) {
+      case 'Date of Birth':
+        $help_txt = "Enter your data of birth in MM/DD/YYYY format.";
+        break;
+      case 'Address':
+        $help_txt = "Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.";
+        break;
+    }
+  }
+  $help_icon = isset($help_txt) ? '<span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span>' : '';
+  element_set_attributes($element, array('id'));
+  _form_set_class($element, array('form-wrapper'));
+
+  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+  if (!empty($element['#title'])) {
+    // Always wrap fieldset legends in a SPAN for CSS positioning.
+    $output .= '<legend><span class="fieldset-legend">' . $element['#title'] . $help_icon .  '</span></legend>';
+  }
+  $output .= '<div class="fieldset-wrapper">';
+  if (!empty($element['#description'])) {
+    $output .= '<div class="fieldset-description">' . $element['#description'] . '</div>';
+  }
+  $output .= $element['#children'];
+  if (isset($element['#value'])) {
+    $output .= $element['#value'];
+  }
+  $output .= '</div>';
+  $output .= "</fieldset>\n";
+  return $output;
+}
+

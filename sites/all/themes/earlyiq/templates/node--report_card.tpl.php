@@ -49,8 +49,8 @@
 
         foreach($companyOfficersNode as $officer) {
           $officers[] = array(
-            "fullname" => $officer->field_last_name["und"][0]["safe_value"].",&nbsp;".
-                          $officer->field_first_name["und"][0]["safe_value"],
+            "fullname" => $officer->field_first_name["und"][0]["safe_value"]."&nbsp;".
+                          $officer->field_last_name["und"][0]["safe_value"],
             "title" => "Officer"
           );          
         }        
@@ -79,7 +79,7 @@
   <div id="main-report-inner">
     <div class="contain" id="report-header">
       <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/earlyiq/logo.png" /> </a>
-      <h1>Kiva Applicant Report</h1>
+      <h1>Kiva Zip Applicant Report</h1>
       <div id="reported-company">
       
         <div class="left">
