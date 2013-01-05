@@ -1053,7 +1053,8 @@ function core_ef_user_default_permissions() {
   $permissions['edit own data_person content'] = array(
     'name' => 'edit own data_person content',
     'roles' => array(
-      0 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'authenticated user',
     ),
     'module' => 'node',
   );

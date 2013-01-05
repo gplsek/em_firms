@@ -922,6 +922,24 @@ node/*/edit';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'commerce_checkout_completion_message';
+  $strongarm->value = array(
+    'value' => '<p>Your order is number [commerce-order:order-number]. You can <a href="[commerce-order:url]">view your order</a> on your account page when logged in.</p>
+',
+    'format' => 'filtered_html',
+  );
+  $export['commerce_checkout_completion_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'commerce_checkout_completion_message_override';
+  $strongarm->value = 1;
+  $export['commerce_checkout_completion_message_override'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'commerce_node_checkout_products_data_person';
   $strongarm->value = array();
   $export['commerce_node_checkout_products_data_person'] = $strongarm;
@@ -939,6 +957,42 @@ node/*/edit';
   $strongarm->name = 'contact_default_status';
   $strongarm->value = 0;
   $export['contact_default_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_access_settings';
+  $strongarm->value = array(
+    'view' => array(
+      'data_person' => array(
+        0 => 2,
+        1 => 3,
+      ),
+      'data_company' => array(
+        0 => 2,
+        1 => 3,
+      ),
+    ),
+    'view_own' => array(
+      'data_person' => array(
+        0 => 2,
+        1 => 3,
+      ),
+      'data_company' => array(
+        0 => 2,
+        1 => 3,
+      ),
+    ),
+    'per_node' => array(
+      'data_person' => 0,
+      'data_company' => 0,
+    ),
+    'priority' => array(
+      'data_person' => '0',
+      'data_company' => '0',
+    ),
+  );
+  $export['content_access_settings'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
