@@ -182,7 +182,7 @@ use the Add Another button to enter additional convictions.</p>";
         break;
    }
   }
-  $help_icon = isset($help_txt) ? '<span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span>' : '';
+  $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : '';
   // This is also used in the installer, pre-database setup.
   $t = get_t();
 
@@ -230,7 +230,7 @@ function earlyiq_fieldset($variables) {
         break;
     }
   }
-  $help_icon = isset($help_txt) ? '<span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span>' : '';
+  $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : '';
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
 
