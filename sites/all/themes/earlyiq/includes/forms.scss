@@ -90,13 +90,17 @@ html.js fieldset.collapsible .fieldset-legend {
 
 #field-address-values,
 #field-invite-officers-values {
-    padding-left:10px;
+    padding-left:5px;
     thead label {
       padding-left:0;
     }
     .field-label {
         width:760px;
     }
+}
+
+.tabledrag-toggle-weight-wrapper {
+  display:none;
 }
 
 .tabledrag-toggle-weight-wrapper a {
@@ -329,7 +333,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       // fieldset wrappers
       .fieldset-wrapper {
         background:$color-white;
-        padding-top:20px;
+        padding-top:15px;
       }
     }
 
@@ -412,7 +416,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   }
 
   .field-type-field-collection {
-    padding:15px 0;
+    padding:15px 0 5px;
   }
 
   // agreement fields
@@ -502,8 +506,21 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     float:none;
     margin:15px auto;
   }
-
 }
+
+// steps containers 
+#show-steps {
+  // all steps
+  span {
+    @include eiq_action_btn(217px, 44px);
+    @include gradient('btn_gray');
+    // active
+    &.activeStep {
+      @include gradient('btn_green);
+    }
+  }
+}
+
 .logged-in.node-type-data-person.page-kiva-zip,
 .logged-in.node-type-data-person.partner-kiva-zip {
 
@@ -574,6 +591,9 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     }
     label {
       width:600px;
+    }
+    .form-checkbox.required {
+      margin-top:5px;
     }
   }
   #edit-field-dob {
