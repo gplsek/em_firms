@@ -381,7 +381,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
-      width:580px;
+      width:592px;
     }
     
 
@@ -580,7 +580,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     clear:left;
     float:left;
     padding-top:5px;
-    padding-right:25px;
+   // padding-right:25px;
     .form-item {
       padding-bottom:0;
     }
@@ -618,10 +618,17 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
   #addressfield-wrapper {
     position:relative;
-    form label {
-      text-align:right;
-      width:75px;
+    label {
+      width:85px;
     } 
+    .addressfield-container-inline .form-type-select {
+      label {
+        width:40px;
+      }
+    }
+    .form-item-field-address-und-0-field-address-full-und-0-postal-code label {
+      width:65px;
+    }
   }
 }
 
@@ -834,6 +841,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         display:block;
 
         label {
+          width:380px;
            // float:left;
            // width:200px;
            // padding-left:5px;
