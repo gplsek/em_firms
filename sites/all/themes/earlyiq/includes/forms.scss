@@ -580,7 +580,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     clear:left;
     float:left;
     padding-top:5px;
-    padding-right:25px;
+   // padding-right:25px;
     .form-item {
       padding-bottom:0;
     }
@@ -618,9 +618,9 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
   #addressfield-wrapper {
     position:relative;
-    form label {
+    label {
       text-align:right;
-      width:75px;
+      width:80px;
     } 
   }
 }
@@ -834,6 +834,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         display:block;
 
         label {
+          width:380px;
            // float:left;
            // width:200px;
            // padding-left:5px;
