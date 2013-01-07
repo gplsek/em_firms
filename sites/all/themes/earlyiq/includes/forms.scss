@@ -201,15 +201,18 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     padding-right:0;
 }
 
-div.status, .ok {
-  @include border-radius(0);
-    background:none;
+.partner-kiva-zip div.status, .partner-kiva-zip .ok {
+    @include border-radius(0);
+    background-color:transparent;
     border:0;   
     color:$color-blue;
     height:auto;
-    font-size:24px;
-    line-height:26px;
+    font-size:18px;
+    line-height:22px;
     padding-bottom:15px;
+    li {
+      list-style:none;
+    }
 }
 .password-confirm .ok {
 //  @include border-radius(0);
