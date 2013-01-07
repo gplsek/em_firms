@@ -614,16 +614,10 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   .form-item-field-name-last-und-0-value,
   .field-name-field-ssn {
     position:relative;
-    .description {
-      @include block_description();
-    }
   }
 
   #addressfield-wrapper {
     position:relative;
-    .fieldset-description {
-      @include block_description();
-    }
     form label {
       text-align:right;
       width:75px;
@@ -676,6 +670,10 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       font-weight:bold;
       padding:0;
     }
+  }
+
+  .field-description {
+    @include block_description();
   }
 
   // one time login page
