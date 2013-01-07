@@ -381,7 +381,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
-      width:580px;
+      width:592px;
     }
     
 
@@ -619,9 +619,16 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   #addressfield-wrapper {
     position:relative;
     label {
-      text-align:right;
-      width:80px;
+      width:85px;
     } 
+    .addressfield-container-inline .form-type-select {
+      label {
+        width:40px;
+      }
+    }
+    .form-item-field-address-und-0-field-address-full-und-0-postal-code label {
+      width:65px;
+    }
   }
 }
 
