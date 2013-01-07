@@ -972,6 +972,12 @@ node/*/edit';
         0 => 2,
         1 => 3,
       ),
+      'report_card' => array(
+        0 => 2,
+        1 => 7,
+        2 => 8,
+        3 => 3,
+      ),
     ),
     'view_own' => array(
       'data_person' => array(
@@ -982,14 +988,22 @@ node/*/edit';
         0 => 2,
         1 => 3,
       ),
+      'report_card' => array(
+        0 => 2,
+        1 => 7,
+        2 => 8,
+        3 => 3,
+      ),
     ),
     'per_node' => array(
       'data_person' => 0,
       'data_company' => 0,
+      'report_card' => 0,
     ),
     'priority' => array(
       'data_person' => '0',
       'data_company' => '0',
+      'report_card' => '0',
     ),
   );
   $export['content_access_settings'] = $strongarm;
