@@ -202,23 +202,19 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 }
 
 div.status, .ok {
-    //background:#e5e5e5;
+  @include border-radius(0);
+    background:none;
     border:0;   
-    color:#222;
+    color:$color-blue;
     height:auto;
-    font-size:12px;
-    font-weight:bold;
-    line-height:20px;
-    padding:10px 0 10px 20px;
+    font-size:24px;
+    line-height:26px;
+    padding-bottom:15px;
 }
 .password-confirm .ok {
-  @include border-radius(0);
-  background:none;
-  color:#234600;
-  font-size:13px;
-  line-height:15px;
-  padding:0;
+//  @include border-radius(0);
 }
+
 .page-user.page-user-edit .region-content form,
 .partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
