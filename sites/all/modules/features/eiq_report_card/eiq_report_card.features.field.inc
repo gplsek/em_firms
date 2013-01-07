@@ -1163,6 +1163,7 @@ function eiq_report_card_field_default_fields() {
         'allowed_values' => array(
           0 => 'Fail',
           1 => 'Pass',
+          2 => 'Incomplete',
         ),
         'allowed_values_function' => '',
       ),
@@ -1482,6 +1483,79 @@ function eiq_report_card_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-report_card-field_software_version'.
+  $fields['node-report_card-field_software_version'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_software_version',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'decimal_separator' => '.',
+        'precision' => '10',
+        'scale' => '2',
+      ),
+      'translatable' => '0',
+      'type' => 'number_decimal',
+    ),
+    'field_instance' => array(
+      'bundle' => 'report_card',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 2,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_decimal',
+          'weight' => 40,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_software_version',
+      'label' => 'Software Version',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'masked_input',
+        'settings' => array(
+          'mask' => '',
+          'placeholder' => '_',
+          'size' => '60',
+        ),
+        'type' => 'masked_input',
+        'weight' => '26',
+      ),
+    ),
+  );
+
   // Exported field: 'node-report_card-field_tax_liens'.
   $fields['node-report_card-field_tax_liens'] = array(
     'field_config' => array(
@@ -1716,6 +1790,7 @@ function eiq_report_card_field_default_fields() {
   t('Pending Litigations Description');
   t('Positive Identity Authentication');
   t('Positive Identity Authentication Description');
+  t('Software Version');
   t('TQ Score');
   t('Tax Liens');
   t('Tax Liens Description');
