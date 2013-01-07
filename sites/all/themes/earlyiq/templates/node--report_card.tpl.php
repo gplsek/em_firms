@@ -260,7 +260,7 @@ function getItemHTML($node, $fieldName) {
     	'<a rel="div_'.$fieldName.'" class="show-detail" style="display: block;">See Details</a>'.
     	'<a rel="div_'.$fieldName.'" class="hide-detail" style="display: none;">Hide Details</a>'.
   	  '<div id="div_'.$fieldName.'" class="details-toggle-container">'.
-    		'<p>'.$descriptionText.'</p>'.
+    		'<pre><p>'.$descriptionText.'</p></pre>'.
   	  '</div>';
     '</div>';
   }
