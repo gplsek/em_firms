@@ -45,7 +45,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Aliases - alternate names used by the applicant historically.  Shown for information only.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -249,7 +249,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Bankruptcies.  If any were found, the results will be shown for informational purposes only.  There are no negative scores given for this section.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -623,7 +623,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Judgments.  If any were found, they would be listed here.  In general, satisfied judgments for non-fraud related cases will not create a negative score.  ',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -761,7 +761,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Name Verification ensures that the applicant\'s name, date of birth, and social security number are consistent with records found in the record search.  This does not necessarily mean that the information is that of the borrower.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -899,7 +899,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'National Felony Search is a database-only search of the a national criminal database which includes both state and federal convictions.  The database does not contain current/pending litigation.  Individual county of residence records were not search, nor where counties contacted manually.  As such, the lack of finding a criminal record in this search does not guarantee that the applicant has no criminal convictions.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1037,7 +1037,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'National Misdemeanor Search is a database-only search of the a national criminal database which includes both state and federal convictions.  The database does not contain current/pending litigation.  Individual county of residence records were not search, nor where counties contacted manually.  As such, the lack of finding a criminal record in this search does not guarantee that the applicant has no criminal convictions.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1242,7 +1242,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Pending Litigation.  Scoring in this section is dependent on whether the case alleges fraudulent activity.  If so, a warning is given.  Because the litigation is pending, no negative scores are given for this section.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1380,7 +1380,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Positive Identification ensures that the applicant is highly likely to be the person associated with the name, date of birth, and social security number provided.  In other words, it is highly unlikely that the applicant is using a stolen or fictitious identity.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1591,7 +1591,7 @@ function eiq_report_card_field_default_fields() {
       'bundle' => 'report_card',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Tax Liens.  If any were found, the results will be shown for informational purposes only.  There are no negative scores given for this section.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1771,29 +1771,38 @@ function eiq_report_card_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Alias Search');
   t('Alias Search Description');
+  t('Aliases - alternate names used by the applicant historically.  Shown for information only.');
   t('Background Verification');
   t('Bankruptcies');
   t('Bankruptcies Description');
+  t('Bankruptcies.  If any were found, the results will be shown for informational purposes only.  There are no negative scores given for this section.');
   t('Civil Records Check');
   t('Company');
   t('Criminal Records Check');
   t('Judgements');
   t('Judgements Description');
+  t('Judgments.  If any were found, they would be listed here.  In general, satisfied judgments for non-fraud related cases will not create a negative score.  ');
   t('Name Verification');
   t('Name Verification Description');
+  t('Name Verification ensures that the applicant\'s name, date of birth, and social security number are consistent with records found in the record search.  This does not necessarily mean that the information is that of the borrower.');
   t('National Felony Search');
   t('National Felony Search Description');
+  t('National Felony Search is a database-only search of the a national criminal database which includes both state and federal convictions.  The database does not contain current/pending litigation.  Individual county of residence records were not search, nor where counties contacted manually.  As such, the lack of finding a criminal record in this search does not guarantee that the applicant has no criminal convictions.');
   t('National Misdemeanor Search');
   t('National Misdemeanor Search Description');
+  t('National Misdemeanor Search is a database-only search of the a national criminal database which includes both state and federal convictions.  The database does not contain current/pending litigation.  Individual county of residence records were not search, nor where counties contacted manually.  As such, the lack of finding a criminal record in this search does not guarantee that the applicant has no criminal convictions.');
   t('Patriot Act Check');
+  t('Pending Litigation.  Scoring in this section is dependent on whether the case alleges fraudulent activity.  If so, a warning is given.  Because the litigation is pending, no negative scores are given for this section.');
   t('Pending Litigations');
   t('Pending Litigations Description');
+  t('Positive Identification ensures that the applicant is highly likely to be the person associated with the name, date of birth, and social security number provided.  In other words, it is highly unlikely that the applicant is using a stolen or fictitious identity.');
   t('Positive Identity Authentication');
   t('Positive Identity Authentication Description');
   t('Software Version');
   t('TQ Score');
   t('Tax Liens');
   t('Tax Liens Description');
+  t('Tax Liens.  If any were found, the results will be shown for informational purposes only.  There are no negative scores given for this section.');
 
   return $fields;
 }

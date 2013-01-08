@@ -131,7 +131,7 @@
       <div id="softwareVersion" style="display:none;"><?php echo $softwareVersion; ?></div>
       <div class="report-group toggle-group">
         <div class="group-header no-details">
-          <h3>TQ Score<sup>TM</sup></h3>
+          <h3 title="The TQScore is the result of our proprietary algorithms which together model the historical and predicted future transparency of the business operation.  The TQScore is not a summary or average of the other scores shown on the report card.">TQ Score<sup>TM</sup></h3>
           <div class="rating">
             <label>total</label>
             <div class="stars <?php echo decimalToWord($tqScore); ?>">
@@ -142,7 +142,7 @@
       </div>
       <div class="report-group toggle-group">
         <div class="group-header">
-          <h3>Background Verification</h3>
+          <h3 title="The Background Verification score is a summary score of the line items within the section.  In the case of Kiva Zip, borrowers will either receive a 5 star rating (successfully passed the Identity Validation) or an Incomplete (we were unable to validate the borrowers identity and no further action was taken).">Background Verification</h3>
           <div class="rating"><label><?php echo $backgroundVerification?"PASSED":"FAILED"; ?></label></div>
           <div class="toggle opened" rel="report-BV">
             CLOSE</div>
@@ -158,8 +158,7 @@
       
       <div class="report-group toggle-group">
         <div class="group-header">
-          <h3>
-            Criminal Records Check</h3>
+          <h3 title="The Criminal Record Check score is a summary score of the line items within the section.  In the case of Kiva Zip, a national database search was conducted based on the verified identity of the applicant.  Individual county of residence record searches were not performed.  If the applicant's identity could not be verified, this score and section will be marked incomplete.">Criminal Records Check</h3>
           <div class="rating">
             <label>total</label>
             <div class="stars <?php echo decimalToWord($criminalRecordsCheck); ?>">
@@ -178,8 +177,7 @@
       </div>
       <div class="report-group toggle-group">
         <div class="group-header">
-          <h3>
-            Civil Records Check</h3>
+          <h3 title="The Civil Record Check score is a summary score of the line items within the section.  In the case of Kiva Zip, a national database search was conducted based on the verified identity of the applicant.  Individual county of residence record searches were not performed.  If the applicant's identity could not be verified, this score and section will be marked incomplete.">Civil Records Check</h3>
           <div class="rating">
             <label>total</label>
             <div class="stars <?php echo decimalToWord($civilRecordsCheck); ?>">
@@ -253,6 +251,7 @@ function getItemHTML($node, $fieldName) {
   $icon = getItemIcon($node, $fieldName);
   
   $iconHelpText = getIconHelpText($icon, $fieldName);
+  $iconHoverText = getIconHoverText($icon);
   
   $descriptionText = getDescriptionText($node, $fieldName);
   
@@ -276,7 +275,7 @@ function getItemHTML($node, $fieldName) {
               getFieldLabel($fieldName).
           '</span>'.
           '<span class="report-icon '.$icon.'" 
-                 title="'.$iconHelpText.'">'.
+                 title="'.$iconHoverText.'">'.
               $icon.
           '</span>'.
           '<div class="right-col">'.
@@ -349,6 +348,20 @@ function getDescriptionText($node, $fieldName) {
 
 
 
+function getIconHoverText($icon) {
+  $hoverText = "";
+  
+  if($icon == "pass") {
+    $hoverText = "Green.  This means everything for this line item checked out OK.";
+  } else if($icon == "fail") {
+    $hoverText = "Red.  This means information about this specific line item was found that is view negatively compared to the average.  Further investigation is suggested.";
+  } else if($icon == "note") {
+    $hoverText = "Informational.  This means information about this specific line item was found but likely doesn't warrant further investigation.";
+  } else if($icon == "warn") {
+    $hoverText = "Yellow.  This means information about this specific line item was found that may warrant further investigation.";
+  }
+  return $hoverText;
+}
 
 function getIconHelpText($icon, $fieldName) {
 
