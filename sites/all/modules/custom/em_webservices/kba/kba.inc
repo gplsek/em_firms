@@ -173,7 +173,7 @@ function kba_personal_info($form, &$form_state) {
       return "You are not authorized";
     }
     $form['message'] = array(
-    	'#markup' => t('The following page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions. Click Next to begin'),
+    	'#markup' => t('<h3>The following page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions. Click Next to begin</h3>'),
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
@@ -718,13 +718,13 @@ function em_webservices_complete($nid){
     $address_ent = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     $address = $address_ent[$node->field_address['und'][0]['value']]->field_address_full['und'][0];
-    $rows[] = array('','Thanks for taking the time to complete the identity
+    $rows[] = array('','<h3>Thanks for taking the time to complete the identity
 	validation and background verification process. A
 	report is being sent to Kiva Zip with your information.
 	We\'ll be in touch with you regarding next steps in
 	your application process. If you\'d like, use the print
 	key below to print a copy of the information you
-	submitted');
+	submitted</h3>');
     $rows[] = array('Name', $suffix.' '.$fname.' '.$middle_name .' '.$lname);
 
     $address1   = $address["thoroughfare"];
