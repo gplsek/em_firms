@@ -510,13 +510,25 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 // steps containers 
 #show-steps {
+  @include wrap();
+  clear:both;
+  float:right;
   // all steps
   span {
     @include eiq_action_btn(217px, 44px);
     @include gradient('btn_gray');
+    float:left;
+    font-size:18px;
+    height:34px;
+    line-height:34px;
+    margin-left:10px;
+    width:105px;
+    &:first-child {
+      margin-left:0;
+    }
     // active
     &.activeStep {
-      @include gradient('btn_green);
+      @include gradient('btn_green');
     }
   }
 }
