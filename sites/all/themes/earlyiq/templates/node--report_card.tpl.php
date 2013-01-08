@@ -67,7 +67,11 @@
   $backgroundVerification = $node->field_background_verification["und"][0]["value"]; // bool
   $criminalRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
   $civilRecordsCheck = $node->field_civil_records_check["und"][0]["value"]; // decimal
-  $patriotActCheck = $node->field_patriot_act_check["und"][0]["value"]; // decimal
+
+  // Retrieve the Patriot Act value
+  $patriotActObj = field_info_field("field_patriot_act_check");
+  $patriotActObjValues = $patriotActObj["settings"]["allowed_values"];
+  $patriotActCheck = $patriotActObjValues[$node->field_patriot_act_check["und"][0]["value"]];
  
 ?>
 
@@ -194,7 +198,7 @@
       <div class="report-group toggle-group">
         <div class="group-header no-details">
           <h3>Patriot Act Check</h3>
-          <div class="rating"><label><?php echo $patriotActCheck?"PASSED":"FAILED"; ?></label></div>
+          <div class="rating"><label><?php echo strtoupper($patriotActCheck); ?></label></div>
           <div class="no-toggle"></div>
         </div>
       </div>

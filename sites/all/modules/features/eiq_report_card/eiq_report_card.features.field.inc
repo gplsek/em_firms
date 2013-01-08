@@ -1161,8 +1161,8 @@ function eiq_report_card_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'Fail',
-          1 => 'Pass',
+          0 => 'Failed',
+          1 => 'Passed',
           2 => 'Incomplete',
         ),
         'allowed_values_function' => '',
