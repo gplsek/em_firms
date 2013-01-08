@@ -590,20 +590,20 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
   /* first / middle / lastname input and label styles */
   #edit-field-name-first {
-    width:250px !important;
-  }
-  #edit-field-name-middle {
     width:255px !important;
   }
+  #edit-field-name-middle {
+    width:260px !important;
+  }
   #edit-field-name-last {
-    width:280px !important;
+    width:296px !important;
   }
 
   #edit-field-name-first,
   #edit-field-name-middle,
   #edit-field-name-last {
     input[type='text'] {
-      width:145px !important;
+      width:155px !important;
     }
   }
   #edit-field-agree-final {
