@@ -512,7 +512,10 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 #show-steps {
   @include wrap();
   clear:both;
-  float:right;
+  display:block;
+  .show-steps-inner {
+    float:right;
+  }
   // all steps
   span {
     @include eiq_action_btn(217px, 44px);
