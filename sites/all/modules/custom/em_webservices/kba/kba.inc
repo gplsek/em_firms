@@ -9,11 +9,7 @@ variable_set("rsa_username", "EmergingFirmsINTEG");
 variable_set("rsa_password", '$u85ApDR!c2');
 variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
 variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
-<<<<<<< HEAD
-variable_set("rsa_state", "testing"); // pilot, testing, simulated
-=======
 variable_set("rsa_state", "pilot"); // pilot, testing, simulated
->>>>>>> master
 variable_set("rsa_api_trace", 1); // used for debugging
 
 /**
@@ -163,16 +159,6 @@ function kba_wizard_next_submit($form, &$form_state) {
 function kba_personal_info($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
     global $user;
-<<<<<<< HEAD
-  
-
-
-    $node = node_load($form_state['node']);
-    // if($node->field_verify_count['und'][0]['value'] >= 2){
-    //     	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-    //     	  drupal_goto('verification/'.$form_state['node'].'/status');
-    //         }
-=======
 
 
 
@@ -181,7 +167,6 @@ function kba_personal_info($form, &$form_state) {
            	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
            	  drupal_goto('verification/'.$form_state['node'].'/status');
                }
->>>>>>> master
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
@@ -282,17 +267,6 @@ function kba_questions($form, &$form_state) {
       return "You are not authorized";
    }
    // check if user has compled more than 2 times
-<<<<<<< HEAD
-
-   // if($node->field_verify_count['und'][0]['value'] >= 2){
-   //    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-   //    	  drupal_goto('verification/'.$form_state['node'].'/status');
-   //    }
-
-
- if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
-    
-=======
 
    if($node->field_verify_count['und'][0]['value'] >= 2){
         	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
@@ -302,7 +276,6 @@ function kba_questions($form, &$form_state) {
 
  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
 
->>>>>>> master
     //$personalInformation = $form_state["step_information"][1];
 
     try {
@@ -383,11 +356,7 @@ function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
 
-<<<<<<< HEAD
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
-=======
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {
->>>>>>> master
     $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
 
@@ -460,13 +429,8 @@ function kba_follow_up_question($form, &$form_state) {
 function kba_follow_up_question_result($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
-<<<<<<< HEAD
-  
-  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
-=======
 
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {
->>>>>>> master
     $answers = $form_state["step_information"][3];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
 
@@ -487,13 +451,10 @@ function kba_follow_up_question_result($form, &$form_state) {
 
   }
 
-<<<<<<< HEAD
-=======
   return $form;
 }
 
 
->>>>>>> master
 
 
 
@@ -609,11 +570,7 @@ function _ws_verification($nid) {
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
 
   //      echo "<h1>------REQUEST-----</h1><br>";
-<<<<<<< HEAD
-  //      echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
-=======
   //      echo '<pre>' . xmlpp($data["request"], true) . '</pre>';
->>>>>>> master
   //      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
   //      echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
    // --------------------------------------------------------------------------------
@@ -671,20 +628,11 @@ function _ws_question_answers($data) {
   );
 
   $data = $webService->continuation($requestData);
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> master
   // TESTING
   //    echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
   //    echo json_pretty(json_encode($data), array("format"=>"html"));
 
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> master
   $results = null;
   if(!empty($data)) {
     $results = json_encode($data);
@@ -856,17 +804,10 @@ function kba_failed($form_state, $error_code) {
            $count_ter = field_get_items('node', $node, 'field_verify_count');
            $count = $node->field_verify_count['und'][0]['value'];
 
-<<<<<<< HEAD
-           // if($count > 2){
-           // 		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
-           // 		    drupal_goto('verification/'.$node->nid.'/status');
-           // 		   }
-=======
            if($count > 2){
            		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
            		    drupal_goto('verification/'.$node->nid.'/status');
            		   }
->>>>>>> master
            $count = $count + 1;
            $node->field_verify_count['und'][0]['value'] = $count;
 		   field_attach_update('node', $node);
@@ -904,11 +845,6 @@ function kba_failed($form_state, $error_code) {
 
 
 
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> master
 }
 
 

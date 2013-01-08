@@ -104,18 +104,11 @@ function earlyiq_preprocess_page(&$variables, $hook) {
     $variables['main_menu'] = module_invoke('system', 'block_view', 'main-menu');
     $variables['main_menu_jump'] = module_invoke('jump_menu', 'block_view', 'jump_menu-m_main-menu');
   }
-<<<<<<< HEAD
-  if ((arg(0) == "user" && arg(1) == "reset") || (isset($variables['node']) && $variables['node']->type == 'data_person') || (arg(1) == "validation")) {
-    $variables['show_steps'] = '<div id="show-steps"><span id="step1"></span><span id="step2"></span><span id="step3"></span></div>';
-  }
-=======
   if (arg(0) == "user" && (arg(1) == "reset" || (arg(2) == 'edit' && isset($_GET['pass-reset-token'])))) {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2">Step 2</span><span id="step3">Step 3</span></div></div>';
 
   } else if (isset($variables['node']) && $variables['node']->type == 'data_person') {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3">Step 3</span></div></div>';
->>>>>>> master
-
   } else if (arg(0) == "validation") {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3" class="activeStep">Step 3</span></div></div>';
   }
@@ -193,11 +186,7 @@ use the Add Another button to enter additional convictions.</p>";
         break;
    }
   }
-<<<<<<< HEAD
-  $help_icon = isset($help_txt) ? '<span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span>' : '';
-=======
   $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : '';
->>>>>>> master
   // This is also used in the installer, pre-database setup.
   $t = get_t();
 
@@ -245,11 +234,7 @@ function earlyiq_fieldset($variables) {
         break;
     }
   }
-<<<<<<< HEAD
-  $help_icon = isset($help_txt) ? '<span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span>' : '';
-=======
   $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : '';
->>>>>>> master
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
 

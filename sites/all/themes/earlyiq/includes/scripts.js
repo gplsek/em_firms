@@ -1,10 +1,10 @@
     /***********************************
-*    EarlyIQ Javascript 
+*    EarlyIQ Javascript
 *    Developer: TragicMedia
 *    Created on: 11/8/12
 ***********************************/
 var $ = jQuery.noConflict();
-    
+
     $(document).ready(function() {
 
     /* homepage slideshow */
@@ -50,7 +50,7 @@ var $ = jQuery.noConflict();
             if($(container).hasClass('active')) {
                 $(this).parent().removeClass('expand-group');
                 $(container).removeClass('active');
-            
+
             } else {
             // if closed
                 $(container).addClass('active');
@@ -83,9 +83,9 @@ function ssnCheck(input) {
             $(this).val(val2);
             if(val2.length == 9 && $.isNumeric(val2)) {
                 $(this).value == val2;
-            } else { 
+            } else {
                 fireError($(this));
-            } 
+            }
         } else {
             fireError($(this));
         }
@@ -99,21 +99,6 @@ function fireError(onInput) {
 
 /* basic function for showing/hiding report list item details */
 function toggleDetails() {
-<<<<<<< HEAD
-    $('.report-details-toggle a').click(function() {
-        if($(this).hasClass('show-detail')) {
-            $(this).parent().children('.details-toggle-container') {
-                // show
-                $(this).css('display', 'none');
-                $(this).parent().children('hide-detail').css('display', 'block');
-            }
-        } else if ($(this).hasClass('show-detail')) {
-            $(this).parent().children('.details-toggle-container') {
-                // hide
-                $(this).css('display', 'none');
-                $(this).parent().children('show-detail').css('display', 'block');
-            }
-=======
     var container;
     $('.report-details-toggle a').click(function() {
         container = '#' + $(this).attr('rel');
@@ -127,7 +112,6 @@ function toggleDetails() {
             $(container).removeClass('active');
             $(this).parent().children('.show-detail').css('display', 'block');
             $(this).parent().children('.hide-detail').css('display', 'none');
->>>>>>> master
         }
     });
 }
