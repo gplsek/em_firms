@@ -494,6 +494,10 @@ function core_ef_context_default_contexts() {
     ),
     'user' => array(
       'values' => array(
+<<<<<<< HEAD
+=======
+        'partner admin' => 'partner admin',
+>>>>>>> master
         'report viewer' => 'report viewer',
       ),
     ),
@@ -510,7 +514,11 @@ function core_ef_context_default_contexts() {
       ),
     ),
   );
+<<<<<<< HEAD
   $context->condition_mode = 0;
+=======
+  $context->condition_mode = 1;
+>>>>>>> master
 
   // Translatables
   // Included for use with string extractors like potx.

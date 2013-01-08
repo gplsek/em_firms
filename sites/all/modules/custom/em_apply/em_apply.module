@@ -394,8 +394,27 @@ function _em_apply_company_map($node){
 
 
 function _em_apply_invite($node) {
+  global $user;
   $company_nid = $node->nid;
   $company_name = $node->title;
+  //create reportcarnode for the company
+  $cardnode = new stdClass();
+
+
+  $cardnode->type = 'report_card';
+  $cardnode->title = $company_name;
+  node_object_prepare($cardnode); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+
+  $cardnode->field_name_first['und'][0]['value'] = $fname;
+  $cardnode->field_name_last['und'][0]['value'] = $lname;
+  $cardnode->field_email_address['und'][0]['value'] = $email;
+  $cardnode->uid = $user->uid;
+  $cardnode->language = 'und';
+  $cardnode->field_company['und'][0]['nid'] = $node->nid;
+  $cardnode = node_submit($cardnode); // Prepare node for saving
+
+  node_save($cardnode);
+  //end create card node
   foreach($node->field_invite_officers['und'] as $invitee){
     $users = field_collection_item_load($invitee['value'], $reset = FALSE);
     $fname = $users->field_first_name['und'][0]['value'];

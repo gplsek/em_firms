@@ -90,13 +90,17 @@ html.js fieldset.collapsible .fieldset-legend {
 
 #field-address-values,
 #field-invite-officers-values {
-    padding-left:10px;
+    padding-left:5px;
     thead label {
       padding-left:0;
     }
     .field-label {
         width:760px;
     }
+}
+
+.tabledrag-toggle-weight-wrapper {
+  display:none;
 }
 
 .tabledrag-toggle-weight-wrapper a {
@@ -201,6 +205,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     padding-right:0;
 }
 
+<<<<<<< HEAD
 div.status, .ok {
     //background:#e5e5e5;
     border:0;   
@@ -210,15 +215,25 @@ div.status, .ok {
     font-weight:bold;
     line-height:20px;
     padding:10px 0 10px 20px;
+=======
+.partner-kiva-zip div.status, .partner-kiva-zip .ok {
+    @include border-radius(0);
+    background-color:transparent;
+    border:0;   
+    color:$color-blue;
+    height:auto;
+    font-size:18px;
+    line-height:22px;
+    padding-bottom:15px;
+    li {
+      list-style:none;
+    }
+>>>>>>> master
 }
 .password-confirm .ok {
-  @include border-radius(0);
-  background:none;
-  color:#234600;
-  font-size:13px;
-  line-height:15px;
-  padding:0;
+//  @include border-radius(0);
 }
+
 .page-user.page-user-edit .region-content form,
 .partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
@@ -330,7 +345,7 @@ div.status, .ok {
       // fieldset wrappers
       .fieldset-wrapper {
         background:$color-white;
-        padding-top:20px;
+        padding-top:15px;
       }
     }
 
@@ -382,7 +397,7 @@ div.status, .ok {
     input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
-      width:580px;
+      width:658px;
     }
     
 
@@ -413,7 +428,7 @@ div.status, .ok {
   }
 
   .field-type-field-collection {
-    padding:15px 0;
+    padding:15px 0 5px;
   }
 
   // agreement fields
@@ -505,6 +520,42 @@ div.status, .ok {
   }
 
 }
+
+// steps containers 
+#show-steps {
+  @include wrap();
+  clear:both;
+  display:block;
+  margin-bottom:15px;
+  .show-steps-inner {
+    float:right;
+  }
+  // all steps
+  span {
+    @include eiq_action_btn(217px, 44px);
+    @include gradient('btn_gray');
+    float:left;
+    font-size:18px;
+    height:34px;
+    line-height:34px;
+    margin-left:10px;
+    width:105px;
+    &:first-child {
+      margin-left:0;
+    }
+    &:hover {
+      @include gradient('btn_gray'); 
+    }
+    // active
+    &.activeStep {
+      @include gradient('btn_green');
+      &:hover {
+        @include gradient('btn_green'); 
+      }
+    }
+  }
+}
+
 .logged-in.node-type-data-person.page-kiva-zip,
 .logged-in.node-type-data-person.partner-kiva-zip {
 
@@ -552,6 +603,7 @@ div.status, .ok {
 
   /* first / middle / lastname input and label styles */
   #edit-field-name-first {
+<<<<<<< HEAD
     width:250px !important;
   }
   #edit-field-name-middle {
@@ -559,13 +611,26 @@ div.status, .ok {
   }
   #edit-field-name-last {
     width:280px !important;
+=======
+    width:255px !important;
+  }
+  #edit-field-name-middle {
+    width:260px !important;
+  }
+  #edit-field-name-last {
+    width:296px !important;
+>>>>>>> master
   }
 
   #edit-field-name-first,
   #edit-field-name-middle,
   #edit-field-name-last {
     input[type='text'] {
+<<<<<<< HEAD
       width:145px !important;
+=======
+      width:155px !important;
+>>>>>>> master
     }
   }
   #edit-field-agree-final {
@@ -576,12 +641,19 @@ div.status, .ok {
     label {
       width:600px;
     }
+    .form-checkbox.required {
+      margin-top:5px;
+    }
   }
   #edit-field-dob {
     clear:left;
     float:left;
     padding-top:5px;
+<<<<<<< HEAD
     padding-right:25px;
+=======
+   // padding-right:25px;
+>>>>>>> master
     .form-item {
       padding-bottom:0;
     }
@@ -603,10 +675,14 @@ div.status, .ok {
     clear:right;
     float:left;
     margin-left:9px;
+<<<<<<< HEAD
     width:245px;
+=======
+    width:278px;
+>>>>>>> master
     input[type='text'],
     input[type='password'], {
-      width:153px !important;
+      width:186px !important;
     }
   }
   /* all blue question mark styles */
@@ -615,15 +691,20 @@ div.status, .ok {
   .form-item-field-name-last-und-0-value,
   .field-name-field-ssn {
     position:relative;
-    .description {
-      @include block_description();
-    }
   }
 
   #addressfield-wrapper {
     position:relative;
-    .fieldset-description {
-      @include block_description();
+    label {
+      width:85px;
+    } 
+    .addressfield-container-inline .form-type-select {
+      label {
+        width:40px;
+      }
+    }
+    .form-item-field-address-und-0-field-address-full-und-0-postal-code label {
+      width:65px;
     }
     form label {
       text-align:right;
@@ -670,13 +751,18 @@ div.status, .ok {
 
     }
     #main-wrapper form .form-disabled.form-type-textfield input[type='text'] {
+      background:none;
       border:0;
       color:#333;
-      font-size:13px;
+      font-size:14px;
       line-height:23px;
       font-weight:bold;
-      padding:0;
+      padding:4px 0 0;
     }
+  }
+
+  .field-description {
+    @include block_description();
   }
 
   // one time login page
@@ -837,6 +923,7 @@ div.status, .ok {
         display:block;
 
         label {
+          width:380px;
            // float:left;
            // width:200px;
            // padding-left:5px;

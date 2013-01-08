@@ -67,8 +67,13 @@
   $backgroundVerification = $node->field_background_verification["und"][0]["value"]; // bool
   $criminalRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
   $civilRecordsCheck = $node->field_civil_records_check["und"][0]["value"]; // decimal
-  $patriotActCheck = $node->field_patriot_act_check["und"][0]["value"]; // decimal
- 
+
+  // Retrieve the Patriot Act value
+  $patriotActObj = field_info_field("field_patriot_act_check");
+  $patriotActObjValues = $patriotActObj["settings"]["allowed_values"];
+  $patriotActCheck = $patriotActObjValues[$node->field_patriot_act_check["und"][0]["value"]];
+  
+  $softwareVersion = $node->field_software_version["und"][0]["value"];
 ?>
 
 
@@ -123,10 +128,10 @@
       //-->
     </div>
     <div id="report-body">
-      
+      <div id="softwareVersion" style="display:none;"><?php echo $softwareVersion; ?></div>
       <div class="report-group toggle-group">
         <div class="group-header no-details">
-          <h3>TQ Score<sup>TM</sup></h3>
+          <h3 title="The TQScore is the result of our proprietary algorithms which together model the historical and predicted future transparency of the business operation.  The TQScore is not a summary or average of the other scores shown on the report card.">TQ Score<sup>TM</sup></h3>
           <div class="rating">
             <label>total</label>
             <div class="stars <?php echo decimalToWord($tqScore); ?>">
@@ -137,7 +142,7 @@
       </div>
       <div class="report-group toggle-group">
         <div class="group-header">
-          <h3>Background Verification</h3>
+          <h3 title="The Background Verification score is a summary score of the line items within the section.  In the case of Kiva Zip, borrowers will either receive a 5 star rating (successfully passed the Identity Validation) or an Incomplete (we were unable to validate the borrowers identity and no further action was taken).">Background Verification</h3>
           <div class="rating"><label><?php echo $backgroundVerification?"PASSED":"FAILED"; ?></label></div>
           <div class="toggle opened" rel="report-BV">
             CLOSE</div>
@@ -153,8 +158,7 @@
       
       <div class="report-group toggle-group">
         <div class="group-header">
-          <h3>
-            Criminal Records Check</h3>
+          <h3 title="The Criminal Record Check score is a summary score of the line items within the section.  In the case of Kiva Zip, a national database search was conducted based on the verified identity of the applicant.  Individual county of residence record searches were not performed.  If the applicant's identity could not be verified, this score and section will be marked incomplete.">Criminal Records Check</h3>
           <div class="rating">
             <label>total</label>
             <div class="stars <?php echo decimalToWord($criminalRecordsCheck); ?>">
@@ -173,8 +177,7 @@
       </div>
       <div class="report-group toggle-group">
         <div class="group-header">
-          <h3>
-            Civil Records Check</h3>
+          <h3 title="The Civil Record Check score is a summary score of the line items within the section.  In the case of Kiva Zip, a national database search was conducted based on the verified identity of the applicant.  Individual county of residence record searches were not performed.  If the applicant's identity could not be verified, this score and section will be marked incomplete.">Civil Records Check</h3>
           <div class="rating">
             <label>total</label>
             <div class="stars <?php echo decimalToWord($civilRecordsCheck); ?>">
@@ -194,7 +197,7 @@
       <div class="report-group toggle-group">
         <div class="group-header no-details">
           <h3>Patriot Act Check</h3>
-          <div class="rating"><label><?php echo $patriotActCheck?"PASSED":"FAILED"; ?></label></div>
+          <div class="rating"><label><?php echo strtoupper($patriotActCheck); ?></label></div>
           <div class="no-toggle"></div>
         </div>
       </div>
@@ -248,13 +251,22 @@ function getItemHTML($node, $fieldName) {
   $icon = getItemIcon($node, $fieldName);
   
   $iconHelpText = getIconHelpText($icon, $fieldName);
+  $iconHoverText = getIconHoverText($icon);
   
   $descriptionText = getDescriptionText($node, $fieldName);
   
   $descriptionElementHTML = "";
   
   if(!empty($descriptionText)) {
-    $descriptionElementHTML = '<br/><p>'.$descriptionText.'</p>';
+  
+    $descriptionElementHTML = 
+    '<div class="report-details-toggle">'.
+    	'<a rel="div_'.$fieldName.'" class="show-detail" style="display: block;">Details</a>'.
+    	'<a rel="div_'.$fieldName.'" class="hide-detail" style="display: none;">Close</a>'.
+  	  '<div id="div_'.$fieldName.'" class="details-toggle-container">'.
+    		'<pre><p>'.$descriptionText.'</p></pre>'.
+  	  '</div>';
+    '</div>';
   }
   
   return '<li>'.
@@ -263,7 +275,7 @@ function getItemHTML($node, $fieldName) {
               getFieldLabel($fieldName).
           '</span>'.
           '<span class="report-icon '.$icon.'" 
-                 title="'.$iconHelpText.'">'.
+                 title="'.$iconHoverText.'">'.
               $icon.
           '</span>'.
           '<div class="right-col">'.
@@ -336,6 +348,20 @@ function getDescriptionText($node, $fieldName) {
 
 
 
+function getIconHoverText($icon) {
+  $hoverText = "";
+  
+  if($icon == "pass") {
+    $hoverText = "Green.  This means everything for this line item checked out OK.";
+  } else if($icon == "fail") {
+    $hoverText = "Red.  This means information about this specific line item was found that is view negatively compared to the average.  Further investigation is suggested.";
+  } else if($icon == "note") {
+    $hoverText = "Informational.  This means information about this specific line item was found but likely doesn't warrant further investigation.";
+  } else if($icon == "warn") {
+    $hoverText = "Yellow.  This means information about this specific line item was found that may warrant further investigation.";
+  }
+  return $hoverText;
+}
 
 function getIconHelpText($icon, $fieldName) {
 

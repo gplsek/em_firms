@@ -35,6 +35,7 @@ var $ = jQuery.noConflict();
     /* toggle script for reports page(s) */
     /* dev version, need to optimize */
     if($('#main-report-wrapper').length) {
+        toggleDetails();
         $('.no-direct').click(function(e) {
             var container = $(this).attr('rel');
             alert('Company website will be linked for live report cards');
@@ -48,25 +49,12 @@ var $ = jQuery.noConflict();
             // if open
             if($(container).hasClass('active')) {
                 $(this).parent().removeClass('expand-group');
-                $(container).animate({
-                    height: 0
-                }, {
-                    duration: 500, 
-                    complete: function() {
-                        $(container).removeClass('active');
-                        $(container).height('auto');
-                    }
-                });
+                $(container).removeClass('active');
+            
             } else {
             // if closed
                 $(container).addClass('active');
-                $(container).height('0');
                 $(this).parent().addClass('expand-group');
-                $(container).animate({
-                    height: theHeight
-                }, {
-                    duration: 500
-                });
             }
         });
     }
@@ -111,6 +99,7 @@ function fireError(onInput) {
 
 /* basic function for showing/hiding report list item details */
 function toggleDetails() {
+<<<<<<< HEAD
     $('.report-details-toggle a').click(function() {
         if($(this).hasClass('show-detail')) {
             $(this).parent().children('.details-toggle-container') {
@@ -124,6 +113,21 @@ function toggleDetails() {
                 $(this).css('display', 'none');
                 $(this).parent().children('show-detail').css('display', 'block');
             }
+=======
+    var container;
+    $('.report-details-toggle a').click(function() {
+        container = '#' + $(this).attr('rel');
+        if($(this).hasClass('show-detail')) {
+//            $(container).css('display', 'block');
+            $(container).addClass('active');
+            $(this).parent().children('.hide-detail').css('display', 'block');
+            $(this).parent().children('.show-detail').css('display', 'none');
+        } else if ($(this).hasClass('hide-detail')) {
+//            $(container).css('display', 'none');
+            $(container).removeClass('active');
+            $(this).parent().children('.show-detail').css('display', 'block');
+            $(this).parent().children('.hide-detail').css('display', 'none');
+>>>>>>> master
         }
     });
 }

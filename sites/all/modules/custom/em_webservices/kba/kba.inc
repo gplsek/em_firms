@@ -9,7 +9,11 @@ variable_set("rsa_username", "EmergingFirmsINTEG");
 variable_set("rsa_password", '$u85ApDR!c2');
 variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
 variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
+<<<<<<< HEAD
 variable_set("rsa_state", "testing"); // pilot, testing, simulated
+=======
+variable_set("rsa_state", "pilot"); // pilot, testing, simulated
+>>>>>>> master
 variable_set("rsa_api_trace", 1); // used for debugging
 
 /**
@@ -44,7 +48,7 @@ function _kba_steps() {
 
 /**
  * Entry point to the KBA wizard
- * 
+ *
  * @return array a form in the Drupal Form API format
  */
 function kba_wizard($form, &$form_state, $nid) {
@@ -53,13 +57,13 @@ function kba_wizard($form, &$form_state, $nid) {
   // Initialize a description of the steps for the wizard.
   if (empty($form_state['step'])) {
     $form_state['step'] = 1;
-    
+
     // This array contains the function to be called at each step to get the
     // relevant form elements. It will also store state information for each
     // step.
     $form_state['step_information'] = _kba_steps();
   }
-  
+
   $step = &$form_state['step'];
   drupal_set_title(t('Verification: Step @step', array('@step' => $step)));
 
@@ -93,7 +97,7 @@ function kba_wizard($form, &$form_state, $nid) {
   if (function_exists($form_state['step_information'][$step]['form'] . '_validate')) {
     $form['next']['#validate'] = array($form_state['step_information'][$step]['form'] . '_validate');
   }
-    
+
 
   return $form;
 }
@@ -159,6 +163,7 @@ function kba_wizard_next_submit($form, &$form_state) {
 function kba_personal_info($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
     global $user;
+<<<<<<< HEAD
   
 
 
@@ -167,13 +172,23 @@ function kba_personal_info($form, &$form_state) {
     //     	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
     //     	  drupal_goto('verification/'.$form_state['node'].'/status');
     //         }
+=======
+
+
+
+    $node = node_load($form_state['node']);
+    if($node->field_verify_count['und'][0]['value'] >= 2){
+           	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+           	  drupal_goto('verification/'.$form_state['node'].'/status');
+               }
+>>>>>>> master
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
       return "You are not authorized";
     }
     $form['message'] = array(
-    	'#markup' => t('The following page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions. Click Next to begin'),
+    	'#markup' => t('<h3>The following page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions. Click Next to begin</h3>'),
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
@@ -234,7 +249,7 @@ function kba_personal_info($form, &$form_state) {
       '#options' => array('Male' => 'Male', 'Female' => 'Female'),
       '#default_value' => !empty($form_state['values']['gender']) ? $form_state['values']['gender'] : $node->field_gender['und'][0]['value']
     );
-    
+
     $form['data']['ssn'] = array(
         '#title' => t('Social Security Number'),
         '#type' => 'textfield',
@@ -249,7 +264,7 @@ function kba_personal_info($form, &$form_state) {
     '#default_value' => $address[$node->field_address['und'][0]['value']]->field_address_full['und'][0],
     '#description' => "Please enter your address."
   );
-          
+
     return $form;
 }
 
@@ -261,12 +276,13 @@ function kba_personal_info($form, &$form_state) {
 function kba_questions($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
     global $user;
-   
+
    $node = node_load($form_state['node']);
    if($node->uid <> $user->uid){
       return "You are not authorized";
    }
    // check if user has compled more than 2 times
+<<<<<<< HEAD
 
    // if($node->field_verify_count['und'][0]['value'] >= 2){
    //    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
@@ -276,24 +292,35 @@ function kba_questions($form, &$form_state) {
 
  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
     
+=======
+
+   if($node->field_verify_count['und'][0]['value'] >= 2){
+        	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+        	  drupal_goto('verification/'.$form_state['node'].'/status');
+        }
+
+
+ if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
+
+>>>>>>> master
     //$personalInformation = $form_state["step_information"][1];
-    
+
     try {
-      //$response = json_decode(_ws_verification($personalInformation["stored_values"]), true);  
+      //$response = json_decode(_ws_verification($personalInformation["stored_values"]), true);
       $response = json_decode(_ws_verification($form_state['node']), true);
 
       $transationID = $response["transaction-status"]["transaction-id"];
-      
+
       $form['transaction_id'] = array(
             '#type' => 'hidden',
             '#default_value' => $transationID,
-    
+
         );
-      
+
       $questions = $response["questions"]["question"];
-      
+
       if(!empty($questions)) {
-      
+
         $questionSetID = $response["questions"]["question-set-id"];
 
         $form['message'] = array(
@@ -302,23 +329,23 @@ function kba_questions($form, &$form_state) {
 
         $form['question_set_id'] = array(
             '#type' => 'hidden',
-            '#default_value' => $questionSetID,      
+            '#default_value' => $questionSetID,
         );
-        
+
         foreach($questions as $question) {
-          
+
           $questionTitle = $question["text"]["statement"];
           $questionID = $question["question-id"];
           $helpText = $question["help-text"]["statement"];
-          
+
           $questionOptions = $question["choice"];
-          
+
           // Form API question options
           $questionFormOptions = array();
           foreach($questionOptions as $questionOption) {
              $questionFormOptions[$questionOption["choice-id"]] = $questionOption["text"]["statement"];
           }
-          
+
           $form["Question_".$questionID] = array(
             '#type'=>'radios',
             '#required' => TRUE,
@@ -327,19 +354,19 @@ function kba_questions($form, &$form_state) {
             '#description'=>t($helpText)
           );
         }
-        
-      } else {
-        
-        kba_failed($form_state, KBA_ERROR_PERSONAL_INFORMATION);
-        
 
-        
+      } else {
+
+        kba_failed($form_state, KBA_ERROR_PERSONAL_INFORMATION);
+
+
+
       }
-      
+
     } catch (Exception $e) {
-        
+
         kba_failed($form_state, KBA_ERROR_SERVICE_CANNOT_BE_REACHED);
-        
+
 
     }
   }
@@ -356,35 +383,39 @@ function kba_follow_up_question($form, &$form_state) {
   context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
 
+<<<<<<< HEAD
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {  
+=======
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][2])) {
+>>>>>>> master
     $answers = $form_state["step_information"][2];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
-      
+
     $question = $response["questions"]["question"];
 
     // User missed a question, ask the follow up question
     if(!empty($question)) {
       $transationID = $response["transaction-status"]["transaction-id"];
-      
+
       $form['transaction_id'] = array(
             '#type' => 'hidden',
             '#default_value' => $transationID,
-    
+
         );
-      
+
       $questionSetID = $response["questions"]["question-set-id"];
-      
+
       $form['question_set_id'] = array(
             '#type' => 'hidden',
-            '#default_value' => $questionSetID,      
+            '#default_value' => $questionSetID,
         );
 
       $questionTitle = $question["text"]["statement"];
       $questionID = $question["question-id"];
       $helpText = $question["help-text"]["statement"];
-      
+
       $questionOptions = $question["choice"];
-      
+
       // Form API question options
       $questionFormOptions = array();
       foreach($questionOptions as $questionOption) {
@@ -398,9 +429,9 @@ function kba_follow_up_question($form, &$form_state) {
         '#title'=>t($questionTitle),
         '#description'=>t($helpText)
       );
-        
+
     } else {
-    
+
       if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
         //User has passed
         kba_passed($form_state);
@@ -408,15 +439,15 @@ function kba_follow_up_question($form, &$form_state) {
         // User has failed
         kba_failed($form_state, KBA_ERROR_TWO_OR_MORE_QUESTIONS_WRONG);
       }
-      
+
        drupal_goto('node/'.$form_state['node'].'/edit');
 
 
       $form_state["steps"] = 9999;
-      
+
     }
-    
-    
+
+
   }
   return $form;
 }
@@ -429,32 +460,40 @@ function kba_follow_up_question($form, &$form_state) {
 function kba_follow_up_question_result($form, &$form_state) {
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
   $form = array();
+<<<<<<< HEAD
   
   if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {  
+=======
+
+  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][3])) {
+>>>>>>> master
     $answers = $form_state["step_information"][3];
     $response = json_decode(_ws_question_answers($answers["stored_values"]), true);
-    
+
     if(!empty($response["information"]["detail-code"]) && $response["information"]["detail-code"] == "passed") {
-      
+
       //User has passed
       kba_passed($form_state);
 
-     
+
     } else {
-    
+
       // User has failed
       kba_failed($form_state, KBA_ERROR_FOLLOW_UP_QUESTION_WRONG);
-      
+
     }
 
 
 
   }
-  
+
+<<<<<<< HEAD
+=======
   return $form;
 }
 
 
+>>>>>>> master
 
 
 
@@ -486,7 +525,7 @@ function kba_wizard_submit($form, &$form_state) {
     unset($value['stored_values']['form_id']);
     unset($value['stored_values']['form_build_id']);
     unset($value['stored_values']['form_token']);
-    
+
   }
 }
 
@@ -496,16 +535,16 @@ function kba_wizard_submit($form, &$form_state) {
  * @return string the json of the response, or null if empty.
  */
 function _ws_verification($nid) {
-  
+
   $webService = _createWebService();
-  
+
   $ssn = aes_decrypt($_SESSION['piissn']);
   $node = node_load($nid);
   $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
   $dob = $node->field_dob['und'][0]['value'];
   $dob = str_replace(' 00:00:00','',$dob);
   $dob = explode('-',$dob);
-  
+
   $personID   = $nid;
   $firstName  = $node->field_name_first['und'][0]['value'];
   $lastName   = $node->field_name_last['und'][0]['value'];
@@ -520,11 +559,11 @@ function _ws_verification($nid) {
   $addressCity  = $addy["locality"];
   $addressState = $addy["administrative_area"];
   $addressZip   = $addy["postal_code"];
-  
+
   $settings = _getWebServiceSettings();
   $settings["task"] = "iauth"; // adding an additional setting for this specific call
-  
-  
+
+
   $requestData = array(
       "settings" => $settings,
       "person" => array(
@@ -564,47 +603,51 @@ function _ws_verification($nid) {
           )
       )
   );
-  
-  $data = $webService->identityVerification($requestData); 
-  
+
+  $data = $webService->identityVerification($requestData);
+
   // ----------------------------- FOR TESTING PURPOSES ------------------------------
 
   //      echo "<h1>------REQUEST-----</h1><br>";
+<<<<<<< HEAD
   //      echo '<pre>' . xmlpp($data["request"], true) . '</pre>';  
+=======
+  //      echo '<pre>' . xmlpp($data["request"], true) . '</pre>';
+>>>>>>> master
   //      echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
   //      echo json_pretty(json_encode($data["response"]), array("format"=>"html"));
    // --------------------------------------------------------------------------------
- 
+
 
 
   $results = null;
   if(!empty($data) && !empty($data["response"])) {
     $results = json_encode($data["response"]);
   }
-    
+
   return $results;
 }
 
 /**
  * Sends the answers to the KBA, retrieves the response in JSON
- * 
+ *
  * @return string the json of the response, or null if empty.
  */
 function _ws_question_answers($data) {
-  
+
   $webService = _createWebService();
-  
+
   $transactionID = $data["transaction_id"];
   $questionSetID = $data["question_set_id"];
   $answers = array();
-  
+
   foreach($data as $key => $value) {
-  
+
     $key = strtolower($key); // lowercase fieldname
-    
+
     // get the integer from the fieldname
     $questionID = intval(substr($key, 9));
-    
+
     if(!empty($questionID) && is_integer($questionID)) {
       $answers[] = array(
         "question-id" => $questionID,
@@ -613,12 +656,12 @@ function _ws_question_answers($data) {
         )
       );
     }
-    
+
   }
-  
+
   $settings = _getWebServiceSettings();
   $settings["transaction-id"] = $transactionID; // adding an additional setting for this specific call
-            
+
   $requestData = array(
       "settings" => $settings,
       "answers" => array(
@@ -626,19 +669,27 @@ function _ws_question_answers($data) {
           "answer"  => $answers
       )
   );
-  
+
   $data = $webService->continuation($requestData);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> master
   // TESTING
   //    echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
   //    echo json_pretty(json_encode($data), array("format"=>"html"));
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> master
   $results = null;
   if(!empty($data)) {
     $results = json_encode($data);
   }
-    
+
   return $results;
 }
 
@@ -648,7 +699,7 @@ function _ws_question_answers($data) {
  * @return KBAWebService the KBA class
  */
 function _createWebService() {
-  
+
   return new KBAWebService(
     array(
       "login" => variable_get("rsa_username"),
@@ -669,7 +720,7 @@ function _getWebServiceSettings() {
     "account-name" => variable_get("rsa_account"),
     "mode" => variable_get("rsa_state"),
     "ruleset" => variable_get("rsa_ruleset"),
-    
+
     // Settings for simulated mode
     //"mode" => "simulated",
     "simulator-mode"=>"questions"
@@ -679,7 +730,7 @@ function _getWebServiceSettings() {
 
 /**
  * Called when the user has passed the KBA process
- * 
+ *
  * @param array The form state when the user passed
  */
 function kba_passed($form_state) {
@@ -693,7 +744,7 @@ function kba_passed($form_state) {
 	node_save($node);
    _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'pass');
    drupal_goto('verification/'.$form_state['node'].'/complete');
-  
+
 }
 
 function em_webservices_complete($nid){
@@ -709,22 +760,22 @@ function em_webservices_complete($nid){
 
     $fname = $node->field_name_last['und'][0]['value'];
     $lname = $node->field_name_first['und'][0]['value'];
-    
+
     $maiden_name = $node->field_name_maiden['und'][0]['value'];
     $middle_name = $node->field_name_middle['und'][0]['value'];
-    
+
     $suffix = $node->field_name_suffix['und'][0]['value'];
     $gender = $node->field_gender['und'][0]['value'];
     $address_ent = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     $address = $address_ent[$node->field_address['und'][0]['value']]->field_address_full['und'][0];
-    $rows[] = array('','Thanks for taking the time to complete the identity
+    $rows[] = array('','<h3>Thanks for taking the time to complete the identity
 	validation and background verification process. A
 	report is being sent to Kiva Zip with your information.
 	We\'ll be in touch with you regarding next steps in
 	your application process. If you\'d like, use the print
 	key below to print a copy of the information you
-	submitted');
+	submitted</h3>');
     $rows[] = array('Name', $suffix.' '.$fname.' '.$middle_name .' '.$lname);
 
     $address1   = $address["thoroughfare"];
@@ -742,13 +793,13 @@ function em_webservices_complete($nid){
     $addresshtml .= '<br>'.$addressCountry;
 
     $rows[] = array('Address', $addresshtml);
-    $rows[] = array(drupal_render(drupal_get_form('_print_form')),drupal_render(drupal_get_form('_exit_form')));  
+    $rows[] = array(drupal_render(drupal_get_form('_print_form')),drupal_render(drupal_get_form('_exit_form')));
     $header = array('','');
 
 
 
 	return theme('table', array(
-	    'header' => $header, 
+	    'header' => $header,
 	    'rows' => $rows,
 	    'attributes' => array('width' => '100%')
 	));
@@ -786,6 +837,8 @@ function kba_wizard_print(){
 }
 
 function kba_wizard_exit(){
+	module_load_include('pages.inc', 'user');
+	user_logout();
 	drupal_goto('/user/logout');
 }
 
@@ -798,15 +851,22 @@ function kba_wizard_exit(){
 function kba_failed($form_state, $error_code) {
 
     $node = node_load($form_state['node']);
-  
+
 
            $count_ter = field_get_items('node', $node, 'field_verify_count');
            $count = $node->field_verify_count['und'][0]['value'];
 
+<<<<<<< HEAD
            // if($count > 2){
            // 		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
            // 		    drupal_goto('verification/'.$node->nid.'/status');
            // 		   }
+=======
+           if($count > 2){
+           		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+           		    drupal_goto('verification/'.$node->nid.'/status');
+           		   }
+>>>>>>> master
            $count = $count + 1;
            $node->field_verify_count['und'][0]['value'] = $count;
 		   field_attach_update('node', $node);
@@ -823,6 +883,8 @@ function kba_failed($form_state, $error_code) {
 	        $error = "Sorry. We weren't able to verify your identity.";
 	        drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+	        module_load_include('pages.inc', 'user');
+			user_logout();
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 	        break;
 	    case 4:
@@ -830,6 +892,8 @@ function kba_failed($form_state, $error_code) {
 
 		    drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+	        module_load_include('pages.inc', 'user');
+			user_logout();
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
@@ -840,7 +904,11 @@ function kba_failed($form_state, $error_code) {
 
 
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> master
 }
 
 
@@ -863,7 +931,7 @@ function kba_failed($form_state, $error_code) {
 
 /******************************************************************************************
                              REMOVE BELOW AFTER TESTING
- *****************************************************************************************/                             
+ *****************************************************************************************/
 
 
 
@@ -934,7 +1002,7 @@ function json_pretty($json, $options = array())
             $result .= ( $inLiteral ? '' : $prefix ) . $token;
 
             // Count # of unescaped double-quotes in token, subtract # of
-            // escaped double-quotes and if the result is odd then we are 
+            // escaped double-quotes and if the result is odd then we are
             // inside a string literal
             if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
                 $inLiteral = !$inLiteral;
@@ -944,39 +1012,39 @@ function json_pretty($json, $options = array())
     return $result;
 }
 
-/** Prettifies an XML string into a human-readable and indented work of art 
- *  @param string $xml The XML as a string 
- *  @param boolean $html_output True if the output should be escaped (for use in HTML) 
- */  
-function xmlpp($xml, $html_output=false) {  
-    $xml_obj = new SimpleXMLElement($xml);  
-    $level = 4;  
-    $indent = 0; // current indentation level  
-    $pretty = array();  
-      
-    // get an array containing each XML element  
-    $xml = explode("\n", preg_replace('/>\s*</', ">\n<", $xml_obj->asXML()));  
-  
-    // shift off opening XML tag if present  
-    if (count($xml) && preg_match('/^<\?\s*xml/', $xml[0])) {  
-      $pretty[] = array_shift($xml);  
-    }  
-  
-    foreach ($xml as $el) {  
-      if (preg_match('/^<([\w])+[^>\/]*>$/U', $el)) {  
-          // opening tag, increase indent  
-          $pretty[] = str_repeat(' ', $indent) . $el;  
-          $indent += $level;  
-      } else {  
-        if (preg_match('/^<\/.+>$/', $el)) {              
-          $indent -= $level;  // closing tag, decrease indent  
-        }  
-        if ($indent < 0) {  
-          $indent += $level;  
-        }  
-        $pretty[] = str_repeat(' ', $indent) . $el;  
-      }  
-    }     
-    $xml = implode("\n", $pretty);     
-    return ($html_output) ? htmlentities($xml) : $xml;  
-} 
+/** Prettifies an XML string into a human-readable and indented work of art
+ *  @param string $xml The XML as a string
+ *  @param boolean $html_output True if the output should be escaped (for use in HTML)
+ */
+function xmlpp($xml, $html_output=false) {
+    $xml_obj = new SimpleXMLElement($xml);
+    $level = 4;
+    $indent = 0; // current indentation level
+    $pretty = array();
+
+    // get an array containing each XML element
+    $xml = explode("\n", preg_replace('/>\s*</', ">\n<", $xml_obj->asXML()));
+
+    // shift off opening XML tag if present
+    if (count($xml) && preg_match('/^<\?\s*xml/', $xml[0])) {
+      $pretty[] = array_shift($xml);
+    }
+
+    foreach ($xml as $el) {
+      if (preg_match('/^<([\w])+[^>\/]*>$/U', $el)) {
+          // opening tag, increase indent
+          $pretty[] = str_repeat(' ', $indent) . $el;
+          $indent += $level;
+      } else {
+        if (preg_match('/^<\/.+>$/', $el)) {
+          $indent -= $level;  // closing tag, decrease indent
+        }
+        if ($indent < 0) {
+          $indent += $level;
+        }
+        $pretty[] = str_repeat(' ', $indent) . $el;
+      }
+    }
+    $xml = implode("\n", $pretty);
+    return ($html_output) ? htmlentities($xml) : $xml;
+}
