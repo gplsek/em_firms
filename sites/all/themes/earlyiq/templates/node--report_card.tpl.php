@@ -261,8 +261,8 @@ function getItemHTML($node, $fieldName) {
   
     $descriptionElementHTML = 
     '<div class="report-details-toggle">'.
-    	'<a rel="div_'.$fieldName.'" class="show-detail" style="display: block;">See Details</a>'.
-    	'<a rel="div_'.$fieldName.'" class="hide-detail" style="display: none;">Hide Details</a>'.
+    	'<a rel="div_'.$fieldName.'" class="show-detail" style="display: block;">Details</a>'.
+    	'<a rel="div_'.$fieldName.'" class="hide-detail" style="display: none;">Close</a>'.
   	  '<div id="div_'.$fieldName.'" class="details-toggle-container">'.
     		'<pre><p>'.$descriptionText.'</p></pre>'.
   	  '</div>';
