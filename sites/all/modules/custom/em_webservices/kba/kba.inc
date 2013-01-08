@@ -786,6 +786,8 @@ function kba_wizard_print(){
 }
 
 function kba_wizard_exit(){
+	module_load_include('pages.inc', 'user');
+	user_logout();
 	drupal_goto('/user/logout');
 }
 
