@@ -72,7 +72,8 @@
   $patriotActObj = field_info_field("field_patriot_act_check");
   $patriotActObjValues = $patriotActObj["settings"]["allowed_values"];
   $patriotActCheck = $patriotActObjValues[$node->field_patriot_act_check["und"][0]["value"]];
- 
+  
+  $softwareVersion = $node->field_software_version["und"][0]["value"];
 ?>
 
 
@@ -127,7 +128,7 @@
       //-->
     </div>
     <div id="report-body">
-      
+      <div id="softwareVersion" style="display:none;"><?php echo $softwareVersion; ?></div>
       <div class="report-group toggle-group">
         <div class="group-header no-details">
           <h3>TQ Score<sup>TM</sup></h3>
