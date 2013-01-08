@@ -163,10 +163,10 @@ function kba_personal_info($form, &$form_state) {
 
 
     $node = node_load($form_state['node']);
-    // if($node->field_verify_count['und'][0]['value'] >= 2){
-    //     	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-    //     	  drupal_goto('verification/'.$form_state['node'].'/status');
-    //         }
+    if($node->field_verify_count['und'][0]['value'] >= 2){
+           	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+           	  drupal_goto('verification/'.$form_state['node'].'/status');
+               }
     $address = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
 
     if($node->uid <> $user->uid){
@@ -268,10 +268,10 @@ function kba_questions($form, &$form_state) {
    }
    // check if user has compled more than 2 times
 
-   // if($node->field_verify_count['und'][0]['value'] >= 2){
-   //    	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
-   //    	  drupal_goto('verification/'.$form_state['node'].'/status');
-   //    }
+   if($node->field_verify_count['und'][0]['value'] >= 2){
+        	  drupal_set_message("You have exceeded the maximum amount of verification attempts","status");
+        	  drupal_goto('verification/'.$form_state['node'].'/status');
+        }
 
 
  if(!empty($form_state["step_information"]) && !empty($form_state["step_information"][1])) {
@@ -803,10 +803,10 @@ function kba_failed($form_state, $error_code) {
            $count_ter = field_get_items('node', $node, 'field_verify_count');
            $count = $node->field_verify_count['und'][0]['value'];
 
-           // if($count > 2){
-           // 		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
-           // 		    drupal_goto('verification/'.$node->nid.'/status');
-           // 		   }
+           if($count > 2){
+           		    drupal_set_message("You have exceeded the limit for attempts. If you need to try again, ..");
+           		    drupal_goto('verification/'.$node->nid.'/status');
+           		   }
            $count = $count + 1;
            $node->field_verify_count['und'][0]['value'] = $count;
 		   field_attach_update('node', $node);
