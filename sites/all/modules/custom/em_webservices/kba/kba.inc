@@ -823,6 +823,8 @@ function kba_failed($form_state, $error_code) {
 	        $error = "Sorry. We weren't able to verify your identity.";
 	        drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+	        module_load_include('pages.inc', 'user');
+			user_logout();
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 	        break;
 	    case 4:
@@ -830,6 +832,8 @@ function kba_failed($form_state, $error_code) {
 
 		    drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+	        module_load_include('pages.inc', 'user');
+			user_logout();
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
