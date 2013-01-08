@@ -513,6 +513,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   @include wrap();
   clear:both;
   display:block;
+  margin-bottom:15px;
   .show-steps-inner {
     float:right;
   }
@@ -529,9 +530,15 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     &:first-child {
       margin-left:0;
     }
+    &:hover {
+      @include gradient('btn_gray'); 
+    }
     // active
     &.activeStep {
       @include gradient('btn_green');
+      &:hover {
+        @include gradient('btn_green'); 
+      }
     }
   }
 }
@@ -705,12 +712,13 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
     }
     #main-wrapper form .form-disabled.form-type-textfield input[type='text'] {
+      background:none;
       border:0;
       color:#333;
-      font-size:13px;
+      font-size:14px;
       line-height:23px;
       font-weight:bold;
-      padding:0;
+      padding:4px 0 0;
     }
   }
 
