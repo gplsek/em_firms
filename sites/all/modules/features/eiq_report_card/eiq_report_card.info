@@ -36,6 +36,7 @@ features[field][] = node-report_card-field_pending_litigations
 features[field][] = node-report_card-field_pending_litigations_desc
 features[field][] = node-report_card-field_positive_id_auth
 features[field][] = node-report_card-field_positive_id_auth_desc
+features[field][] = node-report_card-field_report_card_status
 features[field][] = node-report_card-field_software_version
 features[field][] = node-report_card-field_tax_liens
 features[field][] = node-report_card-field_tax_liens_desc

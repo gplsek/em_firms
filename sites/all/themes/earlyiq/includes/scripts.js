@@ -28,9 +28,14 @@ var $ = jQuery.noConflict();
     }
 
     /* test for appropriate values in SSN input */
-    /*if($('#edit-name').length) {
-        ssnCheck('#edit-name');
-    }*/
+    if($('#field-ssn-add-more-wrapper').length) {
+        removeError('#field-ssn-add-more-wrapper input');
+        $('#edit-submit').click(function(e) {
+            if(ssnCheck('#field-ssn-add-more-wrapper input') != true) {
+                e.preventDefault();
+            }
+        });
+    }
 
     /* toggle script for reports page(s) */
     /* dev version, need to optimize */
@@ -38,7 +43,7 @@ var $ = jQuery.noConflict();
         toggleDetails();
         $('.no-direct').click(function(e) {
             var container = $(this).attr('rel');
-            alert('Company website will be linked for live report cards');
+            //alert('Company website will be linked for live report cards');
             e.preventDefault();
         });
 
@@ -67,34 +72,48 @@ function predef(menu) {
 }
 
 /* SSN INPUT CHECK */
+function removeError(input) {
+    var subj = input, sval;
+    $(subj).blur(function() {
+        sval = $(subj).val();
+        if(!(sval.length < 9) || !(sval.length > 11)) {
+            if($(subj).hasClass('error')) {
+                $(subj).removeClass('error');
+            }
+        }
+    });
+}
 
-/* testing on name input for now */
 function ssnCheck(input) {
-    var iVal, val2;
+    var subj, iVal, val2;
     // reset value on focus
     $(input).focus(function() {
         $(this).val('');
     });
-    $(input).blur(function() {
-        iVal = this.value;
-        if($(this).hasClass('error')) $(this).removeClass('error');
+        subj = input;
+        iVal = $(subj).val();
+        if($(subj).hasClass('error')) $(subj).removeClass('error');
+
         if(iVal.length > 8 && iVal.length < 12) {
             val2 = iVal.replace(/-/g, "");
-            $(this).val(val2);
+            $(subj).val(val2);
+
             if(val2.length == 9 && $.isNumeric(val2)) {
-                $(this).value == val2;
+                $(subj).value == val2;
+                return true;
             } else {
-                fireError($(this));
+                fireError($(subj));
             }
         } else {
-            fireError($(this));
+            fireError($(subj));
         }
-    });
+    //});
 }
 
 function fireError(onInput) {
     $(onInput).val('ex: 111-22-3333');
     $(onInput).addClass('error');
+    return false;
 }
 
 /* basic function for showing/hiding report list item details */

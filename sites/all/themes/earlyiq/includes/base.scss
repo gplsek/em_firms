@@ -172,8 +172,6 @@
 @mixin block_description() {
   @include border-radius(5px);
   @include size(25px !important, 20px);
-  border-top:1px solid #fff;
-  border-right:1px solid #fff;
   display:block;
   overflow:hidden;
   padding:2px 5px 0 8px;
@@ -200,6 +198,9 @@
     padding-bottom:5px;
     .help-info {
     @include opacity(1);
+        background:$color-white;
+        border-top:1px solid #fff;
+        border-right:1px solid #fff;
     }
   }
 }

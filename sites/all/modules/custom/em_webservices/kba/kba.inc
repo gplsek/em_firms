@@ -297,7 +297,7 @@ function kba_questions($form, &$form_state) {
         $questionSetID = $response["questions"]["question-set-id"];
 
         $form['message'] = array(
-	    	'#markup' => t('This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.'),
+	    	'#markup' => '<h2 class="kba-process-header">This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.</h2>',
 	    );
 
         $form['question_set_id'] = array(
@@ -824,8 +824,6 @@ function kba_failed($form_state, $error_code) {
 	        $error = "Sorry. We weren't able to verify your identity.";
 	        drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
-	        module_load_include('pages.inc', 'user');
-			user_logout();
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 	        break;
 	    case 4:
@@ -833,8 +831,6 @@ function kba_failed($form_state, $error_code) {
 
 		    drupal_set_message($error,'status');
 	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
-	        module_load_include('pages.inc', 'user');
-			user_logout();
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
