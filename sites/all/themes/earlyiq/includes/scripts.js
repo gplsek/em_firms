@@ -29,6 +29,7 @@ var $ = jQuery.noConflict();
 
     /* test for appropriate values in SSN input */
     if($('#field-ssn-add-more-wrapper').length) {
+        removeError();
         $('#edit-submit').click(function(e) {
             if(ssnCheck('#field-ssn-add-more-wrapper input') != true) {
                 e.preventDefault();
@@ -71,15 +72,20 @@ function predef(menu) {
 }
 
 /* SSN INPUT CHECK */
+function removeError(input) {
+    $(input).blur(function() {
+        if(!($(input).val().length < 9) || !($(input.val().length > 11)) {
+            if($(input).hasClass('error')) $(input).removeClass('error');
+        }
+    });
+}
 
-/* testing on name input for now */
 function ssnCheck(input) {
     var subj, iVal, val2;
     // reset value on focus
     $(input).focus(function() {
         $(this).val('');
     });
-    //$(input).blur(function() {
         subj = input;
         iVal = $(subj).val();
         if($(subj).hasClass('error')) $(subj).removeClass('error');
