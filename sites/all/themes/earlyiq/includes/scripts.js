@@ -75,8 +75,9 @@ function predef(menu) {
 function removeError(input) {
     var subj = input;
     $(subj).blur(function() {
+
         if(!($(subj).val().length < 9) || !($(subj.val().length > 11))) {
-            if($(subj).hasClass('error') {
+            if($(subj).hasClass('error')) {
                 $(subj).removeClass('error');
             }
         }
