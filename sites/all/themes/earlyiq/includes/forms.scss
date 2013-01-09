@@ -515,14 +515,21 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     float:none;
     margin:15px auto;
   }
-  .form-type-radios > label {
-    margin-bottom:5px;
-  }
   .form-type-radios .description {
     font-style:italic;
   }
 }
 
+.logged-in.page-verification #main-wrapper form {
+  .form-item.form-type-radios label {
+    display:block;
+    margin-bottom:5px;
+    label {
+      display:inline-block;
+      margin-bottom:0;
+    }
+  }
+}
 // steps containers 
 #show-steps {
   @include wrap();
