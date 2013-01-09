@@ -128,6 +128,7 @@ li a.active {
 #block-system-main-menu {
     a, a:visited {
         border:0;
+        border-bottom:2px solid transparent; 
         color:$color-link-grey;
         display: block;
         font-size: 15px;
