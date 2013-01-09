@@ -127,6 +127,7 @@ li a.active {
 // main menu
 #block-system-main-menu {
     a, a:visited {
+        border:0;
         color:$color-link-grey;
         display: block;
         font-size: 15px;
@@ -146,9 +147,18 @@ li a.active {
         }
     
         &:hover,
-        &:active {
-            border:0 !important;
-            color:$color-link-grey;
+        &.active,
+        &.active-trail {
+            border-bottom:2px solid $color-header-green;
+            color:$color-blue;
+        }
+        &.active,
+        &.active-trail {
+        }
+        &.menu-minipanel:hover,
+        &.menu-minipanel.active:hover,
+        &.menu-minipanel.active-trail:hover {
+          border-bottom:2px solid transparent; 
         }
     }
  
@@ -156,12 +166,12 @@ li a.active {
         margin-right: 0;
     }
 
-    &:hover a,
+    /*&:hover a,
     a:focus,
     a.active,
     a.active-trail {
         border: 0 !important;
-    }
+    }*/
 }
 
 // user menu
@@ -845,8 +855,13 @@ a.views-more-link:hover {
 #block-views-seven-features-block-block {
     @include wrap();
     margin-top:0;
-    padding: 0 20px 20px;
-    
+    padding: 0 20px 10px;
+    h2 {
+      display:none;
+    }
+    .view h2 {
+      display:block;
+    }
     .views-row { 
         float: left;
         margin-right: 35px;
