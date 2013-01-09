@@ -1318,13 +1318,16 @@ form .field-multiple-table td.field-multiple-drag {
       font-size:14px;
       font-weight:normal;
       line-height:18px;
+      text-transform:none;
     }
     tr td {
       padding-bottom:15px;
+      text-transform:uppercase;
       vertical-align:top;
     }
     tr td:first-child {
       font-weight:bold;
+      text-transform:none;
     }
   }
 }
