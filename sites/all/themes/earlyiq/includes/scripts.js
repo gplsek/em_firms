@@ -29,7 +29,11 @@ var $ = jQuery.noConflict();
 
     /* test for appropriate values in SSN input */
     if($('#field-ssn-add-more-wrapper').length) {
-        ssnCheck('#field-ssn-add-more-wrapper input');
+        $('#edit-submit').click(function(e) {
+            if(ssnCheck('#field-ssn-add-more-wrapper input') != true) {
+                e.preventDefault();
+            }
+        });
     }
 
     /* toggle script for reports page(s) */
@@ -70,31 +74,37 @@ function predef(menu) {
 
 /* testing on name input for now */
 function ssnCheck(input) {
-    var iVal, val2;
+    var subj, iVal, val2;
     // reset value on focus
     $(input).focus(function() {
         $(this).val('');
     });
-    $(input).blur(function() {
-        iVal = this.value;
-        if($(this).hasClass('error')) $(this).removeClass('error');
+    //$(input).blur(function() {
+        subj = input;
+        iVal = $(subj).val();
+        alert(iVal);
+        if($(subj).hasClass('error')) $(subj).removeClass('error');
+        
         if(iVal.length > 8 && iVal.length < 12) {
             val2 = iVal.replace(/-/g, "");
-            $(this).val(val2);
+            $(subj).val(val2);
+            
             if(val2.length == 9 && $.isNumeric(val2)) {
-                $(this).value == val2;
+                $(subj).value == val2;
+                return true;
             } else { 
-                fireError($(this));
+                fireError($(subj));
             } 
         } else {
-            fireError($(this));
+            fireError($(subj));
         }
-    });
+    //});
 }
 
 function fireError(onInput) {
     $(onInput).val('ex: 111-22-3333');
     $(onInput).addClass('error');
+    return false;
 }
 
 /* basic function for showing/hiding report list item details */
