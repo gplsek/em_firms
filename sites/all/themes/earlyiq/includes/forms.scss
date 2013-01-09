@@ -33,6 +33,11 @@
     .grippie {
         display:none;
     }
+    .error {
+      background:#FFE1FF;
+      border:2px solid #ff0000;
+      color:#ff0000;
+    }
 }
 
 html.js fieldset.collapsed {
