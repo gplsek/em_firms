@@ -42,7 +42,7 @@ var $ = jQuery.noConflict();
         toggleDetails();
         $('.no-direct').click(function(e) {
             var container = $(this).attr('rel');
-            alert('Company website will be linked for live report cards');
+            //alert('Company website will be linked for live report cards');
             e.preventDefault();
         });
 
@@ -82,7 +82,6 @@ function ssnCheck(input) {
     //$(input).blur(function() {
         subj = input;
         iVal = $(subj).val();
-        alert(iVal);
         if($(subj).hasClass('error')) $(subj).removeClass('error');
         
         if(iVal.length > 8 && iVal.length < 12) {
