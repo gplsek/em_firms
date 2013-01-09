@@ -73,7 +73,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -143,7 +143,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -209,7 +209,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -277,7 +277,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '21',
+        'weight' => '22',
       ),
     ),
   );
@@ -347,7 +347,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '22',
+        'weight' => '23',
       ),
     ),
   );
@@ -420,7 +420,7 @@ function eiq_report_card_field_default_fields() {
           'size' => '4',
         ),
         'type' => 'masked_input',
-        'weight' => '16',
+        'weight' => '17',
       ),
     ),
   );
@@ -583,7 +583,7 @@ function eiq_report_card_field_default_fields() {
           'size' => '4',
         ),
         'type' => 'masked_input',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -651,7 +651,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '17',
+        'weight' => '18',
       ),
     ),
   );
@@ -721,7 +721,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '18',
+        'weight' => '19',
       ),
     ),
   );
@@ -789,7 +789,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -859,7 +859,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -927,7 +927,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '12',
+        'weight' => '13',
       ),
     ),
   );
@@ -997,7 +997,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '13',
+        'weight' => '14',
       ),
     ),
   );
@@ -1065,7 +1065,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '14',
+        'weight' => '15',
       ),
     ),
   );
@@ -1135,7 +1135,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -1202,7 +1202,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '25',
+        'weight' => '26',
       ),
     ),
   );
@@ -1270,7 +1270,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '23',
+        'weight' => '24',
       ),
     ),
   );
@@ -1340,7 +1340,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '24',
+        'weight' => '25',
       ),
     ),
   );
@@ -1408,7 +1408,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -1478,7 +1478,78 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '8',
+        'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-report_card-field_report_card_status'.
+  $fields['node-report_card-field_report_card_status'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_report_card_status',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Pending',
+          1 => 'In Process',
+          2 => 'Complete',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'report_card',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 41,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_report_card_status',
+      'label' => 'Report Card Status',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
       ),
     ),
   );
@@ -1551,7 +1622,7 @@ function eiq_report_card_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'masked_input',
-        'weight' => '26',
+        'weight' => '27',
       ),
     ),
   );
@@ -1619,7 +1690,7 @@ function eiq_report_card_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '19',
+        'weight' => '20',
       ),
     ),
   );
@@ -1689,7 +1760,7 @@ function eiq_report_card_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '20',
+        'weight' => '21',
       ),
     ),
   );
@@ -1762,7 +1833,7 @@ function eiq_report_card_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'masked_input',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -1798,6 +1869,7 @@ function eiq_report_card_field_default_fields() {
   t('Positive Identification ensures that the applicant is highly likely to be the person associated with the name, date of birth, and social security number provided.  In other words, it is highly unlikely that the applicant is using a stolen or fictitious identity.');
   t('Positive Identity Authentication');
   t('Positive Identity Authentication Description');
+  t('Report Card Status');
   t('Software Version');
   t('TQ Score');
   t('Tax Liens');

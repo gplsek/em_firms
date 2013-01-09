@@ -74,6 +74,11 @@
   $patriotActCheck = $patriotActObjValues[$node->field_patriot_act_check["und"][0]["value"]];
   
   $softwareVersion = $node->field_software_version["und"][0]["value"];
+  $reportCardStatus = getSelectItem($node, "field_report_card_status");
+  if(empty($reportCardStatus)) {
+    $reportCardStatus = "Pending";
+  }
+  
 ?>
 
 
@@ -84,7 +89,7 @@
   <div id="main-report-inner">
     <div class="contain" id="report-header">
       <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/earlyiq/logo.png" /> </a>
-      <h1>Kiva Zip Applicant Report</h1>
+      <h1>Kiva Zip Applicant Report<br/><div style="text-size:small;font-weight:normal;text-align:right;color:#000">Status: <?php echo $reportCardStatus;?></div></h1>
       <div id="reported-company">
       
         <div class="left">
@@ -248,7 +253,7 @@ function getCivilRecordsList($node) {
 
 function getItemHTML($node, $fieldName) {
   
-  $icon = getItemIcon($node, $fieldName);
+  $icon = strtolower(getSelectItem($node, $fieldName));
   
   $iconHelpText = getIconHelpText($icon, $fieldName);
   $iconHoverText = getIconHoverText($icon);
@@ -314,7 +319,7 @@ function decimalToWord($decimal) {
   return $word;
 }
 
-function getItemIcon($node, $fieldName) {
+function getSelectItem($node, $fieldName) {
 
   $fieldObject = $node->$fieldName;
   $value = $fieldObject["und"][0]["value"];
@@ -322,7 +327,7 @@ function getItemIcon($node, $fieldName) {
   $fieldInfoObject = field_info_field($fieldName);
   $values = $fieldInfoObject["settings"]["allowed_values"];
   
-  return strtolower($values[$value]);
+  return $values[$value];
 
 }
 
