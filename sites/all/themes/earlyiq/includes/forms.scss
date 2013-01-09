@@ -523,10 +523,16 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 .logged-in.page-verification #main-wrapper form {
   .form-item.form-type-radios {
     display:block;
-    margin-bottom:5px;
+    margin-bottom:25px;
+    label {
+      margin-bottom:5px;
+    }
   }
   .form-item.form-type-radio {
-    margin-bottom:2px;
+    margin-bottom:5px;
+    label {
+      margin-bottom:0;
+    }
   }
 }
 // steps containers 
