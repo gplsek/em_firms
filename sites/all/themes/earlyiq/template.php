@@ -76,6 +76,17 @@ function earlyiq_preprocess_html(&$variables, $hook) {
   if (context_isset('eiq_commerce', 'partner')) {
     $variables['classes_array'][] = 'partner-' . context_get('eiq_commerce', 'partner');
   }
+  if (arg(0) == 'node') {
+    switch(arg(1)) {
+      case 46:
+      case 47:
+        $variables['classes_array'][] = 'section-products';
+        break;
+      case 75:
+        $variables['classes_array'][] = 'section-beta';
+        break;
+    }
+  }
 }
 
 /**
@@ -109,6 +120,7 @@ function earlyiq_preprocess_page(&$variables, $hook) {
 
   } else if (isset($variables['node']) && $variables['node']->type == 'data_person') {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3">Step 3</span></div></div>';
+
   } else if (arg(0) == "verification") {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3" class="activeStep">Step 3</span></div></div>';
   }

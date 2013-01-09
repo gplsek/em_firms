@@ -633,6 +633,7 @@ function _ws_question_answers($data) {
   //    echo "<br/><br/><h1>------RESPONSE-----</h1><br>";
   //    echo json_pretty(json_encode($data), array("format"=>"html"));
 
+
   $results = null;
   if(!empty($data)) {
     $results = json_encode($data);
@@ -838,6 +839,7 @@ function kba_failed($form_state, $error_code) {
 
 	drupal_set_message($error,'status');
     drupal_goto('node/'.$form_state['node'].'/edit');
+
 
 
 

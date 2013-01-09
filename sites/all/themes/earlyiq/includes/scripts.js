@@ -1,10 +1,10 @@
     /***********************************
-*    EarlyIQ Javascript
+*    EarlyIQ Javascript 
 *    Developer: TragicMedia
 *    Created on: 11/8/12
 ***********************************/
 var $ = jQuery.noConflict();
-
+    
     $(document).ready(function() {
 
     /* homepage slideshow */
@@ -55,7 +55,7 @@ var $ = jQuery.noConflict();
             if($(container).hasClass('active')) {
                 $(this).parent().removeClass('expand-group');
                 $(container).removeClass('active');
-
+            
             } else {
             // if closed
                 $(container).addClass('active');
@@ -93,17 +93,17 @@ function ssnCheck(input) {
         subj = input;
         iVal = $(subj).val();
         if($(subj).hasClass('error')) $(subj).removeClass('error');
-
+        
         if(iVal.length > 8 && iVal.length < 12) {
             val2 = iVal.replace(/-/g, "");
             $(subj).val(val2);
-
+            
             if(val2.length == 9 && $.isNumeric(val2)) {
                 $(subj).value == val2;
                 return true;
-            } else {
+            } else { 
                 fireError($(subj));
-            }
+            } 
         } else {
             fireError($(subj));
         }
