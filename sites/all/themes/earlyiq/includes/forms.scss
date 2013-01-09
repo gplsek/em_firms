@@ -755,7 +755,17 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   }
 }
 
-
+/* help info */
+.page-user-register,
+.page-kiva-zip,
+.partner-kiva-zip {
+    .form-item label {
+      position:relative;
+    }
+    .field-description {
+        @include block_description();
+    }
+}
 // kiva-zip specific
 .page-kiva-zip,
 .partner-kiva-zip {
@@ -786,10 +796,6 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     }
   }
 
-  .field-description {
-    @include block_description();
-  }
-
   // one time login page
   &.page-user-reset {
     form {
@@ -800,7 +806,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         margin-top:15px;
       }
     }
-  } 
+  }
 
   .region-header {
     clear:right;
