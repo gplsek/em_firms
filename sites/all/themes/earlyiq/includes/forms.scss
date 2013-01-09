@@ -385,7 +385,8 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     input[type='email'] {
       @include border-radius(2px);
       border:1px solid #bbb;
-      width:658px;
+      width:80%;
+      max-width:658px;
     }
     
 
@@ -416,8 +417,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   }
 
   .field-type-field-collection {
+    clear:both;
     padding:15px 0 5px;
   }
+  /* seperated mgiht need to separate */
+
 
   // agreement fields
   .field-name-field-disclaimer,
@@ -596,7 +600,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     width:260px !important;
   }
   #edit-field-name-last {
-    width:296px !important;
+    width:286px !important;
   }
 
   #edit-field-name-first,
@@ -946,7 +950,7 @@ form .field-multiple-table td.field-multiple-drag {
         background:none;
         color:$color-black;
         float:right;
-        width:40%;
+        width:38%;
     }
     
     .region-content {
