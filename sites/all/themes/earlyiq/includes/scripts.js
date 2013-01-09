@@ -74,8 +74,10 @@ function predef(menu) {
 /* SSN INPUT CHECK */
 function removeError(input) {
     $(input).blur(function() {
-        if(!($(input).val().length < 9) || !($(input.val().length > 11)) {
-            if($(input).hasClass('error')) $(input).removeClass('error');
+        if(!($(input).val().length < 9) || !($(input.val().length > 11))) {
+            if($(input).hasClass('error') {
+                $(input).removeClass('error');
+            }
         }
     });
 }
