@@ -1319,7 +1319,10 @@ form .field-multiple-table td.field-multiple-drag {
       font-weight:normal;
       line-height:18px;
     }
-    td {
+    tr td {
+      padding-bottom:15px;
+    }
+    tr td:first-child {
       font-weight:bold;
     }
   }
