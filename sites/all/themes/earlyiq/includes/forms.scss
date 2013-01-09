@@ -194,11 +194,40 @@ html.js fieldset.collapsible .fieldset-legend {
   
   form {
     float:right;
-    width:435px;
+    width:100%;
+    max-width:435px;
+    label {
+      clear:both;
+      display:block;
+      float:none !important;
+      width:100%;
+    }
+    fieldset.captcha {
+      clear:both;
+      display:block;
+      float:left; /*necessary*/
+      margin-bottom:15px;
+      max-width:355px;
+      width:82%;
+      legend {
+        @include border-radius(0);
+        background:none;
+        color:$color-black;
+        font-weight:bold;
+        padding:0 0 10px;
+      }
+    }
+  }
+  .form-textarea-wrapper textarea {
+    width:82%;
+  }
+  .form-select {
+    max-width:630px;
+    width:82%;
   }
 
-  label {
-    width:25%;
+  input[type='email'] {
+    padding-left:5px;
   }
 }
 /***************************************************************************************************************/
@@ -478,7 +507,6 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 .page-user-apply,
 .page-node-add-data-person,
 .page-node-add-data-company,
-.section-beta,
 .page-user-register,
 .node-type-data-person {
   .form-select {
