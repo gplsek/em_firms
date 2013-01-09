@@ -76,6 +76,17 @@ function earlyiq_preprocess_html(&$variables, $hook) {
   if (context_isset('eiq_commerce', 'partner')) {
     $variables['classes_array'][] = 'partner-' . context_get('eiq_commerce', 'partner');
   }
+  if (arg(0) == 'node') {
+    switch(arg(1)) {
+      case 46:
+      case 47:
+        $variables['classes_array'][] = 'section-products';
+        break;
+      case 75:
+        $variables['classes_array'][] = 'section-beta';
+        break;
+    }
+  }
 }
 
 /**
