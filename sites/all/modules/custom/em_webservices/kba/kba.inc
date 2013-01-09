@@ -9,7 +9,7 @@ variable_set("rsa_username", "EmergingFirmsINTEG");
 variable_set("rsa_password", '$u85ApDR!c2');
 variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
 variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
-variable_set("rsa_state", "pilot"); // pilot, testing, simulated
+variable_set("rsa_state", "simulated"); // pilot, testing, simulated
 variable_set("rsa_api_trace", 1); // used for debugging
 
 /**
