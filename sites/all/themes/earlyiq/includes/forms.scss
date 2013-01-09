@@ -1301,3 +1301,26 @@ form .field-multiple-table td.field-multiple-drag {
     }
   }
 }
+
+/* kivazip success/thank-you page */
+.logged-in.page-verification.page-verification-complete {
+  #content table {
+    form input[type='submit'] {
+      float:left;
+      margin-left:5px;
+    }
+    tr, tr.even, tr.odd {
+      background:none;
+      border:0;
+    }
+    td h3 {
+      color:$color-black;
+      font-size:14px;
+      font-weight:normal;
+      line-height:18px;
+    }
+    td {
+      font-weight:bold;
+    }
+  }
+}
