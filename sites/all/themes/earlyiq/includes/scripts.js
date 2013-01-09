@@ -29,7 +29,7 @@ var $ = jQuery.noConflict();
 
     /* test for appropriate values in SSN input */
     if($('#field-ssn-add-more-wrapper').length) {
-        removeError();
+        removeError('#field-ssn-add-more-wrapper input');
         $('#edit-submit').click(function(e) {
             if(ssnCheck('#field-ssn-add-more-wrapper input') != true) {
                 e.preventDefault();
