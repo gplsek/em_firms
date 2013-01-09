@@ -1421,7 +1421,12 @@ div.widgets-element-horizontal {
     }
   }
   /* toggle switches*/
-  .details-toggle-container, .hide-detail {
+  .report-details-toggle a {
+    float:right;
+    line-height:22px;
+  }
+  .details-toggle-container,
+  .hide-detail {
     display:none;
   }
   .report-details-toggle a:hover {
@@ -1434,7 +1439,9 @@ div.widgets-element-horizontal {
   }
   .details-toggle-container.active {
     @include animation(500);
+    clear:both;
     display:block;
+    float:left;
     opacity:1;
     height:100%;
   }
