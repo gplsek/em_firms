@@ -1935,25 +1935,26 @@ node/*/edit';
     28 => 30,
     29 => 29,
     30 => 28,
-    31 => 26,
-    32 => 24,
-    33 => 23,
-    34 => 22,
-    35 => 21,
-    36 => 15,
-    37 => 14,
-    38 => 13,
-    39 => 12,
-    40 => 11,
-    41 => 10,
-    42 => 8,
-    43 => 7,
-    44 => 6,
-    45 => 5,
-    46 => 4,
-    47 => 3,
-    48 => 2,
-    49 => 1,
+    31 => 27,
+    32 => 26,
+    33 => 24,
+    34 => 23,
+    35 => 22,
+    36 => 21,
+    37 => 15,
+    38 => 14,
+    39 => 13,
+    40 => 12,
+    41 => 11,
+    42 => 10,
+    43 => 8,
+    44 => 7,
+    45 => 6,
+    46 => 5,
+    47 => 4,
+    48 => 3,
+    49 => 2,
+    50 => 1,
   );
   $export['menu_masks'] = $strongarm;
 
@@ -3460,6 +3461,29 @@ admin/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'theme_earlyiq_settings';
+  $strongarm->value = array(
+    'toggle_logo' => 1,
+    'toggle_name' => 0,
+    'toggle_slogan' => 1,
+    'toggle_node_user_picture' => 1,
+    'toggle_comment_user_picture' => 1,
+    'toggle_favicon' => 1,
+    'toggle_main_menu' => 0,
+    'toggle_secondary_menu' => 0,
+    'default_logo' => 0,
+    'logo_path' => 'sites/all/themes/earlyiq/logo.png',
+    'logo_upload' => '',
+    'default_favicon' => 0,
+    'favicon_path' => 'sites/all/themes/earlyiq/favicon.ico',
+    'favicon_upload' => '',
+    'favicon_mimetype' => 'image/vnd.microsoft.icon',
+  );
+  $export['theme_earlyiq_settings'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'theme_settings';
   $strongarm->value = array(
     'toggle_logo' => 1,
@@ -3480,37 +3504,6 @@ admin/*';
     'favicon_mimetype' => 'image/vnd.microsoft.icon',
   );
   $export['theme_settings'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'theme_seven_doublemthemes_settings';
-  $strongarm->value = array(
-    'toggle_logo' => 1,
-    'toggle_name' => 0,
-    'toggle_slogan' => 0,
-    'toggle_node_user_picture' => 1,
-    'toggle_comment_user_picture' => 1,
-    'toggle_favicon' => 1,
-    'toggle_main_menu' => 0,
-    'toggle_secondary_menu' => 0,
-    'default_logo' => 1,
-    'logo_path' => 'sites/all/themes/seven_doublemthemes/logo.png',
-    'logo_upload' => '',
-    'default_favicon' => 1,
-    'favicon_path' => 'sites/all/themes/seven_doublemthemes/favicon.ico',
-    'favicon_upload' => '',
-    'zen_breadcrumb' => 'yes',
-    'zen_breadcrumb_separator' => ' › ',
-    'zen_breadcrumb_home' => 1,
-    'zen_breadcrumb_trailing' => 0,
-    'zen_breadcrumb_title' => 1,
-    'zen_rebuild_registry' => 0,
-    'zen_layout' => 'zen-columns-fixed',
-    'zen_jump_link_target' => 'main-menu',
-    'zen_wireframes' => 0,
-  );
-  $export['theme_seven_doublemthemes_settings'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
