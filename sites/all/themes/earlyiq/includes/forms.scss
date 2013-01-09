@@ -524,11 +524,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   .form-item.form-type-radios label {
     display:block;
     margin-bottom:5px;
-    label {
-      display:inline-block;
+  }
+    .form-item.form-type-radio label {
+      display:inline;
       margin-bottom:0;
     }
-  }
 }
 // steps containers 
 #show-steps {
