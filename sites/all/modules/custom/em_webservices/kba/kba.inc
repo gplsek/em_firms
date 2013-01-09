@@ -9,7 +9,7 @@ variable_set("rsa_username", "EmergingFirmsINTEG");
 variable_set("rsa_password", '$u85ApDR!c2');
 variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
 variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
-variable_set("rsa_state", "simulated"); // pilot, testing, simulated
+variable_set("rsa_state", "pilot"); // pilot, testing, simulated
 variable_set("rsa_api_trace", 1); // used for debugging
 
 /**
@@ -297,7 +297,7 @@ function kba_questions($form, &$form_state) {
         $questionSetID = $response["questions"]["question-set-id"];
 
         $form['message'] = array(
-	    	'#markup' => '<h2>This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.</h2>',
+	    	'#markup' => '<h2 class="kba-process-header">This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.</h2>',
 	    );
 
         $form['question_set_id'] = array(

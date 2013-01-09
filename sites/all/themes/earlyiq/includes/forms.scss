@@ -306,6 +306,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       background:none;
       border:0;
     }
+
+    tbody, tr, td {
+      display:block;
+      width:100%;
+    }
     
     // tables
     tr.odd, tr.even {
@@ -510,6 +515,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     float:none;
     margin:15px auto;
   }
+  .form-type-radios > label {
+    margin-bottom:5px;
+  }
+  .form-type-radios .description {
+    font-style:italic;
+  }
 }
 
 // steps containers 
@@ -607,7 +618,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   #edit-field-name-middle,
   #edit-field-name-last {
     input[type='text'] {
-      width:155px !important;
+      max-width:165px;
     }
   }
   #edit-field-agree-final {
@@ -633,7 +644,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   }
   #edit-field-name-middle {
     input[type='text'] {
-      width:50px;
+      //width:50px;
     }
   }
   form label {
@@ -653,6 +664,9 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     input[type='password'], {
       width:186px !important;
     }
+  }
+  .field-name-field-convictions {
+    min-width:500px;
   }
   /* all blue question mark styles */
   #edit-field-convictions,
