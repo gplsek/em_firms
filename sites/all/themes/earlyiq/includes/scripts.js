@@ -28,9 +28,9 @@ var $ = jQuery.noConflict();
     }
 
     /* test for appropriate values in SSN input */
-    /*if($('#edit-name').length) {
-        ssnCheck('#edit-name');
-    }*/
+    if($('#field-ssn-add-more-wrapper').length) {
+        ssnCheck('#field-ssn-add-more-wrapper input');
+    }
 
     /* toggle script for reports page(s) */
     /* dev version, need to optimize */
