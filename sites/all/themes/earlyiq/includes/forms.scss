@@ -644,7 +644,8 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       float:left;
     }
     label {
-      width:600px;
+      max-width:750px;
+      width:90%;
     }
     .form-checkbox.required {
       margin-top:5px;
@@ -753,7 +754,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       font-size:14px;
       line-height:23px;
       font-weight:bold;
-      padding:4px 0 0;
+      padding:0;
     }
   }
 

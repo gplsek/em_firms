@@ -76,7 +76,6 @@ function removeError(input) {
     var subj = input, sval;
     $(subj).blur(function() {
         sval = $(subj).val();
-        alert(sval);
         if(!(sval.length < 9) || !(sval.length > 11)) {
             if($(subj).hasClass('error')) {
                 $(subj).removeClass('error');
