@@ -215,6 +215,8 @@ html.js fieldset.collapsible .fieldset-legend {
     padding-left:5px;
   }
 }
+
+// beta and registration pages
 .section-beta, .page-user-register {
     fieldset.captcha {
         clear:both;
@@ -684,6 +686,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       margin-top:5px;
     }
   }
+  
   #edit-field-dob {
     clear:left;
     float:left;
@@ -693,19 +696,23 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       padding-bottom:0;
     }
   }
+  
   #edit-field-name-middle {
     input[type='text'] {
-      //width:50px;
+
     }
   }
+  
   form label {
     padding-right:10px;
     width:auto;
   }
+  
   #field-ssn-add-more-wrapper {
     float:left;
     
   }
+  
   .field-name-field-ssn {
     clear:right;
     float:left;
@@ -716,9 +723,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       width:186px !important;
     }
   }
+  
   .field-name-field-convictions {
     min-width:500px;
   }
+
   /* all blue question mark styles */
   #edit-field-convictions,
   .field-name-field-dob,
@@ -771,6 +780,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         @include block_description();
     }
 }
+
 // kiva-zip specific
 .page-kiva-zip,
 .partner-kiva-zip {
@@ -835,19 +845,24 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     margin-right:15px;
   }
 }
+
 .page-kiva-zip #main-wrapper,
 .partner-kiva-zip #main-wrapper {
+ 
     .form-actions {
         float:left;
         padding-left:5px;/*outline*/
     }
+ 
     .field-name-field-disclaimer label {
         width:300px;
     }
+ 
     form fieldset {
         border:0;
         margin-bottom:15px;
     }
+ 
     form legend {
         padding-left:0;
         .fieldset-legend {
@@ -892,21 +907,27 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 
 .logged-in.node-type-data-person {
+    
     div.tabs {
         display:none;
     }
+    
     form {
         display:block;
         padding-top:15px;
     }
+    
     #edit-field-dob {
       width:auto;
+    
       .date-no-float {
         width:100%;
       }
+    
         fieldset {
           margin-bottom:0;
         }
+    
         legend {
             @include border-radius(0);
             background:none;
@@ -919,66 +940,70 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
             width:auto;
             padding: 0 10px 0 0;
         }
+    
         .fieldset-wrapper {
             float:left;
             padding:0;
         }
+    
         .form-item div {
           clear:none;
           margin-right:11px;
           width:auto;
         }
+    
         .form-item label {
           min-width:auto;
           width:auto !important;
           padding-right:10px;
         }
+    
         select {
           width: auto !important;
         }
-
     }
+
     .container-inline-date .date-padding {
         padding:0;
     }
+    
     .container-inline-date .form-item .form-item {
         float:left;
         width:670px;
+    
         label {
             float:left;
             min-width:80px;
             width:100px;
         }
+    
         div {
             float:left;
             width:450px;
         }
     }
+    
     .form-item-field-convictions-und {
         @include wrap();
         display:block;
 
         label {
           width:380px;
-           // float:left;
-           // width:200px;
-           // padding-left:5px;
-            //min-width:190px;
         }
         
         #edit-field-convictions-und {
-            //float:left;
-            //width:550px;
-        
+
             .form-item {
               clear:none;
                 float:left;
                 line-height:16px;
                 padding-left:2px;
                 width:80px;
+        
                 input, label {
                     float:left;
                 }
+        
                 input {
                   margin-top:4px;
                 }
@@ -989,9 +1014,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 .node-type-data-person form fieldset {
     border:0;
+    
     label {
         padding-left:0;
     }
+    
     .addressfield-container-inline .form-item {
       padding-right:15px;
     }
@@ -1013,9 +1040,11 @@ form .field-multiple-table td.field-multiple-drag {
 
 // meant for user one-time change account info name,email pw, may need stronger hook
 .page-user.page-user-edit {
+    
     .tabs {
         display:none;
     }
+    
     div.status {
         @include wrap();
         background:none;
@@ -1048,7 +1077,9 @@ form .field-multiple-table td.field-multiple-drag {
     background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat; 
     padding-bottom:90px; // helps clear bg image
 }
+
 .page-node-43 {
+
   #main-wrapper {
     background:url($pathImg + 'sample-report-background.png') right bottom no-repeat;
     padding-bottom:60px;
@@ -1331,10 +1362,10 @@ form .field-multiple-table td.field-multiple-drag {
         width:375px;
       
         p {
-          font-size:12px;
-          line-height:22px;
-          margin:0;
-          padding:0;
+            font-size:12px;
+            line-height:22px;
+            margin:0;
+            padding:0;
         }
       }
     }
@@ -1344,29 +1375,34 @@ form .field-multiple-table td.field-multiple-drag {
 /* kivazip success/thank-you page */
 .logged-in.page-verification.page-verification-complete {
   #content table {
+
     form input[type='submit'] {
-      float:left;
-      margin-left:5px;
+        float:left;
+        margin-left:5px;
     }
+
     tr, tr.even, tr.odd {
-      background:none;
-      border:0;
+        background:none;
+        border:0;
     }
+
     td h3 {
-      color:$color-black;
-      font-size:14px;
-      font-weight:normal;
-      line-height:18px;
-      text-transform:none;
+        color:$color-black;
+        font-size:14px;
+        font-weight:normal;
+        line-height:18px;
+        text-transform:none;
     }
+
     tr td {
-      padding-bottom:15px;
-      text-transform:uppercase;
-      vertical-align:top;
+        padding-bottom:15px;
+        text-transform:uppercase;
+        vertical-align:top;
     }
+
     tr td:first-child {
-      font-weight:bold;
-      text-transform:none;
+        font-weight:bold;
+        text-transform:none;
     }
   }
 }
