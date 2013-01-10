@@ -202,21 +202,6 @@ html.js fieldset.collapsible .fieldset-legend {
       float:none !important;
       width:100%;
     }
-    fieldset.captcha {
-      clear:both;
-      display:block;
-      float:left; /*necessary*/
-      margin-bottom:15px;
-      max-width:355px;
-      width:82%;
-      legend {
-        @include border-radius(0);
-        background:none;
-        color:$color-black;
-        font-weight:bold;
-        padding:0 0 10px;
-      }
-    }
   }
   .form-textarea-wrapper textarea {
     width:82%;
@@ -229,6 +214,26 @@ html.js fieldset.collapsible .fieldset-legend {
   input[type='email'] {
     padding-left:5px;
   }
+}
+.section-beta, .page-user-register {
+    fieldset.captcha {
+        clear:both;
+        display:block;
+        float:left; /*necessary*/
+        margin-bottom:15px;
+        max-width:355px;
+        width:82%;
+        legend {
+            @include border-radius(0);
+            background:none;
+            color:$color-black;
+            font-weight:bold;
+            padding:0 0 10px;
+        }
+    }
+    .form-actions {
+      clear:both;
+    }
 }
 /***************************************************************************************************************/
 
