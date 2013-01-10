@@ -3,9 +3,10 @@
 *    Developer: TragicMedia
 *    Created on: 11/8/12
 ***********************************/
+
 var $ = jQuery.noConflict();
-    
-    $(document).ready(function() {
+
+$(document).ready(function() {
 
     /* homepage slideshow */
     if($('#block-views-earlyiq-slideshow-block-block').length) {
@@ -27,7 +28,7 @@ var $ = jQuery.noConflict();
         predef('#block-system-main-menu li a');
     }
 
-    /* test for appropriate values in SSN input */
+    /* SSN input validation */
     if($('#field-ssn-add-more-wrapper').length) {
         removeError('#field-ssn-add-more-wrapper input');
         $('#edit-submit').click(function(e) {
@@ -38,26 +39,21 @@ var $ = jQuery.noConflict();
     }
 
     /* toggle script for reports page(s) */
-    /* dev version, need to optimize */
     if($('#main-report-wrapper').length) {
         toggleDetails();
         $('.no-direct').click(function(e) {
             var container = $(this).attr('rel');
-            //alert('Company website will be linked for live report cards');
             e.preventDefault();
         });
 
         $('.toggle').click(function() {
             var container = '#' + $(this).attr('rel');
             var theHeight = $(container).height();
-
-            // if open
             if($(container).hasClass('active')) {
                 $(this).parent().removeClass('expand-group');
                 $(container).removeClass('active');
             
             } else {
-            // if closed
                 $(container).addClass('active');
                 $(this).parent().addClass('expand-group');
             }
@@ -65,13 +61,18 @@ var $ = jQuery.noConflict();
     }
 });
 
+/*
+ * Functions
+ */
+
+/* prevent default */ 
 function predef(menu) {
     $(menu).click(function(e){
         e.preventDefault();
     });
 }
 
-/* SSN INPUT CHECK */
+/* ssn valdation realtime error class handling */
 function removeError(input) {
     var subj = input, sval;
     $(subj).blur(function() {
@@ -84,50 +85,46 @@ function removeError(input) {
     });
 }
 
+/* ssn validation */
 function ssnCheck(input) {
     var subj, iVal, val2;
-    // reset value on focus
     $(input).focus(function() {
         $(this).val('');
     });
-        subj = input;
-        iVal = $(subj).val();
-        if($(subj).hasClass('error')) $(subj).removeClass('error');
-        
-        if(iVal.length > 8 && iVal.length < 12) {
-            val2 = iVal.replace(/-/g, "");
-            $(subj).val(val2);
-            
-            if(val2.length == 9 && $.isNumeric(val2)) {
-                $(subj).value == val2;
-                return true;
-            } else { 
-                fireError($(subj));
-            } 
-        } else {
+    subj = input;
+    iVal = $(subj).val();
+    if($(subj).hasClass('error')) $(subj).removeClass('error');
+    if(iVal.length > 8 && iVal.length < 12) {
+        val2 = iVal.replace(/-/g, "");
+        $(subj).val(val2);
+        if(val2.length == 9 && $.isNumeric(val2)) {
+            $(subj).value == val2;
+            return true;
+        } else { 
             fireError($(subj));
-        }
-    //});
+        } 
+    } else {
+        fireError($(subj));
+    }
 }
 
+/* ssn validation errors */
 function fireError(onInput) {
     $(onInput).val('ex: 111-22-3333');
     $(onInput).addClass('error');
     return false;
 }
 
-/* basic function for showing/hiding report list item details */
+/* report card details toggle */
 function toggleDetails() {
     var container;
     $('.report-details-toggle a').click(function() {
         container = '#' + $(this).attr('rel');
         if($(this).hasClass('show-detail')) {
-//            $(container).css('display', 'block');
             $(container).addClass('active');
             $(this).parent().children('.hide-detail').css('display', 'block');
             $(this).parent().children('.show-detail').css('display', 'none');
         } else if ($(this).hasClass('hide-detail')) {
-//            $(container).css('display', 'none');
             $(container).removeClass('active');
             $(this).parent().children('.show-detail').css('display', 'block');
             $(this).parent().children('.hide-detail').css('display', 'none');

@@ -184,7 +184,7 @@ function STARTERKIT_preprocess_block(&$variables, $hook) {
  */
 function earlyiq_form_element_label(&$variables) {
   $element = $variables['element'];
-  if (isset($element['#field_name'])) {
+  if (isset($element['#field_name']) && arg(0) != 'user') {
     switch ($element['#field_name']) {
       case 'field_name_last':
         $help_txt = "Enter your full legal name. No aliases, nicknames, or other names or references.";
