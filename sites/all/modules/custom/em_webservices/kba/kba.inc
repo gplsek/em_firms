@@ -706,9 +706,14 @@ function em_webservices_complete($nid){
 	drupal_set_message($message,'status');
 
 	$node = node_load($nid);
+	$company_nid = $node->field_company['und'][0]['nid'];
+	$company_node = node_load($company_nid);
+	$company = $company_node->title;
+	
+	unset($company_node);
 
-    $fname = $node->field_name_last['und'][0]['value'];
-    $lname = $node->field_name_first['und'][0]['value'];
+    $lname = $node->field_name_last['und'][0]['value'];
+    $fname = $node->field_name_first['und'][0]['value'];
 
     $maiden_name = $node->field_name_maiden['und'][0]['value'];
     $middle_name = $node->field_name_middle['und'][0]['value'];
@@ -716,6 +721,23 @@ function em_webservices_complete($nid){
     $suffix = $node->field_name_suffix['und'][0]['value'];
     $gender = $node->field_gender['und'][0]['value'];
     $address_ent = entity_load('field_collection_item', array($node->field_address['und'][0]['value']));
+    $convictions = $node->field_convictions['und'][0]['value'];
+    if($convictions == 0){
+	  $conv = 'No';
+    }else{
+	  $conv = 'Yes';
+	  foreach($node->field_criminal['und'] as $conviction_nid){
+	     
+	      $conv_ent = entity_load('field_collection_item',array($conviction_nid['value']));
+	      $conv_state = $conv_ent[$conviction_nid['value']]->field_criminal_state['und'][0]['value'];
+		  $conv_county = $conv_ent[$conviction_nid['value']]->field_criminal_county['und'][0]['value'];
+		  $conviction_list .= "State: ".$conv_state." County: ".$conv_county."<br>";
+	
+	  }
+	 
+    }
+    
+
 
     $address = $address_ent[$node->field_address['und'][0]['value']]->field_address_full['und'][0];
     $rows[] = array('','<h3>Thanks for taking the time to complete the identity
@@ -725,6 +747,7 @@ function em_webservices_complete($nid){
 	your application process. If you\'d like, use the print
 	key below to print a copy of the information you
 	submitted</h3>');
+	$rows[] = array('Company', $company);
     $rows[] = array('Name', $suffix.' '.$fname.' '.$middle_name .' '.$lname);
 
     $address1   = $address["thoroughfare"];
@@ -732,7 +755,7 @@ function em_webservices_complete($nid){
     $addressCity  = $address["locality"];
     $addressState = $address["administrative_area"];
     $addressZip   = $address["postal_code"];
-    $addressZip   = $address["country"];
+    $addressCountry   = $address["country"];
     $addresshtml = $address1;
     if($address2 <> ''){
 	 $addresshtml .= '<br>'.$address2;
@@ -742,6 +765,10 @@ function em_webservices_complete($nid){
     $addresshtml .= '<br>'.$addressCountry;
 
     $rows[] = array('Address', $addresshtml);
+    $rows[] = array('Convictions', $conv);
+    if($conv == 'Yes'){
+	$rows[] = array('', $conviction_list);
+    }
     $rows[] = array(drupal_render(drupal_get_form('_print_form')),drupal_render(drupal_get_form('_exit_form')));
     $header = array('','');
 
