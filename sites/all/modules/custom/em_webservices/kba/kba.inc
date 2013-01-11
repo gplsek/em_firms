@@ -746,7 +746,7 @@ function em_webservices_complete($nid){
 	We\'ll be in touch with you regarding next steps in
 	your application process. If you\'d like, use the print
 	key below to print a copy of the information you
-	submitted</h3>');
+	submitted.</h3>');
 	$rows[] = array('Company', $company);
     $rows[] = array('Name', $suffix.' '.$fname.' '.$middle_name .' '.$lname);
 
