@@ -173,7 +173,7 @@ function kba_personal_info($form, &$form_state) {
       return "You are not authorized";
     }
     $form['message'] = array(
-    	'#markup' => t('<h3>The following page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions. Click Next to begin</h3>'),
+    	'#markup' => t('<h3>The following page is the final step in your application. You will have 3 minutes to answer the multiple-choice questions. Click Next to begin</h3>'),
     );
     $form['data'] = array(
     	'#type' => 'fieldset',
