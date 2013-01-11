@@ -816,9 +816,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     form {
       @include wrap();
       margin:0 auto;
-      width:75%;
+      width:100%;
       input[type='submit'] {
         margin-top:15px;
+      }
+      #edit-cancel {
+        margin-left:15px;
       }
     }
   }
