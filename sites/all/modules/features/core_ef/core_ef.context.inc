@@ -505,7 +505,7 @@ function core_ef_context_default_contexts() {
         'views-my_report_cards-block' => array(
           'module' => 'views',
           'delta' => 'my_report_cards-block',
-          'region' => 'sidebar_second',
+          'region' => 'content',
           'weight' => '-10',
         ),
       ),
