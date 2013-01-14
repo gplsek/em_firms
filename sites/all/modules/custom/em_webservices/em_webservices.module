@@ -52,7 +52,7 @@ function em_webservices_status($nid){
 	happened. This does not mean your application has
 	been rejected. We'll be in touch with you regarding
 	next steps in your application process. Thank you.</p>";
-	
+	$html .= drupal_render(drupal_get_form('_exit_form'));
 	return $html;
 }
 

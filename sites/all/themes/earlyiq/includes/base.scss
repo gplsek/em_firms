@@ -71,7 +71,7 @@
     -o-border-top-right-radius:$tr;-khtml-border-top-right-radius:$tr;-moz-border-top-right-radius:$tr;-webkit-border-top-right-radius:$tr;border-top-right-radius:$tr;
     -o-border-bottom-right-radius:$br;-khtml-border-bottom-right-radius:$br;-moz-border-bottom-right-radius:$br;-webkit-border-bottom-right-radius:$br;border-bottom-right-radius:$br;
     -o-border-bottom-left-radius:$bl;-khtml-border-bottom-left-radius:$bl;-moz-border-bottom-left-radius:$bl;-webkit-border-bottom-left-radius:$bl;border-bottom-left-radius:$bl;} // @include mega-border-radius(5px, 5px, 5px, 5px);
-@mixin text-shadow ($x: 0px, $y: 1px, $blur: 1px, $color: #000) { 
+@mixin text-shadow ($x: 0px, $y: 1px, $blur: 1px, $color: #000) {
     -khtml-text-shadow: $x $y $blur $color;
     -moz-text-shadow:   $x $y $blur $color;
     -o-text-shadow:     $x $y $blur $color;
@@ -181,7 +181,6 @@
   z-index:99;
   .help-icon {
     @include size(18px, 20px);
-    float:right;
     padding-left:5px;
   }
   .help-info {

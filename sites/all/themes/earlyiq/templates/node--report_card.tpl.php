@@ -89,11 +89,12 @@
   <div id="main-report-inner">
     <div class="contain" id="report-header">
       <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/earlyiq/logo.png" /> </a>
-      <h1>Kiva Zip Applicant Report<br/><div style="text-size:small;font-weight:normal;text-align:right;color:#000">Status: <?php echo $reportCardStatus;?></div></h1>
+      <h1>Kiva Zip Applicant Report</h1>
       <div id="reported-company">
       
         <div class="left">
 					<h2><?php echo $company_name; ?></h2>
+					Status: <?php echo $reportCardStatus;?>
 					<?php
             foreach ($officers as $officer) {
               echo   '<p>Applicant:&nbsp;'.$officer['fullname'].'</p>';
