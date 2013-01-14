@@ -104,7 +104,7 @@ function earlyiq_preprocess_page(&$variables, $hook) {
   $partner = context_get('eiq_commerce', 'partner') ? context_get('eiq_commerce', 'partner') : 'client';
   switch ($partner) {
     case 'kiva-zip':
-      $variables['logo_images'] = '<a href="/" title="Partner" rel="partner" id="logo-partner"><img src="/sites/all/themes/earlyiq/images/partners/logo-kiva-zip.png" alt="Partner" /></a><a href="/" title="Home" rel="home" id="eiq-logo"><img src="' . $variables['logo'] . '" alt="Home" /></a>';
+      $variables['logo_images'] = '<img src="/sites/all/themes/earlyiq/images/partners/logo-kiva-zip.png" alt="Partner"  id="logo-partner" /><img src="' . $variables['logo'] . '" alt="Home" id="eiq-logo" />';
       break;
   }
   if (context_isset('eiq_commerce', 'partner')) {
