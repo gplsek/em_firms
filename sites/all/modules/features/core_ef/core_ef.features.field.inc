@@ -3882,16 +3882,21 @@ function core_ef_field_default_fields() {
         ),
         'referenceable_types' => array(
           'article' => 0,
-          'blog' => 0,
           'book' => 0,
           'data_company' => 'data_company',
           'data_person' => 0,
+          'earlyiq_slides' => 0,
+          'nodeblocks' => 0,
           'page' => 0,
+          'panel' => 0,
+          'partner' => 0,
           'poll' => 0,
+          'report_card' => 0,
           'seven_client' => 0,
           'seven_home_item_block' => 0,
           'seven_product' => 0,
           'seven_slideshow_item' => 0,
+          'webform' => 0,
         ),
         'view' => array(
           'args' => array(),
@@ -3924,7 +3929,7 @@ function core_ef_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_company',
-      'label' => 'Company',
+      'label' => 'Company:',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -3935,7 +3940,6 @@ function core_ef_field_default_fields() {
         'settings' => array(
           'autocomplete_match' => 'contains',
           'autocomplete_path' => 'node_reference/autocomplete',
-          'references_id_trim_roles' => array(),
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
@@ -7000,10 +7004,10 @@ function core_ef_field_default_fields() {
   t('Civil Background');
   t('Client Link');
   t('Client Logo');
-  t('Company');
   t('Company Name');
   t('Company Type');
   t('Company Website');
+  t('Company:');
   t('Conviction Level');
   t('Conviction Type');
   t('Conviction Year');
