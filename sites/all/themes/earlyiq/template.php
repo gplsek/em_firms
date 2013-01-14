@@ -127,7 +127,7 @@ function earlyiq_preprocess_page(&$variables, $hook) {
   } else if (isset($variables['node']) && $variables['node']->type == 'data_person') {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3">Step 3</span></div></div>';
 
-  } else if (arg(0) == "verification") {
+  } else if (arg(0) == "verification" && arg(2) != "complete") {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3" class="activeStep">Step 3</span></div></div>';
   }
 }
