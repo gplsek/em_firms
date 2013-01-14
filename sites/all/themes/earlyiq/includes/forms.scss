@@ -5,7 +5,7 @@
 
 /* all forms */
 #main-wrapper form {
-    
+
     .form-item, .form-actions {
       margin:0;
     }
@@ -50,7 +50,7 @@ html.js fieldset.collapsible .fieldset-legend {
 }
 
 html.js fieldset.collapsed .fieldset-legend {
-    background-image:url($pathImg + 'menu-collapsed-wht.png');  
+    background-image:url($pathImg + 'menu-collapsed-wht.png');
 }
 
 // ajax icon override
@@ -132,7 +132,7 @@ html.js fieldset.collapsible .fieldset-legend {
 // login, register, etc.
 .page-user-register,
 .page-user-login {
-  
+
     form {
     padding:15px 0;
     width:630px;
@@ -172,7 +172,7 @@ html.js fieldset.collapsible .fieldset-legend {
 .page-user-apply,
 .page-node-add-data-person,
 .page-node-add-data-company {
-  
+
   form {
     background:$color-white;
     border:1px solid #e2e2e2;
@@ -185,13 +185,13 @@ html.js fieldset.collapsible .fieldset-legend {
 
 // sidebar page
 .section-beta {
-  
+
   .region-content .field-name-body {
     float:left;
     margin-right:20px;
     width:300px;
   }
-  
+
   form {
     float:right;
     width:100%;
@@ -249,7 +249,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 .partner-kiva-zip div.status, .partner-kiva-zip .ok {
     @include border-radius(0);
     background-color:transparent;
-    border:0;   
+    border:0;
     color:$color-blue;
     height:auto;
     font-size:18px;
@@ -332,14 +332,14 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   h1 {
     text-align:center;
   }
-  
-  form {    
+
+  form {
     @include wrap();
 
     input,
     select,
     textarea {
-      margin:0; 
+      margin:0;
     }
 
     // ajax headers
@@ -352,7 +352,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       display:block;
       width:100%;
     }
-    
+
     // tables
     tr.odd, tr.even {
       background:none;
@@ -367,7 +367,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       border:1px solid #dcdcdc;
       margin:0 auto;
       padding:0;
-    
+
       // inner fieldsets
       fieldset {
         background:none;
@@ -434,7 +434,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       width:80%;
       max-width:658px;
     }
-    
+
 
     // inline buttons
     #edit-sac,
@@ -446,12 +446,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   }
 
   /*fields*/
-  
+
   .form-item {
     clear:left;
   }
-  
-  .form-item, 
+
+  .form-item,
   .field-group-fieldset.group-company .fieldset-wrapper .form-wrapper {
     padding-bottom:15px;
     margin:0;
@@ -480,7 +480,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         font-weight:bold;
     }
   }
-  
+
   /* prototype overrides */
   .field-name-field-address-city,
   .field-name-field-address-state,
@@ -497,11 +497,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   .field-name-field-address-zip {
     display:block;
     float:none; /* overrides, prototype */
-  
+
     label {
       line-height:13px;
     }
-  
+
     input[type='text'] {
       margin-top:5px;
       //width:90px;
@@ -521,7 +521,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   }
 }
 
-// row weights override 
+// row weights override
 .node-type-data-person .delta-order .form-select {
   width:auto;
 }
@@ -575,7 +575,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     }
   }
 }
-// steps containers 
+// steps containers
 #show-steps {
   @include wrap();
   clear:both;
@@ -598,13 +598,13 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       margin-left:0;
     }
     &:hover {
-      @include gradient('btn_gray'); 
+      @include gradient('btn_gray');
     }
     // active
     &.activeStep {
       @include gradient('btn_green');
       &:hover {
-        @include gradient('btn_green'); 
+        @include gradient('btn_green');
       }
     }
   }
@@ -686,7 +686,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       margin-top:5px;
     }
   }
-  
+
   #edit-field-dob {
     clear:left;
     float:left;
@@ -696,23 +696,23 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       padding-bottom:0;
     }
   }
-  
+
   #edit-field-name-middle {
     input[type='text'] {
 
     }
   }
-  
+
   form label {
     padding-right:10px;
     width:auto;
   }
-  
+
   #field-ssn-add-more-wrapper {
     float:left;
-    
+
   }
-  
+
   .field-name-field-ssn {
     clear:right;
     float:left;
@@ -723,7 +723,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       width:186px !important;
     }
   }
-  
+
   .field-name-field-convictions {
     min-width:500px;
   }
@@ -740,7 +740,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     position:relative;
     label {
       width:85px;
-    } 
+    }
     .addressfield-container-inline .form-type-select {
       label {
         width:40px;
@@ -764,7 +764,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
   #block-system-user-menu,
   .closure {
-    display:none; 
+    display:none;
     /* temporary solution for hiding footer on kivazip pages */
   }
 }
@@ -788,7 +788,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   header {
     border-bottom:0;
   }
-  
+
   // personal info page
   &.node-type-data-person {
     .field-name-field-address-full fieldset legend {
@@ -830,9 +830,9 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     clear:right;
     padding-top:5px;
   }
-  
+
   #logo-partner {
-    float:left; 
+    float:left;
   }
 
   #eiq-logo {
@@ -843,7 +843,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   .breadcrumb {
     display:none;
   }
-  
+
   #edit-delete {
     margin-right:15px;
   }
@@ -851,21 +851,21 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 .page-kiva-zip #main-wrapper,
 .partner-kiva-zip #main-wrapper {
- 
+
     .form-actions {
         float:left;
         padding-left:5px;/*outline*/
     }
- 
+
     .field-name-field-disclaimer label {
         width:300px;
     }
- 
+
     form fieldset {
         border:0;
         margin-bottom:15px;
     }
- 
+
     form legend {
         padding-left:0;
         .fieldset-legend {
@@ -875,17 +875,17 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 }
 
 #kiva-zip-thank-you-success {
-  
+
   h3 {
     font-size:18px;
     line-height:22px;
   }
-  
+
   p {
     font-size:13px;
     padding:0 30px;
   }
-  
+
   li {
 
     label, span {
@@ -910,27 +910,27 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 
 .logged-in.node-type-data-person {
-    
+
     div.tabs {
         display:none;
     }
-    
+
     form {
         display:block;
         padding-top:15px;
     }
-    
+
     #edit-field-dob {
       width:auto;
-    
+
       .date-no-float {
         width:100%;
       }
-    
+
         fieldset {
           margin-bottom:0;
         }
-    
+
         legend {
             @include border-radius(0);
             background:none;
@@ -943,24 +943,24 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
             width:auto;
             padding: 0 10px 0 0;
         }
-    
+
         .fieldset-wrapper {
             float:left;
             padding:0;
         }
-    
+
         .form-item div {
           clear:none;
           margin-right:11px;
           width:auto;
         }
-    
+
         .form-item label {
           min-width:auto;
           width:auto !important;
           padding-right:10px;
         }
-    
+
         select {
           width: auto !important;
         }
@@ -969,23 +969,23 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     .container-inline-date .date-padding {
         padding:0;
     }
-    
+
     .container-inline-date .form-item .form-item {
         float:left;
         width:670px;
-    
+
         label {
             float:left;
             min-width:80px;
             width:100px;
         }
-    
+
         div {
             float:left;
             width:450px;
         }
     }
-    
+
     .form-item-field-convictions-und {
         @include wrap();
         display:block;
@@ -993,7 +993,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         label {
           width:380px;
         }
-        
+
         #edit-field-convictions-und {
 
             .form-item {
@@ -1002,11 +1002,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
                 line-height:16px;
                 padding-left:2px;
                 width:80px;
-        
+
                 input, label {
                     float:left;
                 }
-        
+
                 input {
                   margin-top:4px;
                 }
@@ -1017,11 +1017,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 .node-type-data-person form fieldset {
     border:0;
-    
+
     label {
         padding-left:0;
     }
-    
+
     .addressfield-container-inline .form-item {
       padding-right:15px;
     }
@@ -1043,11 +1043,11 @@ form .field-multiple-table td.field-multiple-drag {
 
 // meant for user one-time change account info name,email pw, may need stronger hook
 .page-user.page-user-edit {
-    
+
     .tabs {
         display:none;
     }
-    
+
     div.status {
         @include wrap();
         background:none;
@@ -1055,7 +1055,7 @@ form .field-multiple-table td.field-multiple-drag {
         float:right;
         width:38%;
     }
-    
+
     .region-content {
         float:left;
         width:55%;
@@ -1071,13 +1071,27 @@ form .field-multiple-table td.field-multiple-drag {
 
 }
 
+// meant for user page
+.page-user.role-report-viewer,
+.page-user.role-partner-admin {
+
+    .tabs {
+        display:none;
+    }
+
+    .content .profile {
+      display: none;
+    }
+
+}
+
 /***************************************************************************************************************/
 
 /* report card form styles */
 
-// sample report page only 
+// sample report page only
 .section-products #main {
-    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat; 
+    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat;
     padding-bottom:90px; // helps clear bg image
 }
 
@@ -1105,7 +1119,7 @@ form .field-multiple-table td.field-multiple-drag {
   background-color:$color-white;
   border:1px solid #dcdcdc;
 }
- 
+
   #reported-company {
     @include border-radius(5px);
   }
@@ -1122,7 +1136,7 @@ form .field-multiple-table td.field-multiple-drag {
   #logo {
     float:left;
     min-width:250px;
-    
+
     img {
       background:none;
       border:none;
@@ -1155,31 +1169,31 @@ form .field-multiple-table td.field-multiple-drag {
       font-size:12px;
       line-height:17px;
     }
-    
+
     p.address {
       margin:0;
     }
-    
+
     .website a {
       color:#098eba;
       font-weight:bold;
       text-decoration:none;
     }
   }
-  
+
   .right {
     float:right;
     padding:25px 50px 0 0;
     width:30%;
     font-size:12px;
   }
-  
+
   h2 {
     color:#252525;
     font-size:18px;
     padding-bottom:15px;
   }
-  
+
   ul li {
     padding-bottom:2px;
   }
@@ -1187,7 +1201,7 @@ form .field-multiple-table td.field-multiple-drag {
   #reportedh2,
   p.address,
   p.phone,
-  label, 
+  label,
   ul li span {
   font-weight:bold;
   }
@@ -1225,7 +1239,7 @@ form .field-multiple-table td.field-multiple-drag {
     .rating {
       float:left;
     }
-    
+
     .rating,
     .toggle {
       font-size:12px;
@@ -1244,13 +1258,13 @@ form .field-multiple-table td.field-multiple-drag {
 
     .rating {
       width:185px;
-      
+
       label {
         float:left;
         font-weight:normal;
         padding-right:15px;
       }
-      
+
       .stars {
         @include hide-text();
         @include size(117px, 0);
@@ -1293,18 +1307,18 @@ form .field-multiple-table td.field-multiple-drag {
       &:hover {
         cursor:pointer;
       }
-    }  
+    }
 
     .toggle.closed {
         background-position:right -83px;
     }
-    
+
     // toggle functionality
     .toggle.opened {display:none;}
     &.expand-group .toggle.opened {display:block;}
     &.expand-group .toggle.closed {display:none;}
   }
-  
+
   .toggle-container {
     display:none;
     opacity:0;
@@ -1329,16 +1343,16 @@ form .field-multiple-table td.field-multiple-drag {
       display:block;
       margin:0;
       padding:6px 0 2px;
-      
+
       ul {
         list-style-type:disc;
       }
-      
+
       li {
         border:0;
         padding:0 0 0 15px;
       }
-      
+
       .left-col {
         font-weight:bold;
         float:left;
@@ -1352,18 +1366,18 @@ form .field-multiple-table td.field-multiple-drag {
         padding-top:25px;
         float:left;
         background:url($pathImg + 'sprite_report-checks.png') 0 0 no-repeat;
-      
+
         &.fail {background-position:0 -30px;}
         &.warn {background-position:0 -60px;}
         &.note {background-position:0 -90px;}
       }
-      
+
       .right-col {
         float:left;
         margin:0;
         padding-left:15px;
         width:375px;
-      
+
         p {
             font-size:12px;
             line-height:22px;
