@@ -2,10 +2,10 @@
 
 function em_webservices_menu() {
   $items = array();
-  
+
   $items['webservices/test/kba'] = array(
     'page callback' => 'em_webservices_kba_test',
-    'access callback' => TRUE,
+    'access callback' => array('webservice testing'),
     'description' => 'KBA Testing form',
     'file' => 'kba/kba.inc',
     'type' => MENU_CALLBACK
@@ -33,21 +33,21 @@ function em_webservices_menu() {
     'file' => 'kba/kba.inc',
     'type' => MENU_CALLBACK
   );
-  
+
   $items['webservices/test/experian'] = array(
     'page callback' => 'em_webservices_experian',
-    'access callback' => TRUE,
+    'access callback' => array('webservice testing'),
     'description' => 'Experian Civil Form',
     'file' => 'experian/experian.inc',
     'type' => MENU_CALLBACK
   );
-   
+
   return $items;
 }
 
 function em_webservices_status($nid){
 	context_set('eiq_commerce', 'partner', 'kiva-zip');
-	
+
 	$html = "<p>Don't worry, there's probably a simple reason why this
 	happened. This does not mean your application has
 	been rejected. We'll be in touch with you regarding
@@ -73,8 +73,17 @@ function em_webservices_kba_test(){
 	return drupal_get_form("kba_wizard");
 }
 
-// Experian 
+// Experian
 function em_webservices_experian() {
 	global $user;
   return drupal_get_form("experian_test");
+}
+
+function em_webservices_permission() {
+  return array(
+    'webservice testing' => array(
+      'title' => t('Webservice testing'),
+      'description' => t('Use test forms setup by the EarlyIQ Webservices module.'),
+    ),
+  );
 }
