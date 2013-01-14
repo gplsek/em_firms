@@ -87,6 +87,12 @@ function earlyiq_preprocess_html(&$variables, $hook) {
         break;
     }
   }
+  // add classes to body for roles
+  if ($variables['user']) {
+    foreach($variables['user']->roles as $key => $role){
+      $variables['classes_array'][] = 'role-' . drupal_html_class($role);
+    }
+  }
 }
 
 /**
@@ -104,7 +110,7 @@ function earlyiq_preprocess_page(&$variables, $hook) {
   $partner = context_get('eiq_commerce', 'partner') ? context_get('eiq_commerce', 'partner') : 'client';
   switch ($partner) {
     case 'kiva-zip':
-      $variables['logo_images'] = '<a href="/" title="Partner" rel="partner" id="logo-partner"><img src="/sites/all/themes/earlyiq/images/partners/logo-kiva-zip.png" alt="Partner" /></a><a href="/" title="Home" rel="home" id="eiq-logo"><img src="' . $variables['logo'] . '" alt="Home" /></a>';
+      $variables['logo_images'] = '<img src="/sites/all/themes/earlyiq/images/partners/logo-kiva-zip.png" alt="Partner"  id="logo-partner" /><img src="' . $variables['logo'] . '" alt="Home" id="eiq-logo" />';
       break;
   }
   if (context_isset('eiq_commerce', 'partner')) {
@@ -179,57 +185,6 @@ function STARTERKIT_preprocess_block(&$variables, $hook) {
 
 
 
-/**
- *  Theme override for theme_form_element_label
- */
-function earlyiq_form_element_label(&$variables) {
-  $element = $variables['element'];
-  if (isset($element['#field_name']) && arg(0) != 'user') {
-    switch ($element['#field_name']) {
-      case 'field_name_last':
-        $help_txt = "Enter your full legal name. No aliases, nicknames, or other names or references.";
-        break;
-      case 'field_ssn':
-        $help_txt = "Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.";
-        break;
-      case 'field_convictions':
-        $help_txt = "<p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
-use the Add Another button to enter additional convictions.</p>";
-        break;
-   }
-  }
-  $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : '';
-  // This is also used in the installer, pre-database setup.
-  $t = get_t();
-
-  // If title and required marker are both empty, output no label.
-  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
-    return '';
-  }
-
-  // If the element is required, a required marker is appended to the label.
-  $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '';
-
-  $title = filter_xss_admin($element['#title']);
-
-  $attributes = array();
-  // Style the label as class option to display inline with the element.
-  if ($element['#title_display'] == 'after') {
-    $attributes['class'] = 'option';
-  }
-  // Show label only to screen readers to avoid disruption in visual flows.
-  elseif ($element['#title_display'] == 'invisible') {
-    $attributes['class'] = 'element-invisible';
-  }
-
-  if (!empty($element['#id'])) {
-    $attributes['for'] = $element['#id'];
-  }
-
-  // The leading whitespace helps visually separate fields from inline labels.
-  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required !help', array('!title' => $title, '!required' => $required, '!help' => $help_icon)) . "</label>\n";
-}
-
 
 /**
  *  Theme override for theme_fieldset
@@ -268,3 +223,106 @@ function earlyiq_fieldset($variables) {
   return $output;
 }
 
+/**
+ *  Theme override for theme_form_element
+ */
+function earlyiq_form_element($variables) {
+  $element = &$variables['element'];
+  if (isset($element['#field_name']) && arg(0) != 'user') {
+    switch ($element['#field_name']) {
+      case 'field_name_last':
+        $help_txt = "Enter your full legal name. No aliases, nicknames, or other names or references.";
+        break;
+      case 'field_ssn':
+        $help_txt = "Enter your U.S. Social Security Number. This information will be validated and cross referenced to ensure it matches your name and date of birth.";
+        break;
+      case 'field_convictions':
+        $help_txt = "<p>Answer “yes” if you have any criminal convictions regardless of date, level (state or Federal), or severity (misdemeanor or felony). This does not include traffic violations (speeding, etc.) but does include convictions for DUI or similar motor vehicle convictions. Answer “no” if you have no criminal convictions.</p><p>For each conviction, enter the county and state in which you were convicted. If you have more than one conviction,
+use the Add Another button to enter additional convictions.</p>";
+        break;
+    }
+    $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : NULL;
+    if ($help_icon) {
+      $element['#children'] .= $help_icon;
+    }
+  }
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by form_builder().
+  $element += array(
+    '#title_display' => 'before',
+  );
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+  // Add element's #type and #name as class to aid with JS/CSS selectors.
+  $attributes['class'] = array('form-item');
+  if (!empty($element['#type'])) {
+    $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
+  }
+  if (!empty($element['#name'])) {
+    $attributes['class'][] = 'form-item-' . strtr($element['#name'], array(' ' => '-', '_' => '-', '[' => '-', ']' => ''));
+  }
+  // Add a class for disabled elements to facilitate cross-browser styling.
+  if (!empty($element['#attributes']['disabled'])) {
+    $attributes['class'][] = 'form-disabled';
+  }
+  $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
+
+  // If #title is not set, we don't display any label or required marker.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+  $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . $element['#field_prefix'] . '</span> ' : '';
+  $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . $element['#field_suffix'] . '</span>' : '';
+
+  switch ($element['#title_display']) {
+    case 'before':
+    case 'invisible':
+      $output .= ' ' . theme('form_element_label', $variables);
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+
+    case 'after':
+      $output .= ' ' . $prefix . $element['#children'] . $suffix;
+      $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      break;
+
+    case 'none':
+    case 'attribute':
+      // Output no label and no required marker, only the children.
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+  }
+
+  if (!empty($element['#description'])) {
+    $output .= '<div class="description">' . $element['#description'] . "</div>\n";
+  }
+
+  $output .= "</div>\n";
+
+  return $output;
+}
+
+function earlyiq_date_combo($variables) {
+  $element = $variables['element'];
+  if ($element['#field_name'] == 'field_dob') {
+    $element['#children'] = str_replace('</label>', '<span class="form-required" title="This field is required.">*</span></label>', $element['#children']);
+  }
+  $field = field_info_field($element['#field_name']);
+  $instance = field_info_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
+
+  // Group start/end items together in fieldset.
+  $fieldset = array(
+    '#title' => t($element['#title']) . ' ' . ($element['#delta'] > 0 ? intval($element['#delta'] + 1) : ''),
+    '#value' => '',
+    '#description' => !empty($element['#fieldset_description']) ? $element['#fieldset_description'] : '',
+    '#attributes' => array(),
+    '#children' => $element['#children'],
+  );
+  return theme('fieldset', array('element' => $fieldset));
+}
