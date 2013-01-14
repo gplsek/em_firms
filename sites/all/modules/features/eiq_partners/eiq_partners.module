@@ -165,7 +165,7 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
 
         $form['instruction'] = array(
         	'#type' => 'item',
-            '#markup' => t('<h3>Please be sure that all the information you enter is true, accurate, and complete. Once you click Submit, we’ll validate your information and you’ll be on to the last step.</h3>')
+            '#markup' => t('<h3>Please be sure that all the personal information you enter is true, accurate, and complete. Once you click Submit, we’ll validate your information and you’ll be on to the last step.</h3>')
         );
 	        //           $form['group_label'] = array(
 	        // 	'#type' => 'item',
