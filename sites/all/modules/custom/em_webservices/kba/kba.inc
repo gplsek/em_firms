@@ -297,7 +297,7 @@ function kba_questions($form, &$form_state) {
         $questionSetID = $response["questions"]["question-set-id"];
 
         $form['message'] = array(
-	    	'#markup' => '<h2 class="kba-process-header">This page is the final step in your application. You will be presented with questions to verify your identity. You will have 3 minutes to answer the multiple-choice questions.</h2>',
+	    	'#markup' => '<h2 class="kba-process-header">This page is the final step in your application. You will have 3 minutes to answer the multiple-choice questions.</h2>',
 	    );
 
         $form['question_set_id'] = array(
