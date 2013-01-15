@@ -1405,7 +1405,15 @@ form .field-multiple-table td.field-multiple-drag {
     }
   }
 }
-
+#ssn-error-handler {
+    position: absolute;
+    top: 25px;
+    left: 5px;
+    display: none;
+    &.error {
+        display:block;
+    }
+}
 #report-updated-date {
   color:#333;
   font-size:13px;
