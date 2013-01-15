@@ -1406,11 +1406,14 @@ form .field-multiple-table td.field-multiple-drag {
   }
 }
 #ssn-error-handler {
+    font-size:11px;
+    font-style:italic;
     position: absolute;
-    top: 25px;
-    left: 5px;
+    top: 30px;
+    left: 50px;
     display: none;
     &.error {
+        border:0 !important;
         display:block;
     }
 }

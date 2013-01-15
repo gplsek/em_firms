@@ -91,6 +91,7 @@ function ssnCheck(input) {
     $(input).focus(function() {
         $(this).val('');
         if($('#ssn-error-handler').length && $('#ssn-error-handler').hasClass('error')) {
+            alert('1');
             $('#ssn-error-handler').removeClass('error');
         }
     });
@@ -99,7 +100,7 @@ function ssnCheck(input) {
     if(!($('#ssn-error-handler').length)) {
         wrapper = $(input).parent().parent().parent('.field-name-field-ssn');
         wrapperContent = $(wrapper).html();
-        wrapperContent += '<div id="ssn-error-handler">Please use 666-66-6666 or 666666666 format</div>';
+        wrapperContent += '<div id="ssn-error-handler">Format: 666-66-6666 or 666666666</div>';
         $(wrapper).html(wrapperContent);
     }
     iVal = $(subj).val();
