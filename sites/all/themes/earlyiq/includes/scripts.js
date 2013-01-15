@@ -94,7 +94,7 @@ function ssnCheck(input) {
     subj = input;
     // if error msg div hasn't been created, create it
     if(!($('#ssn-error-handler').length)) {
-        wrapper = $(input).parent('.field-name-field-ssn').firstChild();
+        wrapper = $(input).parent('.field-name-field-ssn').children('0');
         wrapperContent = $(wrapper).html();
         wrapperContent += '<div id="ssn-error-handler">Please use 666-66-6666 or 666666666 format</div>';
         $(wrapper).html(wrapperContent);
