@@ -810,18 +810,21 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       padding:0;
     }
   }
-
   // one time login page
   &.page-user-reset {
+    #content form .form-actions {
+      padding-left:0;
+    }
     form {
       @include wrap();
       margin:0 auto;
       width:100%;
+      .form-actions
       input[type='submit'] {
         margin-top:15px;
       }
       #edit-cancel {
-        margin-left:15px;
+        margin-left:8px;
       }
     }
   }
@@ -1063,24 +1066,10 @@ form .field-multiple-table td.field-multiple-drag {
 
     form .description {
         display:block;
-        padding:15px 180px 0 0;
+        padding:15px 0 10px;
         &.password-suggestions {
           padding-right:15px;
         }
-    }
-
-}
-
-// meant for user page
-.page-user.role-report-viewer,
-.page-user.role-partner-admin {
-
-    .tabs {
-        display:none;
-    }
-
-    .content .profile {
-      display: none;
     }
 
 }
@@ -1159,7 +1148,16 @@ form .field-multiple-table td.field-multiple-drag {
   clear:both;
   margin:0 0 20px;
   padding:20px 0 0;
-
+  #kiva-report-title {
+    @include wrap();
+    clear:both;
+    h2 {
+      float:left;
+    }
+    span {
+      float:right;
+    }
+  }
   .left {
     float:left;
     padding:0 0 0 30px;
