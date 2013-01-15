@@ -89,11 +89,12 @@ function removeError(input) {
 function ssnCheck(input) {
     var subj, iVal, val2, wrapper, wrapperContent, eBox;
     $(input).focus(function() {
-        alert('2');
-        $(this).val() = '';
-        if($('#ssn-error-handler').length && $('#ssn-error-handler').hasClass('error')) {
-            alert('1');
-            $('#ssn-error-handler').removeClass('error');
+        $(input).val('');
+        if($('#ssn-error-handler').length) {
+            if($('#ssn-error-handler').hasClass('error')) {
+                alert('1');
+                $('#ssn-error-handler').removeClass('error');
+            }
         }
     });
     subj = input;
