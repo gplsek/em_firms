@@ -33,11 +33,6 @@ $(document).ready(function() {
 
         $('#field-ssn-add-more-wrapper input').focus(function() {
             $(this).val('');
-            if($('#ssn-error-handler').length) {
-                if($('#ssn-error-handler').hasClass('error')) {
-                    $('#ssn-error-handler').removeClass('error');
-                }
-            }
         });
 
         removeError('#field-ssn-add-more-wrapper input');
