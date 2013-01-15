@@ -292,6 +292,7 @@ a#edit-submit-cancel {
     @include eiq_action_btn(auto, 30px);
     float:left;
     font-size:15px;
+    font-weight:bold;
     margin-top:10px 15px;
     padding:0 15px;
         &:hover {
