@@ -458,16 +458,21 @@ function eiq_report_card_field_default_fields() {
         ),
         'referenceable_types' => array(
           'article' => 0,
-          'blog' => 0,
           'book' => 0,
           'data_company' => 'data_company',
           'data_person' => 0,
+          'earlyiq_slides' => 0,
+          'nodeblocks' => 0,
           'page' => 0,
+          'panel' => 0,
+          'partner' => 0,
           'poll' => 0,
+          'report_card' => 0,
           'seven_client' => 0,
           'seven_home_item_block' => 0,
           'seven_product' => 0,
           'seven_slideshow_item' => 0,
+          'webform' => 0,
         ),
         'view' => array(
           'args' => array(),
@@ -641,7 +646,7 @@ function eiq_report_card_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_judgements',
-      'label' => 'Judgements',
+      'label' => 'Judgments',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -708,7 +713,7 @@ function eiq_report_card_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_judgements_desc',
-      'label' => 'Judgements Description',
+      'label' => 'Judgments Description',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1850,8 +1855,8 @@ function eiq_report_card_field_default_fields() {
   t('Civil Records Check');
   t('Company');
   t('Criminal Records Check');
-  t('Judgements');
-  t('Judgements Description');
+  t('Judgments');
+  t('Judgments Description');
   t('Judgments.  If any were found, they would be listed here.  In general, satisfied judgments for non-fraud related cases will not create a negative score.  ');
   t('Name Verification');
   t('Name Verification Description');
