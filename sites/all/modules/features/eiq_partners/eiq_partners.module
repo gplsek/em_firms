@@ -14,6 +14,11 @@ function eiq_partners_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['kiva-zip/no-thanks'] = array(
+    'page callback' => '_eiq_partners_nothanks',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -120,7 +125,7 @@ function eiq_partners_form_commerce_checkout_form_checkout_alter(&$form, &$form_
 
 function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form['#fieldgroups']['group_constituents']);
-  //dpm($form);
+  dpm($form);
   //$form['field_product_id']['#type'] = 'hidden';
   if (isset($form['field_company']['und'][0]['nid']['#default_value'])) {
     $company_node = node_load($form['field_company']['und'][0]['nid']['#default_value']);
@@ -202,6 +207,14 @@ function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
   $form['field_name_first']['#type'] = 'hidden';
   $form['field_name_last']['#type'] = 'hidden';
   $form['account']['mail']['#type'] = 'hidden';
+  if (isset($_GET['pass-reset-token'])) {
+    $form['cancel'] = array(
+      '#type' => 'markup',
+      '#access' => TRUE,
+      '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" class="form-cancel">No Thanks</a>',
+      '#weight' => 160,
+    );
+  }
 
   // setup redirect to correct Application if session exists for a partner
   // and must be after password reset is completed
@@ -214,12 +227,11 @@ function eiq_partners_form_user_pass_reset_alter(&$form, &$form_state) {
   $form['message']['#markup'] = "<h2>Welcome. Thank you for your interest.</h2><p>As part of the process for applying to be listed on Kiva Zip, we ask that you complete this simple 3-Step identity and background validation process.The information you enter will be <u>kept confidential</u> and <u>will not be shared</u> with anyone outside of Kiva Zip and its business partners for the specific use of verifying your identity and background as described in our Terms and Conditions. Completing the steps should take no more than 5 minutes. So let’s get started!</p>";
   $form['actions']['submit']['#value'] = "Get Started";
   $form['cancel'] = array(
-    '#type' => 'submit',
+    '#type' => 'markup',
     '#access' => TRUE,
-    '#value' => 'No Thanks',
+    '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" class="form-cancel">No Thanks</a>',
     '#weight' => 160,
-    '#submit' => array('_eiq_partners_form_cancel') //This is the name of a function reproduced below
-    );
+  );
 
 }
 
@@ -280,4 +292,12 @@ function _eiq_partners_get_partner($account) {
 function _eiq_partners_notify_analyst($node, $uid, $status) {
   $partner_admin = user_load($uid);
   mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']));
+}
+
+function _eiq_partners_nothanks() {
+  $output  = "<h2>Your application is not complete.</h2>";
+  $output .= "<p>If you want to continue with the application, click the Go Back button and we’ll continue with your application.  If you’re not interested in completing the application, click Leave and we’ll stop the process.</p>";
+  $output .= '<a href="' . urldecode($_GET['destination']) . '" class="form-submit">Go Back</a>';
+  $output .= '<a href="/user/logout" class="form-cancel">Leave</a>';
+  return $output;
 }
