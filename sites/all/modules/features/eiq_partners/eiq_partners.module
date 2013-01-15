@@ -155,7 +155,7 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         $form = _eiq_partners_hide_fields($form, $fields);
         unset($form['field_address']['und'][0]['field_address_dates']);
         unset($form['field_address']['und']['add_more']);
-        $form['field_address']['und']['#title'] = "Current Address";
+        $form['field_address']['und']['#title'] = "Current Home Address";
         $form['#groups']['group_personal_info']->format_type = 'hidden';
         // hiding nested fields
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_description");

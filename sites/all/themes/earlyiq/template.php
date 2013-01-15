@@ -311,7 +311,7 @@ use the Add Another button to enter additional convictions.</p>";
 function earlyiq_date_combo($variables) {
   $element = $variables['element'];
   if ($element['#field_name'] == 'field_dob') {
-    $element['#children'] = str_replace('</label>', '<span class="form-required" title="This field is required.">*</span></label>', $element['#children']);
+    //$element['#children'] = str_replace('</label>', '<span class="form-required" title="This field is required.">*</span></label>', $element['#children']);
   }
   $field = field_info_field($element['#field_name']);
   $instance = field_info_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
