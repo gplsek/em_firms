@@ -180,15 +180,15 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         $form['field_company']['und']['#title'] = "Company:";
 
         $form['field_agree_final']['und']['#title'] = "By checking this box, you are affirming that all the information you have provided is complete and accurate and you give your explicit permission for the information to be used in accordance with our <a href='/terms-use' target='_new'>Terms of Use</a>. You understand that the information you have provided will be used to perform background research and validation of the answers submitted in your loan application and your Trustee's endorsement to be listed on the Kiva Zip lending site. This is not a credit report or credit check, nor will your credit records be accessed.";
-        $form['cancel'] = array(
-          '#type' => 'markup',
-          '#access' => TRUE,
-          '#markup' => '<a href="/' . $partner . '/no-thanks?destination=' . urlencode(request_uri()) . '" class="form-cancel">No Thanks</a>',
-          '#weight' => 160,
-        );
         break;
     }
     context_set('eiq_commerce', 'partner', $partner);
+        $form['cancel'] = array(
+          '#type' => 'markup',
+          '#access' => TRUE,
+          '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
+          '#weight' => 160,
+        );
   } else {
     drupal_set_message("No product is associated with this application. Please contact the site admin.");
   }
@@ -217,7 +217,7 @@ function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
     $form['cancel'] = array(
       '#type' => 'markup',
       '#access' => TRUE,
-      '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" class="form-cancel">No Thanks</a>',
+      '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
       '#weight' => 160,
     );
   }
@@ -235,7 +235,7 @@ function eiq_partners_form_user_pass_reset_alter(&$form, &$form_state) {
   $form['cancel'] = array(
     '#type' => 'markup',
     '#access' => TRUE,
-    '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" class="form-cancel">No Thanks</a>',
+    '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
     '#weight' => 160,
   );
 
@@ -304,6 +304,6 @@ function _eiq_partners_nothanks() {
   $output  = "<h2>Your application is not complete.</h2>";
   $output .= "<p>If you want to continue with the application, click the Go Back button and we’ll continue with your application.  If you’re not interested in completing the application, click Leave and we’ll stop the process.</p>";
   $output .= '<a href="' . urldecode($_GET['destination']) . '" class="form-submit">Go Back</a>';
-  $output .= '<a href="/user/logout" class="form-cancel">Leave</a>';
+  $output .= '<a href="/user/logout" id="edit-submit-cancel">Leave</a>';
   return $output;
 }
