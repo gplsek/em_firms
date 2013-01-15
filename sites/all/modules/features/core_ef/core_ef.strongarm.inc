@@ -3609,25 +3609,24 @@ password: Your password
   $strongarm->name = 'user_mail_register_no_approval_required_body';
   $strongarm->value = '[user:field_name_first],
 
-Thank you for registering at [site:name]. You may now log in by clicking this link or copying and pasting it to your browser:
+You are receiving this email as part of your application process with [current-user:field-name-first]. [current-user:field-name-first] has partnered with EarlyIQ to provide identity and background validation services.    
+
+The next step in the process is to complete a brief form that we will use for identity and background validation.  To take this next step, you can click the link below or copy/paste it to your browser:
 
 [user:one-time-login-url]
 
-This link can only be used once to log in and will lead you to a page where you can set your password.
-
-After setting your password, you will be able to log in at [site:login-url] in the future using:
+Please be aware, this link can only be used once to start the process.
 
 username: [user:mail]
-password: Your password
 
---  [site:name] team';
+--  [current-user:field-name-first] and [site:name] team';
   $export['user_mail_register_no_approval_required_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_subject';
-  $strongarm->value = 'Account details for [user:mail] at [site:name]';
+  $strongarm->value = 'Registration by [current-user:field-name-first] for [user:mail] at [site:name]';
   $export['user_mail_register_no_approval_required_subject'] = $strongarm;
 
   $strongarm = new stdClass();
