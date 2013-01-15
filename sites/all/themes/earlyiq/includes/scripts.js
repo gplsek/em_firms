@@ -30,6 +30,16 @@ $(document).ready(function() {
 
     /* SSN input validation */
     if($('#field-ssn-add-more-wrapper').length) {
+
+        $(input).focus(function() {
+            $(input).val('');
+            if($('#ssn-error-handler').length) {
+                if($('#ssn-error-handler').hasClass('error')) {
+                    $('#ssn-error-handler').removeClass('error');
+                }
+            }
+        });
+
         removeError('#field-ssn-add-more-wrapper input');
         $('#edit-submit').click(function(e) {
             if(ssnCheck('#field-ssn-add-more-wrapper input') != true) {
@@ -90,19 +100,13 @@ function ssnCheck(input) {
     var subj, iVal, val2, wrapper, wrapperContent, eBox;
     $(input).focus(function() {
         $(input).val('');
-        if($('#ssn-error-handler').length) {
-            if($('#ssn-error-handler').hasClass('error')) {
-                alert('1');
-                $('#ssn-error-handler').removeClass('error');
-            }
-        }
     });
     subj = input;
     // if error msg div hasn't been created, create it
     if(!($('#ssn-error-handler').length)) {
         wrapper = $(input).parent().parent().parent('.field-name-field-ssn');
         wrapperContent = $(wrapper).html();
-        wrapperContent += '<div id="ssn-error-handler">Format: 666-66-6666 or 666666666</div>';
+        wrapperContent += '<div id="ssn-error-handler">Format: 999-99-9999 or 999999999</div>';
         $(wrapper).html(wrapperContent);
     }
     iVal = $(subj).val();
