@@ -1152,12 +1152,16 @@ form .field-multiple-table td.field-multiple-drag {
     @include wrap();
     clear:both;
     padding:0 30px;
+    h2, span {
+      max-width:45%;
+    }
     h2 {
       float:left;
 
     }
     span {
       float:right;
+      font-weight:bold;
     }
   }
   .left {
