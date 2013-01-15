@@ -31,8 +31,8 @@ $(document).ready(function() {
     /* SSN input validation */
     if($('#field-ssn-add-more-wrapper').length) {
 
-        $(input).focus(function() {
-            $(input).val('');
+        $('#field-ssn-add-more-wrapper input').focus(function() {
+            $(this).val('');
             if($('#ssn-error-handler').length) {
                 if($('#ssn-error-handler').hasClass('error')) {
                     $('#ssn-error-handler').removeClass('error');
