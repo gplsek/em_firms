@@ -125,7 +125,7 @@ function eiq_partners_form_commerce_checkout_form_checkout_alter(&$form, &$form_
 
 function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
   //dpm($form['#fieldgroups']['group_constituents']);
-  dpm($form);
+  //dpm($form);
   //$form['field_product_id']['#type'] = 'hidden';
   if (isset($form['field_company']['und'][0]['nid']['#default_value'])) {
     $company_node = node_load($form['field_company']['und'][0]['nid']['#default_value']);
