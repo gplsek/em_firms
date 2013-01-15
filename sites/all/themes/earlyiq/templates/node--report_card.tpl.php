@@ -209,7 +209,7 @@
         </div>
       </div>
       <div id="report-updated-date">
-         <span class="span-label">Created</span><span class="date">01/01/60</span>
+         <span class="span-label">Created</span><span class="date"><?php echo format_date($node->changed, 'custom', 'm/d/Y'); ?></span>
       </div>
     </div>
   </div>
