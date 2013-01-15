@@ -819,7 +819,6 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       @include wrap();
       margin:0 auto;
       width:100%;
-      .form-actions
       input[type='submit'] {
         margin-top:15px;
       }
@@ -1072,6 +1071,19 @@ form .field-multiple-table td.field-multiple-drag {
         }
     }
 
+}
+
+/* meant for user page */
+.page-user.role-report-viewer,
+.page-user.role-partner-admin {
+
+    .tabs {
+        display:none;
+    }
+
+    .content .profile {
+      display: none;
+    }
 }
 
 /***************************************************************************************************************/
@@ -1391,6 +1403,17 @@ form .field-multiple-table td.field-multiple-drag {
         }
       }
     }
+  }
+}
+
+#report-updated-date {
+  color:#333;
+  font-size:13px;
+  font-weight:bold;
+  line-height:15px;
+  text-align:right;
+  .span-label {
+    padding-right:5px;
   }
 }
 

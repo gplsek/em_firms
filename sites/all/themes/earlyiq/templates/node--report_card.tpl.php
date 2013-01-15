@@ -93,7 +93,7 @@
       <div id="reported-company">
         <div id="kiva-report-title">
           <h2><?php echo $company_name; ?></h2>
-          <span id="kiv-report-status">Status: <?php echo $reportCardStatus;?></span>
+          <span id="kiv-report-status" class="span-label">Status: <?php echo $reportCardStatus;?></span>
         </div>
         <div class="left">
 					<?php
@@ -207,6 +207,9 @@
           <div class="rating"><label><?php echo strtoupper($patriotActCheck); ?></label></div>
           <div class="no-toggle"></div>
         </div>
+      </div>
+      <div id="report-updated-date">
+         <span class="span-label">Created</span><span class="date">01/01/60</span>
       </div>
     </div>
   </div>
