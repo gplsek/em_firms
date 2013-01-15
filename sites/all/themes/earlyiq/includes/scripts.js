@@ -90,6 +90,9 @@ function ssnCheck(input) {
     var subj, iVal, val2, wrapper, wrapperContent, eBox;
     $(input).focus(function() {
         $(this).val('');
+        if($('#ssn-error-handler').length && $('#ssn-error-handler').hasClass('error')) {
+            $('#ssn-error-handler').removeClass('error');
+        }
     });
     subj = input;
     // if error msg div hasn't been created, create it
@@ -97,7 +100,6 @@ function ssnCheck(input) {
         wrapper = $(input).parent().parent().parent('.field-name-field-ssn');
         wrapperContent = $(wrapper).html();
         wrapperContent += '<div id="ssn-error-handler">Please use 666-66-6666 or 666666666 format</div>';
-        alert(wrapperContent);
         $(wrapper).html(wrapperContent);
     }
     iVal = $(subj).val();
