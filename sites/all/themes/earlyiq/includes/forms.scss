@@ -1151,8 +1151,10 @@ form .field-multiple-table td.field-multiple-drag {
   #kiva-report-title {
     @include wrap();
     clear:both;
+    padding:0 30px;
     h2 {
       float:left;
+
     }
     span {
       float:right;
