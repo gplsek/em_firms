@@ -288,6 +288,16 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         }
     }
 }
+a#edit-submit-cancel {
+    @include eiq_action_btn(auto, 30px);
+    float:left;
+    font-size:15px;
+    margin-top:10px 15px;
+    padding:0 15px;
+        &:hover {
+            cursor:pointer;
+        }
+}
 .partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
 .page-checkout,
@@ -439,7 +449,8 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     // inline buttons
     #edit-sac,
     #edit-submit,
-    #edit-cancel {
+    #edit-cancel,
+    #edit-submit-cancel {
         float:left;
         margin-right:15px;
     }
@@ -819,9 +830,11 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       @include wrap();
       margin:0 auto;
       width:100%;
-      input[type='submit'] {
+      input[type='submit'],
+      a##edit-submit-cancel {
         margin-top:15px;
       }
+      #edit-submit-cancel,
       #edit-cancel {
         margin-left:8px;
       }
