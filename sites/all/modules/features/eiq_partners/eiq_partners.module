@@ -183,12 +183,12 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         break;
     }
     context_set('eiq_commerce', 'partner', $partner);
-        $form['cancel'] = array(
-          '#type' => 'markup',
-          '#access' => TRUE,
-          '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
-          '#weight' => 160,
-        );
+    $form['cancel'] = array(
+      '#type' => 'markup',
+      '#access' => TRUE,
+      '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
+      '#weight' => 160,
+    );
   } else {
     drupal_set_message("No product is associated with this application. Please contact the site admin.");
   }
