@@ -162,7 +162,18 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_level");
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_type");
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_year");
-        $form['field_agree_final']['und']['#title'] = "By checking this box, you are affirming that all the information you have provided is complete and accurate and you give your explicit permission for the information to be used in accordance with our Terms and Conditions. You understand that the information you have provided will be used to perform background research and validation of the answers submitted in your loan application and your Trustee's endorsement to be listed on the Kiva Zip lending site. This is not a credit report or credit check, nor will your credit records be accessed.";
+        $form['instruction'] = array(
+          '#type' => 'item',
+          '#markup' => t('<h3>Please be sure that all the personal information you enter is true, accurate, and complete. Once you click Submit, we’ll validate your information and you’ll be on to the last step.</h3>'),
+        );
+          //           $form['group_label'] = array(
+          //  '#type' => 'item',
+          //     '#title' => t('<div>Applicant Information:</div>'),
+          //     '#weight' => '2',
+          // );
+        $form['field_company']['und']['#title'] = "Company:";
+
+        $form['field_agree_final']['und']['#title'] = "By checking this box, you are affirming that all the information you have provided is complete and accurate and you give your explicit permission for the information to be used in accordance with our <a href='/terms-use' target='_new'>Terms of Use</a>. You understand that the information you have provided will be used to perform background research and validation of the answers submitted in your loan application and your Trustee's endorsement to be listed on the Kiva Zip lending site. This is not a credit report or credit check, nor will your credit records be accessed.";
         break;
     }
     context_set('eiq_commerce', 'partner', $partner);
