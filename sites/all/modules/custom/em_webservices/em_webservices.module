@@ -5,7 +5,7 @@ function em_webservices_menu() {
 
   $items['webservices/test/kba'] = array(
     'page callback' => 'em_webservices_kba_test',
-    'access callback' => array('webservice testing'),
+    'access arguments' => array('webservice testing'),
     'description' => 'KBA Testing form',
     'file' => 'kba/kba.inc',
     'type' => MENU_CALLBACK
@@ -36,7 +36,7 @@ function em_webservices_menu() {
 
   $items['webservices/test/experian'] = array(
     'page callback' => 'em_webservices_experian',
-    'access callback' => array('webservice testing'),
+    'access arguments' => array('webservice testing'),
     'description' => 'Experian Civil Form',
     'file' => 'experian/experian.inc',
     'type' => MENU_CALLBACK
