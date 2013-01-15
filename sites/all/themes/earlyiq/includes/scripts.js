@@ -89,7 +89,8 @@ function removeError(input) {
 function ssnCheck(input) {
     var subj, iVal, val2, wrapper, wrapperContent, eBox;
     $(input).focus(function() {
-        $(this).val('');
+        alert('2');
+        $(this).val() = '';
         if($('#ssn-error-handler').length && $('#ssn-error-handler').hasClass('error')) {
             alert('1');
             $('#ssn-error-handler').removeClass('error');
