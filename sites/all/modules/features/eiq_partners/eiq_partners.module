@@ -160,7 +160,10 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         $form = _eiq_partners_hide_fields($form, $fields);
         unset($form['field_address']['und'][0]['field_address_dates']);
         unset($form['field_address']['und']['add_more']);
-        $form['field_address']['und']['#title'] = "Current Home Address";
+        $form['field_address']['und']['#title'] = 'Current Home Address';
+        $form['field_address_label']['#weight'] = $form['field_ssn']['#weight'] +1;
+        $form['field_address_label']['#type'] = 'item';
+        $form['field_address_label']['#markup'] = '<div class="field-description"><span class="help-icon"><img src="/sites/all/themes/earlyiq/images/icon_form-more-info.png"></span><span class="help-info">Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.</span></div>';
         $form['#groups']['group_personal_info']->format_type = 'hidden';
         // hiding nested fields
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_description");

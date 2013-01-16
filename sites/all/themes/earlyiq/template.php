@@ -196,9 +196,6 @@ function earlyiq_fieldset($variables) {
       case 'Date of Birth':
         $help_txt = "Enter your data of birth in MM/DD/YYYY format.";
         break;
-      case 'Address':
-        $help_txt = "Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.";
-        break;
     }
   }
   $help_icon = isset($help_txt) ? '<div class="field-description"><span class="help-icon"><img src="/' . drupal_get_path('theme', 'earlyiq') . '/images/icon_form-more-info.png"></span><span class="help-info">' . $help_txt . '</span></div>' : '';
@@ -326,3 +323,4 @@ function earlyiq_date_combo($variables) {
   );
   return theme('fieldset', array('element' => $fieldset));
 }
+
