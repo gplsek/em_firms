@@ -224,17 +224,24 @@ function core_ef_block_info() {
   $blocks['footer-trust-block'] = array(
     'info' => t('Custom: Footer Trust Block'),
   );
+  $blocks['user-links'] = array(
+    'info' => t('Custom: User links Block'),
+  );
   return $blocks;
 }
 
 function core_ef_block_view($delta='') {
-    $block = array();
-    switch ($delta) {
-	   case 'footer-trust-block':
-            $block['subject'] = '';
-            $block['content'] = '<div id="trustwave_block"><script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal"></script></div>';
-        break;
-   	    }
-	    return $block;
+  $block = array();
+  switch ($delta) {
+    case 'footer-trust-block':
+      $block['subject'] = '';
+      $block['content'] = '<div id="trustwave_block"><script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=normal"></script></div>';
+    break;
+    case 'user-links':
+      global $user;
+      $block['content'] = '<div id="custom-user-links"><a href="/user/' . $user->uid . '/edit">Edit Profile</a></div>';
+    break;
+  }
+  return $block;
 }
 
