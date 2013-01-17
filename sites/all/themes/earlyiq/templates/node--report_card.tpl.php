@@ -4,45 +4,45 @@
   $company_name = "[Company Name]";
   $company_description = "[Company Description]";
   $company_address = "[Company Address]";
-  $company_phone = "[Company Phone]";	
+  $company_phone = "[Company Phone]";
   $company_url = "http://www.companyurl.com";
   $officers = array();
-  
-  
+
+
   $companyNodeID = $node->field_company["und"][0]["nid"];
-  
+
   if(!empty($companyNodeID)) {
-  
+
     $companyNode = node_load($companyNodeID, null, true);
-    
+
     if(!empty($companyNode)) {
-          
+
       try {
         $company_name = $companyNode->title;
         $company_description = $companyNode->body["und"][0]["safe_value"];
         $company_url = $companyNode->field_website["und"][0]["url"];
         $company_phone = $companyNode->field_company_phone["und"][0]["value"];
-        
+
         // Get Address
         $companyAddressNodeID = $companyNode->field_company_address["und"][0]["value"];
-        
+
         $companyAddressNode = entity_load('field_collection_item', array($companyAddressNodeID));
         $companyAddressNode = reset($companyAddressNode); // get first element in the array
-        
+
         $company_address1 = $companyAddressNode->field_address_address1["und"][0]["safe_value"];
         $company_address2 = $companyAddressNode->field_address_address2["und"][0]["safe_value"];
         $company_address_city = $companyAddressNode->field_address_city["und"][0]["safe_value"];
         $company_address_state = $companyAddressNode->field_address_state["und"][0]["value"];
         $company_address_zipcode = $companyAddressNode->field_address_zip["und"][0]["postal"];
-        
+
         $company_address = $company_address1."<br/>";
         if(!empty($company_address2)) {
-          $company_address .= $company_address2."<br/>";          
+          $company_address .= $company_address2."<br/>";
         }
         $company_address .= $company_address_city.",&nbsp;".
                             $company_address_state."&nbsp;".
                             $company_address_zipcode;
-        
+
         // Get Officers
         $companyOfficersNodeID = $companyNode->field_invite_officers["und"][0]["value"];
         $companyOfficersNode = entity_load('field_collection_item', array($companyOfficersNodeID));
@@ -52,17 +52,17 @@
             "fullname" => $officer->field_first_name["und"][0]["safe_value"]."&nbsp;".
                           $officer->field_last_name["und"][0]["safe_value"],
             "title" => "Officer"
-          );          
-        }        
-        
+          );
+        }
+
       } catch(Exception $e) {
         // Do nothing at the moment
       }
-      
+
     }
   }
-  
-  
+
+
   $tqScore = $node->field_tq_score["und"][0]["value"]; // decimal
   $backgroundVerification = $node->field_background_verification["und"][0]["value"]; // bool
   $criminalRecordsCheck = $node->field_criminal_records_check["und"][0]["value"]; // decimal
@@ -72,13 +72,13 @@
   $patriotActObj = field_info_field("field_patriot_act_check");
   $patriotActObjValues = $patriotActObj["settings"]["allowed_values"];
   $patriotActCheck = $patriotActObjValues[$node->field_patriot_act_check["und"][0]["value"]];
-  
+
   $softwareVersion = $node->field_software_version["und"][0]["value"];
   $reportCardStatus = getSelectItem($node, "field_report_card_status");
   if(empty($reportCardStatus)) {
     $reportCardStatus = "Pending";
   }
-  
+
 ?>
 
 
@@ -91,10 +91,11 @@
       <a href="/" id="logo" rel="home" title="Home"> <img alt="Home" src="/sites/all/themes/earlyiq/logo.png" /> </a>
       <h1>Kiva Zip Applicant Report</h1>
       <div id="reported-company">
-      
+        <div id="kiva-report-title">
+          <h2><?php echo $company_name; ?></h2>
+          <span id="kiv-report-status" class="span-label">Status: <?php echo $reportCardStatus;?></span>
+        </div>
         <div class="left">
-					<h2><?php echo $company_name; ?></h2>
-					Status: <?php echo $reportCardStatus;?>
 					<?php
             foreach ($officers as $officer) {
               echo   '<p>Applicant:&nbsp;'.$officer['fullname'].'</p>';
@@ -105,9 +106,9 @@
 					<ul>
 					</ul>
 				</div>
-				
+
       <!--
-      
+
         <div class="left">
           <h2><?php echo $company_name; ?></h2>
           <p><?php echo $company_description; ?></p>
@@ -121,16 +122,16 @@
             <?php
             foreach ($officers as $officer) {
               echo '<li>'.
-                      '<span class="title">' . $officer['title'] . 
-                      '</span> - ' . $officer['fullname'] . 
+                      '<span class="title">' . $officer['title'] .
+                      '</span> - ' . $officer['fullname'] .
                     '</li>';
             }
-            
+
             ?>
           </ul>
         </div>
       </div>
-      
+
       //-->
     </div>
     <div id="report-body">
@@ -161,7 +162,7 @@
           </ul>
         </div>
       </div>
-      
+
       <div class="report-group toggle-group">
         <div class="group-header">
           <h3 title="The Criminal Record Check score is a summary score of the line items within the section.  In the case of Kiva Zip, a national database search was conducted based on the verified identity of the applicant.  Individual county of residence record searches were not performed.  If the applicant's identity could not be verified, this score and section will be marked incomplete.">Criminal Records Check</h3>
@@ -206,6 +207,9 @@
           <div class="rating"><label><?php echo strtoupper($patriotActCheck); ?></label></div>
           <div class="no-toggle"></div>
         </div>
+      </div>
+      <div id="report-updated-date">
+         <span class="span-label">Created</span><span class="date"><?php echo format_date($node->changed, 'custom', 'm/d/Y'); ?></span>
       </div>
     </div>
   </div>
@@ -253,19 +257,19 @@ function getCivilRecordsList($node) {
 }
 
 function getItemHTML($node, $fieldName) {
-  
+
   $icon = strtolower(getSelectItem($node, $fieldName));
-  
+
   $iconHelpText = getIconHelpText($icon, $fieldName);
   $iconHoverText = getIconHoverText($icon);
-  
+
   $descriptionText = getDescriptionText($node, $fieldName);
-  
+
   $descriptionElementHTML = "";
-  
+
   if(!empty($descriptionText)) {
-  
-    $descriptionElementHTML = 
+
+    $descriptionElementHTML =
     '<div class="report-details-toggle">'.
     	'<a rel="div_'.$fieldName.'" class="show-detail" style="display: block;">Details</a>'.
     	'<a rel="div_'.$fieldName.'" class="hide-detail" style="display: none;">Close</a>'.
@@ -274,13 +278,13 @@ function getItemHTML($node, $fieldName) {
   	  '</div>';
     '</div>';
   }
-  
+
   return '<li>'.
-          '<span class="left-col" 
+          '<span class="left-col"
                  title="'.getHelpText($fieldName).'">'.
               getFieldLabel($fieldName).
           '</span>'.
-          '<span class="report-icon '.$icon.'" 
+          '<span class="report-icon '.$icon.'"
                  title="'.$iconHoverText.'">'.
               $icon.
           '</span>'.
@@ -294,7 +298,7 @@ function getItemHTML($node, $fieldName) {
 
 function decimalToWord($decimal) {
   $word = "zero";
-  
+
   if($decimal > 0.00 && $decimal < 1.00) {
     $word = "half";
   } else if($decimal == 1.00) {
@@ -316,7 +320,7 @@ function decimalToWord($decimal) {
   } else if($decimal == 5.00) {
     $word = "five";
   }
-  
+
   return $word;
 }
 
@@ -324,10 +328,10 @@ function getSelectItem($node, $fieldName) {
 
   $fieldObject = $node->$fieldName;
   $value = $fieldObject["und"][0]["value"];
-  
+
   $fieldInfoObject = field_info_field($fieldName);
   $values = $fieldInfoObject["settings"]["allowed_values"];
-  
+
   return $values[$value];
 
 }
@@ -356,7 +360,7 @@ function getDescriptionText($node, $fieldName) {
 
 function getIconHoverText($icon) {
   $hoverText = "";
-  
+
   if($icon == "pass") {
     $hoverText = "Green.  This means everything for this line item checked out OK.";
   } else if($icon == "fail") {
@@ -373,135 +377,135 @@ function getIconHelpText($icon, $fieldName) {
 
   $helpText = "";
   if($icon == "pass") {
-    
+
     switch($fieldName) {
-      case "field_name_verification": 
+      case "field_name_verification":
         $helpText = "Borrower personally identifiable information shows no major inconsistencies.";
         break;
       case "field_positive_id_auth":
-        $helpText = "Borrower passed identity validation.  Stolen or fictitious identity unlikely.";   
+        $helpText = "Borrower passed identity validation.  Stolen or fictitious identity unlikely.";
         break;
       case "field_alias_search":
         $helpText = "";
-        break;    
+        break;
       case "field_nat_felony_search":
         $helpText = "No felonies convictions found";
-        break;    
+        break;
       case "field_nat_misdmnr_search":
         $helpText = "No misdemeanor convictions found";
-        break;    
+        break;
       case "field_judgements":
         $helpText = "No judgment records against borrower found";
-        break;    
+        break;
       case "field_tax_liens":
         $helpText = "No tax lien records for borrower found";
-        break;    
+        break;
       case "field_bankruptcies":
         $helpText = "No personal bankruptcy records were found.";
-        break;    
+        break;
       case "field_pending_litigations":
         $helpText = "No pending civil litigation records against borrower were found";
-        break;    
+        break;
     }
   } else if($icon == "fail") {
-  
+
     switch($fieldName) {
-      case "field_name_verification": 
+      case "field_name_verification":
         $helpText = "Borrower personally identifiable information is inconsistent.  No further analysis conducted.";
         break;
       case "field_positive_id_auth":
-        $helpText = "Borrower failed identity validation.   No further analysis conducted.";   
+        $helpText = "Borrower failed identity validation.   No further analysis conducted.";
         break;
       case "field_alias_search":
         $helpText = "";
-        break;    
+        break;
       case "field_nat_felony_search":
         $helpText = "Significant felony conviction history found.";
-        break;    
+        break;
       case "field_nat_misdmnr_search":
         $helpText = "Significant misdemeanor conviction history found.";
-        break;    
+        break;
       case "field_judgements":
         $helpText = "Significant civil judgment history against borrower found.";
-        break;    
+        break;
       case "field_tax_liens":
         $helpText = "";
-        break;    
+        break;
       case "field_bankruptcies":
         $helpText = "";
-        break;    
+        break;
       case "field_pending_litigations":
         $helpText = "";
-        break;    
+        break;
     }
 
-    
+
   } else if($icon == "note") {
-  
+
     switch($fieldName) {
-      case "field_name_verification": 
+      case "field_name_verification":
         $helpText = "";
         break;
       case "field_positive_id_auth":
-        $helpText = "";   
+        $helpText = "";
         break;
       case "field_alias_search":
         $helpText = "Shown for information only.";
-        break;    
+        break;
       case "field_nat_felony_search":
         $helpText = "";
-        break;    
+        break;
       case "field_nat_misdmnr_search":
         $helpText = "1 self-disclosed misdemeanor conviction was confirmed for a non-white-collar crime.";
-        break;    
+        break;
       case "field_judgements":
         $helpText = "No unsatisfied judgments against borrower found for non-fraud-related cases.";
-        break;    
+        break;
       case "field_tax_liens":
         $helpText = "Tax lien(s) for borrower found";
-        break;    
+        break;
       case "field_bankruptcies":
         $helpText = "A personal bankruptcy was found.";
-        break;    
+        break;
       case "field_pending_litigations":
         $helpText = "Pending litigation againsts borrower was found for a non-fraud-related case.";
-        break;    
+        break;
     }
 
-    
+
   } else if($icon == "warn") {
-  
+
     switch($fieldName) {
-      case "field_name_verification": 
+      case "field_name_verification":
         $helpText = "";
         break;
       case "field_positive_id_auth":
-        $helpText = "";   
+        $helpText = "";
         break;
       case "field_alias_search":
         $helpText = "";
-        break;    
+        break;
       case "field_nat_felony_search":
         $helpText = "1 self-disclosed felony conviction was confirmed for a non-white-collar crime.";
-        break;    
+        break;
       case "field_nat_misdmnr_search":
         $helpText = "Marginal misdemeanor conviction history found";
-        break;    
+        break;
       case "field_judgements":
         $helpText = "Marginal civil judgment history against borrower found.";
-        break;    
+        break;
       case "field_tax_liens":
         $helpText = "";
-        break;    
+        break;
       case "field_bankruptcies":
         $helpText = "";
-        break;    
+        break;
       case "field_pending_litigations":
         $helpText = "Pending litigation was found against borrower for a fraud related case";
-        break;    
+        break;
     }
   }
-  
+
   return $helpText;
 }
 

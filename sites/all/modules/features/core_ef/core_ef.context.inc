@@ -502,11 +502,17 @@ function core_ef_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'core_ef-user-links' => array(
+          'module' => 'core_ef',
+          'delta' => 'user-links',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'views-my_report_cards-block' => array(
           'module' => 'views',
           'delta' => 'my_report_cards-block',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
+          'region' => 'content',
+          'weight' => '-9',
         ),
       ),
     ),

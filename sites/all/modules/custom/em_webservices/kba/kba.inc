@@ -5,12 +5,14 @@ require_once "classes/KBAWebService.php";
 /**
  * Settings
  */
-variable_set("rsa_username", "EmergingFirmsINTEG");
-variable_set("rsa_password", '$u85ApDR!c2');
-variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
-variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
-variable_set("rsa_state", "testing"); // pilot, testing, simulated
-variable_set("rsa_api_trace", 1); // used for debugging
+function _kba_account_settings() {
+  variable_set("rsa_username", "EmergingFirmsINTEG");
+  variable_set("rsa_password", '$u85ApDR!c2');
+  variable_set("rsa_ruleset", "customers.emergingfirms.compapp.4quest");
+  variable_set("rsa_account", "Customers:EmergingFirms:CompanyApp");
+  variable_set("rsa_state", $conf['rsa_state']); // pilot, testing, simulated
+  variable_set("rsa_api_trace", 1); // used for debugging
+}
 
 /**
  * KBA error codes
@@ -648,7 +650,9 @@ function _ws_question_answers($data) {
  * @return KBAWebService the KBA class
  */
 function _createWebService() {
-
+  if (!variable_get("rsa_username")) {
+    _kba_account_settings();
+  }
   return new KBAWebService(
     array(
       "login" => variable_get("rsa_username"),
@@ -665,6 +669,9 @@ function _createWebService() {
  * @return array the default settings for the RSA KBA API
  */
 function _getWebServiceSettings() {
+  if (!variable_get("rsa_account")) {
+    _kba_account_settings();
+  }
   return array(
     "account-name" => variable_get("rsa_account"),
     "mode" => variable_get("rsa_state"),
@@ -709,7 +716,7 @@ function em_webservices_complete($nid){
 	$company_nid = $node->field_company['und'][0]['nid'];
 	$company_node = node_load($company_nid);
 	$company = $company_node->title;
-	
+
 	unset($company_node);
 
     $lname = $node->field_name_last['und'][0]['value'];
@@ -727,16 +734,16 @@ function em_webservices_complete($nid){
     }else{
 	  $conv = 'Yes';
 	  foreach($node->field_criminal['und'] as $conviction_nid){
-	     
+
 	      $conv_ent = entity_load('field_collection_item',array($conviction_nid['value']));
 	      $conv_state = $conv_ent[$conviction_nid['value']]->field_criminal_state['und'][0]['value'];
 		  $conv_county = $conv_ent[$conviction_nid['value']]->field_criminal_county['und'][0]['value'];
 		  $conviction_list .= "State: ".$conv_state." County: ".$conv_county."<br>";
-	
+
 	  }
-	 
+
     }
-    
+
 
 
     $address = $address_ent[$node->field_address['und'][0]['value']]->field_address_full['und'][0];

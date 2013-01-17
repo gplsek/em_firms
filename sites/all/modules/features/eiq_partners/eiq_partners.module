@@ -14,6 +14,11 @@ function eiq_partners_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['kiva-zip/no-thanks'] = array(
+    'page callback' => '_eiq_partners_nothanks',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -155,28 +160,38 @@ function eiq_partners_form_data_person_node_form_alter(&$form, &$form_state) {
         $form = _eiq_partners_hide_fields($form, $fields);
         unset($form['field_address']['und'][0]['field_address_dates']);
         unset($form['field_address']['und']['add_more']);
-        $form['field_address']['und']['#title'] = "Current Home Address";
+        $form['field_address']['und']['#title'] = 'Current Home Address';
+        $form['field_address_label']['#weight'] = $form['field_ssn']['#weight'] +1;
+        $form['field_address_label']['#type'] = 'item';
+        $form['field_address_label']['#markup'] = '';
         $form['#groups']['group_personal_info']->format_type = 'hidden';
         // hiding nested fields
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_description");
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_level");
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_type");
         _eiq_partners_hide_field($form['field_criminal']['und'], "field_criminal_year");
+
         $form['instruction'] = array(
-          '#type' => 'item',
-          '#markup' => t('<h3>Please be sure that all the personal information you enter is true, accurate, and complete. Once you click Submit, we’ll validate your information and you’ll be on to the last step.</h3>'),
+        	'#type' => 'item',
+            '#markup' => t('<h3>Please be sure that all the personal information you enter is true, accurate, and complete. Once you click Submit, we’ll validate your information and you’ll be on to the last step.</h3>')
         );
-          //           $form['group_label'] = array(
-          //  '#type' => 'item',
-          //     '#title' => t('<div>Applicant Information:</div>'),
-          //     '#weight' => '2',
-          // );
+	        //           $form['group_label'] = array(
+	        // 	'#type' => 'item',
+	        //     '#title' => t('<div>Applicant Information:</div>'),
+	        //     '#weight' => '2',
+	        // );
         $form['field_company']['und']['#title'] = "Company:";
 
         $form['field_agree_final']['und']['#title'] = "By checking this box, you are affirming that all the information you have provided is complete and accurate and you give your explicit permission for the information to be used in accordance with our <a href='/terms-use' target='_new'>Terms of Use</a>. You understand that the information you have provided will be used to perform background research and validation of the answers submitted in your loan application and your Trustee's endorsement to be listed on the Kiva Zip lending site. This is not a credit report or credit check, nor will your credit records be accessed.";
         break;
     }
     context_set('eiq_commerce', 'partner', $partner);
+    $form['cancel'] = array(
+      '#type' => 'markup',
+      '#access' => TRUE,
+      '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
+      '#weight' => 160,
+    );
   } else {
     drupal_set_message("No product is associated with this application. Please contact the site admin.");
   }
@@ -201,6 +216,14 @@ function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
   $form['field_name_first']['#type'] = 'hidden';
   $form['field_name_last']['#type'] = 'hidden';
   $form['account']['mail']['#type'] = 'hidden';
+  if (isset($_GET['pass-reset-token'])) {
+    $form['cancel'] = array(
+      '#type' => 'markup',
+      '#access' => TRUE,
+      '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
+      '#weight' => 160,
+    );
+  }
 
   // setup redirect to correct Application if session exists for a partner
   // and must be after password reset is completed
@@ -213,19 +236,18 @@ function eiq_partners_form_user_pass_reset_alter(&$form, &$form_state) {
   $form['message']['#markup'] = "<h2>Welcome. Thank you for your interest.</h2><p>As part of the process for applying to be listed on Kiva Zip, we ask that you complete this simple 3-Step identity and background validation process.The information you enter will be <u>kept confidential</u> and <u>will not be shared</u> with anyone outside of Kiva Zip and its business partners for the specific use of verifying your identity and background as described in our Terms and Conditions. Completing the steps should take no more than 5 minutes. So let’s get started!</p>";
   $form['actions']['submit']['#value'] = "Get Started";
   $form['cancel'] = array(
-    '#type' => 'submit',
+    '#type' => 'markup',
     '#access' => TRUE,
-    '#value' => 'No Thanks',
+    '#markup' => '<a href="/' . context_get('eiq_commerce', 'partner') . '/no-thanks?destination=' . urlencode(request_uri()) . '" id="edit-submit-cancel">No Thanks</a>',
     '#weight' => 160,
-    '#submit' => array('_eiq_partners_form_cancel') //This is the name of a function reproduced below
-    );
+  );
 
 }
 
 function _eiq_partners_form_cancel() {
-  module_load_include('pages.inc', 'user');
-  user_logout();
-  drupal_goto('user/logout');
+  	module_load_include('pages.inc', 'user');
+	user_logout();
+    drupal_goto('user/logout');
 }
 
 /**
@@ -279,4 +301,12 @@ function _eiq_partners_get_partner($account) {
 function _eiq_partners_notify_analyst($node, $uid, $status) {
   $partner_admin = user_load($uid);
   mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']));
+}
+
+function _eiq_partners_nothanks() {
+  $output  = "<h2>Your application is not complete.</h2>";
+  $output .= "<p>If you want to continue with the application, click the Go Back button and we’ll continue with your application.  If you’re not interested in completing the application, click Leave and we’ll stop the process.</p>";
+  $output .= '<a href="' . urldecode($_GET['destination']) . '" class="form-submit">Go Back</a>';
+  $output .= '<a href="/user/logout" id="edit-submit-cancel">Leave</a>';
+  return $output;
 }

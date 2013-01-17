@@ -127,7 +127,7 @@ function earlyiq_preprocess_page(&$variables, $hook) {
   } else if (isset($variables['node']) && $variables['node']->type == 'data_person') {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3">Step 3</span></div></div>';
 
-  } else if (arg(0) == "verification") {
+  } else if (arg(0) == "verification" && arg(2) != "complete") {
     $variables['show_steps'] = '<div id="show-steps"><div class="show-steps-inner"><span id="step1" class="activeStep">Step 1</span><span id="step2" class="activeStep">Step 2</span><span id="step3" class="activeStep">Step 3</span></div></div>';
   }
 }
@@ -195,9 +195,6 @@ function earlyiq_fieldset($variables) {
     switch (trim($element['#title'])) {
       case 'Date of Birth':
         $help_txt = "Enter your data of birth in MM/DD/YYYY format.";
-        break;
-      case 'Address':
-        $help_txt = "Enter your current physical address. No P.O. Boxes, or other mailing service addresses are allowed. Only U.S. addresses are allowed.";
         break;
     }
   }
@@ -310,8 +307,8 @@ use the Add Another button to enter additional convictions.</p>";
 
 function earlyiq_date_combo($variables) {
   $element = $variables['element'];
-  if ($element['#field_name'] == 'field_dob') {
-    //$element['#children'] = str_replace('</label>', '<span class="form-required" title="This field is required.">*</span></label>', $element['#children']);
+  if ($element['#field_name'] == 'field_dob' && strpos($element['children'], 'form-required') === FALSE) {
+    $element['#children'] = str_replace('</label>', '<span class="form-required" title="This field is required.">*</span></label>', $element['#children']);
   }
   $field = field_info_field($element['#field_name']);
   $instance = field_info_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
@@ -326,3 +323,4 @@ function earlyiq_date_combo($variables) {
   );
   return theme('fieldset', array('element' => $fieldset));
 }
+

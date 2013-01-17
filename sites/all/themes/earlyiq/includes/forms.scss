@@ -288,6 +288,17 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
         }
     }
 }
+a#edit-submit-cancel {
+    @include eiq_action_btn(auto, 30px);
+    float:left;
+    font-size:15px;
+    font-weight:bold;
+    margin-top:10px 15px;
+    padding:0 15px;
+        &:hover {
+            cursor:pointer;
+        }
+}
 .partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
 .page-checkout,
@@ -439,7 +450,8 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     // inline buttons
     #edit-sac,
     #edit-submit,
-    #edit-cancel {
+    #edit-cancel,
+    #edit-submit-cancel {
         float:left;
         margin-right:15px;
     }
@@ -810,18 +822,22 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
       padding:0;
     }
   }
-
   // one time login page
   &.page-user-reset {
+    #content form .form-actions {
+      padding-left:0;
+    }
     form {
       @include wrap();
       margin:0 auto;
       width:100%;
-      input[type='submit'] {
+      input[type='submit'],
+      a##edit-submit-cancel {
         margin-top:15px;
       }
+      #edit-submit-cancel,
       #edit-cancel {
-        margin-left:15px;
+        margin-left:8px;
       }
     }
   }
@@ -1063,7 +1079,7 @@ form .field-multiple-table td.field-multiple-drag {
 
     form .description {
         display:block;
-        padding:15px 180px 0 0;
+        padding:15px 0 10px;
         &.password-suggestions {
           padding-right:15px;
         }
@@ -1071,7 +1087,7 @@ form .field-multiple-table td.field-multiple-drag {
 
 }
 
-// meant for user page
+/* meant for user page */
 .page-user.role-report-viewer,
 .page-user.role-partner-admin {
 
@@ -1082,7 +1098,6 @@ form .field-multiple-table td.field-multiple-drag {
     .content .profile {
       display: none;
     }
-
 }
 
 /***************************************************************************************************************/
@@ -1159,7 +1174,22 @@ form .field-multiple-table td.field-multiple-drag {
   clear:both;
   margin:0 0 20px;
   padding:20px 0 0;
+  #kiva-report-title {
+    @include wrap();
+    clear:both;
+    padding:0 30px;
+    h2, span {
+      max-width:45%;
+    }
+    h2 {
+      float:left;
 
+    }
+    span {
+      float:right;
+      font-weight:bold;
+    }
+  }
   .left {
     float:left;
     padding:0 0 0 30px;
@@ -1168,6 +1198,7 @@ form .field-multiple-table td.field-multiple-drag {
     p {
       font-size:12px;
       line-height:17px;
+      margin:0 0 1em;
     }
 
     p.address {
@@ -1386,6 +1417,28 @@ form .field-multiple-table td.field-multiple-drag {
         }
       }
     }
+  }
+}
+#main-wrapper form #ssn-error-handler {
+    font-size:11px;
+    font-style:italic;
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    display: none;
+    &.error {
+        border:0 !important;
+        display:block;
+    }
+}
+#report-updated-date {
+  color:#333;
+  font-size:13px;
+  font-weight:bold;
+  line-height:15px;
+  text-align:right;
+  .span-label {
+    padding-right:5px;
   }
 }
 

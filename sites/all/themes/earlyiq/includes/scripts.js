@@ -1,5 +1,5 @@
     /***********************************
-*    EarlyIQ Javascript 
+*    EarlyIQ Javascript
 *    Developer: TragicMedia
 *    Created on: 11/8/12
 ***********************************/
@@ -30,6 +30,11 @@ $(document).ready(function() {
 
     /* SSN input validation */
     if($('#field-ssn-add-more-wrapper').length) {
+
+        $('#field-ssn-add-more-wrapper input').focus(function() {
+            $(this).val('');
+        });
+
         removeError('#field-ssn-add-more-wrapper input');
         $('#edit-submit').click(function(e) {
             if(ssnCheck('#field-ssn-add-more-wrapper input') != true) {
@@ -52,7 +57,7 @@ $(document).ready(function() {
             if($(container).hasClass('active')) {
                 $(this).parent().removeClass('expand-group');
                 $(container).removeClass('active');
-            
+
             } else {
                 $(container).addClass('active');
                 $(this).parent().addClass('expand-group');
@@ -65,7 +70,7 @@ $(document).ready(function() {
  * Functions
  */
 
-/* prevent default */ 
+/* prevent default */
 function predef(menu) {
     $(menu).click(function(e){
         e.preventDefault();
@@ -87,31 +92,40 @@ function removeError(input) {
 
 /* ssn validation */
 function ssnCheck(input) {
-    var subj, iVal, val2;
+    var subj, iVal, val2, wrapper, wrapperContent, eBox;
     $(input).focus(function() {
-        $(this).val('');
+        $(input).val('');
     });
     subj = input;
+    // if error msg div hasn't been created, create it
+    if(!($('#ssn-error-handler').length)) {
+        wrapper = $(input).parent().parent().parent('.field-name-field-ssn');
+        wrapperContent = $(wrapper).html();
+        wrapperContent += '<div id="ssn-error-handler">Format: 999-99-9999 or 999999999</div>';
+        $(wrapper).html(wrapperContent);
+    }
     iVal = $(subj).val();
+    eBox = $('#ssn-error-handler');
     if($(subj).hasClass('error')) $(subj).removeClass('error');
+    if($(eBox).hasClass('error')) $(eBox).removeClass('error');
     if(iVal.length > 8 && iVal.length < 12) {
         val2 = iVal.replace(/-/g, "");
         $(subj).val(val2);
         if(val2.length == 9 && $.isNumeric(val2)) {
             $(subj).value == val2;
             return true;
-        } else { 
-            fireError($(subj));
-        } 
+        } else {
+            fireError($(subj), $(eBox));
+        }
     } else {
-        fireError($(subj));
+        fireError($(subj), $(eBox));
     }
 }
 
 /* ssn validation errors */
-function fireError(onInput) {
-    $(onInput).val('ex: 111-22-3333');
+function fireError(onInput, errorMsg) {
     $(onInput).addClass('error');
+    $(errorMsg).addClass('error');
     return false;
 }
 
