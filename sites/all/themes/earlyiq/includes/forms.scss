@@ -281,7 +281,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     @include eiq_action_btn(auto, 30px);
     float:left;
     font-size:15px;
-    margin-top:10px 15px;
+    margin-top:15px;
     padding:0 15px;
         &:hover {
             cursor:pointer;
@@ -294,12 +294,17 @@ a#edit-submit-cancel {
     float:left;
     font-size:15px;
     font-weight:bold;
-    margin-top:10px 15px;
+    margin-top:15px;
     padding:0 15px;
         &:hover {
             cursor:pointer;
         }
 }
+
+.page-kiva-zip-no-thanks .content a.form-submit {
+  margin-right:15px;
+}
+
 .partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
 .page-checkout,
