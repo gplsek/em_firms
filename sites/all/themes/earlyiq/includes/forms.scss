@@ -802,6 +802,18 @@ a#edit-submit-cancel {
     }
 }
 
+.partner-kiva-zip #edit-field-address-label {
+  position:relative;
+  .field-description {
+    right:auto;
+    left:150px;
+    top:32px;
+    .help-icon {
+      margin-right:5px;
+    }
+  }
+}
+
 // kiva-zip specific
 .page-kiva-zip,
 .partner-kiva-zip {
