@@ -456,7 +456,7 @@ function getIconHelpText($icon, $fieldName) {
         $helpText = "";
         break;
       case "field_nat_misdmnr_search":
-        $helpText = "1 self-disclosed misdemeanor conviction was confirmed for a non-white-collar crime.";
+        $helpText = "Misdemeanor record(s) were found.";
         break;
       case "field_judgements":
         $helpText = "No unsatisfied judgments against borrower found for non-fraud-related cases.";
@@ -468,7 +468,7 @@ function getIconHelpText($icon, $fieldName) {
         $helpText = "A personal bankruptcy was found.";
         break;
       case "field_pending_litigations":
-        $helpText = "Pending litigation againsts borrower was found for a non-fraud-related case.";
+        $helpText = "Pending litigation against borrower was found for a non-fraud-related case.";
         break;
     }
 
