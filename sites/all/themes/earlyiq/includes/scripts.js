@@ -93,35 +93,19 @@ function removeError(input) {
 /* ssn validation */
 function ssnCheck(input) {
     var iVal, val2, wrapper, wrapperContent, eBox, subj = input;
-
-    // input val
     iVal = $(subj).val();
     eBox = $('#ssn-error-handler');
-
-    // remove error classes prior to checking
     if($(subj).hasClass('error')) $(subj).removeClass('error');
     if($(eBox).hasClass('error')) $(eBox).removeClass('error');
-
-    // initial checkpoint
     if(iVal.length > 8 && iVal.length < 12) {
-
-        // remove any dashes
         val2 = iVal.replace(/-/g, "");
-
-        // replace val
         $(subj).val(val2);
-
-        // secondary checkpoint
         if(val2.length == 9 && $.isNumeric(val2)) {
-
-            // replace input with formatted value
            $(subj).value == val2;
             return true;
-
         } else {
             fireError($(subj), $(eBox), $(subj));
         }
-
     } else {
         fireError($(subj), $(eBox), $(subj));
     }
@@ -131,7 +115,6 @@ function ssnCheck(input) {
 function fireError(onInput, errorMsg, subj) {
     $(onInput).addClass('error');
     $(errorMsg).addClass('error');
-    // add error msg
     if(!($('#ssn-error-handler').length)) {
         wrapper = $(subj).parent().parent().parent('.field-name-field-ssn');
         wrapperContent = $(wrapper).html();
