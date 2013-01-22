@@ -123,7 +123,7 @@ function ssnCheck(input) {
         }
 
     } else {
-        fireError($(subj), $(eBox));
+        fireError($(subj), $(eBox), $(subj));
     }
 }
 
