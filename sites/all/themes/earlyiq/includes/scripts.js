@@ -104,19 +104,19 @@ function ssnCheck(input) {
            $(subj).value == val2;
             return true;
         } else {
-            fireError($(subj), $(eBox), $(subj));
+            fireError($(subj), $(eBox));
         }
     } else {
-        fireError($(subj), $(eBox), $(subj));
+        fireError($(subj), $(eBox));
     }
 }
 
 /* ssn validation errors */
-function fireError(onInput, errorMsg, subj) {
+function fireError(onInput, errorMsg) {
     $(onInput).addClass('error');
     $(errorMsg).addClass('error');
     if(!($('#ssn-error-handler').length)) {
-        wrapper = $(subj).parent().parent().parent('.field-name-field-ssn');
+        wrapper = $(onInput).parent().parent().parent('.field-name-field-ssn');
         wrapperContent = $(wrapper).html();
         wrapperContent += '<div id="ssn-error-handler">Format: 999-99-9999 or 999999999</div>';
         $(wrapper).html(wrapperContent);
