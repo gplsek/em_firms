@@ -195,6 +195,7 @@ function em_apply_kba_form_submit($form, &$form_state){
 
     $node = node_load($form_state['values']['data_person_nid']);
     $node->field_kba['und'][0]['value'] = 1;
+    unset($node->field_ssn);
     node_save($node);
     drupal_goto('node/'.$form_state['values']['data_person_nid'].'/edit');
 }
@@ -244,6 +245,8 @@ function em_apply_verification_form_submit($form, &$form_state){
     'Day' => $form_state['values']['birthdate']['day'],
     'Address' => $form_state['values']['address']
       );
+
+    unset($node->field_ssn);
 
     _rsa_verification_submit($data);
 
@@ -506,6 +509,7 @@ function _em_apply_invite($node) {
     $personnode->uid = $nuid;
     $personnode->language = 'und';
     $personnode->field_company['und'][0]['nid'] = $node->nid;
+    unset($personnode->field_ssn);
     $personnode = node_submit($personnode); // Prepare node for saving
 
     node_save($personnode);
