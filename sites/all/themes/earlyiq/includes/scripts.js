@@ -115,10 +115,14 @@ function ssnCheck(input) {
 function fireError(onInput, errorMsg) {
     $(onInput).addClass('error');
     $(errorMsg).addClass('error');
-    wrapper = $(onInput).parent().parent().parent('.field-name-field-ssn');
-    wrapperContent = $(wrapper).html();
-    wrapperContent += '<div id="ssn-error-handler">Format: 999-99-9999 or 999999999</div>';
-    $(wrapper).html(wrapperContent);
+    if(!($(errorMsg).length)) {
+        wrapper = $(onInput).parent().parent().parent('.field-name-field-ssn');
+        wrapperContent = $(wrapper).html();
+        wrapperContent += '<div id="ssn-error-handler" class="error">Format: 999-99-9999 or 999999999</div>';
+        $(wrapper).html(wrapperContent);
+    } else {
+        $(errorMsg).addClass('error');
+    }
     return false;
 }
 
