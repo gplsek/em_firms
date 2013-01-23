@@ -140,7 +140,7 @@ function _secure_pii_data_update_broker($node) {
     //dpm($node->original->{$field}['und'][0]['value']);
     //dpm("pii");
     //dpm($node->pii[$field]);
-    if ((!_secure_pii_check_private() && isset($node->original->{$field}['und']) && $node->original->{$field}['und'][0]['value'] != $node->pii[$field]) || (_secure_pii_check_private())) {
+    if ((!_secure_pii_check_private() && isset($node->original->{$field}['und']) && $node->original->{$field}['und'][0]['value'] != $node->pii[$field] && $node->pii[$field] != _secure_pii_encrypt($pii_default_values[$field])) || (_secure_pii_check_private())) {
       //dpm('pii update ' . $field);
       $sql = "call update_pii_" . str_replace('field_', '', $field) . "(
         " . $node->vid . ",

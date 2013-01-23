@@ -281,24 +281,32 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
     @include eiq_action_btn(auto, 30px);
     float:left;
     font-size:15px;
-    margin-top:10px 15px;
+    margin-top:15px;
     padding:0 15px;
         &:hover {
             cursor:pointer;
         }
     }
 }
+
+.page-kiva-zip-no-thanks .content a.form-submit,
 a#edit-submit-cancel {
     @include eiq_action_btn(auto, 30px);
     float:left;
+    font-family: 'arial', arial, helvetica, sans-serif;
     font-size:15px;
     font-weight:bold;
-    margin-top:10px 15px;
+    margin-top:15px;
     padding:0 15px;
         &:hover {
             cursor:pointer;
         }
 }
+
+.page-kiva-zip-no-thanks .content a.form-submit {
+  margin-right:15px;
+}
+
 .partner-kiva-zip #main-wrapper,
 .page-kiva-zip #main-wrapper,
 .page-checkout,
@@ -451,7 +459,8 @@ a#edit-submit-cancel {
     #edit-sac,
     #edit-submit,
     #edit-cancel,
-    #edit-submit-cancel {
+    #edit-submit-cancel,
+    .page-kiva-zip-no-thanks .content a.form-submit {
         float:left;
         margin-right:15px;
     }
@@ -793,6 +802,18 @@ a#edit-submit-cancel {
     }
 }
 
+.partner-kiva-zip #edit-field-address-label {
+  position:relative;
+  .field-description {
+    right:auto;
+    left:154px;
+    top:32px;
+    .help-icon {
+      margin-right:5px;
+    }
+  }
+}
+
 // kiva-zip specific
 .page-kiva-zip,
 .partner-kiva-zip {
@@ -832,7 +853,7 @@ a#edit-submit-cancel {
       margin:0 auto;
       width:100%;
       input[type='submit'],
-      a##edit-submit-cancel {
+      a#edit-submit-cancel {
         margin-top:15px;
       }
       #edit-submit-cancel,

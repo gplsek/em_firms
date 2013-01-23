@@ -92,18 +92,7 @@ function removeError(input) {
 
 /* ssn validation */
 function ssnCheck(input) {
-    var subj, iVal, val2, wrapper, wrapperContent, eBox;
-    $(input).focus(function() {
-        $(input).val('');
-    });
-    subj = input;
-    // if error msg div hasn't been created, create it
-    if(!($('#ssn-error-handler').length)) {
-        wrapper = $(input).parent().parent().parent('.field-name-field-ssn');
-        wrapperContent = $(wrapper).html();
-        wrapperContent += '<div id="ssn-error-handler">Format: 999-99-9999 or 999999999</div>';
-        $(wrapper).html(wrapperContent);
-    }
+    var iVal, val2, wrapper, wrapperContent, eBox, subj = input;
     iVal = $(subj).val();
     eBox = $('#ssn-error-handler');
     if($(subj).hasClass('error')) $(subj).removeClass('error');
@@ -112,7 +101,7 @@ function ssnCheck(input) {
         val2 = iVal.replace(/-/g, "");
         $(subj).val(val2);
         if(val2.length == 9 && $.isNumeric(val2)) {
-            $(subj).value == val2;
+           $(subj).value == val2;
             return true;
         } else {
             fireError($(subj), $(eBox));
@@ -126,6 +115,14 @@ function ssnCheck(input) {
 function fireError(onInput, errorMsg) {
     $(onInput).addClass('error');
     $(errorMsg).addClass('error');
+    if(!($(errorMsg).length)) {
+        wrapper = $(onInput).parent().parent().parent('.field-name-field-ssn');
+        wrapperContent = $(wrapper).html();
+        wrapperContent += '<div id="ssn-error-handler" class="error">Format: 999-99-9999 or 999999999</div>';
+        $(wrapper).html(wrapperContent);
+    } else {
+        $(errorMsg).addClass('error');
+    }
     return false;
 }
 
