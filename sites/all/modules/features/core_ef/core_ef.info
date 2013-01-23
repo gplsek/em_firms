@@ -72,6 +72,7 @@ dependencies[] = references
 dependencies[] = rules
 dependencies[] = rules_admin
 dependencies[] = search
+dependencies[] = secure_pii
 dependencies[] = shortcut
 dependencies[] = simpletest
 dependencies[] = socialmedia
