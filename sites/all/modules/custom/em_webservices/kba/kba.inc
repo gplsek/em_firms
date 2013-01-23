@@ -697,7 +697,6 @@ function kba_passed($form_state) {
 	$node->uid = $company->uid;
 	$node->field_kba['und'][0]['value'] = 1;
 	$node->field_verify_count['und'][0]['value'] = $node->field_verify_count['und'][0]['value'] + 1;
-  unset($node->field_ssn);
 	node_save($node);
    _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'pass');
    drupal_goto('verification/'.$form_state['node'].'/complete');

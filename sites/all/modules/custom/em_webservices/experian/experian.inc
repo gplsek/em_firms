@@ -327,7 +327,7 @@ function _saveNode($nodeID, $json, $dataType) {
         $node->field_results_address_history['und'][0]['value'] = $json;
 
       }
-      unset($node->field_ssn);
+
       node_save($node);
     }
 
