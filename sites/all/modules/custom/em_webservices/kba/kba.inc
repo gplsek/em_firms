@@ -852,9 +852,11 @@ function kba_failed($form_state, $error_code) {
 	switch ($error_code) {
 	    case 1:
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>";
+	        _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'fail_verification');
 	        break;
 	    case 2:
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>.";
+	        _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'fail_verification');
 	        break;
 	    case 3:
 	        $error = "Sorry. We weren't able to verify your identity.";

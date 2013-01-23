@@ -298,9 +298,38 @@ function _eiq_partners_get_partner($account) {
 
 }
 
-function _eiq_partners_notify_analyst($node, $uid, $status) {
+function _eiq_partners_notify_analyst($nid, $uid, $status) {
   $partner_admin = user_load($uid);
-  mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']));
+  $node = node_load($nid);
+  //mail($partner_admin->mail, "kiva-zip app " . $status, url('node/' . $node['nid']));
+
+
+    $module = 'eiq_partners';
+    $key = 'eiq';
+    $language = language_default();
+    $params = array();
+    $from = NULL;
+    $send = FALSE;
+    $message = drupal_mail($module, $key, $partner_admin->mail, $language, $params, $from, $send);
+
+    $message['subject'] = 'KBA Status Message: '.$status;
+    $message['body'] = array();
+    $message['body'][] = $node->field_name_first['und'][0]['value']." ".$node->field_name_last['und'][0]['value'];
+    $message['body'][] = "<br><a href=/node/".$node->nid."/edit></a>";
+
+    // Retrieve the responsible implementation for this message.
+    $system = drupal_mail_system($module, $key);
+
+    // Format the message body.
+    $message = $system->format($message);
+
+    // Send e-mail.
+    $message['result'] = $system->mail($message);
+
+
+
+
+
 }
 
 function _eiq_partners_nothanks() {
