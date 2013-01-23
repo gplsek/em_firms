@@ -109,12 +109,12 @@ function core_ef_form_data_person_node_form_alter(&$form, &$form_state) {
   unset($form['field_company']['und'][0]['nid']['#autocomplete_path']);
   $form['field_company']['#disabled'] = TRUE;
 
-  $form['field_kba']['#access'] = FALSE;
+  $form['field_kba']['#access'] = _secure_pii_check_private();
   $form['field_verify_count']['#access'] = FALSE;
   $form['additional_settings']['#access'] = FALSE;
-  $form['field_results_address_history']['#access'] = FALSE;
-  $form['field_results_civil_history']['#access'] = FALSE;
-  $form['field_results_criminal_history']['#access'] = FALSE;
+  $form['field_results_address_history']['#access'] = _secure_pii_check_private();
+  $form['field_results_civil_history']['#access'] = _secure_pii_check_private();
+  $form['field_results_criminal_history']['#access'] = _secure_pii_check_private();
   $form['field_email_address']['#disabled'] = TRUE;
   $form['actions']['submit']['#value'] = "Continue";
 
