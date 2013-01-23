@@ -132,7 +132,7 @@ function _secure_pii_data_insert_broker($node) {
   }
 }
 function _secure_pii_data_update_broker($node) {
-  global $pii_fields;
+  global $pii_default_values, $pii_fields;
   foreach ($pii_fields as $field) {
     // always udpate from private
     // only update on public if the field's value is changed
