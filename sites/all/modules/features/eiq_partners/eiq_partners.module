@@ -315,7 +315,7 @@ function _eiq_partners_notify_analyst($nid, $uid, $status) {
     $message['subject'] = 'KBA Status Message: '.$status;
     $message['body'] = array();
     $message['body'][] = $node->field_name_first['und'][0]['value']." ".$node->field_name_last['und'][0]['value'];
-    $message['body'][] = "<br><a href=/node/".$node->nid."/edit></a>";
+    $message['body'][] = "<br><a href=/node/".$node->nid."/edit>Application</a>";
 
     // Retrieve the responsible implementation for this message.
     $system = drupal_mail_system($module, $key);
