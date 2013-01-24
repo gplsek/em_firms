@@ -834,7 +834,8 @@ function kba_wizard_exit(){
 function kba_failed($form_state, $error_code) {
 
     $node = node_load($form_state['node']);
-
+    $cnid = $node->field_company['und'][0]['nid'];
+	$company = node_load($cnid);
 
            $count_ter = field_get_items('node', $node, 'field_verify_count');
            $count = $node->field_verify_count['und'][0]['value'];
@@ -851,21 +852,23 @@ function kba_failed($form_state, $error_code) {
 	switch ($error_code) {
 	    case 1:
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>";
+	        _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'fail_verification');
 	        break;
 	    case 2:
 	        $error = "The Name, DOB, or SSN do not match. Please verify your information is entered correctly. If not, please correct the information and try again. If you feel the information entered is correct, please contact Early IQ <a href='/contact'>here</a>.";
+	        _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'fail_verification');
 	        break;
 	    case 3:
 	        $error = "Sorry. We weren't able to verify your identity.";
 	        drupal_set_message($error,'status');
-	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+	        _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'fail');
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 	        break;
 	    case 4:
 		    $error = "You have missed the follow up question";
 
 		    drupal_set_message($error,'status');
-	        _eiq_partners_notify_analyst($form_state['node'], 'fail');
+	        _eiq_partners_notify_analyst($form_state['node'],$company->uid, 'fail');
 		    drupal_goto('verification/'.$form_state['node'].'/status');
 		break;
 	}
