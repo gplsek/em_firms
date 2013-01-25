@@ -44,7 +44,7 @@ h3, h4 {
 h1 {
     font-size:32px;
     line-height:34px;
-    
+
     &.title {
         border-bottom: 1px solid #CCCCCC;
         line-height: 44px;
@@ -86,10 +86,10 @@ h3 {
         line-height:20px;
         font-weight:normal;
     }
-  
+
     h4 {
         color:$color-blue;
-        font-weight:bold;  
+        font-weight:bold;
     }
 }
 
@@ -128,7 +128,7 @@ li a.active {
 #block-system-main-menu {
     a, a:visited {
         border:0;
-        border-bottom:2px solid transparent; 
+        border-bottom:2px solid transparent;
         color:$color-link-grey;
         display: block;
         font-size: 15px;
@@ -137,7 +137,7 @@ li a.active {
         text-decoration: none;
         padding-top:0 !important;
         padding-bottom:12px !important;
-        
+
         &.last {
           margin-right:0;
         }
@@ -146,7 +146,7 @@ li a.active {
         &:focus {
             color: $color-blue;
         }
-    
+
         &:hover,
         &.active,
         &.active-trail {
@@ -159,10 +159,10 @@ li a.active {
         &.menu-minipanel:hover,
         &.menu-minipanel.active:hover,
         &.menu-minipanel.active-trail:hover {
-          border-bottom:2px solid transparent; 
+          border-bottom:2px solid transparent;
         }
     }
- 
+
     li.last a {
         margin-right: 0;
     }
@@ -227,8 +227,8 @@ li a.active {
 
 
 
-/* 
- *  layout 
+/*
+ *  layout
  *
  *
  *
@@ -261,12 +261,12 @@ li a.active {
 }
 
 body.no-sidebars #content {
-    border: none;    
+    border: none;
 }
 
-body.sidebar-second #content {    
+body.sidebar-second #content {
   border-right: 1px dashed #CCCCCC;
-  padding: 0 32px 40px 20px;    
+  padding: 0 32px 40px 20px;
 }
 
 #page-wrapper,
@@ -328,7 +328,7 @@ body.not-front {
         padding: 0 0 40px 20px;
         width: 920px;
     }
-    
+
     &.one-sidebar #content {
         border-left: 1px dashed #CCCCCC;
         float:left;
@@ -365,11 +365,11 @@ body.not-front {
 
 /* sidebar */
 .sidebar, .region-sidebar-first {
-  
+
   #block-nodeblock-35 {
     padding-top:15px;
   }
-  
+
   #block-nodeblock-35 h2 {
     background-position:172px 8px;
     font-size:23px;
@@ -377,11 +377,11 @@ body.not-front {
     padding:0 70px 0 0;
     width:185px;
   }
-  
+
   .trust-text {
     width:100%;
   }
-  
+
   .start-links {
     padding-left:0;
   }
@@ -402,7 +402,7 @@ body.not-front {
 .start-links {
     float:left;
       padding-left:65px;
-    
+
       p a {
         @include eiq_action_btn(217px, 44px);
         @include gradient('blue_btn');
@@ -469,7 +469,7 @@ body.not-front {
   color:#ddd;
 }
 
-/* 
+/*
  * Custom page styles
  *
  *
@@ -505,10 +505,10 @@ body.not-front {
     }
 
     input[type="submit"] {
-        padding: 10px;    
+        padding: 10px;
     }
-}   
-    
+}
+
 #block-locationmap-image img{
     width: 611px;
     height: auto;
@@ -539,7 +539,7 @@ body.not-front {
         display: block;
         list-style: none outside none;
         padding-left: 3px;
- 
+
         a {
             display: block;
             padding: 5px;
@@ -639,7 +639,7 @@ body.front .active-trail {
 }
 
 .menu-minipanels .menu-block-wrapper ul.menu {
-  
+
   @include wrap();
   background: white !important;
   border:1px solid #ccc;
@@ -647,7 +647,7 @@ body.front .active-trail {
   padding: 10px 10px 10px 10px;
   margin: 0;
   box-shadow: 1px 3px 6px #333;
-  
+
   li, li.leaf, li.last {
     clear:both;
     display:block;
@@ -659,20 +659,20 @@ body.front .active-trail {
 }
 .sidebar .block-menu,
 .region-sidebar-first .block-menu {
-  
+
   h2 {
     font-size:20px;
     line-height:24px;
   }
-  
+
   ul {
     margin:0;
     padding-left:5px;
   }
-  
+
   ul li {
     list-style:none !important;
-  
+
     a {
       font-size:14px;
       font-weight:bold !important;
@@ -701,7 +701,7 @@ body.front .active-trail {
 
 /* our trustmark your trust block */
 #block-nodeblock-35 h2 {
-  background:url($pathImg + $pathSprite) 415px 2px no-repeat; 
+  background:url($pathImg + $pathSprite) 415px 2px no-repeat;
   clear:right;
   color:$color-blue;
   float:left;
@@ -733,7 +733,7 @@ body.front .active-trail {
             font-size:17px;
             line-height:19px;
             text-decoration:none;
-                
+
             &:hover {
                 color:$color-blue;
             }
@@ -748,7 +748,7 @@ body.front .active-trail {
   .slideshow-items {
     @include size(960px, 408px);
     overflow:hidden;
-    
+
     ul,
     ul li,
     ul .item-list {
@@ -863,12 +863,12 @@ a.views-more-link:hover {
     .view h2 {
       display:block;
     }
-    .views-row { 
+    .views-row {
         float: left;
         margin-right: 35px;
         padding-right: 20px;
         width: 270px;
-    
+
         .views-field-body {
             clear:both;
           p, h2, h3 {
@@ -876,7 +876,7 @@ a.views-more-link:hover {
             line-height:21px;
           }
         }
-      
+
         .views-field-title {
             display:block;
             height:60px;
@@ -893,13 +893,13 @@ a.views-more-link:hover {
         }
     }
     .views-row-last {
-        margin-right: 0;    
+        margin-right: 0;
         padding-right: 0;
     }
     .views-field-field-image  {
         float: left;
         padding-right:10px;
-        
+
         img{
             float: left;
             width: 50px;
@@ -959,13 +959,13 @@ a.views-more-link:hover {
 
 #widgets-element-socialmedia_addthis-facebook-like {
     width: 109px;
-    
+
     a.addthis_button_facebook_like {
         display: block;
         width: 100%;
     }
-    
-    iframe{  
+
+    iframe{
         width: 100% !important;
     }
 }
@@ -1002,7 +1002,7 @@ a.views-more-link:hover {
 #block-block-7 {
     border-top: 1px solid;
     clear: both;
-    float: none;  
+    float: none;
     padding: 15px 0 0;
     width: 100%;
     margin-right: 0;
@@ -1018,17 +1018,17 @@ a.views-more-link:hover {
 /* Footer Twitter Block */
 
 #block-twitter-block-default {
-    
-    ul {    
+
+    ul {
         margin: 0;
     }
-    
+
     .twitter_block_user img {
         float: left;
         height: 32px;
         width: 32px;
     }
-    
+
     .twitter_block_user_name {
         display: block;
         float: left;
@@ -1098,7 +1098,7 @@ div.widgets-element-horizontal {
         }
     }
 
-    &.last .content {   
+    &.last .content {
         margin-bottom: 0;
     }
 
@@ -1115,7 +1115,7 @@ div.widgets-element-horizontal {
 #comments {
     margin: 1.5em 0;
     padding-top: 19px;
-    
+
     h2.title {
         border-bottom: 1px solid #CCCCCC;
         margin-bottom: 26px;
@@ -1155,9 +1155,9 @@ div.widgets-element-horizontal {
  *
  */
 
-// sample report page only 
+// sample report page only
 .section-products #main {
-    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat; 
+    background:url($pathImg + 'sample-report-background_light.png') center 300px no-repeat;
     padding-bottom:90px; // helps clear bg image
 }
 
@@ -1182,7 +1182,7 @@ div.widgets-element-horizontal {
     background-color:$color-white;
     border:1px solid #dcdcdc;
 }
- 
+
 #reported-company {
     @include border-radius(5px);
 }
@@ -1198,7 +1198,7 @@ div.widgets-element-horizontal {
 
   #logo {
     min-width:250px;
-    
+
     img {
       background:none;
       border:none;
@@ -1221,27 +1221,27 @@ div.widgets-element-horizontal {
       font-size:12px;
       line-height:17px;
     }
-    
+
     .website a {
       color:#098eba;
       font-weight:bold;
       text-decoration:none;
     }
   }
-  
+
   .right {
     float:right;
     padding:25px 50px 0 0;
     width:30%;
     font-size:12px;
   }
-  
+
   h2 {
     color:#252525;
     font-size:18px;
     padding-bottom:15px;
   }
-  
+
   ul li {
     padding-bottom:2px;
   }
@@ -1249,7 +1249,7 @@ div.widgets-element-horizontal {
   #reportedh2,
   p.address,
   p.phone,
-  label, 
+  label,
   ul li span {
   font-weight:bold;
   }
@@ -1300,13 +1300,13 @@ div.widgets-element-horizontal {
 
     .rating {
       width:185px;
-      
+
       label {
         float:left;
         font-weight:normal;
         padding-right:15px;
       }
-      
+
       .stars {
         @include hide-text();
         @include size(117px, 0);
@@ -1350,18 +1350,18 @@ div.widgets-element-horizontal {
       &:hover {
         cursor:pointer;
       }
-    }  
+    }
 
     .toggle.closed {
         background-position:right -83px;
     }
-    
+
     // toggle functionality
     .toggle.opened {display:none;}
     &.expand-group .toggle.opened {display:block;}
     &.expand-group .toggle.closed {display:none;}
   }
-  
+
   .toggle-container {
     display:none;
     opacity:0;
@@ -1382,16 +1382,16 @@ div.widgets-element-horizontal {
       clear:both;
       display:block;
       padding:6px 0 2px;
-      
+
       ul {
         list-style-type:disc;
       }
-      
+
       li {
         border:0;
         padding:0 0 0 15px;
       }
-      
+
       .left-col {
         font-weight:bold;
         padding-left:20px;
@@ -1403,16 +1403,16 @@ div.widgets-element-horizontal {
         @include size(30px, 0);
         padding-top:25px;
         background:url($pathImg + 'sprite_report-checks.png') 0 0 no-repeat;
-      
+
         &.fail {background-position:0 -30px;}
         &.warn {background-position:0 -60px;}
         &.note {background-position:0 -90px;}
       }
-      
+
       .right-col {
         padding-left:15px;
         width:375px;
-      
+
         p {
           font-size:12px;
           line-height:22px;
@@ -1439,15 +1439,15 @@ div.widgets-element-horizontal {
   }
   .details-toggle-container.active {
     @include animation(500);
+    @include size(100%, 100%);
     clear:both;
     display:block;
     float:left;
     opacity:1;
-    height:100%;
   }
 }
 
-/* 
+/*
  * START INHERITED STYLES FROM SEVEN THEME
  *
  *
@@ -1465,7 +1465,7 @@ div.widgets-element-horizontal {
  */
 
 /* Contextual Content Edition */
-.views-field-edit-node {    
+.views-field-edit-node {
     position: absolute;
     z-index: 9999;
 }
@@ -1485,7 +1485,7 @@ div.widgets-element-horizontal {
 
 .views-field-edit-node a:hover {
     background: url("../images/edit-hover.png") no-repeat scroll 0 0 transparent;
-    color: #FF0000;    
+    color: #FF0000;
 }
 
 .view-mode-full .field-name-body img , .view-mode-full .field-name-field-image img{
@@ -1510,12 +1510,12 @@ body.sidebar-first .view-mode-full .field-name-field-image img {
 
 /* Product Node */
 .field-name-field-additional-images {
-    
+
     .field-item {
         float: left;
         margin-right: 11px;
     }
-    
+
     .field-label {
         border-bottom: 1px solid #CCCCCC;
         font-size: 16px;
@@ -1523,12 +1523,12 @@ body.sidebar-first .view-mode-full .field-name-field-image img {
         margin-bottom: 13px;
         padding-bottom: 5px;
     }
-    
-    img {    
+
+    img {
         padding: 3px;
         border: 1px solid #CCCCCC;
     }
-    
+
     .field-items {
         overflow: hidden;
     }
