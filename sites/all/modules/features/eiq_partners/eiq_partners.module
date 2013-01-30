@@ -215,7 +215,7 @@ function eiq_partners_form_user_profile_form_alter(&$form, &$form_state) {
 
   $form['field_name_first']['#type'] = 'hidden';
   $form['field_name_last']['#type'] = 'hidden';
-  if ($user->uid != 1 || in_array('administrator', array_values($user->roles))) {
+  if ($user->uid != 1 || !in_array('administrator', array_values($user->roles))) {
     $form['account']['mail']['#type'] = 'hidden';
   }
   if (isset($_GET['pass-reset-token'])) {

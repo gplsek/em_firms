@@ -83,10 +83,12 @@ function core_ef_form_user_register_form_alter(&$form, &$form_state) {
 }
 
 function core_ef_form_user_profile_form_alter(&$form, &$form_state) {
-  $form['contact']['#access'] = FALSE;
-  $form['timezone']['#access'] = FALSE;
-  $form['field_client_type']['#access'] = FALSE;
-  $form['field_notes']['#access'] = FALSE;
+  if ($user->uid != 1 || !in_array('administrator', array_values($user->roles))) {
+    $form['contact']['#access'] = FALSE;
+    $form['timezone']['#access'] = FALSE;
+    $form['field_client_type']['#access'] = FALSE;
+    $form['field_notes']['#access'] = FALSE;
+  }
 }
 
 function _core_ef_my_ssn($content, $element) {
